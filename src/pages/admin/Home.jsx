@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Sidebare from "../../components/sidebare/Sidebare";
 import Dashboard from "./Dashboard";
-import Categories from "./Categories";
 import Produits from "./Produits";
 import Commandes from "./Commandes";
+import CategoriesAdmin from "../../components/categories/CategoriesAdmin";
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
       <Sidebare />
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories" element={<CategoriesAdmin />} />
         <Route path="/produits" element={<Produits />} />
         <Route path="/commandes" element={<Commandes />} />
       </Routes>
