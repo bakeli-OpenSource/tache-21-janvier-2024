@@ -1,16 +1,33 @@
 import React from "react";
-import { CiMenuBurger } from "react-icons/ci";
+import { FaUser, FaBars } from "react-icons/fa";
+import { FaSquareEnvelope } from "react-icons/fa6";
+import { IoIosNotifications } from "react-icons/io";
 import useSidebare from "../../utils/hooks/useSidebare";
 
 const Header = () => {
-  const { open, toggleSidebare } = useSidebare();
+  const { toggleSidebare } = useSidebare();
+
   return (
-    <header className="bg-gray-800 text-gray-100 w-100 px-4 py-3">
-      <CiMenuBurger
+    <header className="bg-gray-800 fixed w-full m-0 flex justify-between text-gray-100 w-100 px-5 py-5">
+      <FaBars
         className="cursor-pointer"
         size={26}
-        onClick={() => toggleSidebare(open)}
+        onClick={toggleSidebare}
       />
+      <div className="flex gap-4 justify-around align-center">
+      <FaSquareEnvelope
+        className="cursor-pointer"
+        size={20}
+      />
+      <IoIosNotifications
+        className="cursor-pointer"
+        size={20}
+      />
+      <FaUser
+        className="cursor-pointer"
+        size={16}
+      />
+      </div>
     </header>
   );
 };

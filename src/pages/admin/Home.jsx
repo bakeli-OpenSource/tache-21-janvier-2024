@@ -8,8 +8,8 @@ import CategoriesAdmin from "../../components/categories/CategoriesAdmin";
 
 const Home = () => {
   return (
-    <div className="App flex gap-6 bg-gray-100">
-      <Sidebare />
+    <div className="App pt-[70px] h-screen  gap-6 bg-gray-100">
+      <Sidebare  />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/categories" element={<CategoriesAdmin />} />

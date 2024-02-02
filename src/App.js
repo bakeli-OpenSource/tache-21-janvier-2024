@@ -6,7 +6,7 @@ import SidebareContextProvider from "./utils/contexte/SidebareContext";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App min-h-screen">
       <SidebareContextProvider>
         <Header />
         <Home />
