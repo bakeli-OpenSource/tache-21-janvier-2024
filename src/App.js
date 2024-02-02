@@ -1,10 +1,16 @@
 // import logo from './logo.svg';
 // import './App.css';
+import Header from "./components/header";
+import Home from "./pages/admin/Home";
+import SidebareContextProvider from "./utils/contexte/SidebareContext";
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <SidebareContextProvider>
+        <Header />
+        <Home />
+      </SidebareContextProvider>
     </div>
   );
 }
