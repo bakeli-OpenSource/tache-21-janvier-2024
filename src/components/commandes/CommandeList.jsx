@@ -10,7 +10,7 @@ const ProduitsAdmin = () => {
   const {table, table2, actions} = useCommandes();
   const {open} = useSidebare()
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4  my-3`}>
+    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>
       <HeaderTable title="Commandes" nomAjout="Ajouter des Commandes"  />
       <Table thead={table} tbody={table2} actions={actions} />
     </div>

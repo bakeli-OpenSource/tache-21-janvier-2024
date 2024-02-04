@@ -9,7 +9,7 @@ const Categories = () => {
   const { open } = useSidebare();
 
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 my-3`}>
+    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable
         title="Liste categories"
         nomAjout="Ajouter un nouveau categorie"
