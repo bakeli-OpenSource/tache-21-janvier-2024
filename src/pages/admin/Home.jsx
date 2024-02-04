@@ -4,8 +4,14 @@ import Sidebare from "../../components/sidebare/Sidebare";
 import Dashboard from "./Dashboard";
 import Produits from "./Produits";
 import Commandes from "./Commandes";
+
+
 import AdminConnexion from "./connexion/AdminConnexion";
+
 import CategoriesAdmin from "../../components/categories/CategoriesAdmin";
+
+
+
 
 const Home = () => {
   return (

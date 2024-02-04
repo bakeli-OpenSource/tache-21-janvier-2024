@@ -29,13 +29,13 @@ const AdminConnexion = () => {
   return (
     <div class="w-full h-full flex justify-center bg-slate-300">
       
-        <form onSubmit={handleSubmit} class="bg-black w-1/2  hover:shadow-black shadow-md mx-auto mt-3 rounded px-8 pt-6 pb-8 mb-4 shadow-cyan-500/50 bg-stone-300">
+        <form onSubmit={handleSubmit} class="bg-gray-800 w-1/2 min-w-80 max-w-24  hover:shadow-black shadow-md mx-auto mt-3 rounded px-8 pt-6 pb-8 mb-4 ">
             <Title className='text-2x1 font-semibold mb-4 text-center text-white' children='Page Connexion'/>
             <div className="relative">
             <Label
                 htmlFor="input"
                 children='Email'
-                className={`absolute top-1 left-0 text-white transition-all transition ease-in-out ${
+                className={`absolute top-0 left-0 text-white transition-all transition ease-in-out ${
                     inputValue ? 'text-sm' : 'text-base'
                 } ${
                     inputValue ? 'text-gray-900' : 'text-gray-900'
@@ -49,7 +49,7 @@ const AdminConnexion = () => {
                   name='email'
                   value={inputValue}
                   onChange={handleInputChange}
-                  className="w-full text-white text-sm border-b-2 mt-4 px-0 mb-2 border-white outline-none bg-transparent focus:outline-none "
+                  className="w-full text-white text-xs border-b-2 mt-4 px-0 mb-2 border-white outline-none bg-transparent focus:outline-none "
               />
               </div>
 
@@ -57,7 +57,7 @@ const AdminConnexion = () => {
             <Label
                 htmlFor="input"
                 children='Mot de passe'
-                className={`absolute top-1 left-0 text-white transition-all transition ease-in-out   ${
+                className={`absolute top-0 left-0 text-white transition-all transition ease-in-out   ${
                     valuePasse ? 'text-sm' : 'text-base'
                 } ${
                     valuePasse ? 'text-gray-700' : 'text-gray-900'
@@ -71,7 +71,7 @@ const AdminConnexion = () => {
                   name='password'
                   value={valuePasse}
                   onChange={handlePasse}
-                  className="w-full text-white text-sm border-b-2 mt-4 px-0 mb-2 border-white outline-none bg-transparent focus:outline-none "
+                  className="w-full text-white text-sm border-b-2 mt-3 px-0 mb-2 border-white outline-none bg-transparent focus:outline-none "
               />
               </div>
 
@@ -89,7 +89,7 @@ const AdminConnexion = () => {
           </div>
           <div className='flex justify-center'>
           
-          <LoginButon className="border-orange w-56 p-2 rounded-lg  text-white text-center mt-4     text-xs font-medium  ring-1 ring-black ring-inset bg-yellow-500   "/>
+          <LoginButon className="border-orange w-56 p-1 text-sm rounded-full  text-white text-center mt-4     text-xs font-medium  ring-inset bg-yellow-500   "/>
           </div>
           <Title className='text-xs text-center text-white'>
           <p>je n'ai pas de compte? <span >S'inscrire</span></p>
