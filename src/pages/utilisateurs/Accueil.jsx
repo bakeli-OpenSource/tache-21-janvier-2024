@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Assurez-vous d'importer Link depuis 'react-router-dom'
+import { Link } from 'react-router-dom'; 
 import { ShoppingCartIcon } from '@heroicons/react/outline';
 
 export default function Accueil() {
