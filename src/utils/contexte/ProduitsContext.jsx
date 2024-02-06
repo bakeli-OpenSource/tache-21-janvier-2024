@@ -9,8 +9,10 @@ export const ProduitsContext = createContext();
 const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
     const table = [
-        'id', 'Article', 'Quantité', 'Actions'
+        'id', 'Article', 'Quantité','Prix' , 'Actions'
     ]
+
+    
     const table2 = [
         {
           id: Math.floor(Math.random()*10000000),
@@ -26,7 +28,7 @@ const ProduitContextProvider = ({ children }) => {
           article: {
             src: 'https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
             nom: "Dos Santos",
-            desc: 'Un beau gas'
+            desc: 'Wanteer Un beau gars'
           },
           quantite: 50,
         },
@@ -54,7 +56,9 @@ const ProduitContextProvider = ({ children }) => {
       ]
 
   const value = {
-    table, table2, actions
+    table, 
+    table2,
+    actions
   };
 
   return <ProduitsContext.Provider value={value}>{children}</ProduitsContext.Provider>;
