@@ -5,7 +5,7 @@ import Cards from "../../components/cards-et-filtre/Cards";
 import Filtre from "../../components/cards-et-filtre/Filtre";
 import Revenue from "./Revenue";
 import useSidebare from "../../utils/hooks/useSidebare";
-import Graphique2 from './graphique2/Graphique2'
+import Graphique2 from './graphique2/Graph'
 import ListeProd from './ListeProd'
 
 
@@ -26,11 +26,12 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className='flex w-full'>
-        <div className='w-[2/4]'>
+
+      <div className='flex w-full flex-wrap'>
+        <div className='w-[1/2]'>
           <Revenue />
         </div>
-        <div className='w-[2/4]'>
+        <div className='w-[1/2]'>
           <Graphique2 />
         </div>
       </div>

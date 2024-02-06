@@ -11,7 +11,7 @@ const ListeContextProvider = ({ children }) => {
     const table2 = [
       {
         id: Math.floor(Math.random()*10000000),
-        nom:  "John Doe",
+        article:  {nom: "article1"},
         quantite: 50,
         prix:"30 000fr"
       }
