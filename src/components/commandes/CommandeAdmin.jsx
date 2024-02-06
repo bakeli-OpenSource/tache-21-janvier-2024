@@ -6,7 +6,7 @@ import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '../formulaire/Formulaire';
 
 
-const ProduitsAdmin = () => {
+const CommandeAdmin = () => {
 
   const {table, table2, actions} = useCommandes();
   const {open} = useSidebare()
@@ -18,4 +18,4 @@ const ProduitsAdmin = () => {
   )
 }
 
-export default ProduitsAdmin
+export default CommandeAdmin;
