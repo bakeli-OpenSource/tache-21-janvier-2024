@@ -27,9 +27,13 @@ const AdminConnexion = () => {
 
 
   return (
-    <div class="w-full h-full flex justify-center bg-slate-300">
-      
-        <form onSubmit={handleSubmit} class="bg-gray-800 w-1/2 min-w-80 max-w-24  hover:shadow-black shadow-md mx-auto mt-3 rounded px-8 pt-6 pb-8 mb-4 ">
+
+
+    <div className="w-full h-screen flex justify-center pt-12 pb-12 ">
+
+        <form onSubmit={handleSubmit} class="bg-gray-800  w-screen w-[100%] w-1/2 min-w-80 max-w-24  h-[80%] hover:shadow-black shadow-md mx-auto mt-3 rounded px-8 pt-6 pb-8 mb-4 ">
+
+  
             <Title className='text-2x1 font-semibold mb-4 text-center text-white' children='Page Connexion'/>
             <div className="relative">
             <Label
@@ -49,7 +53,7 @@ const AdminConnexion = () => {
                   name='email'
                   value={inputValue}
                   onChange={handleInputChange}
-                  className="w-full text-white text-xs border-b-2 mt-4 px-0 mb-2 border-white outline-none bg-transparent focus:outline-none "
+                  className="w-full text-white text-xs border-b-2 mt-4 px-0 mb-4 border-white outline-none bg-transparent focus:outline-none "
               />
               </div>
 
@@ -71,7 +75,7 @@ const AdminConnexion = () => {
                   name='password'
                   value={valuePasse}
                   onChange={handlePasse}
-                  className="w-full text-white text-sm border-b-2 mt-3 px-0 mb-2 border-white outline-none bg-transparent focus:outline-none "
+                  className="w-full text-white text-sm border-b-2 mt-3 px-0 mb-4 border-white outline-none bg-transparent focus:outline-none "
               />
               </div>
 
@@ -79,7 +83,7 @@ const AdminConnexion = () => {
           <div className='flex justify-between'>
             <div className='flex'>
           <Input type='checkbox' 
-          className="w-4 h-4 mt-1 text-blue-600 bg-gray-100  border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          className="w-4 h-4 mt-1 text-blue-600 bg-gray-100  border-gray-300 rounded mb-8 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
           />
           <Title children='Remember me ' 
           className='px-1 text-xs text-white mt-1'/>
@@ -89,11 +93,9 @@ const AdminConnexion = () => {
           </div>
           <div className='flex justify-center'>
           
-          <LoginButon className="border-orange w-56 p-1 text-sm rounded-full  text-white text-center mt-4     text-xs font-medium  ring-inset bg-yellow-500   "/>
+          <LoginButon className="border-orange w-56 p-1 text-sm rounded-full   text-black text-center mt-4 text-xs  ring-inset  bg-white  "/>
           </div>
-          <Title className='text-xs text-center text-white'>
-          <p>je n'ai pas de compte? <span >S'inscrire</span></p>
-          </Title>
+          
         </form>
     </div>
   )
