@@ -9,7 +9,7 @@ import useFetch from '../../utils/hooks/useFetch'
 
 const ProduitsAdmin = () => {
 
-  const {table, table2, actions} = useProduits();
+  const {table, actions} = useProduits();
   const {data} = useFetch('http://localhost:4000/api/produits')
   console.log(data);
   const {open} = useSidebare()
