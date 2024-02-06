@@ -23,10 +23,10 @@ function IsLogin() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profil" element={<Profil />} />
             <Route path="/categories" element={<CategoriesAdmin />} />
+            <Route path="/categories/DetailsCategorie" element={<DetailsCategorieUseProvider />} />
             <Route path="/produits/*" element={<Produits />} />
             <Route path='/produits/DetailsProd/:id' element={<DetailsProduits />} />
             <Route path="/commandes" element={<Commandes />} />
-            <Route path="/categories/DetailsCategorie" element={<DetailsCategorieUseProvider />} />
           </Routes>
         </div>
       </SidebareContextProvider>

@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
+
 // import Input from './Input'
 // import LoginButon from './LoginButon'
  import Title from './Title'
  import Label from './Label'
  import IsLogin from '../IsLogin'
  import { useNavigate } from 'react-router-dom'
+
 
 
 const AdminConnexion = () => {
@@ -20,8 +22,11 @@ const AdminConnexion = () => {
 
 
   return (
+
     
      <div className="w-full h-screen flex justify-center items-center ">
+
+
 
 <form className="max-w-md mx-auto bg-gray-800 w-full px-8 pt-6 pb-8 mb-4 shadow-md rounded-md" onSubmit={handleSubmit}>
   <Title 
@@ -41,6 +46,7 @@ const AdminConnexion = () => {
   </label>
 </div>
 
+<<<<<<< HEAD
   <div className="relative z-0 w-full mb-5 group">
       <input type="password" name="floating_password"  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
       <label for="floating_password" 
@@ -55,6 +61,7 @@ const AdminConnexion = () => {
 </div>
 
     
+
   )
 }
 

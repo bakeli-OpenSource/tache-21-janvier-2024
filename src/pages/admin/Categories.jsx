@@ -3,16 +3,37 @@ import HeaderTable from "../../components/headerTable/HeaderTable";
 import { useContext } from "react";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
 import useSidebare from "../../utils/hooks/useSidebare";
+import Formulaire from "../../components/formulaire/Formulaire";
 
 const Categories = () => {
   const { table, table2, actions } = useContext(CategorieContext);
   const { open } = useSidebare();
 
+  const inputs = [
+    {
+      label: "Nom catégorie",
+      type: "text"
+    },
+    {
+      label: "Image catégorie",
+      type: 'file'
+    },
+    {
+      label: "Nombre produit",
+      type: 'number'
+    },
+    {
+      label: "Staut catégorie",
+      type: 'text'
+    }
+  ]
+
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>
+    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable
         title="Liste categories"
         nomAjout="Ajouter un nouveau categorie"
+        body={<Formulaire inputs={inputs} />}
       />
       <Table thead={table} tbody={table2} actions={actions} />
     </div>
