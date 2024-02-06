@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 export const GlobalContext = createContext();
 
 const GlobalContextProvider = ({ children }) => {
-  const [showModal, setShowModal] = useState('false');
+  const [showModal, setShowModal] = useState(false);
   const value = {
     showModal,
     setShowModal,
