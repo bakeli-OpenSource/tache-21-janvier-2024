@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Panier() {
   const [panier, setPanier] = useState([
-    { id: 1, nom: 'Produit 1', prix: 5000, quantite: 2, image: image4 },
+    { id: 1, nom: 'Produit 1', prix: 5000, quantite: 1, image: image4 },
     { id: 2, nom: 'Produit 2', prix: 10000, quantite: 1, image: image6 },
   ]);
 
@@ -40,28 +40,28 @@ function Panier() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Votre Panier</h1>
+    <div className="container p-4 mx-auto">
+      <h1 className="mb-4 text-3xl font-bold">Votre Panier</h1>
       <table className="min-w-full border border-gray-300">
-        <thead className="bg-black text-white">
+        <thead className="text-white bg-black">
           <tr>
-            <th className="py-2 px-4 border-b text-center">Produit</th>
-            <th className="py-2 px-4 border-b text-center">Nom</th>
-            <th className="py-2 px-4 border-b text-center">Prix</th>
-            <th className="py-2 px-4 border-b text-center">Quantité</th>
-            <th className="py-2 px-4 border-b text-center">Actions</th>
+            <th className="px-4 py-2 text-center border-b">Produit</th>
+            <th className="px-4 py-2 text-center border-b">Nom</th>
+            <th className="px-4 py-2 text-center border-b">Prix</th>
+            <th className="px-4 py-2 text-center border-b">Quantité</th>
+            <th className="px-4 py-2 text-center border-b">Actions</th>
           </tr>
         </thead>
         <tbody>
           {panier.map((produit) => (
             <tr key={produit.id}>
-              <td className="py-2 px-4 border-b text-center">
-                <img src={produit.image} alt={produit.nom} className="w-16 h-16 object-cover" />
+              <td className="px-4 py-2 text-center border-b">
+                <img src={produit.image} alt={produit.nom} className="object-cover h-16 iw-16" />
               </td>
-              <td className="py-2 px-4 border-b text-center">{produit.nom}</td>
+              <td className="px-4 py-2 text-center border-b">{produit.nom}</td>
 
-              <td className="py-2 px-4 border-b text-center">{produit.prix} FCFA</td>
-              <td className="py-2 px-4 border-b text-center">
+              <td className="px-4 py-2 text-center border-b">{produit.prix} FCFA</td>
+              <td className="px-4 py-2 text-center border-b">
                 <button onClick={() => diminuerQuantite(produit.id)} className="mr-2">
                   -
                 </button>
@@ -70,8 +70,8 @@ function Panier() {
                   +
                 </button>
               </td>
-              <td className="py-2 px-4 border-b text-center">
-                <button onClick={() => supprimerProduit(produit.id)} className="text-red-500">
+              <td className="px-4 py-2 text-center border-b">
+                <button onClick={() => supprimerProduit(produit.id)} className="bg-red-500 text-white-500">
                   Supprimer
                 </button>
               </td>
@@ -83,11 +83,11 @@ function Panier() {
       <p className="mt-10 text-lg font-bold">Total: {panier.reduce((total, produit) => total + produit.prix * produit.quantite, 0)} FCFA</p>
 
       <div className="flex justify-between mt-4">
-        <button onClick={validerCommande} className="bg-green-500 text-white px-4 py-2 rounded">
+        <button onClick={validerCommande} className="px-4 py-2 text-white bg-green-500 rounded">
           Valider la commande
         </button>
 
-        <Link to="/" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <Link to="/" className="px-4 py-2 text-white bg-blue-500 rounded">
           Retour à l'accueil
         </Link>
       </div>
