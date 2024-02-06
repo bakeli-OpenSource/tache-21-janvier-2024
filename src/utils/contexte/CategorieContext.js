@@ -26,6 +26,8 @@ export default function CategorieContextProvider({children}) {
         }
     ]
     
+  const nomberInput = 3
+    
   const navigate = useNavigate();
 
     const actions = [
@@ -54,7 +56,8 @@ export default function CategorieContextProvider({children}) {
       const valueContext = {
         table,
         table2,
-        actions
+        actions,
+        nomberInput
       }
   return (
     <CategorieContext.Provider value={valueContext}>{children}</CategorieContext.Provider>
