@@ -76,7 +76,7 @@ function Revenue() {
 
       <div className="w-full">
           <LineChart
-              width={600}
+              width={400}
               height={450}
               data={datas}
               margin={{
