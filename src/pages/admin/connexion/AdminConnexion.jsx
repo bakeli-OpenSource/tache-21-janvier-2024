@@ -3,10 +3,6 @@ import Input from './Input'
 import LoginButon from './LoginButon'
 import Title from './Title'
 import Label from './Label'
-<<<<<<< HEAD
-// import IsLogin from '../IsLogin'
-=======
->>>>>>> 6d5a3ef4f0762fe366ca89a6b3b5c911d96f39ae
 import { useNavigate } from 'react-router-dom'
 
 
