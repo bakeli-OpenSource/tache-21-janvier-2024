@@ -1,35 +1,47 @@
-import React from 'react'
-import Cards from '../../components/cards-et-filtre/Cards'
-import Filtre from '../../components/cards-et-filtre/Filtre'
-import Revenue from './Revenue'
-// import Graphique2 from './graphique2/Graphique2'
+
+
+import React from "react";
+import Cards from "../../components/cards-et-filtre/Cards";
+import Filtre from "../../components/cards-et-filtre/Filtre";
+import Revenue from "./Revenue";
+import useSidebare from "../../utils/hooks/useSidebare";
+import Graphique2 from './graphique2/Graph'
+import ListeProd from './ListeProd'
+
 
 const Dashboard = () => {
-  
-  return (
+  const { open } = useSidebare();
 
-    <div className='my-3'>
-      <div className=' text-xl font-bold underline'>Dashboard</div>
-      <div className='m-3 text-xl container font-bold '>
-        <div className='flex justify-between'>
-          <Filtre/>
+  return (
+    <div
+      className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}
+    >
+      <div className="container text-xl font-bold ">
+        <div className="flex justify-end">
+          <Filtre />
+
         </div>
         <div>
-          <Cards/>
-        </div> 
+          <Cards />
+        </div>
       </div>
-    <div className='flex justify-between'>
+
+
+      <div className='flex w-full flex-wrap'>
+        <div className='w-[1/2]'>
+          <Revenue />
+        </div>
+        <div className='w-[1/2]'>
+          <Graphique2 />
+        </div>
+      </div>
+
       <div>
-        <Revenue />
+        <ListeProd />
       </div>
-      <div>
-        {/* <Graphique2 /> */}
-      </div>
-    </div>
     
     </div>
   )
 }
 
-export default Dashboard
-
+export default Dashboard;

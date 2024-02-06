@@ -4,8 +4,8 @@ import { IoMdCube } from "react-icons/io";
 import { FaShoppingBasket } from "react-icons/fa";
 
 export const menus = [
-  { name: "Dashboard", link: "/", icon: <MdOutlineDashboard /> },
-  { name: "Catégories", link: "/categories", icon: <BsCardList /> },
-  { name: "Liste des produits", link: "/produits", icon: <IoMdCube /> },
-  { name: "Commandes", link: "/commandes", icon: <FaShoppingBasket />, margin: true },
+  { name: "Dashboard", link: "/admin/dashboard", icon: <MdOutlineDashboard /> },
+  { name: "Catégories", link: "/admin/categories", icon: <BsCardList /> },
+  { name: "Liste des produits", link: "/admin/produits", icon: <IoMdCube /> },
+  { name: "Commandes", link: "/admin/commandes", icon: <FaShoppingBasket />, margin: true },
 ];

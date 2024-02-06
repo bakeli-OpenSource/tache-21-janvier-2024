@@ -2,11 +2,11 @@ import React from 'react'
 
 const Filtre = () => {
   return (
-    <div className='flex gap-3 font-normal' >
+    <div className='flex flex-col sm:flex-row gap-3 font-normal' >
   <fieldset className='border-2  border-black w-52 text-sm/[16px] rounded-lg'>
     <legend className='mx-2 px-2'>Mois</legend>
     
-  <select className='w-48 mt-2'>
+  <select className='w-48 mt-2 bg-inherit outline-0'>
     <option value='1'>Janvier</option>
     <option value='1'>Fevrier</option>
     <option value='1'>Mars</option>
@@ -24,7 +24,7 @@ const Filtre = () => {
   </fieldset>
   <fieldset className='border-2 border-black w-52 text-sm/[16px] rounded-lg'>
     <legend className='mx-2 px-2'>Catégorie</legend>
-  <select className='w-48 mt-2'>
+  <select className='w-48 mt-2 bg-inherit outline-0'>
     <option value='1'>option1</option>
     <option value='2'>option1</option>
     <option value='3'>option1</option>
