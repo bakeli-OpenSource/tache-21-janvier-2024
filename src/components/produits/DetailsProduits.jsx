@@ -1,7 +1,7 @@
 import React from 'react'
 import useSidebare from '../../utils/hooks/useSidebare'
 import HeaderTable from '../headerTable/HeaderTable';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 const DetailsProduits = () => {
     const {id} = useParams();

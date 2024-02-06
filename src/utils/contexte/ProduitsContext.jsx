@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const ProduitsContext = createContext();
 

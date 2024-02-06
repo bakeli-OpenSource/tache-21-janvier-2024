@@ -1,9 +1,9 @@
-import { Route, Routes } from "react-router-dom";
-import AdminConnexion from "./pages/admin/connexion/AdminConnexion";
-import IsLogin from "./pages/admin/IsLogin";
-import GlobalContextProvider from "./utils/contexte/GlobalContext";
-import Accueil from "./pages/utilisateurs/Accueil";
-import Panier from "./pages/utilisateurs/panier/Panier";
+import AdminConnexion from './pages/admin/connexion/AdminConnexion';
+import IsLogin from './pages/admin/IsLogin';
+import GlobalContextProvider from './utils/contexte/GlobalContext';
+import Accueil from './pages/utilisateurs/Accueil';
+import Panier from './pages/utilisateurs/panier/Panier';
+import { Route, Routes } from 'react-router';
 
 function App() {
   return (
