@@ -39,13 +39,10 @@ export default function Accueil() {
           </div>
         </div>
 
-      
-   
-
     </div>
-     <footer>
-     <Footer/>
- </footer>
+      <footer>
+        <Footer/>
+      </footer>
  </div>
   )
 }
