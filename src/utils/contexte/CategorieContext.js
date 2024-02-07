@@ -19,7 +19,9 @@ export default function CategorieContextProvider({children}) {
     
     const [nomCategories, setNomCategories] = useState("categorie1")
     const [nombre, setNombre] = useState(0)
-    const [statut, setStatut] = useState("true")
+    const [statutVisible, setStatutVisible] = useState("visible")
+    const [statutInvisible, setStatutInvisible] = useState("Invisible")
+    const [statut, setStatut] = useState("")
     const [image, setImage] = useState("")
 
     const hanldleSubmit = (e) => {
@@ -81,11 +83,13 @@ export default function CategorieContextProvider({children}) {
         actions,
         nomCategories,
         nombre,
-        statut,
+        statutVisible,
+        statutInvisible, 
         image,
         setNomCategories,
         setNombre,
-        setStatut,
+        setStatutVisible,
+        setStatutInvisible,
         setImage,
         hanldleSubmit
       }
