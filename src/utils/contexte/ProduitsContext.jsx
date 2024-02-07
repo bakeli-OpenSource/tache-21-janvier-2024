@@ -4,6 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
+
 export const ProduitsContext = createContext();
 
 const ProduitContextProvider = ({ children }) => {
