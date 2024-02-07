@@ -17,7 +17,10 @@ const Tbody = ({tbody, actions}) => {
                 {tbody !== null ?
                 tbody.map((td, index) => (
                 <tr className="text-gray-700" key={index}>
-                    <td className="px-4 py-3 font-semibold border text-ms">{td._id}</td>
+                    {td._id?
+                        <td className="px-4 py-3 font-semibold border text-ms">{td._id}</td>
+                        :null
+                    }
                         <td className="px-4 py-3 border">
                         <div className="flex items-center text-sm">
                         <div className="md:relative w-8 h-8 mr-3 rounded-full md:block">
@@ -63,7 +66,7 @@ const Tbody = ({tbody, actions}) => {
                     {actions ?
                         <td className="px-4 py-3 text-ms font-semibold border text-center">
                             {actions.map((action, index) => (
-                                <button key={index} className={`${action.color} p-1 text-white rounded ml-2`} onClick={() => action.hanldleClick(td.id)}>{action.icon}</button>
+                                <button key={index} className={`${action.color} p-1 text-white rounded ml-2`} onClick={() => action.hanldleClick(td._id)}>{action.icon}</button>
                             ))}
                         </td> : null
                     }
