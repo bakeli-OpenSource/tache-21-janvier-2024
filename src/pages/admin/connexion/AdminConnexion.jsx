@@ -1,22 +1,14 @@
-import React, { useState } from 'react'
-import Input from './Input'
-import LoginButon from './LoginButon'
+import React from 'react'
 import Title from './Title'
-import Label from './Label'
-import IsLogin from '../IsLogin'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'                                         
+
+
+
 
 
 const AdminConnexion = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [valuePasse, setValuePasse] = useState('')
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-  const handlePasse = (e) => {
-    setValuePasse(e.target.value);
-  };
-  const navigate = useNavigate();
+ 
+   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,75 +19,46 @@ const AdminConnexion = () => {
 
 
   return (
-    <div class="w-full h-full flex justify-center bg-slate-300">
-      
-        <form onSubmit={handleSubmit} class="bg-gray-800 w-1/2 min-w-80 max-w-24  hover:shadow-black shadow-md mx-auto mt-3 rounded px-8 pt-6 pb-8 mb-4 ">
-            <Title className='text-2x1 font-semibold mb-4 text-center text-white' children='Page Connexion'/>
-            <div className="relative">
-            <Label
-                htmlFor="input"
-                children='Email'
-                className={`absolute top-0 left-0 text-white transition-all transition ease-in-out ${
-                    inputValue ? 'text-sm' : 'text-base'
-                } ${
-                    inputValue ? 'text-gray-900' : 'text-gray-900'
-                }` }
-                />
-                
-            
-              <Input
-                  id="input"
-                  type="email"
-                  name='email'
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  className="w-full text-white text-xs border-b-2 mt-4 px-0 mb-2 border-white outline-none bg-transparent focus:outline-none "
-              />
-              </div>
 
-              <div className="relative">
-            <Label
-                htmlFor="input"
-                children='Mot de passe'
-                className={`absolute top-0 left-0 text-white transition-all transition ease-in-out   ${
-                    valuePasse ? 'text-sm' : 'text-base'
-                } ${
-                    valuePasse ? 'text-gray-700' : 'text-gray-900'
-                }` }
-                />
-                
-            
-              <Input
-                  id="input"
-                  type="password"
-                  name='password'
-                  value={valuePasse}
-                  onChange={handlePasse}
-                  className="w-full text-white text-sm border-b-2 mt-3 px-0 mb-2 border-white outline-none bg-transparent focus:outline-none "
-              />
-              </div>
+    
+     <div className="w-full h-screen flex justify-center items-center ">
 
-      
-          <div className='flex justify-between'>
-            <div className='flex'>
-          <Input type='checkbox' 
-          className="w-4 h-4 mt-1 text-blue-600 bg-gray-100  border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-          />
-          <Title children='Remember me ' 
-          className='px-1 text-xs text-white mt-1'/>
-          </div>
-          <Title className='text-xs mt-1 text-white' 
-          children='mot de passe oublié'/>
-          </div>
-          <div className='flex justify-center'>
-          
-          <LoginButon className="border-orange w-56 p-1 text-sm rounded-full  text-white text-center mt-4     text-xs font-medium  ring-inset bg-yellow-500   "/>
-          </div>
-          <Title className='text-xs text-center text-white'>
-          <p>je n'ai pas de compte? <span >S'inscrire</span></p>
-          </Title>
-        </form>
-    </div>
+
+
+<form className="max-w-md mx-auto bg-gray-800 w-full px-8 pt-6 pb-8 mb-4 shadow-md rounded-md" onSubmit={handleSubmit}>
+  <Title 
+  className='text-white text-center mb-5'
+  children='Page connexion'/>
+  <div className="relative z-0 w-full mb-5 group">
+  <input
+    type="email"
+    className="block py-2.5 px-0 w-full text-sm text-white bg-transparent mb-4 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+    placeholder=" "
+    
+  />
+  <label
+    className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+  >
+    Email address
+  </label>
+</div>
+
+
+  <div className="relative z-0 w-full mb-5 group">
+      <input type="password" name="floating_password"  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+      <label  
+      className="peer-focus:font-medium absolute text-sm text-white dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+  </div>
+ 
+  
+ <div className='text-center'>
+  <button type="submit" className="border-orange w-56 p-1 text-sm rounded-full   text-black text-center mt-4 text-xs  ring-inset  bg-white">Connexion</button>
+  </div>
+</form>
+</div>
+
+    
+
   )
 }
 

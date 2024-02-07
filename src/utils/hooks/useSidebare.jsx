@@ -1,19 +1,33 @@
-import { useContext, useEffect } from 'react'
-import { SidebareContext } from '../contexte/SidebareContext'
+import { useCallback, useContext, useEffect } from "react";
+import { SidebareContext } from "../contexte/SidebareContext";
 
 const useSidebare = () => {
-    const useSidebare = useContext(SidebareContext)
-    const { open, setSmallScreen, screenSize, smallScreen } = useSidebare
+    const useContextSidebare = useContext(SidebareContext)
+    const { open, setSmallScreen, screenSize, smallScreen } = useContextSidebare
+
+    const smallScreenSize = useCallback(() => {
+        setSmallScreen(window.innerWidth);
+        screenSize()
+    }, [setSmallScreen, screenSize]);
 
     useEffect(() => {
-        localStorage.setItem("open", JSON.stringify(open));
-        
-        setSmallScreen(window.innerWidth)
-        console.log(smallScreen, open);
-        screenSize()
-    }, [open, setSmallScreen, screenSize, smallScreen])
+        const handleResize = () => {
+            smallScreenSize()
+        }
 
-    return useSidebare
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        };
+    }, [smallScreenSize]);
+
+    useEffect(() => {
+        smallScreenSize();
+        screenSize()
+    }, [open, setSmallScreen, screenSize, smallScreenSize, smallScreen]);
+
+    return useContextSidebare
 }
 
 export default useSidebare
