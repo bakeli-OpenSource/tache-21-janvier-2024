@@ -1,16 +1,13 @@
-import { useState } from "react"
+import React from 'react'
 
-const Input = ({label, type}) => {
-  const [valueInput, setValueInput] = useState('')
-  const handleChange = (e) => {
-    setValueInput(e.target.value)
-  }
+const Input = ({label, type, value, onChange}) => {
+  
   return(
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="input-text">
         { label }
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="input-text" type={type} value={valueInput} onChange={handleChange} required />
+      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value={value} type={type} onChange={onChange} required />
     </div>
   )
 }
@@ -26,13 +23,19 @@ const Select = ({label, options}) => {
     </div>
   )
 }
-const Formulaire = ({inputs, selects, textarea}) => {
+const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
+
+  const handleChange = (e, setter) => {
+    const value = e.target.value;
+    setter(value);
+  }
+
   return (
-    <form className="w-full max-w-lg" action="/upload" method="post" enctype="multipart/form-data">
+    <form className="w-full max-w-lg" onSubmit={onSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
         {
           inputs.map((input, index)=>(
-            <Input key={index} type={input.type} label={input.label} />
+            <Input key={index} type={input.type} label={input.label} value={input.value} onChange={(e) => handleChange(e, input.setValue)} />
           ))
         }
         {selects? 
