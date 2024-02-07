@@ -1,11 +1,12 @@
 import React, { createContext, useState } from "react";
+import profile from '../../../src/assets/images/profile.png';
 
 const initialUser = {
   fullName: 'miss ',
   lastName: 'ndeya',
   telephone: "763676576",
   email: 'missndeya@gmail.com',
-  profileImage: 'https://img.freepik.com/vecteurs-premium/photo-profil-avatar-homme-illustration-vectorielle_268834-538.jpg', 
+  profileImage: profile, 
 };
 
 export const SidebareContext = createContext();

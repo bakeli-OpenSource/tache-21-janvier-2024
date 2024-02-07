@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 import useSidebare from "../../utils/hooks/useSidebare";
 import Form from "./Form";
 
@@ -25,7 +26,7 @@ const ProfileComponent = () => {
   
 
   return (
-    <div className="container p-6 bg-white rounded-md shadow-md mx-auto mt-8">
+    <div className=" p-6 bg-white rounded-md shadow-md  mt-">
       <Form
         handleSubmit={handleSubmit}
         handleChange={handleChange}
