@@ -7,7 +7,7 @@ import Panier from "./pages/utilisateurs/panier/Panier";
 
 function App() {
   return (
-    <div className="App min-h-screen">
+    <div className="min-h-screen App">
       <GlobalContextProvider>
         <Routes>
           <Route path="/" element={<Accueil />} />
