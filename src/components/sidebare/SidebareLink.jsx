@@ -1,6 +1,7 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
 import useSidebare from "../../utils/hooks/useSidebare";
+import { useLocation } from "react-router";
+import { NavLink } from "react-router-dom";
 
 const SidebareLink = ({ menus, open }) => {
   const location = useLocation();
