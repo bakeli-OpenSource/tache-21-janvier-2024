@@ -5,7 +5,7 @@ const initialUser = {
   lastName: 'ndeya',
   telephone: "763676576",
   email: 'missndeya@gmail.com',
-  profileImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKTezalux1__3KwbJ1Bt-WnQQkW82G1Nwy6g&usqp=CAU', 
+  profileImage: 'https://img.freepik.com/vecteurs-premium/photo-profil-avatar-homme-illustration-vectorielle_268834-538.jpg', 
 };
 
 export const SidebareContext = createContext();

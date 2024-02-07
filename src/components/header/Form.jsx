@@ -20,7 +20,7 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
                 editedUser.profileImage
                   ? URL.createObjectURL(editedUser.profileImage)
                   : user?.profileImage ||
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKTezalux1__3KwbJ1Bt-WnQQkW82G1Nwy6g&usqp=CAU"
+                    "https://img.freepik.com/vecteurs-premium/photo-profil-avatar-homme-illustration-vectorielle_268834-538.jpg"
               }
               alt="img profil"
               className="w-20 h-20 rounded-full object-cover"
