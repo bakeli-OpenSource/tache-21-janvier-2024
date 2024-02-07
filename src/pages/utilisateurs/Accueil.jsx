@@ -15,7 +15,7 @@ export default function Accueil() {
           </span>
           <span className="text-sm font-semibold">Aller au panier</span>
         </Link>
-        <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center mx-auto gap-[20px]
+        <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px]
           max-w-sm mx-auto md:max-w-none md:mx-auto py-16 justify-center content-center'>
           <div className='w-full mb-4'>
             <Cards />
