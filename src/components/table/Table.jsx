@@ -17,10 +17,10 @@ const Tbody = ({tbody, actions}) => {
                 {tbody !== null ?
                 tbody.map((td, index) => (
                 <tr className="text-gray-700" key={index}>
-                    {td._id?
+                    {/* {td._id?
                         <td className="px-4 py-3 font-semibold border text-ms">{td._id}</td>
                         :null
-                    }
+                    } */}
                         <td className="px-4 py-3 border">
                         <div className="flex items-center text-sm">
                         <div className="md:relative w-8 h-8 mr-3 rounded-full md:block">
@@ -55,6 +55,11 @@ const Tbody = ({tbody, actions}) => {
                     {td.prix ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prix}
+                    </td> : null
+                    }
+                    {td.PrixUnitaire ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.PrixUnitaire}
                     </td> : null
                     }
                     {td.statut ?

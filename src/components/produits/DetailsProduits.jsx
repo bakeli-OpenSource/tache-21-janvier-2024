@@ -4,6 +4,7 @@ import HeaderTable from '../headerTable/HeaderTable';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../utils/hooks/useFetch';
 
+
 const DetailsProduits = () => {
     const {id} = useParams();
     const {data} = useFetch('http://localhost:4000/api/produit/' + id)
