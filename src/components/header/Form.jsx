@@ -1,8 +1,8 @@
 import React from "react";
 import { FaCamera } from "react-icons/fa";
+import profile from "../../assets/images/profile.png";
 
 const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
-
   const handleImageClick = () => {
     document.getElementById("fileInput").click();
   };
@@ -19,8 +19,7 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
               src={
                 editedUser.profileImage
                   ? URL.createObjectURL(editedUser.profileImage)
-                  : user?.profileImage ||
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKTezalux1__3KwbJ1Bt-WnQQkW82G1Nwy6g&usqp=CAU"
+                  : user?.profileImage || profile
               }
               alt="img profil"
               className="w-20 h-20 rounded-full object-cover"

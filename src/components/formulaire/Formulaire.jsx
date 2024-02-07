@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React from 'react'
 
 const Input = ({label, type, value, onChange}) => {
   
@@ -17,7 +17,7 @@ const Select = ({label, options}) => {
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
       <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
         {options.map((option)=>(
-          <option>{option}</option>
+          <option value={option.value}>{option}</option>
         ))}
       </select>
     </div>
@@ -49,7 +49,7 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
         }
 
         {textarea ?
-        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">{textarea.description}</textarea>
+        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
           : null
         }
       </div>
