@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md';
 import { BsArrowLeft } from 'react-icons/bs';
+import Footer from '../../../usersComponents/footer/Footer';
+import NavHeader from '../NavbarUtilisateut/Navbar';
 
 
-function QuantityEdit() {
+function Panier() {
 	const [items, setItems] = useState([
 		{
 			id: 1,
@@ -55,7 +57,9 @@ function QuantityEdit() {
 	const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0);
 
 	return (
-		<section className="container w-auto h-auto mx-auto my-10 bg-gray-100">
+		<div>
+		<NavHeader/>
+		<section className="container w-auto h-auto mx-auto my-20 bg-white-700">
 			<div className="container flex justify-center w-auto">
 				<div className="w-1/2 shadow-lg">
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
@@ -205,8 +209,11 @@ function QuantityEdit() {
 				</div>
 			</div>
 		</section>
+		<Footer />
+		</div>
+		
 		
 	);
 }
 
-export default QuantityEdit;
+export default Panier;
