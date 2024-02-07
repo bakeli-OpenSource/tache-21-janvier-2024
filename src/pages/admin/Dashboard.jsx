@@ -6,7 +6,7 @@ import Filtre from "../../components/cards-et-filtre/Filtre";
 import Revenue from "./Revenue";
 import useSidebare from "../../utils/hooks/useSidebare";
 import Graphique2 from './graphique2/Graph'
-import ListeProd from './ListeProd'
+import ListeProduit from "./ListeProduit";
 
 
 const Dashboard = () => {
@@ -37,6 +37,7 @@ const Dashboard = () => {
       </div>
 
       <div>
+        {/* <ListeProduit /> */}
         {/* <ListeProd /> */}
       </div>
     
