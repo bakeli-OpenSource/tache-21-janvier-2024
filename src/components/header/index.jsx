@@ -8,8 +8,6 @@ import Message from "../user/Message";
 const Header = () => {
   const { toggleSidebare } = useSidebare();
 
-  const items = ['Premier', 'Deuxième', 'Troisième '];
-
   return (
     <header className="z-[10] bg-gray-800 fixed w-full m-0 flex justify-between text-gray-100 w-100 px-5 py-3">
       <FaBars

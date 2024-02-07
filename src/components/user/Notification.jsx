@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import { IoIosNotifications } from "react-icons/io";
 import { FaRegCircleXmark } from "react-icons/fa6";
+import useSidebare from '../../utils/hooks/useSidebare';
 
 
 const Notification = () => {
-    const [dropdown, setDropdown] = useState(false);
 
-    const handleToggle = () => {
-      setDropdown(!dropdown);
-    };
+    const {notification, handleNotification} = useSidebare()
+
+    
   
     return (
       <div className="relative">
-        <IoIosNotifications className="cursor-pointer" size={20} onClick={handleToggle} />
+        <IoIosNotifications className="cursor-pointer" size={20} onClick={handleNotification} />
 
   
-        {dropdown && (
+        {notification && (
           <div className="absolute right-0 mt-5 w-52 bg-white border border-gray-200 rounded-md shadow-lg py-1">
             <div className='flex justify-end px-4 py-2'>
 
-            <FaRegCircleXmark className='cursor-pointer' onClick={handleToggle} />
+            <FaRegCircleXmark className='cursor-pointer' onClick={handleNotification} />
             </div>
            <div className='px-4 py-3 text-sm flex flex-col'>
             <p>Aucun Notification pour le moment</p>
