@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import Title from './Title'
+
 import { useNavigate } from 'react-router-dom'                                         
 import LoginButon from './LoginButon'
+import { response } from 'express';
 function SignUp() {
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
@@ -20,9 +22,8 @@ function SignUp() {
   
   const onSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:4000/api/user', {
-     
-    });
+    const response = await fetch('http://localhost:4000/api/user');
+    console.log(response)
     if (response.ok) {
       navigate("/check-your-email");
     } else {
@@ -33,6 +34,7 @@ function SignUp() {
 // const AdminConnexion = () => {
 //    const navigate = useNavigate();
    const handleSubmit = (e) => {
+
     e.preventDefault();
     navigate("/admin/dashboard");
    };

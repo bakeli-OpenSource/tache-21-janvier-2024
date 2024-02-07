@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const { toggleSidebare } = useSidebare();
+
   const location = useLocation();
   const urlPageActuel = location.pathname.split("/");
   const pageActuel = urlPageActuel[urlPageActuel.length - 1];
