@@ -3,6 +3,7 @@ import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import useGlobal from "../hooks/useGlobal";
 
 
 export const ProduitsContext = createContext();
@@ -23,6 +24,8 @@ const ProduitContextProvider = ({ children }) => {
   const [couleur, setCouleur] = useState('')
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
+  // 
+  const { setShowModal } = useGlobal()
   
   // __________________________
 
@@ -52,7 +55,7 @@ const ProduitContextProvider = ({ children }) => {
       fetch("http://localhost:4000/api/produit", {
         method: "POST",
         body: JSON.stringify({
-          nom: newProd.nom, 
+          nom: newProd.nom,
           imageUrl: newProd.imageUrl,
           titre: newProd.titre,
           description: newProd.description,
@@ -71,16 +74,14 @@ const ProduitContextProvider = ({ children }) => {
         .then(response => response.json())
         .then(data => {
           // setProduits([...produits, data]) 
+          setShowModal(false)
           alert('Produit ajouté avec succès')
         })
     }
-    // else{
-    //   console.log("Failed");
-    // }
   }
 
     const table = [
-        'id', 'Article', 'Quantité','Prix' , 'Actions'
+      'Article', 'Quantité','Prix' , 'Actions'
     ]
 
     

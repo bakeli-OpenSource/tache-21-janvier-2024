@@ -102,6 +102,17 @@ const ProduitsAdmin = () => {
       carracteristique, categorie, prix, couleur, taille, fournisseur,
     }
     addProduit(recupInput)
+    setNom('')
+    setImageUrl('')
+    setTitre('')
+    setDescription('')
+    setQuantite('')
+    setCategorie('')
+    setCarracteristique('')
+    setPrix('')
+    setCouleur('')
+    setTaille('')
+    setFournisseur('')
   }
 
   return (
