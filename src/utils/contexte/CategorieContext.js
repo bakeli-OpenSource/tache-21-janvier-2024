@@ -17,31 +17,31 @@ export default function CategorieContextProvider({children}) {
     const {setShowModal} =useGlobal()
     const [categories, setCategories] = useState(JSON.parse(localStorage.getItem('categories')) || [])
     
-    const [nomCategories, setNomCategories] = useState("categorie1")
-    const [nombre, setNombre] = useState(0)
+    const [nom, setNom] = useState("categorie1")
+    const [quantite, setQuantite] = useState(0)
     const [statutVisible, setStatutVisible] = useState("visible")
     const [statutInvisible, setStatutInvisible] = useState("Invisible")
     const [statut, setStatut] = useState("true")
-    const [image, setImage] = useState("")
+    const [imageUrl, setImageUrl] = useState("")
 
-  const hanldleSubmit = (e) => {
-    e.preventDefault();
-    let categorie;
-    categorie = {
-      id: Math.floor(Math.random() * 10000),
-      nom: nomCategories,
-      quantite: nombre,
-      statut: statut,
-      imageUrl: image,
-    };
-    categorie = [...categories, categorie];
-    setCategories(categorie);
-    setNomCategories('');
-    setNombre('');
-    setStatut('');
-    setImage('');
-    setShowModal(false);
-  };
+  // const hanldleSubmit = (e) => {
+  //   e.preventDefault();
+  //   let categorie;
+  //   categorie = {
+  //     id: Math.floor(Math.random() * 10000),
+  //     nom: nom,
+  //     quantite: quantite,
+  //     statut: statut,
+  //     imageUrl: imageUrl,
+  //   };
+  //   categorie = [...categories, categorie];
+  //   setCategories(categorie);
+  //   setNom('');
+  //   setQuantite('');
+  //   setStatut('');
+  //   setImageUrl('');
+  //   setShowModal(false);
+  // };
 
   const handleDelete = (categorieId) => {
     const categorie = categories.filter(
@@ -81,17 +81,19 @@ export default function CategorieContextProvider({children}) {
         table,
         categories,
         actions,
-        nomCategories,
-        nombre,
+        nom,
+        quantite,
+        statut,
         statutVisible,
         statutInvisible, 
-        image,
-        setNomCategories,
-        setNombre,
+        imageUrl,
+        setCategories,
+        setNom,
+        setQuantite,
         setStatutVisible,
         setStatutInvisible,
-        setImage,
-        hanldleSubmit
+        setImageUrl
+
       }
 
   return (
