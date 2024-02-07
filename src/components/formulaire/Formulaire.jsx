@@ -54,7 +54,7 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
         }
 
         {textarea ?
-        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">{textarea.description}</textarea>
+        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
           : null
         }
       </div>
