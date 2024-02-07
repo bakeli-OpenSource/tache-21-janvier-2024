@@ -8,7 +8,7 @@ import Formulaire from '././../formulaire/Formulaire';
 
 const ProduitsAdmin = () => {
 
-  const {table, produits, actions, nom, setNom, imageUrl, setImageUrl,
+  const {table, produits, addProduit, actions, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
@@ -23,40 +23,85 @@ const ProduitsAdmin = () => {
       setValue: setNom
     },
     {
-      label: "Titre du produit",
-      type: "text"
+      label: "Image du produit",
+      type: "file",
+      value: imageUrl,
+      setValue: setImageUrl
     },
-    // {
-    //   label: "Image ",
-    //   type: 'file'
-    // },
-    // {
-    //   label: "Nombre produit",
-    //   type: 'number'
-    // },
-    // {
-    //   label: "Staut catégorie",
-    //   type: 'text'
-    // }
+    {
+      label: "Titre du Produit",
+      type: "text",
+      value: titre,
+      setValue: setTitre
+    },
+    {
+      label: "Quantité",
+      type: "number",
+      value: quantite,
+      setValue: setQuantite
+    },
+    {
+      label: "Carractéristiques",
+      type: "text",
+      value: carracteristique,
+      setValue: setCarracteristique
+    },
+    {
+      label: "Categorie",
+      type: "text",
+      value: categorie,
+      setValue: setCategorie
+    },
+    {
+      label: "Prix",
+      type: "number",
+      value: prix,
+      setValue: setPrix
+    },
+    {
+      label: "Couleur",
+      type: "text",
+      value: couleur,
+      setValue: setCouleur
+    },
+    {
+      label: "Taille",
+      type: "text",
+      value: taille,
+      setValue: setTaille
+    },
+    {
+      label: "Fourniseur",
+      type: "text",
+      value: fournisseur,
+      setValue: setFournisseur
+    },
   ]
   
-  const selects = [
-    {
-      label: 'Catégorie',
-      options: [
-        'categorie1',
-        'categorie2',
-        'categorie3',
-      ]
-    }
-  ]
+  // const selects = [
+  //   {
+  //     label: 'Catégorie',
+  //     value: categorie,
+  //     setValue: setCategorie,
+  //     options: [
+  //       'categorie1',
+  //       'categorie2',
+  //       'categorie3',
+  //     ]
+  //   }
+  // ]
 
   const textarea = {
-    description: 'description'
+    value: description,
+    setValue: setDescription
   }
-
-  const hanldleSubmit = () => {
-    
+  const hanldleSubmit = (e) => {
+    e.preventDefault()
+    const recupInput ={
+      nom, imageUrl, titre, description, quantite,
+      carracteristique, categorie, prix, couleur, taille, fournisseur,
+    }
+    addProduit(recupInput)
   }
 
   return (
@@ -65,7 +110,7 @@ const ProduitsAdmin = () => {
       <HeaderTable
        title="Produits"
        nomAjout="Ajouter des produits" 
-       body={<Formulaire inputs={inputs} onSubmit={hanldleSubmit} />} 
+       body={<Formulaire inputs={inputs} textarea={textarea} onSubmit={hanldleSubmit} />} 
        />
       <Table thead={table} tbody={produits} actions={actions} />
 </div>

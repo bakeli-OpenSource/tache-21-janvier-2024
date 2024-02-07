@@ -12,7 +12,7 @@ const ProduitContextProvider = ({ children }) => {
   const [produits, setProduits] = useState([])
   const [url, setUrl] = useState("http://localhost:4000/api/produits")
   // Création des contexts pour formuulaire
-  const [nom, setNom] = useState('PRODUIT')
+  const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [titre, setTitre] = useState('')
   const [description, setDescription] = useState('')
@@ -23,6 +23,7 @@ const ProduitContextProvider = ({ children }) => {
   const [couleur, setCouleur] = useState('')
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
+  
   // __________________________
 
   // Récupération de tous les produits
@@ -47,11 +48,11 @@ const ProduitContextProvider = ({ children }) => {
 
   // Ajout de Produit
   const addProduit = (newProd) => {
-    if (newProd.name && newProd.imageUrl && newProd.titre && newProd.description && newProd.quantite && newProd.categorie && newProd.carracteristique && newProd.prix && newProd.couleur && newProd.taille && newProd.fournisseur) {
-      fetch("https://jsonplaceholder.typicode.com/users", {
+    if (newProd.nom && newProd.imageUrl && newProd.titre && newProd.description && newProd.quantite && newProd.categorie && newProd.carracteristique && newProd.prix && newProd.couleur && newProd.taille && newProd.fournisseur) {
+      fetch("http://localhost:4000/api/produit", {
         method: "POST",
         body: JSON.stringify({
-          name: newProd.name, 
+          nom: newProd.nom, 
           imageUrl: newProd.imageUrl,
           titre: newProd.titre,
           description: newProd.description,
@@ -69,10 +70,13 @@ const ProduitContextProvider = ({ children }) => {
       })
         .then(response => response.json())
         .then(data => {
-          setProduits([...produits, data])
+          // setProduits([...produits, data]) 
           alert('Produit ajouté avec succès')
         })
     }
+    // else{
+    //   console.log("Failed");
+    // }
   }
 
     const table = [
