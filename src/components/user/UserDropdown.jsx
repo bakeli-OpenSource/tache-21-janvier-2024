@@ -11,7 +11,7 @@ const UserDropdown = () => {
 
   return (
     <div className="relative">
-      <FaUser className="cursor-pointer" size={16} onClick={handleToggle} />
+      <FaUser className="cursor-pointer" size={17} onClick={handleToggle} />
 
       {dropdown && (
         <div className="absolute right-0 mt-5 bg-white border border-gray-200 rounded-md shadow-lg py-1">
