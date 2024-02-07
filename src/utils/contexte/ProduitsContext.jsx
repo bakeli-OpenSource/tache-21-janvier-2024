@@ -11,6 +11,19 @@ const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
   const [url, setUrl] = useState("http://localhost:4000/api/produits")
+  // Création des contexts pour formuulaire
+  const [nom, setNom] = useState('PRODUIT')
+  const [imageUrl, setImageUrl] = useState('')
+  const [titre, setTitre] = useState('')
+  const [description, setDescription] = useState('')
+  const [quantite, setQuantite] = useState('')
+  const [categorie, setCategorie] = useState('')
+  const [carracteristique, setCarracteristique] = useState('')
+  const [prix, setPrix] = useState('')
+  const [couleur, setCouleur] = useState('')
+  const [taille, setTaille] = useState('')
+  const [fournisseur, setFournisseur] = useState('')
+  // __________________________
 
   // Récupération de tous les produits
   useEffect(() => {
@@ -97,7 +110,9 @@ const ProduitContextProvider = ({ children }) => {
     table, 
     produits,
     addProduit,
-    actions
+    actions,
+    nom, setNom, imageUrl, setImageUrl, titre, setTitre, description, setDescription, quantite, setQuantite,
+    carracteristique, setCarracteristique, categorie, setCategorie, prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
   };
 
   return <ProduitsContext.Provider value={value}>{children}</ProduitsContext.Provider>;
