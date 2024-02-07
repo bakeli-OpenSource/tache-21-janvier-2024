@@ -4,14 +4,11 @@ import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
-import useFetch from '../../utils/hooks/useFetch'
 
 
 const ProduitsAdmin = () => {
 
-  const {table, actions} = useProduits();
-  const {data} = useFetch('http://localhost:4000/api/produits')
-  console.log(data);
+  const {table, produits, actions} = useProduits();
   const {open} = useSidebare()
   
   const inputs = [
@@ -56,7 +53,7 @@ const ProduitsAdmin = () => {
        nomAjout="Ajouter des produits" 
        body={<Formulaire inputs={inputs} selects={selects} textarea={textarea} />} 
        />
-      <Table thead={table} tbody={data} actions={actions} />
+      <Table thead={table} tbody={produits} actions={actions} />
 </div>
   )
 }
