@@ -57,8 +57,13 @@ const Tbody = ({tbody, actions}) => {
                         {td.prix}
                     </td> : null
                     }
+                    {td.PrixUnitaire ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.PrixUnitaire}
+                    </td> : null
+                    }
                     {td.statut ?
-                    <td className="px-4 py-5 flex justify-center text-xl border-none">
+                    <td className="px-4 py-5 TEXT-center text-xl border">
                         {td.statut}
                     </td> : null
                     }

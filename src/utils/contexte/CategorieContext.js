@@ -1,25 +1,28 @@
-import React, { createContext, useState } from 'react';
-import { TbEyeShare } from 'react-icons/tb';
-import { MdEdit } from 'react-icons/md';
-import { MdOutlineDelete } from 'react-icons/md';
+import React, { createContext, useState } from 'react'
+import { TbEyeShare } from "react-icons/tb";
+import { MdEdit } from "react-icons/md";
+import { MdOutlineDelete } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 import useGlobal from '../hooks/useGlobal';
-import { useNavigate } from 'react-router';
+
 
 const CategorieContext = createContext();
 
 export { CategorieContext };
 
-export default function CategorieContextProvider({ children }) {
-  const table = ['Categorie', 'Nombre produit', 'Statut', 'Actions'];
-  const { setShowModal } = useGlobal();
-  const [categories, setCategories] = useState(
-    JSON.parse(localStorage.getItem('categories')) || []
-  );
-
-  const [nomCategories, setNomCategories] = useState('categorie1');
-  const [nombre, setNombre] = useState(0);
-  const [statut, setStatut] = useState('true');
-  const [image, setImage] = useState('');
+export default function CategorieContextProvider({children}) {
+    const table = [
+        'Categorie', 'Nombre produit', 'Statut', 'Actions'
+    ]
+    const {setShowModal} =useGlobal()
+    const [categories, setCategories] = useState(JSON.parse(localStorage.getItem('categories')) || [])
+    
+    const [nomCategories, setNomCategories] = useState("categorie1")
+    const [nombre, setNombre] = useState(0)
+    const [statutVisible, setStatutVisible] = useState("visible")
+    const [statutInvisible, setStatutInvisible] = useState("Invisible")
+    const [statut, setStatut] = useState("true")
+    const [image, setImage] = useState("")
 
   const hanldleSubmit = (e) => {
     e.preventDefault();
@@ -74,20 +77,23 @@ export default function CategorieContextProvider({ children }) {
     },
   ];
 
-  const valueContext = {
-    table,
-    categories,
-    actions,
-    nomCategories,
-    nombre,
-    statut,
-    image,
-    setNomCategories,
-    setNombre,
-    setStatut,
-    setImage,
-    hanldleSubmit,
-  };
+      const valueContext = {
+        table,
+        categories,
+        actions,
+        nomCategories,
+        nombre,
+        statutVisible,
+        statutInvisible, 
+        image,
+        setNomCategories,
+        setNombre,
+        setStatutVisible,
+        setStatutInvisible,
+        setImage,
+        hanldleSubmit
+      }
+
   return (
     <CategorieContext.Provider value={valueContext}>
       {children}
