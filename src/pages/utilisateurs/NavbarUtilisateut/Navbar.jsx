@@ -23,15 +23,15 @@ const NavHeader = () => {
                     </div>
 
                     <div className='flex'>
-                        <BsSearch 
+                        <BsSearch
                             className="cursor-pointer mt-3 text-gray-900"
                             size={20}
                         />
-                        <NavInput/>
+                        <NavInput />
                     </div>
 
                     <div className=" text-gray-800 flex gap-4 justify-around ">
-                       
+
 
                         <BsPersonCircle
                             className="cursor-pointer"
@@ -45,9 +45,7 @@ const NavHeader = () => {
 
                 </div>
             </nav>
-            {/* <div className="bg-[url(`../image/header3.jpg`)  ] h-52 w-52"  >
-                <h1 className='text-2xl text-center'>Mon text ajouter</h1>
-            </div> */}
+            
         </div>
     );
 }
