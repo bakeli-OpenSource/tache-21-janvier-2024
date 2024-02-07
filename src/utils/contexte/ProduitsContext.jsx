@@ -5,6 +5,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
+
 export const ProduitsContext = createContext();
 
 const ProduitContextProvider = ({ children }) => {
