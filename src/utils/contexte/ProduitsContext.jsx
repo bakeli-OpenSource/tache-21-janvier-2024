@@ -2,7 +2,9 @@ import React, { createContext } from "react";
 import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+
 
 export const ProduitsContext = createContext();
 
@@ -36,6 +38,7 @@ const ProduitContextProvider = ({ children }) => {
     
     const actions = [
       {
+        // Voire Détails
         icon: <TbEyeShare/>,
         color: 'bg-green-500',
         hanldleClick: (id) => {
@@ -44,14 +47,18 @@ const ProduitContextProvider = ({ children }) => {
         }
       },
         {
+          // Modification
           icon: <MdEdit />,
           color: 'bg-orange-500',
           hanldleClick: () => console.log('Modifier')
         },
         {
+          // Suppression
           icon: <MdOutlineDelete />,
           color: 'bg-red-600',
-          hanldleClick: () => console.log('Supprimer')
+          hanldleClick: (id) => {
+            // useFetch('http://localhost:4000/api/supprimerproduit/' + id)
+          }
         }
       ]
 
