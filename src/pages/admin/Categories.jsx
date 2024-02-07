@@ -8,7 +8,6 @@ import Formulaire from "../../components/formulaire/Formulaire";
 const Categories = () => {
   const { 
           table, 
-          table2,
           categories,
           actions, 
           nomCategories, 

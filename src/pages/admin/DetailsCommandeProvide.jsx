@@ -1,13 +1,13 @@
 import React from "react";
-import CommandeAdmin from "../../components/commandes/CommandeAdmin";
+import DetailsCommande from "../../components/commandes/DetailsCommande";
 import CommandeContextProvider from "../../utils/contexte/CommandeContext";
 
-const Commandes = () => {
+const DetailsCommandeProvide = () => {
   return (
     <CommandeContextProvider>
-      <CommandeAdmin />
+      <DetailsCommande />
     </CommandeContextProvider>
   );
 };
 
-export default Commandes;
+export default DetailsCommandeProvide;
