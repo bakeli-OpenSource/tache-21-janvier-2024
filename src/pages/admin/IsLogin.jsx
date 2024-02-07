@@ -1,5 +1,4 @@
 
-import { Route, Routes } from "react-router-dom";
 import CategoriesAdmin from "../../components/categories/CategoriesAdmin";
 import Header from "../../components/header";
 import Sidebare from "../../components/sidebare/Sidebare";
@@ -11,6 +10,7 @@ import DetailsCategorieUseProvider from "../../components/categories/DetailsCate
 import DetailsProduits from "../../components/produits/DetailsProduits";
 import DetailsCommandeProvide from "./DetailsCommandeProvide";
 import Profil from "./Profil";
+import { Route, Routes } from "react-router";
 
 
 function IsLogin() {
