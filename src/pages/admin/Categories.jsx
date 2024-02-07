@@ -7,16 +7,18 @@ import Formulaire from "../../components/formulaire/Formulaire";
 
 const Categories = () => {
   const { 
-          table, 
+          table,
           categories,
           actions, 
           nomCategories, 
           nombre, 
-          statut,
+          statutVisible,
+          statutInvisible,
           image,
           setNomCategories,
           setNombre,
-          setStatut,
+          setStatutVisible,
+          setStatutInvisible,
           setImage,
           hanldleSubmit
          } = useContext(CategorieContext);
@@ -28,12 +30,14 @@ const Categories = () => {
       label: "Nom catégorie",
       type: "text",
       value: nomCategories,
+      name:'catégorie',
       setValue: setNomCategories
     },
     {
       label: "Image catégorie",
       type: 'file',
       value: image,
+      name:'image',
       setValue: setImage
     },
 
@@ -41,13 +45,22 @@ const Categories = () => {
       label: "Nombre produit",
       type: 'number',
       value: nombre,
+      name:'produitNomber',
       setValue: setNombre
     },
     {
-      label: "Statut catégorie",
-      type: 'text',
-      value: statut,
-      setValue: setStatut
+      label: "Visible",
+      type: 'radio',
+      value: statutVisible,
+      name:'statut',
+      setValue: setStatutVisible
+    },
+    {
+      label: "Invisible",
+      type: 'radio',
+      value: statutInvisible,
+      name:'statut',
+      setValue: setStatutInvisible
     }
   ]
   useEffect(() => {
