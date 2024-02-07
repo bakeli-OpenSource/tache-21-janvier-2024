@@ -8,6 +8,9 @@ import { ShoppingCartIcon } from '@heroicons/react/outline';
 export default function Accueil() {
   
   return (
+    <div>
+
+    
     <div className='container flex flex-col items-center justify-center mx-auto'>
         <Link to="/Panier" className="flex items-center">
           <span className="mr-2">
@@ -41,10 +44,12 @@ export default function Accueil() {
         </div>
 
       
-    <footer>
-        <Footer/>
-    </footer>
+   
 
     </div>
+     <footer>
+     <Footer/>
+ </footer>
+ </div>
   )
 }
