@@ -56,7 +56,7 @@ function Panier() {
           {panier.map((produit) => (
             <tr key={produit.id}>
               <td className="px-4 py-2 text-center border-b">
-                <img src={produit.image} alt={produit.nom} className="object-cover h-16 iw-16" />
+                <img src={produit.image} alt={produit.nom} className="object-cover w-16 h-16" />
               </td>
               <td className="px-4 py-2 text-center border-b">{produit.nom}</td>
 
