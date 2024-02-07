@@ -1,18 +1,11 @@
 import React from 'react'
-
-// import Input from './Input'
- import LoginButon from './LoginButon'
- import Title from './Title'
- import Label from './Label'
- import IsLogin from '../IsLogin'
- import { useNavigate } from 'react-router-dom'
-
-
+import Title from './Title'
+import { useNavigate } from 'react-router-dom'                                         
+import LoginButon from './LoginButon'
+ 
 
 const AdminConnexion = () => {
- 
    const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/admin/dashboard");
@@ -22,12 +15,7 @@ const AdminConnexion = () => {
 
 
   return (
-
-    
      <div className="w-full h-screen flex justify-center items-center ">
-
-
-
 <form className="max-w-md mx-auto bg-gray-800 w-full px-8 pt-6 pb-8 mb-4 shadow-md rounded-md" onSubmit={handleSubmit}>
   <Title 
   className='text-white text-center mb-5'
