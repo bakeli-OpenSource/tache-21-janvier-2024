@@ -1,15 +1,41 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Title from './Title'
 import { useNavigate } from 'react-router-dom'                                         
 import LoginButon from './LoginButon'
- 
+function SignUp() {
+  const navigate = useNavigate();
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: ""
+  
+  })
+  const onChange = (e, type) => {
+    setFormState({
+      ...formState,
+      [type]: e.target.value
+    });
+  };
 
-const AdminConnexion = () => {
-   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch('http://localhost:4000/api/user', {
+     
+    });
+    if (response.ok) {
+      navigate("/check-your-email");
+    } else {
+      // Gérer les erreurs
+    }
+  };
+
+// const AdminConnexion = () => {
+//    const navigate = useNavigate();
+   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/admin/dashboard");
-  };
+   };
 
 
 
@@ -53,4 +79,4 @@ const AdminConnexion = () => {
   )
 }
 
-export default AdminConnexion
+export default SignUp
