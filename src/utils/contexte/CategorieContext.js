@@ -1,9 +1,4 @@
 import React, { createContext, useState } from 'react'
-import { TbEyeShare } from "react-icons/tb";
-import { MdEdit } from "react-icons/md";
-import { MdOutlineDelete } from "react-icons/md";
-import useGlobal from '../hooks/useGlobal';
-import { useNavigate } from 'react-router';
 
 
 const CategorieContext = createContext();
@@ -14,73 +9,23 @@ export default function CategorieContextProvider({children}) {
     const table = [
         'Categorie', 'Nombre produit', 'Statut', 'Actions'
     ]
-    const {setShowModal} =useGlobal()
     const [categories, setCategories] = useState(JSON.parse(localStorage.getItem('categories')) || [])
     
     const [nom, setNom] = useState("categorie1")
     const [quantite, setQuantite] = useState(0)
-    const [statutVisible, setStatutVisible] = useState("visible")
-    const [statutInvisible, setStatutInvisible] = useState("Invisible")
-    const [statut, setStatut] = useState("true")
+    const [statutVisible, setStatutVisible] = useState(true)
+    const [statutInvisible, setStatutInvisible] = useState(false)
+    const [radioValue, setRadioValue] = useState("")
+    const [statut, setStatut] = useState(true)
     const [imageUrl, setImageUrl] = useState("")
 
-  // const hanldleSubmit = (e) => {
-  //   e.preventDefault();
-  //   let categorie;
-  //   categorie = {
-  //     id: Math.floor(Math.random() * 10000),
-  //     nom: nom,
-  //     quantite: quantite,
-  //     statut: statut,
-  //     imageUrl: imageUrl,
-  //   };
-  //   categorie = [...categories, categorie];
-  //   setCategories(categorie);
-  //   setNom('');
-  //   setQuantite('');
-  //   setStatut('');
-  //   setImageUrl('');
-  //   setShowModal(false);
-  // };
+      
 
-  const handleDelete = (categorieId) => {
-    const categorie = categories.filter(
-      (categorie) => categorieId !== categorie.id
-    );
-    setCategories(categorie);
-  };
 
-  const navigate = useNavigate();
-
-  const actions = [
-    {
-      icon: <TbEyeShare />,
-      color: 'bg-green-500',
-      hanldleClick: () => {
-        console.log('Ca marche 1');
-        navigate('/admin/categories/DetailsCategorie');
-      },
-    },
-    {
-      icon: <MdEdit />,
-      color: 'bg-orange-500',
-      hanldleClick: () => {
-        console.log('Ca marche 2');
-      },
-    },
-    {
-      icon: <MdOutlineDelete />,
-      color: 'bg-red-600',
-      hanldleClick: () => {
-        categories.map((categorie) => handleDelete(categorie.id));
-      },
-    },
-  ];
 
       const valueContext = {
         table,
         categories,
-        actions,
         nom,
         quantite,
         statut,
