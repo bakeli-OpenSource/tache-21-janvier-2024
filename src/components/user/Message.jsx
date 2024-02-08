@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { FaRegCircleXmark, FaSquareEnvelope } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
 

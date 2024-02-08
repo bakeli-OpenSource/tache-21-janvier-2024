@@ -8,8 +8,8 @@ const Input = ({label, type, value, name, onChange}) => {
     classInput = "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
   }
   return(
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="input-text">
+    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
         { label }
       </label>
       <input className={classInput} name={name} value={value} type={type} onChange={onChange} required />
@@ -18,11 +18,11 @@ const Input = ({label, type, value, name, onChange}) => {
 }
 const Select = ({label, options}) => {
   return(
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
-      <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
+      <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
         {options.map((option)=>(
-          <option>{option}</option>
+          <option value={option.value}>{option}</option>
         ))}
       </select>
     </div>
@@ -54,7 +54,7 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
         }
 
         {textarea ?
-        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">{textarea.description}</textarea>
+        <textarea className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
           : null
         }
       </div>
