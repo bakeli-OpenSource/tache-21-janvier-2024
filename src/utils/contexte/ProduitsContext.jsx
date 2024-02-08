@@ -2,8 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import useGlobal from "../hooks/useGlobal";
+import { useNavigate } from "react-router";
 
 
 export const ProduitsContext = createContext();

@@ -1,26 +1,30 @@
+
 import Table from "../../components/table/Table";
 import HeaderTable from "../../components/headerTable/HeaderTable";
 import { useContext, useEffect } from "react";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
 import useSidebare from "../../utils/hooks/useSidebare";
 import Formulaire from "../../components/formulaire/Formulaire";
+import axios from "axios";
+import useGlobal from "../../utils/hooks/useGlobal";
 
 const Categories = () => {
   const { 
           table,
           categories,
           actions, 
-          nomCategories, 
-          nombre, 
+          nom, 
+          quantite,
+          statut,
           statutVisible,
           statutInvisible,
-          image,
-          setNomCategories,
-          setNombre,
+          imageUrl,
+          setCategories,
+          setNom,
+          setQuantite,
           setStatutVisible,
           setStatutInvisible,
-          setImage,
-          hanldleSubmit
+          setImageUrl
          } = useContext(CategorieContext);
 
   const { open } = useSidebare();
@@ -29,24 +33,24 @@ const Categories = () => {
     {
       label: "Nom catégorie",
       type: "text",
-      value: nomCategories,
+      value: nom,
       name:'catégorie',
-      setValue: setNomCategories
+      setValue: setNom
     },
     {
       label: "Image catégorie",
       type: 'file',
-      value: image,
+      value: imageUrl,
       name:'image',
-      setValue: setImage
+      setValue: setImageUrl
     },
 
     {
       label: "Nombre produit",
       type: 'number',
-      value: nombre,
+      value: quantite,
       name:'produitNomber',
-      setValue: setNombre
+      setValue: setQuantite
     },
     {
       label: "Visible",
@@ -63,9 +67,44 @@ const Categories = () => {
       setValue: setStatutInvisible
     }
   ]
+const {setShowModal} = useGlobal()
+  const hanldleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(nom, quantite, statut, imageUrl);
+    // Créez un objet avec les données du formulaire
+    const formData = {
+      nom: nom,
+      quantite: quantite,
+      statut: statut,
+      imageUrl: imageUrl
+    };
+
+    try {
+      // Effectuez une requête POST vers votre API avec axios
+      const response = await axios.post('http://localhost:4000/api/categorie', formData);
+      console.log('Catégorie ajoutée avec succès:', response.data);
+      setShowModal(false)
+    } catch (error) {
+      
+      console.error('Erreur lors de l\'ajout de la catégorie:', error);
+    }
+  };
+
   useEffect(() => {
-    localStorage.setItem('categories', JSON.stringify(categories))
-  }, [categories])
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/categories');
+        setCategories(response.data);
+        console.log("afficher");
+      } catch (error) {
+        console.error('Erreur lors de la récupération des catégories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
@@ -80,3 +119,5 @@ const Categories = () => {
 };
 
 export default Categories;
+
+
