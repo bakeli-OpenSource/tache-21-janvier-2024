@@ -1,51 +1,84 @@
-// import '../navheader/navheader.css'
-// import Url from '../image'
-import { BsSearch } from "react-icons/bs";
-import { BsPersonCircle } from "react-icons/bs";
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import image1 from '../../../assets/images/Imag_banier.avif';
+import { BsSearch, BsPersonCircle } from "react-icons/bs";
+import { FaBars } from "react-icons/fa";
+import { BsX } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 import { ShoppingCartIcon } from '@heroicons/react/outline';
 import NavInput from './NavInput';
-const NavHeader = () => {
-    return (
-        <div className="" >
-            <nav className="bg-white py-8">
-                <div className="container mx-auto flex items-center px-4 flex justify-between">
+import ComponentButton from '../../../usersComponents/button/ComponentButton';
+import "../../../utils/styles/index.css"
+import ImgLigo from "../../../assets/images/kaay-Solu.png"
 
-                    <div className="text-gray-800   flex gap-4 justify-around ">
-                        <h1 className='text-2xl tracking-wide font-bold'>CEIN.</h1>
-                        <ul className="flex ml-10 text-gray-800 space-x-10 text-gy">
+const NavHeader = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    return (
+        <div className={`bg-cover bg-center h-[50rem] w-full flex flex-col justify-between `} style={{ backgroundImage: `url(${image1})` }}>
+            <nav className="bg-white py-0">
+                <div className="container mx-auto items-center px-4 flex justify-between">
+                    <div className="text-gray-800 flex gap-4 justify-around items-center">
+                       <img src={ImgLigo} alt="img" className='w-40 h-32'/>
+                        <ul className="hidden text-xl lg:flex ml-10 text-gray-800 space-x-10">
                             <li>Shop</li>
                             <li>New Arrivals</li>
                             <li>Sales</li>
                             <li>Journal</li>
-
                         </ul>
                     </div>
-
-                    <div className='flex'>
-                        <BsSearch
-                            className="cursor-pointer mt-3 text-gray-900"
-                            size={20}
-                        />
-                        <NavInput />
+                    <div className=" flex mt-4">
+                        <BsSearch className="hidden sm:flex cursor-pointer text-gray-900" size={20} />
+                        <NavInput className="md:mt-8" />
                     </div>
-
-                    <div className=" text-gray-800 flex gap-4 justify-around ">
-
-
-                        <BsPersonCircle
-                            className="cursor-pointer"
-                            size={20} />
+                    <div className="hidden md:flex text-gray-800 flex gap-4 justify-around items-center">
+                        <BsPersonCircle className="cursor-pointer" size={20} />
                         <Link to="/Panier" className="flex items-center">
                             <span className="mr-2">
                                 <ShoppingCartIcon className="w-6 h-6" />
                             </span>
                         </Link>
                     </div>
-
+                    <div className="lg:hidden">
+                        <button onClick={toggleMenu}>
+                            <FaBars
+                                className={`w-6 h-6 ${isMenuOpen ? 'hidden' : 'block'}`}
+                            />
+                            
+                            <BsX 
+                                className={`w-6 h-6 ${isMenuOpen ? 'block' : 'hidden'}`}
+                            />
+                    
+                        </button>
+                    </div>
                 </div>
+                {isMenuOpen && (
+                    <div className="container mx-auto mt-4">
+                        <ul className="flex flex-col text-gray-800 space-y-2">
+                            <li>Shop</li>
+                            <li>New Arrivals</li>
+                            <li>Sales</li>
+                            <li>Journal</li>
+                        </ul>
+                        <div className="flex gap-2 mt-4">
+                            <BsPersonCircle className="cursor-pointer" size={20} />
+                            <Link to="/Panier" className="flex items-center">
+                                <span className="mr-2">
+                                    <ShoppingCartIcon className="w-6 h-6" />
+                                </span>
+                            </Link>
+                        </div>
+                    </div>
+                )}
             </nav>
-            
+
+            <div className='mb-5 w-80 h-32 flex flex-col justify-center'>
+                <h1 className='text-md text-white pl-5 text-xl'>Elevate Your style <br /> Timeless Fashion, Sustainable Choice</h1>
+                <ComponentButton className='bg-white ml-5 text-md text-black w-40 h-12 my-5 text-xl rounded-lg' texte='Shop Now' />
+            </div>
         </div>
     );
 }
