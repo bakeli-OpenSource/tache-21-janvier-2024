@@ -6,7 +6,6 @@ import Filtre from "../../components/cards-et-filtre/Filtre";
 import Revenue from "./Revenue";
 import useSidebare from "../../utils/hooks/useSidebare";
 import Graphique2 from './graphique2/Graph'
-import ListeProd from './ListeProd'
 
 
 const Dashboard = () => {
@@ -14,7 +13,7 @@ const Dashboard = () => {
 
   return (
     <div
-      className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}
+    className={`${open ? "md:ml-[230px] " : "md:ml-[85px] m-3 mb-0"} m-5 mb-0 `}
     >
       <div className="container text-xl font-bold ">
         <div className="flex justify-end">
@@ -37,6 +36,7 @@ const Dashboard = () => {
       </div>
 
       <div>
+        {/* <ListeProduit /> */}
         {/* <ListeProd /> */}
       </div>
     

@@ -12,22 +12,52 @@ const CommandeAdmin = () => {
   const {open} = useSidebare()
   const inputs = [
     {
-      label: "Nom",
-      placeholder: "Mon Prenom"
+      label: "Email",
+      type: "email",
+      placeholder: ""
     },
     {
-      label: "Prenom",
-      placeholder: "Mon prenom"
+      label: "Nombre",
+      type: "number",
+      placeholder: ""
     },
     {
-      label: "Age",
-      placeholder: "Mon age"
+      label: "Date",
+      type: 'date',
+      placeholder: ""
+    },
+    {
+      label: "Etat commande",
+      type: 'text',
+      placeholder: ""
+    },
+    {
+      label: "Prix total",
+      type: 'text',
+      placeholder: "text"
+    }
+  ]
+
+  const selects = [
+    {
+      label: 'Etat commandee',
+      value: "categorie",
+      setValue: "setCategorie",
+      options: [
+        'En attent',
+        'En traitement',
+        'En livraison',
+        'Livrée',
+      ]
     }
   ]
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
-      <HeaderTable title="Commandes" nomAjout="Ajouter des Commandes" body={<Formulaire inputs={inputs} />} />
+      <HeaderTable 
+        title="Commandes" 
+        nomAjout="Ajouter des Commandes" 
+        body={<Formulaire inputs={inputs} selects={selects} />} />
       <Table thead={table} tbody={table2} actions={actions} />
     </div>
   )
