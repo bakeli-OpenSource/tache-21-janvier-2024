@@ -18,7 +18,6 @@ const NavHeader = () => {
                             <li>New Arrivals</li>
                             <li>Sales</li>
                             <li>Journal</li>
-
                         </ul>
                     </div>
 
