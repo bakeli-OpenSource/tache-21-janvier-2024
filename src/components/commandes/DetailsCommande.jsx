@@ -19,18 +19,20 @@ const DetailsCommande = () => {
       <h1>PRIX TOTAL : {prixTotal.toFixed(2)}fr</h1>
 
       <div className="my-4">
-        <label for="countries" class="block mb-2 text-sm font-medium ">Etat de la Commande</label>
-        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <label for="countries" className="block mb-2 text-sm font-medium ">Etat de la Commande</label>
+        <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option selected>Etat du Commande</option>
-          <option value="US">Nom traitée</option>
-          <option value="CA">En cours de traitement</option>
-          <option value="FR">Préte</option>
-          <option value="DE">Archivée</option>
-          <option value="DE">Annulée</option>
-          <option value="DE">Payée</option>
-          <option value="DE">Réceptionnée</option>
+          <option value="NT">Nom traitée</option>
+          <option value="EN">En cours de traitement</option>
+          <option value="PT">Préte</option>
+          <option value="AR">Archivée</option>
+          <option value="AN">Annulée</option>
+          <option value="PY">Payée</option>
+          <option value="RC">Réceptionnée</option>
         </select>
-        <button type='submit'>Envoyer la commande</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Button
+        </button>
       </div>
     </div>
   )

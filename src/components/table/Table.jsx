@@ -25,9 +25,7 @@ const Tbody = ({tbody, actions}) => {
                         <div className="flex items-center text-sm">
                         <div className="md:relative w-8 h-8 mr-3 rounded-full md:block">
                             <img className="object-cover w-full h-full rounded-full" src={td.imageUrl} alt="" loading="lazy" />
-                            <div className="md:absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
+                            <div className="md:absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>     
                             <p className="font-semibold text-black">{td.nom}</p>
                             <p className="text-xs text-gray-600">{td.description}</p>
                         </div>
@@ -40,8 +38,7 @@ const Tbody = ({tbody, actions}) => {
                     }
                     <td className="px-4 py-3 text-center border text-md">
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
-                    </td>
-                    
+                    </td> 
                     {td.date ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.date}

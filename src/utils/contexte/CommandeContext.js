@@ -58,7 +58,7 @@ const CommandeContextProvider = ({ children }) => {
       ]
     
   const value = {
-    table, table2, actions, table3,  table4
+    table, table2, table3, actions,  table4
   };
 
   return <CommandeContext.Provider value={value}>{children}</CommandeContext.Provider>;
