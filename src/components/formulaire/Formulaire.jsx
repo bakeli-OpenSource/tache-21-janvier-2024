@@ -16,11 +16,11 @@ const Input = ({label, type, value, name, onChange}) => {
     </div>
   )
 }
-const Select = ({label, options}) => {
+const Select = ({label, options, onChange}) => {
   return(
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
-      <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+      <select onChange={onChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
         {options.map((option)=>(
           <option value={option.value}>{option}</option>
         ))}
@@ -28,7 +28,7 @@ const Select = ({label, options}) => {
     </div>
   )
 }
-const Formulaire = ({inputs, selects, textarea, onSubmit, onClick}) => {
+const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
 
   const handleChange = (e, setter) => {
     const value = e.target.value;
@@ -46,7 +46,6 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, onClick}) => {
               type={input.type} 
               label={input.label} 
               value={input.value} 
-              onClick={input.type==='radio' ? onClick : null} 
               onChange={(e) => handleChange(e, input.setValue)} 
             />
           ))
@@ -54,7 +53,7 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, onClick}) => {
         {selects? 
         <>
         {selects.map((select)=>(
-          <Select label={select.label} options={select.options}/>
+          <Select label={select.label} options={select.options} onChange={handleChange}/>
           ))}
         </>
         : null

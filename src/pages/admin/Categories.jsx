@@ -54,21 +54,7 @@ const Categories = () => {
         value: quantite,
         name:'produitNomber',
         setValue: setQuantite
-      },
-      // {
-      //   label: "Visible",
-      //   type: 'radio',
-      //   value: statutVisible,
-      //   name:'statut',
-      //   setValue: setStatutVisible
-      // },
-      // {
-      //   label: "Invisible",
-      //   type: 'radio',
-      //   value: statutInvisible,
-      //   name:'statut',
-      //   setValue: setStatutInvisible
-      // }
+      }
     ]
 
 
