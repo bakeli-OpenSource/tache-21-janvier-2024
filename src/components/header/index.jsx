@@ -4,10 +4,11 @@ import useSidebare from "../../utils/hooks/useSidebare";
 import UserDropdown from "../user/UserDropdown";
 import Notification from "../user/Notification";
 import Message from "../user/Message";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 const Header = () => {
   const { toggleSidebare } = useSidebare();
+
   const location = useLocation();
   const urlPageActuel = location.pathname.split("/");
   const pageActuel = urlPageActuel[urlPageActuel.length - 1];

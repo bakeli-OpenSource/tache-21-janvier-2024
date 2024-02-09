@@ -1,21 +1,26 @@
 import React from 'react'
 
-const Input = ({label, type, value, onChange}) => {
-  
+const Input = ({label, type, value, name, onChange}) => {
+  let classInput
+  if (type === "radio") {
+    classInput = "bg-gray-200"
+  }else{
+    classInput = "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+  }
   return(
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="input-text">
+    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
         { label }
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" value={value} type={type} onChange={onChange} required />
+      <input className={classInput} name={name} value={value} type={type} onChange={onChange} required />
     </div>
   )
 }
 const Select = ({label, options}) => {
   return(
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
-      <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
+      <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
         {options.map((option)=>(
           <option value={option.value}>{option}</option>
         ))}
@@ -35,7 +40,7 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
       <div className="flex flex-wrap -mx-3 mb-6">
         {
           inputs.map((input, index)=>(
-            <Input key={index} type={input.type} label={input.label} name={input.name} value={input.value} onChange={(e) => handleChange(e, input.setValue)} />
+            <Input key={index} name={input.name} type={input.type} label={input.label} value={input.value} onChange={(e) => handleChange(e, input.setValue)} />
           ))
         }
         {selects? 
@@ -49,11 +54,13 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
         }
 
         {textarea ?
-        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
+        <textarea className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
           : null
         }
       </div>
-      <button>Enregistrer</button>
+      <button className='btn bg-green-900 text-white rounded p-2 shadow outline-none focus:outline-none ease-linear'>
+        Enregistrer
+      </button>
 </form>
   )
 }
