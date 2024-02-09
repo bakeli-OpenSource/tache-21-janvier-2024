@@ -36,6 +36,7 @@ const Dashboard = () => {
       </div>
 
       <div>
+        {/* <ListeProduit /> */}
         {/* <ListeProd /> */}
       </div>
     
