@@ -1,7 +1,6 @@
 import React from "react";
 import Cards from "../../usersComponents/cards/Cards";
 import Footer from "../../usersComponents/footer/Footer";
-import NavHeader from "./NavbarUtilisateut/Navbar";
 import Header from "../../usersComponents/headerUserComponent/Header";
 import Navbar from "./NavbarUtilisateut/Navbar/Navbar";
 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md';
 import { BsArrowLeft } from 'react-icons/bs';
 import Footer from '../../../usersComponents/footer/Footer';
-import NavHeader from '../NavbarUtilisateut/Navbar';
 import Navbar from '../NavbarUtilisateut/Navbar/Navbar';
 
 const Panier = () => {
