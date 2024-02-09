@@ -28,7 +28,7 @@ const Select = ({label, options}) => {
     </div>
   )
 }
-const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
+const Formulaire = ({inputs, selects, textarea, onSubmit, onClick}) => {
 
   const handleChange = (e, setter) => {
     const value = e.target.value;
@@ -40,7 +40,15 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
       <div className="flex flex-wrap -mx-3 mb-6">
         {
           inputs.map((input, index)=>(
-            <Input key={index} name={input.name} type={input.type} label={input.label} value={input.value} onChange={(e) => handleChange(e, input.setValue)} />
+            <Input 
+              key={index} 
+              name={input.name} 
+              type={input.type} 
+              label={input.label} 
+              value={input.value} 
+              onClick={input.type==='radio' ? onClick : null} 
+              onChange={(e) => handleChange(e, input.setValue)} 
+            />
           ))
         }
         {selects? 
