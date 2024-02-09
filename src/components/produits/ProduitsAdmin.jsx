@@ -8,11 +8,29 @@ import Formulaire from '././../formulaire/Formulaire';
 
 const ProduitsAdmin = () => {
 
+  // const test = [
+  //   {
+  //     nom: "Test upload img",
+  //     imageUrl: "exemple.jpg",
+  //     titre: "Libero consequatur ",
+  //     description: "Provident qui eiusm",
+  //     quantite: 72,
+  //     categorie: "Atque odit ea magni ",
+  //     carracteristique: "Nulla expedita ea ex",
+  //     prix: 46,
+  //     couleur: "Iste ea et fugiat h",
+  //     taille: "Veniam et incididun",
+  //     fournisseur: "Quod vitae et harum ",
+
+  //   }
+  // ]
+
   const {table, produits, addProduit, actions, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
         } = useProduits();
+  
   const {open} = useSidebare()
   
   const inputs = [
@@ -25,6 +43,7 @@ const ProduitsAdmin = () => {
     {
       label: "Image du produit",
       type: "file",
+      name: "image",
       value: imageUrl,
       setValue: setImageUrl
     },

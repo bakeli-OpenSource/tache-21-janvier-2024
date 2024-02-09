@@ -11,7 +11,7 @@ export const ProduitsContext = createContext();
 const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
-  const [url, setUrl] = useState("http://localhost:4000/api/produits")
+  // const [url, setUrl] = useState("http://localhost:4000/api/produits")
   // Création des contexts pour formuulaire
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -31,14 +31,14 @@ const ProduitContextProvider = ({ children }) => {
 
   // Récupération de tous les produits
   useEffect(() => {
-    fetch(url)
+    fetch("http://localhost:4000/api/produits")
       .then(response => response.json())
       .then(json => setProduits(json))
-  }, [url])
+  }, [produits])
 
   // Suppression Produit
   const deleteProduit = (id) => {
-    setUrl(`http://localhost:4000/api/supprimerproduit/${id}`, {
+    fetch(`http://localhost:4000/api/supprimerproduit/${id}`, {
       method: "DELETE",
     })
       .then(response => response.json())
@@ -73,10 +73,13 @@ const ProduitContextProvider = ({ children }) => {
       })
         .then(response => response.json())
         .then(data => {
-          // setProduits([...produits, data]) 
+          setProduits([...produits, data]) 
           setShowModal(false)
           alert('Produit ajouté avec succès')
         })
+    }
+    else{
+      console.log("Erreurrrrrrrrrrrrrrrrrr");
     }
   }
 

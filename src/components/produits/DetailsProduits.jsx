@@ -8,6 +8,7 @@ import useFetch from '../../utils/hooks/useFetch';
 const DetailsProduits = () => {
     const {id} = useParams();
     const {data} = useFetch('http://localhost:4000/api/produit/' + id)
+    console.log(data);
     const {open} = useSidebare()
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4  my-3 `}>
