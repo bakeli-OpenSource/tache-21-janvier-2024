@@ -1,15 +1,19 @@
 import React from 'react'
 import Cards from '../../usersComponents/cards/Cards'
 import Footer from '../../usersComponents/footer/Footer'
-import NavHeader from './NavbarUtilisateut/Navbar'
+// import NavHeader from './NavbarUtilisateut/Navbar'
 import CardBas from '../../usersComponents/cards/CardBas'
+import Navbar from './NavbarUtilisateut/Navbar/Navbar'
+import Header from '../../usersComponents/headerUserComponent/Header'
 
 
 export default function Accueil() {
   return (
     <div>
- 
-      <NavHeader/>
+      <Navbar />
+      <Header />
+      
+      {/* <NavHeader/> */}
     <div className='container flex flex-col px-[35px]'>
       <hr />
       <div className='text-md capitalize text-gray-500 mb-2 mt-7'>
