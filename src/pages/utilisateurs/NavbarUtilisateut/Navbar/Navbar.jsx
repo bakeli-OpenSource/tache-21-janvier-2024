@@ -77,7 +77,7 @@ const Navbar = () => {
                   onClick={() => setSearch(!search)}
                   size={20}
                 >
-                  {!search ? <BsSearch /> : <MdClose />}
+                  {!search ? <BsSearch /> : <MdClose className="text-sm" />}
                 </div>
 
                 <NavInput type="text" search={search} />
