@@ -12,9 +12,11 @@ const Thead = ({thead}) => {
 }
 
 const Tbody = ({tbody, actions}) => {
+    console.log({tbody});
     return (
+        
         <tbody className='bg-white'>
-                {tbody !== null ?
+                {tbody.length !== 0 ?
                 tbody.map((td, index) => (
                 <tr className="text-gray-700" key={index}>
                     {/* {td._id?
