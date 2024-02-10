@@ -15,13 +15,8 @@ export default function CategorieContextProvider({children}) {
     const [quantite, setQuantite] = useState(0)
     const [statutVisible, setStatutVisible] = useState(true)
     const [statutInvisible, setStatutInvisible] = useState(false)
-    const [radioValue, setRadioValue] = useState("")
-    const [statut, setStatut] = useState(true)
+    const [statut] = useState(true)
     const [imageUrl, setImageUrl] = useState("")
-
-      
-
-
 
       const valueContext = {
         table,

@@ -14,6 +14,7 @@ const CommandeAdmin = () => {
     {
       label: "Email",
       type: "email",
+      name: "email",
       placeholder: ""
     },
     {

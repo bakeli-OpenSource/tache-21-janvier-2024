@@ -14,7 +14,7 @@ const Cards = () => {
             <div>
               <h5>101.5 k</h5>
             </div>
-            <div className="bg-sky-500 rounded-full h-8 w-8 flex flex place-items-center justify-center">
+            <div className="bg-sky-500 rounded-full h-8 w-8 flex place-items-center justify-center">
               <MdOutlineKeyboardCommandKey className="text-2xl text-white" />
             </div>
           </div>
@@ -29,7 +29,7 @@ const Cards = () => {
             <div>
               <h5>101.5 k</h5>
             </div>
-            <div className="bg-lime-600 rounded-full h-8 w-8 flex flex place-items-center justify-center">
+            <div className="bg-lime-600 rounded-full h-8 w-8 flex place-items-center justify-center">
               <AiOutlineLoading3Quarters className="text-2xl text-white" />
             </div>
           </div>
@@ -44,7 +44,7 @@ const Cards = () => {
             <div>
               <h5>101.5 k</h5>
             </div>
-            <div className="bg-yellow-700 rounded-full h-8 w-8 flex flex place-items-center justify-center">
+            <div className="bg-yellow-700 rounded-full h-8 w-8 flex place-items-center justify-center">
               <MdDeliveryDining className="text-2xl text-white" />
             </div>
           </div>
@@ -59,7 +59,7 @@ const Cards = () => {
             <div>
               <h5>101.5 k</h5>
             </div>
-            <div className="bg-blue-900 rounded-full h-8 w-8 flex flex place-items-center justify-center">
+            <div className="bg-blue-900 rounded-full h-8 w-8 flex place-items-center justify-center">
               <AiOutlineDeliveredProcedure className="text-xl text-white " />
             </div>
           </div>
