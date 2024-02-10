@@ -6,9 +6,9 @@ import CardBas from '../../usersComponents/cards/CardBas'
 
 
 export default function Accueil() {
-  
   return (
     <div>
+ 
       <NavHeader/>
     <div className='container flex flex-col px-[35px]'>
       <hr />
@@ -34,18 +34,20 @@ export default function Accueil() {
         <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px]
           max-w-sm mx-auto md:max-w-none md:mx-auto py-16 justify-center content-center'>
           <div className='w-full mb-4'>
+
             <Cards />
           </div>
+          <div className="w-full mb-4">
+            <Cards />
+          </div>
+
           <div className='w-full mb-4'>
             <Cards />
           </div>
-          <div className='w-full mb-4'>
+          <div className="w-full mb-4">
             <Cards />
           </div>
-          <div className='w-full mb-4'>
-            <Cards />
-          </div>
-          <div className='w-full mb-4'>
+          <div className="w-full mb-4">
             <Cards />
           </div>
         </div>
@@ -70,10 +72,8 @@ export default function Accueil() {
           </div>
         </div>
       </div>
+      </div>
+        <Footer />
     </div>
-      <footer>
-        <Footer/>
-      </footer>
- </div>
-  )
+  );
 }

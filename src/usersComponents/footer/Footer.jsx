@@ -6,6 +6,7 @@ const Footer = () => {
     const customers = ['Start a Return', 'Return Policy', 'FAQ', 'Catalogs and Mailers', 'About Group Gifting']
     const company = ['About Us', 'Sustainability', 'Discover Revive', 'Careers', 'Privacy Policy', 'Terms']
   return (
+ 
       <div className=' flex justify-between mt-10 mx-10 mb-10'>
         <div className=' flex mx-5 gap-x-14'>
             <div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import image5 from '../../assets/images/image5.jpg'
 import CardImage from './CardImage';
 
+
 const Cards = () => {
   const [heartColor, setHeartColor] = useState('white');
 
@@ -11,6 +12,7 @@ const Cards = () => {
   };
 
   return (
+ 
     <div class="max-w-sm rounded overflow-hidden shadow-lg">
       {/* image du Card */}
       <CardImage image={image5} heartColor={heartColor} changeHeartColor={changeHeartColor} />
@@ -20,9 +22,10 @@ const Cards = () => {
          <div className='text-md capitalize text-gray-500 mb-1'>Vetement Homme</div>
           <h2 className='text-sm font-semi-bold mb-1'>Veste</h2>
          <div className='font-semi-bold'>17500 FCFA</div>
+
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Cards;
