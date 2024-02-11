@@ -7,20 +7,15 @@ export { CategorieContext };
 
 export default function CategorieContextProvider({children}) {
     const table = [
-        'Categorie', 'Nombre produit', 'Statut', 'Actions'
+        'Categorie', 'Nombre produit', 'Actions'
     ]
     const [categories, setCategories] = useState(JSON.parse(localStorage.getItem('categories')) || [])
     
-    const [nom, setNom] = useState("categorie1")
+    const [nom, setNom] = useState("")
     const [quantite, setQuantite] = useState(0)
-    const [statutVisible, setStatutVisible] = useState(true)
+    const [statutVisible, setStatutVisible] = useState(false)
     const [statutInvisible, setStatutInvisible] = useState(false)
-    const [radioValue, setRadioValue] = useState("")
-    const [statut, setStatut] = useState(true)
     const [imageUrl, setImageUrl] = useState("")
-
-      
-
 
 
       const valueContext = {
@@ -28,7 +23,6 @@ export default function CategorieContextProvider({children}) {
         categories,
         nom,
         quantite,
-        statut,
         statutVisible,
         statutInvisible, 
         imageUrl,

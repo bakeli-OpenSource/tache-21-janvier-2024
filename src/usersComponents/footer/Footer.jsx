@@ -8,6 +8,7 @@ const Footer = () => {
   return (
       <div className=' flex justify-between mt-5 mx-5 mb-10 flex-wrap'>
         <div className=' flex  gap-x-10 flex-wrap  '>
+
             <div>
                 <h4 className='text-sm font-bold italic tracking-widest opacity-65 my-6'>CONTACTEZ-NOUS</h4>
                 <Paragraphe items={contact}/>
