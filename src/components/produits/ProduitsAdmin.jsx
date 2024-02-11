@@ -78,18 +78,18 @@ const ProduitsAdmin = () => {
     },
   ]
   
-  // const selects = [
-  //   {
-  //     label: 'Catégorie',
-  //     value: categorie,
-  //     setValue: setCategorie,
-  //     options: [
-  //       'categorie1',
-  //       'categorie2',
-  //       'categorie3',
-  //     ]
-  //   }
-  // ]
+  const selects = [
+    {
+      label: 'Catégorie',
+      value: categorie,
+      setValue: setCategorie,
+      options: [
+        'categorie1',
+        'categorie2',
+        'categorie3',
+      ]
+    }
+  ]
 
   const textarea = {
     value: description,
