@@ -5,6 +5,8 @@ import Footer from '../../usersComponents/footer/Footer'
 import CardBas from '../../usersComponents/cards/CardBas'
 import Navbar from './NavbarUtilisateut/Navbar/Navbar'
 import Header from '../../usersComponents/headerUserComponent/Header'
+import CardWsap from '../../usersComponents/cards/CardWsap'
+import ScrollingText from '../../usersComponents/cards/ScrollingText'
 
 
 export default function Accueil() {
@@ -55,10 +57,15 @@ export default function Accueil() {
             <Cards />
           </div>
         </div>
+        <hr />
+        <div>
+          <ScrollingText />
+        </div>
+        <hr />
       <div>
-        <h3 className='text-center'>Shop Instagram</h3>
+        <h3 className='text-center mt-5'>Shop Instagram</h3>
         <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px]
-          max-w-sm mx-auto md:max-w-none md:mx-auto py-16 justify-center content-center'>
+          max-w-sm mx-auto md:max-w-none md:mx-auto py-8 justify-center content-center'>
           <div className='w-full mb-3'>
             <CardBas />
           </div>
@@ -76,7 +83,31 @@ export default function Accueil() {
           </div>
         </div>
       </div>
+      <hr />
+
+      <div>
+        <h3 className='text-center mt-5'>Shop WhatsApp</h3>
+        <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px]
+          max-w-sm mx-auto md:max-w-none md:mx-auto py-8 justify-center content-center'>
+          <div className='w-full mb-3'>
+            <CardWsap />
+          </div>
+          <div className='w-full mb-3'>
+            <CardWsap />
+          </div>
+          <div className='w-full mb-3'>
+            <CardWsap />
+          </div>
+          <div className='w-full mb-3'>
+            <CardWsap />
+          </div>
+          <div className='w-full mb-3'>
+            <CardWsap />
+          </div>
+        </div>
       </div>
+      <hr />
+    </div>
         <Footer />
     </div>
   );
