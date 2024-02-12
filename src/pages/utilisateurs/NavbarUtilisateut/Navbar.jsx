@@ -1,9 +1,4 @@
-// import image1 from '../../../assets/images/header3.jpg'
-import { BsSearch } from "react-icons/bs";
-import { BsPersonCircle } from "react-icons/bs";
-import { Link } from 'react-router-dom'
-import { ShoppingCartIcon } from '@heroicons/react/outline';
-// import NavInput from './NavInput';
+import Navbar from "./Navbar/Navbar";
 
 const NavHeader = () => {
     return (
@@ -18,7 +13,6 @@ const NavHeader = () => {
                             <li>New Arrivals</li>
                             <li>Sales</li>
                             <li>Journal</li>
-
                         </ul>
                     </div>
 
@@ -53,5 +47,6 @@ const NavHeader = () => {
         </div>
     );
 }
+
 
 export default NavHeader;
