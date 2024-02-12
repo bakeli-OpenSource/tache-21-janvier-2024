@@ -11,7 +11,7 @@ import ScrollingText from '../../usersComponents/cards/ScrollingText'
 export default function Accueil() {
   return (
     <div>
-      <Navbar />
+      <Navbar className="bg-white z-50 fixed top-0 w-full"/>
       <Header />
       
     <div className=' flex flex-col px-[35px]'>
