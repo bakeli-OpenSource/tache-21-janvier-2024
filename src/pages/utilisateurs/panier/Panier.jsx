@@ -103,7 +103,7 @@ const Panier = () => {
 
 	return (
 		<div>
-			<Navbar />
+			<Navbar className="bg-white z-50 fixed top-0 w-full"/>
 			<section className="container w-auto h-auto mx-auto my-20 bg-white-700">
 				<div className="container flex justify-center w-auto">
 					<div className="w-1/2 shadow-lg">
