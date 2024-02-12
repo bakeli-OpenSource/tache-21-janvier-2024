@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header
-      className="bg-Hero bg-cover h-screen md:bg-top bg-center px-5"
+      className="bg-Hero bg-cover h-screen md:bg-top bg- bg-right px-5"
       style={{
         backgroundImage: `url(${banniere})`,
       }}

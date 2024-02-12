@@ -108,7 +108,7 @@ export default function Accueil() {
       </div>
       <hr />
     </div>
-        <Footer />
+        {/* <Footer /> */}
     </div>
   );
 }
