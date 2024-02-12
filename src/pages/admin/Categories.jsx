@@ -19,7 +19,6 @@ const Categories = () => {
             categories,
             nom, 
             quantite,
-            statut,
             statutVisible,
             statutInvisible,
             imageUrl,
@@ -55,22 +54,9 @@ const Categories = () => {
         value: quantite,
         name:'produitNomber',
         setValue: setQuantite
-      },
-      {
-        label: "Visible",
-        type: 'radio',
-        value: statutVisible,
-        name:'statut',
-        setValue: setStatutVisible
-      },
-      {
-        label: "Invisible",
-        type: 'radio',
-        value: statutInvisible,
-        name:'statut',
-        setValue: setStatutInvisible
       }
     ]
+
 
     const navigate = useNavigate();
 
@@ -103,12 +89,10 @@ const Categories = () => {
 
     const hanldleSubmit = async (e) => {
       e.preventDefault();
-      console.log(nom, quantite, statut, imageUrl);
       
       const formData = {
         nom: nom,
         quantite: quantite,
-        statut: statut,
         imageUrl: imageUrl
       };
 
@@ -160,7 +144,9 @@ const Categories = () => {
       <HeaderTable
         title="Liste categories"
         nomAjout="Ajouter un nouveau categorie"
-        body={<Formulaire inputs={inputs} onSubmit={hanldleSubmit} />}
+        body={<Formulaire 
+          inputs={inputs} 
+          onSubmit={hanldleSubmit} />}
       />
       <Table thead={table} tbody={categories} actions={actions} />
     </div>

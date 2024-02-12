@@ -3,10 +3,11 @@ import IsLogin from './pages/admin/IsLogin';
 import GlobalContextProvider from './utils/contexte/GlobalContext';
 import Accueil from './pages/utilisateurs/Accueil';
 import Panier from './pages/utilisateurs/panier/Panier';
-import ListShop from './pages/utilisateurs/NavbarUtilisateut/Shop';
-import Sales from './pages/utilisateurs/NavbarUtilisateut/Sales';
-import NewArrivals from './pages/utilisateurs/NavbarUtilisateut/NewArrivals';
-import Journal from './pages/utilisateurs/NavbarUtilisateut/Journal';
+import Shop from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Shop'
+import Arrivals from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Arrivals'
+import Sales from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Sales'
+import Jornals from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Journal'
+ 
 import { Route, Routes } from 'react-router';
 
 function App() {
@@ -16,10 +17,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/Panier" element={<Panier />} />
-          <Route path="/Shop" element={<ListShop/>} />
-          <Route path="/NewArrivals" element={<NewArrivals/>} />
-          <Route path="/Sales" element={<Sales/>} />
-          <Route path="/Journal" element={<Journal/>} />
+          <Route path="/Shop" element={<Shop />} />        
+          <Route path="/Arrivals" element={<Arrivals />} />        
+          <Route path="/Sales" element={<Sales />} />        
+          <Route path="/Journals" element={<Jornals />} />        
           <Route path="/admin" element={<AdminConnexion />} />
           <Route path="/admin/*" element={<IsLogin />} />
         </Routes>
