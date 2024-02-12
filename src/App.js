@@ -10,12 +10,15 @@ import Sales from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Sales'
 import Jornals from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Journal'
 import DetailsCard from "./usersComponents/cards/DetailsCard";
 import { Route, Routes } from 'react-router';
+import { PanierProvider } from "./utils/contexte/PanierContext";
+
 
 
 function App() {
   return (
     <div className="min-h-screen App">
       <GlobalContextProvider>
+      <PanierProvider>
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/Panier" element={<Panier />} />
@@ -27,6 +30,7 @@ function App() {
           <Route path="/admin/*" element={<IsLogin />} />
           <Route path="/Details" element={<DetailsCard />} />
         </Routes>
+        </PanierProvider>
       </GlobalContextProvider>
     </div>
   );

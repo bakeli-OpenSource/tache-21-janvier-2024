@@ -19,7 +19,7 @@ const Header = () => {
           Timeless Fashion, Choice
         </h2>
         <div className="text-xl">
-          <Link to={"/panier"} className="bg-white text-black text-sm px-6 py-2 ">
+          <Link to={"/panier"} >
           <ComponentButton className='bg-white text-black w-40 h-12 my-5 text-xl tracking-widest rounded-lg' texte='Shop Now'/>
           </Link>
         </div>
