@@ -25,7 +25,7 @@ const CardImage = ({ image, heartColor, changeHeartColor }) => {
               <Tooltip id="my-tooltip" style={{ backgroundColor: "skyblue" }} />
             </Link>
         </div>
-        <div className='flex justify-center items-center text-white w-5 h-5 absolute bottom-2 -left-0 pl-1'>
+        <div className='flex justify-center items-center text-white w-6 h-6 absolute bottom-2 -left-0 pl-2'>
           <BsSuitHeartFill className='text-3xl cursor-pointer' style={{ color: heartColor }} onClick={changeHeartColor} />
         </div>
     </div>
