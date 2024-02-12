@@ -1,13 +1,11 @@
 import React from 'react'
 import Cards from '../../usersComponents/cards/Cards'
 import Footer from '../../usersComponents/footer/Footer'
-// import NavHeader from './NavbarUtilisateut/Navbar'
 import CardBas from '../../usersComponents/cards/CardBas'
 import Navbar from './NavbarUtilisateut/Navbar/Navbar'
 import Header from '../../usersComponents/headerUserComponent/Header'
 import CardWsap from '../../usersComponents/cards/CardWsap'
 import ScrollingText from '../../usersComponents/cards/ScrollingText'
-import DetailsCard from '../../usersComponents/cards/DetailsCard'
 
 
 export default function Accueil() {
@@ -16,7 +14,6 @@ export default function Accueil() {
       <Navbar />
       <Header />
       
-      {/* <NavHeader/> */}
     <div className=' flex flex-col px-[35px]'>
       <hr />
       <div className='text-md capitalize text-gray-500 mb-2 mt-7'>
@@ -110,7 +107,6 @@ export default function Accueil() {
       <hr />
 
       <div>
-        {/* <DetailsCard/> */}
       </div>
       <footer>
         <Footer />
