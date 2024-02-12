@@ -7,6 +7,7 @@ import Navbar from './NavbarUtilisateut/Navbar/Navbar'
 import Header from '../../usersComponents/headerUserComponent/Header'
 import CardWsap from '../../usersComponents/cards/CardWsap'
 import ScrollingText from '../../usersComponents/cards/ScrollingText'
+import DetailsCard from '../../usersComponents/cards/DetailsCard'
 
 
 export default function Accueil() {
@@ -16,7 +17,7 @@ export default function Accueil() {
       <Header />
       
       {/* <NavHeader/> */}
-    <div className='container flex flex-col px-[35px]'>
+    <div className=' flex flex-col px-[35px]'>
       <hr />
       <div className='text-md capitalize text-gray-500 mb-2 mt-7'>
         <p>Elevate your lifestyle with a more intelligent, superior wardrobe</p>
@@ -107,8 +108,15 @@ export default function Accueil() {
         </div>
       </div>
       <hr />
+
+      <div>
+        {/* <DetailsCard/> */}
+      </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
-        {/* <Footer /> */}
+
     </div>
   );
 }
