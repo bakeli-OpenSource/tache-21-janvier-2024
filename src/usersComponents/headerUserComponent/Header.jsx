@@ -1,11 +1,13 @@
 import React from "react";
+import banniere from "../../../src/assets/images/bg.jpg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header
       className="bg-Hero bg-cover h-screen md:bg-top bg-center px-5"
       style={{
-        backgroundImage: `url('https://feugjay.com/wp-content/uploads/2020/11/shopping-banniere.jpg')`,
+        backgroundImage: `url(${banniere})`,
       }}
     >
       <div className="flex  flex-col justify-end text-center px-4 items-start h-5/6">
@@ -14,9 +16,9 @@ const Header = () => {
           blsjrwj lijljeo ;k;iyuuu ufufuf vhnhh  yfuu
         </h3>
         <div className="text-xl">
-          <button className="bg-white text-black text-sm px-6 py-2 ">
+          <Link to={"/panier"} className="bg-white text-black text-sm px-6 py-2 ">
             Shop Now
-          </button>
+          </Link>
         </div>
       </div>
     </header>
