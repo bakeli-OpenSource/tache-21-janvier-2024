@@ -11,7 +11,7 @@ const Navbar = () => {
   const [search, setSearch] = useState(false);
 
   return (
-    <nav className="bg-white fixed top-0 w-full">
+    <nav className="bg-white  z-50 fixed top-0 w-full">
       <div className="flex px-8 py-3 items-center justify-between">
         <div className="flex items-center gap-8 w-full md:w-auto justify-between ">
           <div className="z-50 p- md:w-auto w-full flex justify-between">
