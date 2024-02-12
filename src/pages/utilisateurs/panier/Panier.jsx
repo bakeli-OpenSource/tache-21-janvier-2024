@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { MdDelete } from 'react-icons/md'
-import { BsArrowLeft } from 'react-icons/bs'
-import Footer from '../../../usersComponents/footer/Footer'
-import NavHeader from '../NavbarUtilisateut/Navbar'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { MdDelete } from 'react-icons/md';
+import { BsArrowLeft } from 'react-icons/bs';
+import Footer from '../../../usersComponents/footer/Footer';
+import Navbar from '../NavbarUtilisateut/Navbar/Navbar';
 
 const Panier = () => {
   const [items, setItems] = useState([
@@ -107,7 +107,7 @@ const Panier = () => {
 
   return (
 		<div>
-			<NavHeader />
+			<Navbar />
 			<section className="container w-auto h-auto mx-auto my-20 bg-white-700">
 				<div className="container flex justify-center w-auto">
 					<div className="w-1/2 shadow-lg">

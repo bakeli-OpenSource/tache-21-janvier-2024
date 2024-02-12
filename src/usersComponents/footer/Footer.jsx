@@ -6,8 +6,9 @@ const Footer = () => {
     const customers = ['Start a Return', 'Return Policy', 'FAQ', 'Catalogs and Mailers', 'About Group Gifting']
     const company = ['About Us', 'Sustainability', 'Discover Revive', 'Careers', 'Privacy Policy', 'Terms']
   return (
-      <div className=' flex justify-between mt-96 mx-10 mb-10 flex-wrap'>
-        <div className=' flex mx-5 gap-x-14 flex-wrap'>
+ 
+      <div className=' flex justify-between mt-10 mx-10 mb-10'>
+        <div className=' flex mx-5 gap-x-14'>
             <div>
                 <h4 className='text-sm font-bold italic tracking-widest opacity-65 my-6'>CONTACT US</h4>
                 <Paragraphe items={contact}/>
