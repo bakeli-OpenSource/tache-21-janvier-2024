@@ -8,12 +8,12 @@ const NavLinks = () => {
       {links.map((link, index) => (
         <div key={index}>
           <div className="px-2 py-5 md:py-0 text- md:cursor-pointer group">
-            <Link
+            <NavLinks
               to={link.link}
               className="py-  justify-between items-center md:pr-0 pr-5 group"
             >
               {link.name}
-            </Link>
+            </NavLinks>
           </div>
         </div>
       ))}

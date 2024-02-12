@@ -11,13 +11,13 @@ const Navbar = () => {
   const [search, setSearch] = useState(false);
 
   return (
-    <nav className="bg-white fixed top-0 w-full">
+    <nav className="bg-white z-50 fixed top-0 w-full">
       <div className="flex px-8 py-3 items-center justify-between">
         <div className="flex items-center gap-8 w-full md:w-auto justify-between ">
           <div className="z-50 p- md:w-auto w-full flex justify-between">
-            <h1 className="md:cursor-pointer  text-2xl uppercase font-bold">
+            <Link to={"/"} className="md:cursor-pointer  text-2xl uppercase font-bold">
               Cein.
-            </h1>
+            </Link>
             <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
               {open ? <MdClose /> : <MdMenu />}
             </div>

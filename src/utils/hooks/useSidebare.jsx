@@ -5,6 +5,7 @@ const useSidebare = () => {
     const useContextSidebare = useContext(SidebareContext)
     const { open, setSmallScreen, screenSize, smallScreen } = useContextSidebare
 
+
     const smallScreenSize = useCallback(() => {
         setSmallScreen(window.innerWidth);
         screenSize()
@@ -23,6 +24,7 @@ const useSidebare = () => {
     }, [smallScreenSize]);
 
     useEffect(() => {
+        
         smallScreenSize();
         screenSize()
     }, [open, setSmallScreen, screenSize, smallScreenSize, smallScreen]);
