@@ -5,11 +5,14 @@ import Accueil from "./pages/utilisateurs/Accueil";
 import Panier from "./pages/utilisateurs/panier/Panier";
 import { Route, Routes } from "react-router";
 import DetailsCard from "./usersComponents/cards/DetailsCard";
+import { PanierProvider } from "./utils/contexte/PanierContext";
+
 
 function App() {
   return (
     <div className="min-h-screen App">
       <GlobalContextProvider>
+      <PanierProvider>
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/Panier" element={<Panier />} />
@@ -17,6 +20,7 @@ function App() {
           <Route path="/admin/*" element={<IsLogin />} />
           <Route path="/Details" element={<DetailsCard />} />
         </Routes>
+        </PanierProvider>
       </GlobalContextProvider>
     </div>
   );
