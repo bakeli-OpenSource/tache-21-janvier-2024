@@ -1,107 +1,111 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { MdDelete } from 'react-icons/md';
-import { BsArrowLeft } from 'react-icons/bs';
-import Footer from '../../../usersComponents/footer/Footer';
-import NavHeader from '../NavbarUtilisateut/Navbar';
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { MdDelete } from 'react-icons/md'
+import { BsArrowLeft } from 'react-icons/bs'
+import Footer from '../../../usersComponents/footer/Footer'
+import NavHeader from '../NavbarUtilisateut/Navbar'
 
 const Panier = () => {
-	const [items, setItems] = useState([
-		{
-			id: 1,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 5000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp',
-		},
-		{
-			id: 2,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 10000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp',
-		},
-		{
-			id: 3,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 15000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp',
-		},
-	]);
+  const [items, setItems] = useState([
+    {
+      id: 1,
+      name: 'Cotton T-shirt',
+      categorie: 'T-shirt',
+      price: 5000,
+      quantity: 1,
+      image:
+        'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp'
+    },
+    {
+      id: 2,
+      name: 'Cotton T-shirt',
+      categorie: 'T-shirt',
+      price: 10000,
+      quantity: 1,
+      image:
+        'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp'
+    },
+    {
+      id: 3,
+      name: 'Cotton T-shirt',
+      categorie: 'T-shirt',
+      price: 15000,
+      quantity: 1,
+      image:
+        'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp'
+    }
+  ])
 
-	const [deliveryOption, setDeliveryOption] = useState('1');
-	const deliveryCosts = {
-		1: 1000,
-		2: 1500,
-		3: 2000,
-		4: 2500,
-		5: 4000,
-	};
+  const [deliveryOption, setDeliveryOption] = useState('1')
+  const deliveryCosts = {
+    1: 1000,
+    2: 1500,
+    3: 2000,
+    4: 2500,
+    5: 4000
+  }
 
-	const [totalItems, setTotalItems] = useState(0);
-	const [totalPrice, setTotalPrice] = useState(0);
-	const [promoCode, setPromoCode] = useState('');
+  const [totalItems, setTotalItems] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [promoCode, setPromoCode] = useState('')
+  const [isPromoCodeApplied, setIsPromoCodeApplied] = useState(false);
 
-	const promoCodes = {
-		PROMO01: 0.9,
-		PROMO02: 0.8,
-		PROMO03: 0.3,
-	};
+  const promoCodes = {
+    PROMO01: 0.9,
+    PROMO02: 0.8,
+    PROMO03: 0.3
+  }
 
-	const removeItem = (id) => {
-		const updatedItems = items.filter((item) => item.id !== id);
-		setItems(updatedItems);
-	};
+  const removeItem = id => {
+    const updatedItems = items.filter(item => item.id !== id)
+    setItems(updatedItems)
+  }
 
-	const updateQuantity = (id, newQuantity) => {
-		const updatedQuantity = Math.max(newQuantity, 1);
+  const updateQuantity = (id, newQuantity) => {
+    const updatedQuantity = Math.max(newQuantity, 1)
 
-		const updatedItems = items.map((item) =>
-			item.id === id ? { ...item, quantity: updatedQuantity } : item,
-		);
+    const updatedItems = items.map(item =>
+      item.id === id ? { ...item, quantity: updatedQuantity } : item)
 
-		setItems(updatedItems);
-	};
+    setItems(updatedItems)
+  }
 
-	const applyPromoCode = (total, promoCode) => {
-		const uppercasePromoCode = promoCode.toUpperCase();
+  const applyPromoCode = (total, promoCode) => {
+    const uppercasePromoCode = promoCode.toUpperCase()
 
-		if (promoCodes.hasOwnProperty(uppercasePromoCode)) {
-			return total * promoCodes[uppercasePromoCode];
-		};
-		if(promoCode === ''){
-			alert("Entrez le Code Promo");
-		}
-		else{
-			alert("Invalid Promo Code");
-		}
+    if (promoCodes.hasOwnProperty(uppercasePromoCode)) {
+      return total * promoCodes[uppercasePromoCode]
+    }
+    if (promoCode === '') {
+      alert('Entrez le Code Promo')
+    } else {
+      alert('Invalid Promo Code')
+    }
 
-		return total;
-	};
+    return total
+  }
 
-	useEffect(() => {
-		const newTotalItems = items.reduce(
-			(total, item) => total + item.quantity,
-			0,
-		);
-		setTotalItems(newTotalItems);
+  const handleApplyPromoCode = () => {
+      setTotalPrice(applyPromoCode(totalPrice, promoCode));
+      setIsPromoCodeApplied(true);
+    
+  };
 
-		const newTotalPrice = items.reduce(
-			(total, item) => total + item.price * item.quantity,
-			0,
-		);
-		setTotalPrice(newTotalPrice);
-	}, [items]);
+  useEffect(() => {
+    const newTotalItems = items.reduce(
+      (total, item) => total + item.quantity,
+      0
+    )
+    setTotalItems(newTotalItems)
 
+    const newTotalPrice = items.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    )
+    setTotalPrice(newTotalPrice)
+  }, [items])
 
-	return (
+  return (
 		<div>
 			<NavHeader />
 			<section className="container w-auto h-auto mx-auto my-20 bg-white-700">
@@ -241,8 +245,8 @@ const Panier = () => {
 									<option value="1">Livraison-Dakar-1000 FCFA</option>
 									<option value="2">Dakar-Banlieu-1500 FCFA</option>
 									<option value="3">Dakar-Rufisque-2000 FCFA</option>
-									<option value="3">Dakar-Thies-2500 FCFA</option>
-									<option value="4">Dakar-Regions-4000 FCFA</option>
+									<option value="4">Dakar-Thies-2500 FCFA</option>
+									<option value="5">Dakar-Regions-4000 FCFA</option>
 								</select>
 							</div>
 
@@ -254,13 +258,17 @@ const Panier = () => {
 									className="w-full p-2 border rounded"
 									placeholder="Enter your code"
 									value={promoCode}
-									onChange={(e) => setPromoCode(e.target.value)}
-								/>
+									onChange={(e) => {
+										setPromoCode(e.target.value);
+										setIsPromoCodeApplied(false);
+									}}
+								required />
 								<button
-									className="w-20 h-10 my-5 text-white bg-purple-500"
-									onClick={() =>
-										setTotalPrice(applyPromoCode(totalPrice, promoCode))
-									}
+									className={`w-20 h-10 my-5 text-white bg-purple-500 ${
+										isPromoCodeApplied ? 'bg-grey-500 cursor-not-allowed' : ''
+									}`}
+									onClick={handleApplyPromoCode}
+									disabled={isPromoCodeApplied}
 								>
 									Appliquez
 								</button>
@@ -286,6 +294,6 @@ const Panier = () => {
 			<Footer />
 		</div>
 	);
-};
+}
 
-export default Panier;
+export default Panier
