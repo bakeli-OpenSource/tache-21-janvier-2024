@@ -6,7 +6,7 @@ const Footer = () => {
     const customers = ['Démarrer un retour', 'Politique de retour', 'FAQ', 'Catalogues et courriers', 'À propos des cadeaux de groupe']
     const company = ['A propos de nous', 'Durabilité', 'Carriére', 'Politique de confidentialité', 'Termes']
   return (
-      <div className=' flex justify-between mt-5 mx-5 mb-10 flex-wrap'>
+      <div className='flex justify-around mt-5 mx-2 mb-10 flex-wrap w-full bg-gray-200'>
         <div className=' flex  gap-x-10 flex-wrap  '>
 
             <div>
