@@ -30,6 +30,7 @@ const Categories = () => {
             setImageUrl
           } = useContext(CategorieContext);
 
+
     const { open } = useSidebare();
 
     const inputs = [
@@ -89,6 +90,10 @@ const Categories = () => {
 
     const hanldleSubmit = async (e) => {
       e.preventDefault();
+
+      const newCategory = nom;
+
+      console.log(newCategory);
       
       const formData = {
         nom: nom,

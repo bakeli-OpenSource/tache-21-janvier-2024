@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
+import { useLocation } from 'react-router-dom';
+import { CategorieContext } from '../../utils/contexte/CategorieContext';
 
 
 const ProduitsAdmin = () => {
@@ -78,19 +80,16 @@ const ProduitsAdmin = () => {
     },
   ]
   
-  const selects = [
+  const location = useLocation()
+  const [selects, setSelects] = useState([
     {
       label: 'Catégorie',
-      value: categorie,
-      setValue: setCategorie,
-      options: [
-        'categorie1',
-        'categorie2',
-        'categorie3',
-      ]
+      value: '',
+      options: ['categorie1', 'categorie2', 'categorie3'],
     }
-  ]
+  ]);
 
+console.log(selects[0].options);
   const textarea = {
     value: description,
     setValue: setDescription
@@ -115,13 +114,30 @@ const ProduitsAdmin = () => {
     setFournisseur('')
   }
 
+  useEffect(() => {
+    
+    selects[0].options.push('newcategorie')
+    
+    // if (newCategory) {
+    //   // Ajouter la nouvelle catégorie à votre état `selects`
+      // const updatedSelects = [...selects];
+      // updatedSelects.push("newCategory");
+      // setSelects(updatedSelects);
+    // }
+  }, []);
+  
+
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
 
       <HeaderTable
        title="Produits"
        nomAjout="Ajouter des produits" 
-       body={<Formulaire inputs={inputs} textarea={textarea} onSubmit={hanldleSubmit} />} 
+       body={<Formulaire 
+                inputs={inputs} 
+                textarea={textarea} 
+                selects={selects}
+                onSubmit={hanldleSubmit} />} 
        />
       <Table thead={table} tbody={produits} actions={actions} />
 </div>
