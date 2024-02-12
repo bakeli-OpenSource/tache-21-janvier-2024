@@ -108,6 +108,7 @@ export default function Accueil() {
         </div>
       </div>
       <hr />
+
       <div>
         {/* <DetailsCard/> */}
       </div>
@@ -115,6 +116,7 @@ export default function Accueil() {
         <Footer />
       </footer>
     </div>
+
     </div>
   );
 }
