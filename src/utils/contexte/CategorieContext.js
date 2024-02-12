@@ -26,7 +26,6 @@ export default function CategorieContextProvider({children}) {
         statutVisible,
         statutInvisible, 
         imageUrl,
-        setCategories,
         setNom,
         setQuantite,
         setStatutVisible,
