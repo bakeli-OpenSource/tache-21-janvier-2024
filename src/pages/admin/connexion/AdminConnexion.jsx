@@ -1,3 +1,4 @@
+
 import React,{useState} from 'react'
 import Title from './Title'
 
@@ -36,14 +37,13 @@ function SignUp() {
 //    const navigate = useNavigate();
    const handleSubmit = (e) => {
 
+
     e.preventDefault();
     navigate("/admin/dashboard");
    };
 
-
-
-
   return (
+
      <div className="w-full h-screen flex justify-center items-center ">
 <form className="max-w-md mx-auto bg-gray-800 w-full px-8 pt-6 pb-8 mb-4 shadow-md rounded-md" onSubmit={handleSubmit}>
   <Title 
@@ -83,3 +83,4 @@ function SignUp() {
 }
 
 export default SignUp
+
