@@ -30,24 +30,37 @@ const Select = ({label, options, onChange}) => {
 }
 const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
 
-  const handleChange = (e, setter) => {
-    const value = e.target.value;
-    setter(value);
+  const handleChangeFile = (e, setter) => {
+      setter(e.target.files[0]);
   }
+  const handleChange = (e, setter) => {
+      setter(e.target.value);
+  }
+  
 
   return (
     <form className="w-full max-w-lg" onSubmit={onSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
         {
           inputs.map((input, index)=>(
-            <Input 
+            input.type === "file" ?
+            (<Input 
+              key={index} 
+              name={input.name} 
+              type={input.type} 
+              label={input.label} 
+              value={input.value} 
+              onChange={(e) => handleChangeFile(e, input.setValue)} 
+            /> ): (
+              <Input 
               key={index} 
               name={input.name} 
               type={input.type} 
               label={input.label} 
               value={input.value} 
               onChange={(e) => handleChange(e, input.setValue)} 
-            />
+            /> )
+
           ))
         }
         {selects? 

@@ -43,8 +43,8 @@ const ProduitsAdmin = () => {
     {
       label: "Image du produit",
       type: "file",
-      name: "image",
-      value: imageUrl,
+      name: "imageUrl",
+      // value: imageUrl,
       setValue: setImageUrl
     },
     {
@@ -95,6 +95,12 @@ const ProduitsAdmin = () => {
       value: fournisseur,
       setValue: setFournisseur
     },
+    // {
+    //   label: "Descrip",
+    //   type: "text",
+    //   value: description,
+    //   setValue: setDescription
+    // },
   ]
   
   // const selects = [
@@ -116,9 +122,9 @@ const ProduitsAdmin = () => {
   }
   const hanldleSubmit = (e) => {
     e.preventDefault()
-    const recupInput ={
+    const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      carracteristique, categorie, prix, couleur, taille, fournisseur,
+      categorie, carracteristique, prix, couleur, taille, fournisseur,
     }
     addProduit(recupInput)
     setNom('')
@@ -136,7 +142,6 @@ const ProduitsAdmin = () => {
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
-
       <HeaderTable
        title="Produits"
        nomAjout="Ajouter des produits" 

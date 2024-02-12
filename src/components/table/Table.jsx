@@ -12,9 +12,7 @@ const Thead = ({thead}) => {
 }
 
 const Tbody = ({tbody, actions}) => {
-    console.log({tbody});
     return (
-        
         <tbody className='bg-white'>
                 {tbody.length !== 0 ?
                 tbody.map((td, index) => (

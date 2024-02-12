@@ -4,6 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../hooks/useGlobal";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 
 export const ProduitsContext = createContext();
@@ -31,14 +32,21 @@ const ProduitContextProvider = ({ children }) => {
 
   // Récupération de tous les produits
   useEffect(() => {
-    fetch("http://localhost:4000/api/produits")
-      .then(response => response.json())
-      .then(json => setProduits(json))
-  }, [produits])
+    const fetchProduit = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/api/produits");
+        setProduits(response.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des produits:", error);
+      }
+    };
+
+    fetchProduit();
+  }, [produits]);
 
   // Suppression Produit
   const deleteProduit = (id) => {
-    fetch(`http://localhost:4000/api/supprimerproduit/${id}`, {
+    fetch(`http://localhost:4000/api/produits/${id}`, {
       method: "DELETE",
     })
       .then(response => response.json())
@@ -50,38 +58,42 @@ const ProduitContextProvider = ({ children }) => {
   }
 
   // Ajout de Produit
-  const addProduit = (newProd) => {
-    if (newProd.nom && newProd.imageUrl && newProd.titre && newProd.description && newProd.quantite && newProd.categorie && newProd.carracteristique && newProd.prix && newProd.couleur && newProd.taille && newProd.fournisseur) {
-      fetch("http://localhost:4000/api/produit", {
-        method: "POST",
-        body: JSON.stringify({
-          nom: newProd.nom,
-          imageUrl: newProd.imageUrl,
-          titre: newProd.titre,
-          description: newProd.description,
-          quantite: newProd.quantite,
-          categorie: newProd.categorie,
-          carracteristique: newProd.carracteristique,
-          prix: newProd.prix,
-          couleur: newProd.couleur,
-          taille: newProd.taille,
-          fournisseur: newProd.fournisseur
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then(response => response.json())
-        .then(data => {
-          setProduits([...produits, data]) 
-          setShowModal(false)
-          alert('Produit ajouté avec succès')
-        })
+  const addProduit = async (produit) => {
+    try {
+        const formData = new FormData();
+        formData.append('nom', produit.nom);
+        formData.append('imageUrl', produit.imageUrl);
+        formData.append('titre', produit.titre);
+        formData.append('description', produit.description);
+        formData.append('quantite', produit.quantite);
+        formData.append('categorie', produit.categorie);
+        formData.append('carracteristique', produit.carracteristique);
+        formData.append('prix', produit.prix);
+        formData.append('couleur', produit.couleur);
+        formData.append('taille', produit.taille);
+        formData.append('fournisseur', produit.fournisseur);
+        const response = await axios.post('http://localhost:4000/api/produits', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+
+        if (response.status === 201) {
+            console.log('Produit ajouté avec succès:', response.data);
+            alert('Produit ajouté avec succès:');
+            setShowModal(false);
+        }
+         else {
+            throw new Error('Erreur lors de l\'ajout du produit');
+        }
+    } catch (error) {
+        console.error('Erreur lors de l\'ajout du produit:', error);
     }
-    else{
-      console.log("Erreurrrrrrrrrrrrrrrrrr");
-    }
-  }
+}
+
+
+
 
     const table = [
       'Article', 'Quantité','Prix' , 'Actions'
