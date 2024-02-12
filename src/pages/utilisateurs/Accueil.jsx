@@ -105,6 +105,7 @@ export default function Accueil() {
         </div>
       </div>
       <hr />
+
       <div>
       </div>
       <footer>
