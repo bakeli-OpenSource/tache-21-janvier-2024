@@ -6,15 +6,17 @@ import { BsPersonCircle, BsSearch } from "react-icons/bs";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import NavInput from "../NavInput";
 
-const Navbar = () => {
+const Navbar = ({className}) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState(false);
 
   return (
-    <nav className="bg-white  z-50 fixed top-0 w-full">
+
+    <nav className={className}>
+
       <div className="flex px-8 py-3 items-center justify-between">
         <div className="flex items-center gap-8 w-full md:w-auto justify-between ">
-          <div className="z-50 p- md:w-auto w-full flex justify-between">
+          <div className=" p- md:w-auto w-full flex justify-between">
             <h1 className="md:cursor-pointer  text-2xl uppercase font-bold">
               Cein.
             </h1>
