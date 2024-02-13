@@ -10,14 +10,13 @@ const DetailsProduits = () => {
     const [data, setData] = useState([])
     const fetchProduit = async (id) => {
       try {
-        const response = await axios.get("http://localhost:4000/api/produits/" + id);
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
         setData(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
     };
     fetchProduit(id);
-    console.log(data);
     const {open} = useSidebare()
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>

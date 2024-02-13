@@ -29,7 +29,7 @@ const Tbody = ({tbody, actions}) => {
                         </div>
                         <div>
                             <p className="font-semibold text-black">{td.nom}</p>
-                            <p className="text-xs text-gray-600">{td.description}</p>
+                            <p className="text-xs text-gray-600">{td.titre}</p>
                         </div>
                         </div>
                     </td>

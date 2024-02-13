@@ -12,7 +12,7 @@ export const ProduitsContext = createContext();
 const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
-  // const [url, setUrl] = useState("http://localhost:4000/api/produits")
+  // const [url, setUrl] = useState("https://kay-solu-api.onrender.com/api/produits")
   // Création des contexts pour formuulaire
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -34,7 +34,7 @@ const ProduitContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchProduit = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/produits");
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits");
         setProduits(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
@@ -45,17 +45,22 @@ const ProduitContextProvider = ({ children }) => {
   }, [produits]);
 
   // Suppression Produit
-  const deleteProduit = (id) => {
-    fetch(`http://localhost:4000/api/produits/${id}`, {
-      method: "DELETE",
-    })
-      .then(response => response.json())
-      .then(() => {
-        setProduits(values => {
-          return values.filter(item => item.id !== id)
-        })
-      })
-  }
+  const deleteProduit = async (id) => {
+    try {
+      // Effectuez une requête DELETE vers votre API avec axios
+      await axios.delete(`https://kay-solu-api.onrender.com/api/produits/${id}`);
+
+      // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
+      const updatedProd = produits.filter(
+        (prod) => prod._id !== id
+      );
+      setProduits(updatedProd);
+
+      console.log("Produit supprimée avec succès");
+    } catch (error) {
+      console.error("Erreur lors de la suppression du produit:", error);
+    }
+  };
 
   // Ajout de Produit
   const addProduit = async (produit) => {
@@ -72,7 +77,7 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('couleur', produit.couleur);
         formData.append('taille', produit.taille);
         formData.append('fournisseur', produit.fournisseur);
-        const response = await axios.post('http://localhost:4000/api/produits', formData, {
+        const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -90,13 +95,20 @@ const ProduitContextProvider = ({ children }) => {
     } catch (error) {
         console.error('Erreur lors de l\'ajout du produit:', error);
     }
-}
+  }
 
-
-
+  const hanldleUpdate = async (id) => {
+    setShowModal(true)
+      try {
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
+        setNom(response.nom)
+      } catch (error) {
+        console.error("Erreur lors de la récupération des produits:", error);
+      }
+  }
 
     const table = [
-      'Article', 'Quantité','Prix' , 'Actions'
+      'Article', 'Quantité', 'Prix', 'Actions'
     ]
 
     
@@ -114,7 +126,9 @@ const ProduitContextProvider = ({ children }) => {
           // Modification
           icon: <MdEdit />,
           color: 'bg-orange-500',
-          hanldleClick: () => console.log('Modifier')
+          hanldleClick: (id) => {
+            hanldleUpdate(id)
+          }
         },
         {
           // Suppression
