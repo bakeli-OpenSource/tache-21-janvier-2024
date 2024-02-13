@@ -65,7 +65,11 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
         {selects? 
         <>
         {selects.map((select)=>(
-          <Select label={select.label} options={select.options} onChange={handleChange}/>
+          <Select 
+            label={select.label} 
+            options={select.options} 
+            onChange={(e) => handleChange(e, select.setValue)} 
+          />
           ))}
         </>
         : null

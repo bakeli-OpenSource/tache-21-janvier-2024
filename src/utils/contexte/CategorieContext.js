@@ -9,7 +9,7 @@ export default function CategorieContextProvider({children}) {
     const table = [
         'Categorie', 'Nombre produit', 'Actions'
     ]
-    const [categories, setCategories] = useState(JSON.parse(localStorage.getItem('categories')) || [])
+    const [categories, setCategories] = useState([])
     
     const [nom, setNom] = useState("")
     const [quantite, setQuantite] = useState(0)
