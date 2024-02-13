@@ -5,8 +5,8 @@ import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
 import { useLocation } from 'react-router-dom';
-import { CategorieContext } from '../../utils/contexte/CategorieContext';
-
+import { newCategorie } from "../../pages/admin/Categories";
+import axios from 'axios';
 
 const ProduitsAdmin = () => {
 
@@ -16,6 +16,8 @@ const ProduitsAdmin = () => {
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
         } = useProduits();
   const {open} = useSidebare()
+
+  const [selectsValue, setSelectsValue] = useState('');
   
   const inputs = [
     {
@@ -79,17 +81,10 @@ const ProduitsAdmin = () => {
       setValue: setFournisseur
     },
   ]
-  
-  const location = useLocation()
-  const [selects, setSelects] = useState([
-    {
-      label: 'Catégorie',
-      value: '',
-      options: ['categorie1', 'categorie2', 'categorie3'],
-    }
-  ]);
 
-console.log(selects[0].options);
+
+
+  
   const textarea = {
     value: description,
     setValue: setDescription
@@ -114,18 +109,39 @@ console.log(selects[0].options);
     setFournisseur('')
   }
 
-  useEffect(() => {
-    
-    selects[0].options.push('newcategorie')
-    
-    // if (newCategory) {
-    //   // Ajouter la nouvelle catégorie à votre état `selects`
-      // const updatedSelects = [...selects];
-      // updatedSelects.push("newCategory");
-      // setSelects(updatedSelects);
-    // }
-  }, []);
   
+  const [categories, setCategories] = useState([]); // Initialisez avec null
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/api/categories");
+        setCategories(response.data);
+        console.log("Catégories récupérées avec succès");
+      } catch (error) {
+        console.error("Erreur lors de la récupération des catégories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const [categoryNames, setCategoryNames] = useState([]); // Initialisez avec null
+
+  useEffect(() => {
+    setCategoryNames(categories.map((categorie) => categorie.nom));
+  }, [categories]); 
+  
+  console.log(categoryNames);
+  
+  const selects = [
+    {
+      label: 'Catégorie',
+      value: selectsValue,
+      options: categoryNames,
+      setValue: setSelectsValue
+    }
+  ]
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
