@@ -14,13 +14,13 @@ const Thead = ({thead}) => {
 const Tbody = ({tbody, actions}) => {
     return (
         <tbody className='bg-white'>
-                {tbody !== null ?
+                {tbody.length !== 0 ?
                 tbody.map((td, index) => (
                 <tr className="text-gray-700" key={index}>
-                    {td._id?
+                    {/* {td._id?
                         <td className="px-4 py-3 font-semibold border text-ms">{td._id}</td>
                         :null
-                    }
+                    } */}
                         <td className="px-4 py-3 border">
                         <div className="flex items-center text-sm">
                         <div className="md:relative w-8 h-8 mr-3 rounded-full md:block">
@@ -29,7 +29,7 @@ const Tbody = ({tbody, actions}) => {
                         </div>
                         <div>
                             <p className="font-semibold text-black">{td.nom}</p>
-                            <p className="text-xs text-gray-600">{td.description}</p>
+                            <p className="text-xs text-gray-600">{td.titre}</p>
                         </div>
                         </div>
                     </td>

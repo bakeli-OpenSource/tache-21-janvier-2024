@@ -8,21 +8,21 @@ const Input = ({label, type, value, name, onChange}) => {
     classInput = "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
   }
   return(
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="input-text">
+    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
         { label }
       </label>
       <input className={classInput} name={name} value={value} type={type} onChange={onChange} required />
     </div>
   )
 }
-const Select = ({label, options}) => {
+const Select = ({label, options, onChange}) => {
   return(
-    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
-      <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
+      <select onChange={onChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
         {options.map((option)=>(
-          <option>{option}</option>
+          <option value={option.value}>{option}</option>
         ))}
       </select>
     </div>
@@ -30,23 +30,42 @@ const Select = ({label, options}) => {
 }
 const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
 
-  const handleChange = (e, setter) => {
-    const value = e.target.value;
-    setter(value);
+  const handleChangeFile = (e, setter) => {
+      setter(e.target.files[0]);
   }
+  const handleChange = (e, setter) => {
+      setter(e.target.value);
+  }
+  
 
   return (
     <form className="w-full max-w-lg" onSubmit={onSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
         {
           inputs.map((input, index)=>(
-            <Input key={index} name={input.name} type={input.type} label={input.label} value={input.value} onChange={(e) => handleChange(e, input.setValue)} />
+            input.type === "file" ?
+            (<Input 
+              key={index} 
+              name={input.name} 
+              type={input.type} 
+              label={input.label} 
+              value={input.value} 
+              onChange={(e) => handleChangeFile(e, input.setValue)} 
+            /> ) : (
+              <Input 
+              key={index} 
+              name={input.name} 
+              type={input.type} 
+              label={input.label} 
+              value={input.value} 
+              onChange={(e) => handleChange(e, input.setValue)} 
+            /> )
           ))
         }
         {selects? 
         <>
         {selects.map((select)=>(
-          <Select label={select.label} options={select.options}/>
+          <Select label={select.label} options={select.options} onChange={handleChange}/>
           ))}
         </>
         : null
@@ -54,7 +73,7 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
         }
 
         {textarea ?
-        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">{textarea.description}</textarea>
+        <textarea className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
           : null
         }
       </div>

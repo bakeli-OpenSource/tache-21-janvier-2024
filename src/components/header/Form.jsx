@@ -1,8 +1,8 @@
 import React from "react";
 import { FaCamera } from "react-icons/fa";
+import profile from "../../assets/images/profile.png";
 
 const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
-
   const handleImageClick = () => {
     document.getElementById("fileInput").click();
   };
@@ -19,8 +19,7 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
               src={
                 editedUser.profileImage
                   ? URL.createObjectURL(editedUser.profileImage)
-                  : user?.profileImage ||
-                    "https://img.freepik.com/vecteurs-premium/photo-profil-avatar-homme-illustration-vectorielle_268834-538.jpg"
+                  : user?.profileImage || profile
               }
               alt="img profil"
               className="w-20 h-20 rounded-full object-cover"

@@ -8,7 +8,7 @@ import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 const Cards = () => {
   return (
     <div className=" py-16 grid lg:grid-cols-12 md:grid-cols-6   gap-6 ">
-      <UniteCard bgColor="border-s-4 border-sky-500 shadow-2xl ">
+      <UniteCard bgColor="border-s-4 border-sky-500  ">
         <div>
           <div className="flex justify-between px-3">
             <div>
@@ -23,7 +23,7 @@ const Cards = () => {
           </div>
         </div>
       </UniteCard>
-      <UniteCard bgColor="border-s-4 border-lime-600 shadow-2xl">
+      <UniteCard bgColor="border-s-4 border-lime-600">
         <div>
           <div className="flex justify-between px-3">
             <div>
@@ -38,7 +38,7 @@ const Cards = () => {
           </div>
         </div>
       </UniteCard>
-      <UniteCard bgColor="border-s-4 border-yellow-700 shadow-2xl">
+      <UniteCard bgColor="border-s-4 border-yellow-700">
         <div>
           <div className="flex justify-between px-3">
             <div>
@@ -53,7 +53,7 @@ const Cards = () => {
           </div>
         </div>
       </UniteCard>
-      <UniteCard bgColor="border-s-4 border-blue-900 shadow-2xl">
+      <UniteCard bgColor="border-s-4 border-blue-900">
         <div>
           <div className="flex justify-between px-3">
             <div>
