@@ -1,11 +1,11 @@
 import React from "react";
-import CommandeList from "../../components/commandes/CommandeList";
+import CommandeAdmin from "../../components/commandes/CommandeAdmin";
 import CommandeContextProvider from "../../utils/contexte/CommandeContext";
 
 const Commandes = () => {
   return (
     <CommandeContextProvider>
-      <CommandeList />
+      <CommandeAdmin />
     </CommandeContextProvider>
   );
 };
