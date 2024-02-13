@@ -10,11 +10,29 @@ import axios from 'axios';
 
 const ProduitsAdmin = () => {
 
+  // const test = [
+  //   {
+  //     nom: "Test upload img",
+  //     imageUrl: "exemple.jpg",
+  //     titre: "Libero consequatur ",
+  //     description: "Provident qui eiusm",
+  //     quantite: 72,
+  //     categorie: "Atque odit ea magni ",
+  //     carracteristique: "Nulla expedita ea ex",
+  //     prix: 46,
+  //     couleur: "Iste ea et fugiat h",
+  //     taille: "Veniam et incididun",
+  //     fournisseur: "Quod vitae et harum ",
+
+  //   }
+  // ]
+
   const {table, produits, addProduit, actions, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
         } = useProduits();
+  
   const {open} = useSidebare()
 
   const [selectsValue, setSelectsValue] = useState('');
@@ -29,7 +47,8 @@ const ProduitsAdmin = () => {
     {
       label: "Image du produit",
       type: "file",
-      value: imageUrl,
+      name: "imageUrl",
+      // value: imageUrl,
       setValue: setImageUrl
     },
     {
@@ -80,6 +99,12 @@ const ProduitsAdmin = () => {
       value: fournisseur,
       setValue: setFournisseur
     },
+    // {
+    //   label: "Descrip",
+    //   type: "text",
+    //   value: description,
+    //   setValue: setDescription
+    // },
   ]
 
 
@@ -91,9 +116,9 @@ const ProduitsAdmin = () => {
   }
   const hanldleSubmit = (e) => {
     e.preventDefault()
-    const recupInput ={
+    const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      carracteristique, categorie, prix, couleur, taille, fournisseur,
+      categorie, carracteristique, prix, couleur, taille, fournisseur,
     }
     addProduit(recupInput)
     setNom('')
@@ -145,7 +170,6 @@ const ProduitsAdmin = () => {
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
-
       <HeaderTable
        title="Produits"
        nomAjout="Ajouter des produits" 

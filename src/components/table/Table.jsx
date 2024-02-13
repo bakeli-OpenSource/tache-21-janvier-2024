@@ -14,7 +14,7 @@ const Thead = ({thead}) => {
 const Tbody = ({tbody, actions}) => {
     return (
         <tbody className='bg-white'>
-                {tbody !== null ?
+                {tbody.length !== 0 ?
                 tbody.map((td, index) => (
                 <tr className="text-gray-700" key={index}>
                     {/* {td._id?
@@ -31,7 +31,7 @@ const Tbody = ({tbody, actions}) => {
                         </div>
                         <div>
                             <p className="font-semibold text-black">{td.nom}</p>
-                            <p className="text-xs text-gray-600">{td.description}</p>
+                            <p className="text-xs text-gray-600">{td.titre}</p>
                         </div>
                         </div>
                     </td>
