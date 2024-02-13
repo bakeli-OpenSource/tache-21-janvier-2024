@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
-
+import { useLocation } from 'react-router-dom';
+import { newCategorie } from "../../pages/admin/Categories";
+import axios from 'axios';
 
 const ProduitsAdmin = () => {
 
@@ -32,6 +34,8 @@ const ProduitsAdmin = () => {
         } = useProduits();
   
   const {open} = useSidebare()
+
+  const [selectsValue, setSelectsValue] = useState('');
   
   const inputs = [
     {
@@ -102,20 +106,10 @@ const ProduitsAdmin = () => {
     //   setValue: setDescription
     // },
   ]
-  
-  // const selects = [
-  //   {
-  //     label: 'Catégorie',
-  //     value: categorie,
-  //     setValue: setCategorie,
-  //     options: [
-  //       'categorie1',
-  //       'categorie2',
-  //       'categorie3',
-  //     ]
-  //   }
-  // ]
 
+
+
+  
   const textarea = {
     value: description,
     setValue: setDescription
@@ -140,12 +134,50 @@ const ProduitsAdmin = () => {
     setFournisseur('')
   }
 
+  
+  const [categories, setCategories] = useState([]); // Initialisez avec null
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/api/categories");
+        setCategories(response.data);
+        console.log("Catégories récupérées avec succès");
+      } catch (error) {
+        console.error("Erreur lors de la récupération des catégories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const [categoryNames, setCategoryNames] = useState([]); // Initialisez avec null
+
+  useEffect(() => {
+    setCategoryNames(categories.map((categorie) => categorie.nom));
+  }, [categories]); 
+  
+  console.log(categoryNames);
+  
+  const selects = [
+    {
+      label: 'Catégorie',
+      value: selectsValue,
+      options: categoryNames,
+      setValue: setSelectsValue
+    }
+  ]
+
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
       <HeaderTable
        title="Produits"
        nomAjout="Ajouter des produits" 
-       body={<Formulaire inputs={inputs} textarea={textarea} onSubmit={hanldleSubmit} />} 
+       body={<Formulaire 
+                inputs={inputs} 
+                textarea={textarea} 
+                selects={selects}
+                onSubmit={hanldleSubmit} />} 
        />
       <Table thead={table} tbody={produits} actions={actions} />
 </div>

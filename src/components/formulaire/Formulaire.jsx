@@ -5,11 +5,11 @@ const Input = ({label, type, value, name, onChange}) => {
   if (type === "radio") {
     classInput = "bg-gray-200"
   }else{
-    classInput = "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+    classInput = "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
   }
   return(
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2">
         { label }
       </label>
       <input className={classInput} name={name} value={value} type={type} onChange={onChange} required />
@@ -19,8 +19,8 @@ const Input = ({label, type, value, name, onChange}) => {
 const Select = ({label, options, onChange}) => {
   return(
     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{label}</label>
-      <select onChange={onChange} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+      <label className="block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2">{label}</label>
+      <select onChange={onChange} className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
         {options.map((option)=>(
           <option value={option.value}>{option}</option>
         ))}
@@ -65,7 +65,11 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
         {selects? 
         <>
         {selects.map((select)=>(
-          <Select label={select.label} options={select.options} onChange={handleChange}/>
+          <Select 
+            label={select.label} 
+            options={select.options} 
+            onChange={(e) => handleChange(e, select.setValue)} 
+          />
           ))}
         </>
         : null
@@ -73,8 +77,11 @@ const Formulaire = ({inputs, selects, textarea, onSubmit}) => {
         }
 
         {textarea ?
-        <textarea className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
-          : null
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label className='block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2'>Description</label>
+            <textarea className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
+          </div>
+              : null
         }
       </div>
       <button className='btn bg-green-900 text-white rounded p-2 shadow outline-none focus:outline-none ease-linear'>
