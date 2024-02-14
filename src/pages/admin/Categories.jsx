@@ -73,7 +73,7 @@ const Categories = () => {
         },
       },
       {
-        icon: <MdOutlineDelete />,
+        icon: <MdOutlineDelete />,                       
         color: 'bg-red-600',
         hanldleClick: (categoryId) => {
           handleDelete(categoryId);

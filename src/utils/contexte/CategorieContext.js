@@ -18,7 +18,6 @@ export default function CategorieContextProvider({children}) {
     const [imageUrl, setImageUrl] = useState("")
 
 
-
       const valueContext = {
         table,
         categories,
@@ -27,7 +26,7 @@ export default function CategorieContextProvider({children}) {
         statutVisible,
         statutInvisible, 
         imageUrl,
-        setCategories,
+        setCategories, 
         setNom,
         setQuantite,
         setStatutVisible,
