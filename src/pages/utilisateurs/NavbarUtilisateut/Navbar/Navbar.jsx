@@ -9,6 +9,7 @@ import NavInput from "../NavInput";
 const Navbar = ({className}) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState(false);
+  
 
   return (
 
