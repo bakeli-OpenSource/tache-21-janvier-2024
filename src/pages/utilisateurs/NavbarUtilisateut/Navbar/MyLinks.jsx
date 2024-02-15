@@ -1,5 +1,7 @@
+
 export const links = [
   {
+    title: "Shop",
     name: "Shop",
     link: "shop",
   },
@@ -17,3 +19,4 @@ export const links = [
     link: "sales",
   },
 ];
+
