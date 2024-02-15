@@ -49,8 +49,6 @@ const Graphique2 = () => {
   );
 };
 
-  
-
 export default Graphique2;
 
 
