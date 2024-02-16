@@ -113,11 +113,14 @@ const ProduitsAdmin = () => {
     value: description,
     setValue: setDescription
   }
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState('');
+
   const hanldleSubmit = (e) => {
     e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      categorie, carracteristique, prix, couleur, taille, fournisseur,
+      categorie: selectedCategoryId, carracteristique, prix, couleur, taille, fournisseur,
     }
     addProduit(recupInput)
     setNom('')
@@ -156,15 +159,27 @@ const ProduitsAdmin = () => {
     setCategoryNames(categories.map((categorie) => categorie.nom));
   }, [categories]); 
   
+  const handleSelectChange = (e) => {
+    const selectedCategoryName = e.target.value;
+    const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
+    if (selectedCategory) {
+      setSelectedCategoryId(selectedCategory._id);
+    } else {
+      setSelectedCategoryId('');
+    }
+    
+    console.log({selectedCategoryId});
+  };
   
-  // const selects = [
-  //   {
-  //     label: 'Catégorie',
-  //     value: categorie,
-  //     options: categoryNames,
-  //     setValue: setCategorie
-  //   }
-  // ]
+  
+  const selects = [
+    {
+      label: 'Catégorie',
+      value: selectsValue,
+      options: categoryNames,
+      setValue: handleSelectChange
+    }
+  ]
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
@@ -174,8 +189,10 @@ const ProduitsAdmin = () => {
        body={<Formulaire 
                 inputs={inputs} 
                 textarea={textarea} 
-                // selects={selects}
-                onSubmit={hanldleSubmit} />} 
+                selects={selects}
+                onSubmit={hanldleSubmit} 
+                handleSelectChange = {handleSelectChange}
+                />} 
        />
       <Table thead={table} tbody={produits} actions={actions} />
 </div>
