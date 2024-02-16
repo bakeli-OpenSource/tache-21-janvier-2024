@@ -48,7 +48,6 @@ const ProduitsAdmin = () => {
       label: "Image du produit",
       type: "file",
       name: "imageUrl",
-      // value: imageUrl,
       setValue: setImageUrl
     },
     {
@@ -159,14 +158,14 @@ const ProduitsAdmin = () => {
   
   console.log(categoryNames);
   
-  const selects = [
-    {
-      label: 'Catégorie',
-      value: selectsValue,
-      options: categoryNames,
-      setValue: setSelectsValue
-    }
-  ]
+  // const selects = [
+  //   {
+  //     label: 'Catégorie',
+  //     value: categorie,
+  //     options: categoryNames,
+  //     setValue: setCategorie
+  //   }
+  // ]
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
@@ -176,7 +175,7 @@ const ProduitsAdmin = () => {
        body={<Formulaire 
                 inputs={inputs} 
                 textarea={textarea} 
-                selects={selects}
+                // selects={selects}
                 onSubmit={hanldleSubmit} />} 
        />
       <Table thead={table} tbody={produits} actions={actions} />
