@@ -157,7 +157,6 @@ const ProduitsAdmin = () => {
     setCategoryNames(categories.map((categorie) => categorie.nom));
   }, [categories]); 
   
-  console.log(categoryNames);
   
   const selects = [
     {
