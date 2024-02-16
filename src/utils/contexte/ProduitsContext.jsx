@@ -117,7 +117,7 @@ const ProduitContextProvider = ({ children }) => {
         // Voire Détails
         icon: <TbEyeShare/>,
         color: 'bg-green-500',
-        hanldleClick: (id) => {
+        handleClick: (id) => {
           console.log('Ca marche 1')
           navigate("DetailsProd/" + id);
         }
@@ -126,7 +126,7 @@ const ProduitContextProvider = ({ children }) => {
           // Modification
           icon: <MdEdit />,
           color: 'bg-orange-500',
-          hanldleClick: (id) => {
+          handleClick: (id) => {
             hanldleUpdate(id)
           }
         },
@@ -134,7 +134,7 @@ const ProduitContextProvider = ({ children }) => {
           // Suppression
           icon: <MdOutlineDelete />,
           color: 'bg-red-600',
-          hanldleClick: (id) => {
+          handleClick: (id) => {
             deleteProduit(id)
           }
         }

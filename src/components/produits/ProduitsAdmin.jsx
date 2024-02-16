@@ -10,22 +10,6 @@ import axios from 'axios';
 
 const ProduitsAdmin = () => {
 
-  // const test = [
-  //   {
-  //     nom: "Test upload img",
-  //     imageUrl: "exemple.jpg",
-  //     titre: "Libero consequatur ",
-  //     description: "Provident qui eiusm",
-  //     quantite: 72,
-  //     categorie: "Atque odit ea magni ",
-  //     carracteristique: "Nulla expedita ea ex",
-  //     prix: 46,
-  //     couleur: "Iste ea et fugiat h",
-  //     taille: "Veniam et incididun",
-  //     fournisseur: "Quod vitae et harum ",
-
-  //   }
-  // ]
 
   const {table, produits, addProduit, actions, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
@@ -48,7 +32,6 @@ const ProduitsAdmin = () => {
       label: "Image du produit",
       type: "file",
       name: "imageUrl",
-      // value: imageUrl,
       setValue: setImageUrl
     },
     {
@@ -68,12 +51,6 @@ const ProduitsAdmin = () => {
       type: "text",
       value: carracteristique,
       setValue: setCarracteristique
-    },
-    {
-      label: "Categorie",
-      type: "text",
-      value: categorie,
-      setValue: setCategorie
     },
     {
       label: "Prix",
@@ -114,11 +91,14 @@ const ProduitsAdmin = () => {
     value: description,
     setValue: setDescription
   }
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState('');
+
   const hanldleSubmit = (e) => {
     e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      categorie, carracteristique, prix, couleur, taille, fournisseur,
+      categorie: selectedCategoryId, carracteristique, prix, couleur, taille, fournisseur,
     }
     addProduit(recupInput)
     setNom('')
@@ -157,14 +137,24 @@ const ProduitsAdmin = () => {
     setCategoryNames(categories.map((categorie) => categorie.nom));
   }, [categories]); 
   
-  console.log(categoryNames);
+  const handleSelectChange = (e) => {
+    const selectedCategoryName = e.target.value;
+    const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
+    if (selectedCategory) {
+      setSelectedCategoryId(selectedCategory._id);
+    } else {
+      setSelectedCategoryId('');
+    }
+    
+  };
+  
   
   const selects = [
     {
       label: 'Catégorie',
       value: selectsValue,
       options: categoryNames,
-      setValue: setSelectsValue
+      setValue: handleSelectChange
     }
   ]
 
@@ -177,7 +167,9 @@ const ProduitsAdmin = () => {
                 inputs={inputs} 
                 textarea={textarea} 
                 selects={selects}
-                onSubmit={hanldleSubmit} />} 
+                onSubmit={hanldleSubmit} 
+                handleSelectChange = {handleSelectChange}
+                />} 
        />
       <Table thead={table} tbody={produits} actions={actions} />
 </div>
