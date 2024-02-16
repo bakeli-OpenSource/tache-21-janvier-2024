@@ -38,7 +38,7 @@ export default function Accueil() {
         <p>What to Wear Now</p>
       </div>
         <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px]
-          max-w-sm mx-auto md:max-w-none md:mx-auto py-16 justify-center content-center'>
+          max-w-sm md:max-w-none md:mx-auto py-16 justify-center content-center'>
           <div className='w-full mb-4'>
 
             <Cards />
@@ -65,7 +65,7 @@ export default function Accueil() {
       <div>
         <h3 className='text-center mt-5'>Shop Instagram</h3>
         <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px]
-          max-w-sm mx-auto md:max-w-none md:mx-auto py-8 justify-center content-center'>
+          max-w-sm md:max-w-none md:mx-auto py-8 justify-center content-center'>
           <div className='w-full mb-3'>
             <CardBas />
           </div>
@@ -88,7 +88,7 @@ export default function Accueil() {
       <div>
         <h3 className='text-center mt-5'>Shop WhatsApp</h3>
         <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px]
-          max-w-sm mx-auto md:max-w-none md:mx-auto py-8 justify-center content-center'>
+          max-w-sm md:max-w-none md:mx-auto py-8 justify-center content-center'>
           <div className='w-full mb-3'>
             <CardWsap />
           </div>

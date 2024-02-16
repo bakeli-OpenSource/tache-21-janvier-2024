@@ -18,7 +18,7 @@ function IsLogin() {
     <div className="App min-h-screen">
       <SidebareContextProvider>
         <Header />
-        <div className="App pt-[56px] h-screen  gap-6 bg-gray-100">
+        <div className="App pt-[56px] h-screen bg-dark gap-6 bg-gray-100">
           <Sidebare />
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
