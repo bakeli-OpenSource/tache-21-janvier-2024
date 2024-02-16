@@ -10,22 +10,6 @@ import axios from 'axios';
 
 const ProduitsAdmin = () => {
 
-  // const test = [
-  //   {
-  //     nom: "Test upload img",
-  //     imageUrl: "exemple.jpg",
-  //     titre: "Libero consequatur ",
-  //     description: "Provident qui eiusm",
-  //     quantite: 72,
-  //     categorie: "Atque odit ea magni ",
-  //     carracteristique: "Nulla expedita ea ex",
-  //     prix: 46,
-  //     couleur: "Iste ea et fugiat h",
-  //     taille: "Veniam et incididun",
-  //     fournisseur: "Quod vitae et harum ",
-
-  //   }
-  // ]
 
   const {table, produits, addProduit, actions, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
@@ -67,12 +51,6 @@ const ProduitsAdmin = () => {
       type: "text",
       value: carracteristique,
       setValue: setCarracteristique
-    },
-    {
-      label: "Categorie",
-      type: "text",
-      value: categorie,
-      setValue: setCategorie
     },
     {
       label: "Prix",
@@ -168,7 +146,6 @@ const ProduitsAdmin = () => {
       setSelectedCategoryId('');
     }
     
-    console.log({selectedCategoryId});
   };
   
   
