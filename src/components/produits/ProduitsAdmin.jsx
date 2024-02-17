@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
-import { useLocation } from 'react-router-dom';
-import { newCategorie } from "../../pages/admin/Categories";
 import axios from 'axios';
 
 const ProduitsAdmin = () => {
 
 
-  const {table, produits, addProduit, actions, nom, setNom, imageUrl, setImageUrl,
+  const {table, produits, addProduit, actions, titreModal, setTitreModal, corpModal, setCorpModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
@@ -32,6 +30,7 @@ const ProduitsAdmin = () => {
       label: "Image du produit",
       type: "file",
       name: "imageUrl",
+      // value: imageUrl,
       setValue: setImageUrl
     },
     {
@@ -92,13 +91,12 @@ const ProduitsAdmin = () => {
     setValue: setDescription
   }
 
-  const [selectedCategoryId, setSelectedCategoryId] = useState('');
 
   const hanldleSubmit = (e) => {
     e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      categorie: selectedCategoryId, carracteristique, prix, couleur, taille, fournisseur,
+      categorie, carracteristique, prix, couleur, taille, fournisseur,
     }
     addProduit(recupInput)
     setNom('')
@@ -141,10 +139,8 @@ const ProduitsAdmin = () => {
     const selectedCategoryName = e.target.value;
     const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
     if (selectedCategory) {
-      setSelectedCategoryId(selectedCategory._id);
-    } else {
-      setSelectedCategoryId('');
-    }
+      setCategorie(selectedCategory._id);
+    } 
     
   };
   
@@ -158,11 +154,23 @@ const ProduitsAdmin = () => {
     }
   ]
 
+  setTitreModal(
+    'Ajouter un produits'
+  )
+  // setCorpModal(
+  //   <Formulaire 
+  //               inputs={inputs} 
+  //               textarea={textarea} 
+  //               selects={selects}
+  //               onSubmit={hanldleSubmit} 
+  //               handleSelectChange = {handleSelectChange}
+  //               />
+  // )
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
       <HeaderTable
        title="Produits"
-       nomAjout="Ajouter des produits" 
+       nomAjout={titreModal} 
        body={<Formulaire 
                 inputs={inputs} 
                 textarea={textarea} 
