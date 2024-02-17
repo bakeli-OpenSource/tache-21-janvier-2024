@@ -19,7 +19,7 @@ const Commande = () => {
 	return (
 		<div>
 			<div className="p-5 mx-3">
-				<h3 className="text-2xl font-bold">Commandes</h3>
+				<h3 className="text-2xl font-bold">Commande</h3>
 
 				<hr className="my-6 border-black" />
 
@@ -82,9 +82,10 @@ const Commande = () => {
 					</h5>
 				</div>
 
-				<ComponentButton className="w-full px-4 py-2 rounded-lg text-[18px] text-white bg-black">
-					Valider la commande
-				</ComponentButton>
+				<ComponentButton
+					className="w-full px-2 py-2 rounded-lg text-[18px] text-white bg-black"
+					texte="Valider la commande"
+				></ComponentButton>
 			</div>
 		</div>
 	);
