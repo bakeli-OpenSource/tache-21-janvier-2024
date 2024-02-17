@@ -25,6 +25,8 @@ const ProduitContextProvider = ({ children }) => {
   const [couleur, setCouleur] = useState('')
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
+  const [titreModal, setTitreModal] = useState('')
+  const [corpModal, setCorpModal] = useState('')
   // 
   const { setShowModal } = useGlobal()
   
@@ -87,6 +89,7 @@ const ProduitContextProvider = ({ children }) => {
         if (response.status === 201) {
             console.log('Produit ajouté avec succès:', response.data);
             alert('Produit ajouté avec succès:');
+            
             setShowModal(false);
         }
          else {
@@ -99,9 +102,20 @@ const ProduitContextProvider = ({ children }) => {
 
   const hanldleUpdate = async (id) => {
     setShowModal(true)
-      try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
-        setNom(response.nom)
+    setTitreModal('Modification du produit')
+    try {
+      const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
+      const datasUpdates = response.data
+        setNom(datasUpdates.nom)
+        setTitre(datasUpdates.titre)
+        setQuantite(datasUpdates.quantite)
+        setCarracteristique(datasUpdates.carracteristique)
+        setPrix(datasUpdates.prix)
+        setCouleur(datasUpdates.couleur)
+        setTaille(datasUpdates.taille)
+        setFournisseur(datasUpdates.fournisseur)
+        setCategorie(datasUpdates.categorie)
+        setDescription(datasUpdates.description)
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
@@ -117,7 +131,7 @@ const ProduitContextProvider = ({ children }) => {
         // Voire Détails
         icon: <TbEyeShare/>,
         color: 'bg-green-500',
-        hanldleClick: (id) => {
+        handleClick: (id) => {
           console.log('Ca marche 1')
           navigate("DetailsProd/" + id);
         }
@@ -126,7 +140,7 @@ const ProduitContextProvider = ({ children }) => {
           // Modification
           icon: <MdEdit />,
           color: 'bg-orange-500',
-          hanldleClick: (id) => {
+          handleClick: (id) => {
             hanldleUpdate(id)
           }
         },
@@ -134,7 +148,7 @@ const ProduitContextProvider = ({ children }) => {
           // Suppression
           icon: <MdOutlineDelete />,
           color: 'bg-red-600',
-          hanldleClick: (id) => {
+          handleClick: (id) => {
             deleteProduit(id)
           }
         }
@@ -145,6 +159,7 @@ const ProduitContextProvider = ({ children }) => {
     produits,
     addProduit,
     actions,
+    titreModal, setTitreModal, corpModal, setCorpModal,
     nom, setNom, imageUrl, setImageUrl, titre, setTitre, description, setDescription, quantite, setQuantite,
     carracteristique, setCarracteristique, categorie, setCategorie, prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
   };
