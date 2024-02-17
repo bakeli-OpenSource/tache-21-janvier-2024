@@ -11,10 +11,10 @@ import ScrollingText from '../../usersComponents/cards/ScrollingText'
 export default function Accueil() {
   return (
     <div>
-      <Navbar />
+      <Navbar className="bg-white z-50 fixed top-0 w-full"/>
       <Header />
       
-    <div className=' flex flex-col px-[35px]'>
+    <div className=' flex flex-col'>
       <hr />
       <div className='text-md capitalize text-gray-500 mb-2 mt-7'>
         <p>Elevate your lifestyle with a more intelligent, superior wardrobe</p>

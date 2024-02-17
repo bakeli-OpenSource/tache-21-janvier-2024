@@ -7,7 +7,7 @@ import Cart from '../../../usersComponents/PanierComponents/Cart';
 const Panier = () => {
 	return (
 		<div>
-			<Navbar />
+			<Navbar className="bg-white z-50 fixed top-0 w-full"/>
 			<section className="container mx-auto my-20 bg-white-700">
 				<div className="container flex flex-col justify-center md:flex-row">
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg md:w-1/2 lg:w-1/2 xl:w-1/2 md:mb-0">

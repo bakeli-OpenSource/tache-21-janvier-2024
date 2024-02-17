@@ -12,21 +12,26 @@ const Graphique2 = () => {
     { name: "Value4", users: 200000000 },
   ];
 
-  const COLORS = ["rgb(7, 15, 246)", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["rgb(30 58 138)", "rgb(161 98 7)", "rgb(101 163 13)", "rgb(14 165 233)"];
 
   return (
-    <div>
-      <div className="pie-chart-container bg-white rounded">
-        <PieChart width={400} height={400}>
+    <div className='basis-[50%] w-[31.2rem]  border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
+      <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
+          <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
+      </div>
+      <div className="text-lg">
+        <PieChart width={500} height={450}>
         <Legend
+          className=""
           verticalAlign="top" 
+          width={500}
         />
           <Pie
             nameKey="name"
             dataKey="users"
             isAnimationActive={true}
             data={data}
-            cx={200}
+            cx={250}
             cy={200}
             outerRadius={100}
             fill="#8884d"
