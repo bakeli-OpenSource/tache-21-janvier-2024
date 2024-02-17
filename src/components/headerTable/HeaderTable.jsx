@@ -7,7 +7,7 @@ export default function HeaderTable({title, nomAjout, body}) {
 
   return (
     <div className=' w-full bg-blue-950 flex justify-between px-5 py-3 mt-3'>
-      <h5 className='font-bold text-white pt-1'>Liste {title}</h5>
+      <h5 className='font-bold text-white pt-1'>{title}</h5>
       {nomAjout ? 
         <BouttonComponent onClick={() => setShowModal(true)} nomAjout={nomAjout} />
         : null
