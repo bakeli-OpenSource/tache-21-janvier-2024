@@ -2,7 +2,7 @@
 const Thead = ({thead}) => {
     return (
         <thead>
-            <tr className="font-semibold tracking-wide text-center text-gray-900 uppercase bg-gray-100 border-b border-gray-600 text-md">
+            <tr className="font-semibold tracking-wide text-center text-gray-900 uppercase bg-gray-100 border border-x-0 border-top border-gray-300 text-md">
                 {thead.map((th, index) => (
                     <th key={index} className="px-4 py-3">{th}</th>
                 ))}
