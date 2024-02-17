@@ -84,7 +84,7 @@ const Categories = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:4000/api/categorie",
+          "https://kay-solu-api.onrender.com/api/categorie",
           formData
         );
         console.log("Catégorie ajoutée avec succès:", response.data);
@@ -102,7 +102,7 @@ const Categories = () => {
 
   const handleDelete = async (categoryId) => {
     try {
-      await axios.delete(`http://localhost:4000/api/categorie/${categoryId}`);
+      await axios.delete(`https://kay-solu-api.onrender.com/api/categorie/${categoryId}`);
       const updatedCategories = categories.filter(
         (category) => category._id !== categoryId
       );
@@ -124,7 +124,7 @@ const Categories = () => {
   const handleEdit = async (categoryId, newData) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/categorie/${categoryId}`,
+        `https://kay-solu-api.onrender.com/api/categorie/${categoryId}`,
         newData
       );
       console.log("Catégorie modifiée avec succès:", response.data);
@@ -140,7 +140,7 @@ const Categories = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/categories");
+      const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
       setCategories(response.data);
       console.log("Catégories récupérées avec succès");
     } catch (error) {
