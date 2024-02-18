@@ -37,7 +37,7 @@ const ProduitContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchProduit = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/produits");
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits");
         setProduits(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
@@ -82,7 +82,7 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('taille', produit.taille);
         formData.append('fournisseur', produit.fournisseur);
         
-        const response = await axios.post('http://localhost:4000/api/produits', formData, {
+        const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
