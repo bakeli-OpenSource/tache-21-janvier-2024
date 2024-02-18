@@ -75,7 +75,8 @@ const Categories = () => {
 
   const handleDetail = (categoryId) => {
     categorieIdCli = categoryId
-    console.log(categoryId);
+    console.log({categoryId});
+    // console.log({categoryId});
   };
 
   const [editingCategoryId, setEditingCategoryId] = useState(null);
