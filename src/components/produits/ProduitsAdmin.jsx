@@ -11,7 +11,7 @@ const ProduitsAdmin = () => {
 
   const {table, produits, addProduit, actions, titreModal, setTitreModal, corpModal, setCorpModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
-          carracteristique, setCarracteristique, categorie, setCategorie,
+          carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
         } = useProduits();
   
@@ -74,13 +74,7 @@ const ProduitsAdmin = () => {
       type: "text",
       value: fournisseur,
       setValue: setFournisseur
-    },
-    // {
-    //   label: "Descrip",
-    //   type: "text",
-    //   value: description,
-    //   setValue: setDescription
-    // },
+    }
   ]
 
 
@@ -96,8 +90,11 @@ const ProduitsAdmin = () => {
     e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      categorie, carracteristique, prix, couleur, taille, fournisseur,
+      categorie,categorieId, carracteristique, prix, couleur, taille, fournisseur,
     }
+    console.log({categorie})
+    console.log({categorieId})
+    console.log({recupInput})
     addProduit(recupInput)
     setNom('')
     setImageUrl('')
@@ -139,7 +136,8 @@ const ProduitsAdmin = () => {
     const selectedCategoryName = e.target.value;
     const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
     if (selectedCategory) {
-      setCategorie(selectedCategory._id);
+      setCategorie(selectedCategoryName);
+      setCategorieId(selectedCategory._id);
     } 
     
   };

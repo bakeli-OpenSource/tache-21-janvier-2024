@@ -12,6 +12,7 @@ import useGlobal from "../../utils/hooks/useGlobal";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
 
 export let newCategorie;
+export let categorieIdCli;
 
 const Categories = () => {
   const { table, categories, setCategories } = useContext(CategorieContext);
@@ -23,6 +24,8 @@ const Categories = () => {
   const navigate = useNavigate();
   const { open } = useSidebare();
   const { setShowModal } = useGlobal();
+
+
 
   const inputs = [
     {
@@ -46,8 +49,9 @@ const Categories = () => {
     {
       icon: <TbEyeShare />,
       color: "bg-green-500",
-      handleClick: () => {
+      handleClick: (categoryId) => {
         navigate("/admin/categories/DetailsCategorie");
+        handleDetail(categoryId)
       },
     },
     {
@@ -56,7 +60,7 @@ const Categories = () => {
       handleClick: (category) => {
         setIsEditing(true);
         setShowModal(true);
-        setEditingCategoryId(category._id); // Stockez l'ID de la catégorie
+        setEditingCategoryId(category._id);
         handleEditData(category);
       },
     },
@@ -68,6 +72,11 @@ const Categories = () => {
       },
     },
   ];
+
+  const handleDetail = (categoryId) => {
+    categorieIdCli = categoryId
+    console.log(categoryId);
+  };
 
   const [editingCategoryId, setEditingCategoryId] = useState(null);
 
