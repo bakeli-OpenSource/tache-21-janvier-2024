@@ -8,10 +8,12 @@ import { categorieIdCli } from './Categories';
 
 const DetailsCategorie = () => {
 
-  const {table, produits, actions, categorieId} = useProduits();
+  const {table, produits, actions} = useProduits();
   const {open} = useSidebare()
 
-  console.log(produits);
+  console.log(produits.map((produit)=>(
+    produit.categorieId
+  )));
 
   console.log(categorieIdCli );
   return (
