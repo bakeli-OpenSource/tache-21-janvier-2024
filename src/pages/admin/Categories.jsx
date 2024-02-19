@@ -10,19 +10,24 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
+import { ProduitsCategories } from "./DetailsCategorie";
 
 export let newCategorie;
+export let categorieIdCli;
 
 const Categories = () => {
+
   const { table, categories, setCategories } = useContext(CategorieContext);
 
   const [nom, setNom] = useState("");
-  const [quantite, setQuantite] = useState("");
+  const [quantite, setQuantite] = useState('0');
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({});
   const navigate = useNavigate();
   const { open } = useSidebare();
   const { setShowModal } = useGlobal();
+
+  console.log(ProduitsCategories.length);
 
   const inputs = [
     {
@@ -31,23 +36,16 @@ const Categories = () => {
       value: nom,
       name: "catégorie",
       setValue: setNom,
-    },
-
-    {
-      label: "Nombre produit",
-      type: "number",
-      value: quantite,
-      name: "produitNomber",
-      setValue: setQuantite,
-    },
+    }
   ];
 
   const actions = [
     {
       icon: <TbEyeShare />,
       color: "bg-green-500",
-      handleClick: () => {
+      handleClick: (categoryId) => {
         navigate("/admin/categories/DetailsCategorie");
+        handleDetail(categoryId)
       },
     },
     {
@@ -56,7 +54,7 @@ const Categories = () => {
       handleClick: (category) => {
         setIsEditing(true);
         setShowModal(true);
-        setEditingCategoryId(category._id); // Stockez l'ID de la catégorie
+        setEditingCategoryId(category._id);
         handleEditData(category);
       },
     },
@@ -69,6 +67,11 @@ const Categories = () => {
     },
   ];
 
+  const handleDetail = (categoryId) => {
+    categorieIdCli = categoryId
+    console.log({categoryId});
+  };
+
   const [editingCategoryId, setEditingCategoryId] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -79,18 +82,19 @@ const Categories = () => {
       quantite: quantite,
     };
 
+    console.log({formData});
+
     if (isEditing) {
       handleEditCategory(editingCategoryId, formData);
     } else {
       try {
         const response = await axios.post(
-          "https://kay-solu-api.onrender.com/api/categorie",
+          "http://localhost:4000/api/categorie",
           formData
         );
         console.log("Catégorie ajoutée avec succès:", response.data);
         setShowModal(false);
         setNom("");
-        setQuantite("");
 
         // Actualisez la liste des catégories après l'ajout
         fetchCategories();
@@ -118,7 +122,7 @@ const Categories = () => {
 
   const handleEditData = (category) => {
     setNom(category.nom);
-    setQuantite(category.quantite);
+    // setQuantite(category.quantite);
   };
 
   const handleEdit = async (categoryId, newData) => {
@@ -152,6 +156,9 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
+  const handleSelectChange = (e) => {    
+  };
+
   newCategorie = categories;
 
   return (
@@ -163,6 +170,7 @@ const Categories = () => {
           <Formulaire
             inputs={inputs}
             onSubmit={handleSubmit}
+            handleSelectChange={handleSelectChange}
           />
         }
       />
