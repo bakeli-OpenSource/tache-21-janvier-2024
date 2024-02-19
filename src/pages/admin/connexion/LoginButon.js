@@ -1,7 +1,7 @@
 import React from "react";
 import BoutonAdmin from "./BoutonAdmin";
 
-const LoginButon = ({className, children, type }) => {
+const LoginButon = ({className}) => {
   return (
     <div>
       <BoutonAdmin

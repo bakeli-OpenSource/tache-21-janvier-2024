@@ -9,7 +9,7 @@ import axios from 'axios';
 const ProduitsAdmin = () => {
 
 
-  const {table, produits, addProduit, actions, titreModal, setTitreModal, corpModal, setCorpModal, nom, setNom, imageUrl, setImageUrl,
+  const {table, produits, addProduit, actions, titreModal, setTitreModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
@@ -17,7 +17,7 @@ const ProduitsAdmin = () => {
   
   const {open} = useSidebare()
 
-  const [selectsValue, setSelectsValue] = useState('');
+  const [selectsValue] = useState('');
   
   const inputs = [
     {
@@ -107,7 +107,7 @@ const ProduitsAdmin = () => {
   }
 
   
-  const [categories, setCategories] = useState([]); // Initialisez avec null
+  const [categories, setCategories] = useState([]); 
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -123,7 +123,7 @@ const ProduitsAdmin = () => {
     fetchCategories();
   }, []);
 
-  const [categoryNames, setCategoryNames] = useState([]); // Initialisez avec null
+  const [categoryNames, setCategoryNames] = useState([]); 
 
   useEffect(() => {
     setCategoryNames(categories.map((categorie) => categorie.nom));
