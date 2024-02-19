@@ -11,6 +11,7 @@ import Shop from "../NavbarUtilisateut/NavbarLinks/Shop";
 import Arrivals from "../NavbarUtilisateut/NavbarLinks/Arrivals";
 import Sales from "../NavbarUtilisateut/NavbarLinks/Sales";
 import Journal from "../NavbarUtilisateut/NavbarLinks/Journal";
+import DetailsCard from "../../../usersComponents/cards/DetailsCard";
 
 const UserIsLogin = () => {
   return (
@@ -26,6 +27,7 @@ const UserIsLogin = () => {
             <Route path="/Journals" element={<Journal />} />
             <Route path="/Panier" element={<Panier />} />
             <Route path="/admin" element={<AdminConnexion />} />
+            <Route path="/details" element={<DetailsCard />} />
           </Routes>
         </PanierProvider>
       </SidebareContextProvider>
