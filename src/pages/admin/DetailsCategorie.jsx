@@ -4,7 +4,6 @@ import Table from '../../components/table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import useProduits from '../../utils/hooks/useProduits';
 
-export let ProduitsCategoriesNumber
 
 
 const DetailsCategorie = () => {
@@ -24,15 +23,9 @@ const DetailsCategorie = () => {
   )
 
 
-   // Calculer le nombre total de produits dans la catégorie
-  //  const [ProduitsCategoriesNumber, setProduitsCategoriesNumber] = useState(0);
   
    useEffect(() => {
-     const total = ProduitsCategories.reduce((acc, cur) => acc + cur.quantite, 0);
-    //  setProduitsCategoriesNumber(total);
-    
-    ProduitsCategoriesNumber = total
-     console.log({ProduitsCategoriesNumber});
+
    }, [ProduitsCategories]);
 
   
