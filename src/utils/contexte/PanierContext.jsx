@@ -33,7 +33,7 @@ export const PanierProvider = ({ children }) => {
 		},
 	]);
 
-	const [deliveryOption, setDeliveryOption] = useState('1');
+	const [deliveryOption, setDeliveryOption] = useState('');
 	const deliveryCosts = {
 		1: 1000,
 		2: 1500,
