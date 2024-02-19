@@ -17,7 +17,7 @@ const UserIsLogin = () => {
   return (
     <SidebareContextProvider>
       <PanierProvider>
-        <Navbar />
+        <Navbar className="bg-white z-50 fixed top-0 w-full" />
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/profil" element={<Profil />} />
