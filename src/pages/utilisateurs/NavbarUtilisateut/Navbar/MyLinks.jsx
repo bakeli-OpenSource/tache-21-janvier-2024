@@ -2,20 +2,20 @@
 export const links = [
   {
     name: "Boutique",
-    link: "/shop",
+    link: "/boutique",
   },
   {
-    name: "Nouveau arrivals",
+    name: "Nouveau Arrivées",
     link: "/arrivals",
   },
   {
-    name: "Sales",
-    link: "sales",
+    name: "Vente",
+    link: "vente",
   },
 
   {
-    name: "Journel",
-    link: "sales",
+    name: "A propos",
+    link: "apropos",
   },
 ];
 
