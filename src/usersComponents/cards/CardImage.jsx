@@ -9,7 +9,7 @@ const CardImage = ({ image, heartColor, changeHeartColor }) => {
     <div className='relative group transition'>
         {/* image */}
         <div>
-          <img class="w-full h-full" src={image} alt="vêtement" />
+          <img className="w-full h-full" src={image} alt="vêtement" />
         </div>
         {/* boutons */}
         <div className='p-1 flex flex-col justify-center items-center

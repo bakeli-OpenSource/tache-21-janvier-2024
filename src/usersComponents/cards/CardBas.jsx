@@ -6,7 +6,7 @@ const CardBas = () => {
 	return (
 		<div className="relative transition group">
 			<div>
-				<img class="w-full h-full rounded-lg" src={image6} alt="vêtement" />
+				<img className="w-full h-full rounded-lg" src={image6} alt="vêtement" />
 			</div>
 
 			<div className="absolute inset-0 flex items-center justify-center transition-opacity bg-black bg-opacity-50 opacity-0 group-hover:opacity-100">

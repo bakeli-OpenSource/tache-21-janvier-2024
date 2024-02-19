@@ -38,9 +38,14 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
       setter(e.target.value);
   }
 
+  const selectIs = () => {
+    
+  }
+
   useEffect(() => {
-    // Appeler handleSelectChange avec la valeur par défaut lors du premier rendu
-    handleSelectChange({ target: { value: '' } });
+
+      handleSelectChange({ target: { value: '' } })
+    
   }, [handleSelectChange]);
   
 
