@@ -77,9 +77,6 @@ const ProduitsAdmin = () => {
     }
   ]
 
-
-
-  
   const textarea = {
     value: description,
     setValue: setDescription

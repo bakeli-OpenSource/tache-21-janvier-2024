@@ -15,16 +15,16 @@ const Graphique2 = () => {
   const COLORS = ["rgb(30 58 138)", "rgb(161 98 7)", "rgb(101 163 13)", "rgb(14 165 233)"];
 
   return (
-    <div className='basis-[50%] w-[31.2rem]  border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
+    <div className='border bg-white shadow-md cursor-pointer rounded-[4px]'>
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
-          <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
+          <h2 className='text-white text-[16px] leading-[19px] font-bold'>Produit</h2>
       </div>
       <div className="text-lg">
         <PieChart width={500} height={450}>
         <Legend
           className=""
           verticalAlign="top" 
-          width={500}
+          // width={500}
         />
           <Pie
             nameKey="name"

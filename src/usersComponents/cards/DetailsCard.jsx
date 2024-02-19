@@ -3,59 +3,62 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import useSidebare from '../../utils/hooks/useSidebare';
 import ComponentButton from '../button/ComponentButton';
+import { ProduitContext } from './ProduitContext';
+import Produit from './Produit';
 
 // https://kay-solu-api.onrender.com/api/produits
 
 const DetailsCard = () => {
-  const {id} = useParams();
-    const [produits, setProduits] = useState([])
-    const fetchProduit = async (id) => {
-      try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
-        setProduits(response.data);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des produits:", error);
-      }
-    };
-    fetchProduit(id);
+  const { _id, imageUrl, categorie, titre, prix } = Produit;
+  // const {id} = useParams();
+    // const [produits, setProduits] = useState([])
+    // const fetchProduit = async (id) => {
+    //   try {
+    //     const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
+    //     setProduits(response.data);
+    //   } catch (error) {
+    //     console.error("Erreur lors de la récupération des produits:", error);
+    //   }
+    // };
+    // fetchProduit(id);
     const {open} = useSidebare()
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>
       {/* <HeaderTable title="Détail du produit" /> */}
-      {produits !== null ?
+      {/* {produits !== null ? */}
       <section className="overflow-hidden py-11 font-poppins ">
-        <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 shadow-xl bg-gray-600">
+        <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 shadow-xl">
             <div className="flex flex-wrap -mx-4">
                 <div className="w-full px-4 md:w-1/2 ">
                     <div className=" top-0 z-50 overflow-hidden ">
                         <div className="relative mb-6 lg:mb-10 lg:h-full ">
-                            <img src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg" alt="" className="object-cover w-full lg:h-full " />
+                            <img src={imageUrl} alt="" className="object-cover w-full lg:h-full " />
                         </div>
-                        <div className="flex-wrap hidden md:flex ">
+                        {/* <div className="flex-wrap hidden md:flex ">
                             <image src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg" />
                             <image src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg" />
                             <image src={produits.imageUrl} />
                             <image src={produits.imageUrl} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="w-full px-4 md:w-1/2 ">
                     <div className="lg:pl-20">
                         <div className="mb-8 ">
                             <h2 className="max-w-xl mt-2 text-2xl font-bold  md:text-4xl">
-                             Image de la nature {produits.nom}
+                             {/* Image de la nature {produits.nom} */}
                             </h2>
                             <div className="flex items-center mb-6">
-                                <p className="">{produits.titre}</p>
+                                <p className="">details du produit</p>
                             </div>
                             <p className="max-w-md mb-8 text-gray-700 ">
-                             Description du produit {produits.description}
+                             {/* Description du produit {produits.description} */}
                             </p>
                             <div className="mb-8 text-4xl font-bold text-gray-700 flex ">
                             <h2 className="w-16 text-xl font-bold mt-2">
                                 Prix:
                             </h2>
-                                <span>{produits.prix}20 000 f cfa</span>
+                                {/* <span>{produits.prix}20 000 f cfa</span> */}
                             </div>
                             <div>
                               <h3 className='text-sm font-bold mt-2'>Couleur du produit</h3>
@@ -88,7 +91,7 @@ const DetailsCard = () => {
             </div>
         </div>
     </section> : <div>Loader...</div>
-      }
+      {/* } */}
     </div>
   )
 }
