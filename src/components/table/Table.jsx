@@ -24,6 +24,7 @@ const Tbody = ({tbody, actions}) => {
                         <td className="px-4 py-3 border">
                         <div className="flex items-center text-sm">
                         <div className="md:relative w-8 h-8 mr-3 rounded-full md:block">
+
                             {td.imageUrl?
                                 <img className="object-cover w-full h-full rounded-full" src={td.imageUrl} alt="" loading="lazy" />
                             :null}
@@ -42,8 +43,7 @@ const Tbody = ({tbody, actions}) => {
                     }
                     <td className="px-4 py-3 text-center border text-md">
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
-                    </td>
-                    
+                    </td> 
                     {td.date ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.date}
