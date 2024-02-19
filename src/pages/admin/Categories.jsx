@@ -10,11 +10,13 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
+import { ProduitsCategories } from "./DetailsCategorie";
 
 export let newCategorie;
 export let categorieIdCli;
 
 const Categories = () => {
+
   const { table, categories, setCategories } = useContext(CategorieContext);
 
   const [nom, setNom] = useState("");
@@ -25,7 +27,7 @@ const Categories = () => {
   const { open } = useSidebare();
   const { setShowModal } = useGlobal();
 
-
+  console.log(ProduitsCategories.length);
 
   const inputs = [
     {
