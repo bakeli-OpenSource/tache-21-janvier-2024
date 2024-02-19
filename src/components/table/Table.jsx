@@ -13,10 +13,10 @@ const Thead = ({thead}) => {
 
 const Tbody = ({tbody, actions}) => {
     return (
-        <tbody className='bg-white'>
+        <tbody className='bg-white '>
                 {tbody.length !== 0 ?
                 tbody.map((td, index) => (
-                <tr className="text-gray-700" key={index}>
+                <tr className="text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100" key={index}>
                     {/* {td._id?
                         <td className="px-4 py-3 font-semibold border text-ms">{td._id}</td>
                         :null
@@ -73,12 +73,16 @@ const Tbody = ({tbody, actions}) => {
                     {actions ?
                         <td className="px-4 py-3 text-ms font-semibold border text-center">
                             {actions.map((action, index) => (
-                                <button key={index} className={`${action.color} p-1 text-white rounded ml-2`} onClick={() => action.handleClick(td._id)}>{action.icon}</button>
+                                <button key={index} className={`${action.color} p-1 text-white focus:ring-4 shadow rounded ml-2`} onClick={() => action.handleClick(td._id)}>{action.icon}</button>
                             ))}
                         </td> : null
                     }
                 </tr>
-                ))  : <div>Loading...</div>}
+                ))  : (<tr className="h-[400px] ">
+                            <td className="" colSpan="4">
+                                <h3 className="text-center">Loading...</h3>
+                            </td>
+                        </tr>)}
         </tbody>
     )
 }

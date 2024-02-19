@@ -12,7 +12,6 @@ export const ProduitsContext = createContext();
 const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
-  // const [url, setUrl] = useState("https://kay-solu-api.onrender.com/api/produits")
   // Création des contexts pour formuulaire
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
