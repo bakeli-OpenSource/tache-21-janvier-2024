@@ -10,7 +10,7 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
-import { ProduitsCategories } from "./DetailsCategorie";
+import useProduits from "../../utils/hooks/useProduits";
 
 export let newCategorie;
 export let categorieIdCli;
@@ -18,6 +18,7 @@ export let categorieIdCli;
 const Categories = () => {
 
   const { table, categories, setCategories } = useContext(CategorieContext);
+  const { produits } = useProduits();
 
   const [nom, setNom] = useState("");
   const [quantite, setQuantite] = useState('0');
@@ -27,7 +28,6 @@ const Categories = () => {
   const { open } = useSidebare();
   const { setShowModal } = useGlobal();
 
-  console.log(ProduitsCategories.length);
 
   const inputs = [
     {
@@ -44,6 +44,8 @@ const Categories = () => {
       icon: <TbEyeShare />,
       color: "bg-green-500",
       handleClick: (categoryId) => {
+        // Stocker l'ID de la catégorie dans le stockage local
+        localStorage.setItem("categorieIdCli", categoryId);
         navigate("/admin/categories/DetailsCategorie");
         handleDetail(categoryId)
       },
@@ -54,22 +56,22 @@ const Categories = () => {
       handleClick: (category) => {
         setIsEditing(true);
         setShowModal(true);
-        setEditingCategoryId(category._id);
-        handleEditData(category);
-      },
+        console.log(category);
+        setEditingCategoryId(category);
+      }
     },
-    {
-      icon: <MdOutlineDelete />,
-      color: "bg-red-600",
-      handleClick: (categoryId) => {
-        handleDelete(categoryId);
-      },
-    },
+    // {
+    //   icon: <MdOutlineDelete />,
+    //   color: "bg-red-600",
+    //   handleClick: (categoryId) => {
+    //     handleDelete(categoryId);
+    //   },
+    // }
   ];
 
   const handleDetail = (categoryId) => {
-    categorieIdCli = categoryId
-    console.log({categoryId});
+    // Récupérer l'ID de la catégorie depuis le stockage local
+    categorieIdCli = localStorage.getItem("categorieIdCli");
   };
 
   const [editingCategoryId, setEditingCategoryId] = useState(null);
@@ -102,28 +104,23 @@ const Categories = () => {
         console.error("Erreur lors de l'ajout de la catégorie:", error);
       }
     }
-  };
+  }
 
-  const handleDelete = async (categoryId) => {
-    try {
-      await axios.delete(`https://kay-solu-api.onrender.com/api/categorie/${categoryId}`);
-      const updatedCategories = categories.filter(
-        (category) => category._id !== categoryId
-      );
-      setCategories(updatedCategories);
-      console.log("Catégorie supprimée avec succès");
+  // const handleDelete = async (categoryId) => {
+  //   try {
+  //     await axios.delete(`https://kay-solu-api.onrender.com/api/categorie/${categoryId}`);
+  //     const updatedCategories = categories.filter(
+  //       (category) => category._id !== categoryId
+  //     );
+  //     setCategories(updatedCategories);
+  //     console.log("Catégorie supprimée avec succès");
 
-      // Actualisez la liste des catégories après la suppression
-      fetchCategories();
-    } catch (error) {
-      console.error("Erreur lors de la suppression de la catégorie:", error);
-    }
-  };
-
-  const handleEditData = (category) => {
-    setNom(category.nom);
-    // setQuantite(category.quantite);
-  };
+  //     // Actualisez la liste des catégories après la suppression
+  //     fetchCategories();
+  //   } catch (error) {
+  //     console.error("Erreur lors de la suppression de la catégorie:", error);
+  //   }
+  // };
 
   const handleEdit = async (categoryId, newData) => {
     try {
@@ -132,6 +129,9 @@ const Categories = () => {
         newData
       );
       console.log("Catégorie modifiée avec succès:", response.data);
+      
+      // Actualisez la liste des catégories après l'ajout
+      fetchCategories();
     } catch (error) {
       console.error("Erreur lors de la modification de la catégorie:", error);
     }
@@ -140,6 +140,13 @@ const Categories = () => {
   const handleEditCategory = (categoryId, newData) => {
     setEditData(newData);
     handleEdit(categoryId, newData);
+  };
+
+  const handleEditQuantiteCategory = (categoryId, totalProducts) => {
+    // Mettre à jour la quantité en fonction du nombre total de produits
+    setQuantite(totalProducts.toString());
+    // Mettre à jour la catégorie avec la nouvelle quantité
+    handleEdit(categoryId, { ...editData, quantite: totalProducts });
   };
 
   const fetchCategories = async () => {
@@ -152,9 +159,24 @@ const Categories = () => {
     }
   };
 
+  // Fonction pour calculer le nombre total de produits pour une catégorie donnée
+  const calculateTotalProducts = (categoryId) => {
+    const filteredProduits = produits.filter(
+      (produit) => produit.categorieId === categoryId
+    );
+    return filteredProduits.reduce((acc, cur) => acc + cur.quantite, 0);
+  };
+
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    // Mettre à jour le nombre total de produits pour chaque catégorie
+    const updatedCategories = categories.map((category) => {
+      const totalProducts = calculateTotalProducts(category._id);
+      console.log({ totalProducts });
+      handleEditQuantiteCategory(category._id, totalProducts); // Appel de la fonction ici
+      return { ...category, totalProducts };
+    });
+  }, [categories, produits]);
+
 
   const handleSelectChange = (e) => {    
   };
