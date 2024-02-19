@@ -88,15 +88,15 @@ const Titre = ({cle, valeure}) => {
   </div>
   )
 }
-const Image = ({src}) => {
-  return(
-    <div className="w-1/2 p-2 sm:w-1/4">
-       <div className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-          <img src={src} alt="" className="object-cover w-full lg:h-20" />
-      </div>                         
-    </div>
-  )
-}
+// const Image = ({src}) => {
+//   return(
+//     <div className="w-1/2 p-2 sm:w-1/4">
+//        <div className="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+//           <img src={src} alt="" className="object-cover w-full lg:h-20" />
+//       </div>                         
+//     </div>
+//   )
+// }
 
 
 export default DetailsProduits

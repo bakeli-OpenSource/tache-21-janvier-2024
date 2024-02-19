@@ -7,6 +7,10 @@ import Panier from "../panier/Panier";
 import AdminConnexion from "../../admin/connexion/AdminConnexion";
 import Navbar from "../NavbarUtilisateut/Navbar/Navbar";
 import { PanierProvider } from "../../../utils/contexte/PanierContext";
+import Shop from "../NavbarUtilisateut/NavbarLinks/Shop";
+import Arrivals from "../NavbarUtilisateut/NavbarLinks/Arrivals";
+import Sales from "../NavbarUtilisateut/NavbarLinks/Sales";
+import Journal from "../NavbarUtilisateut/NavbarLinks/Journal";
 
 const UserIsLogin = () => {
   return (
@@ -16,10 +20,10 @@ const UserIsLogin = () => {
           <Routes>
             <Route path="/" element={<Accueil />} />
             <Route path="/profil" element={<Profil />} />
-            {/* <Route path="/Shop" element={<Shop />} /> */}
-           {/*  <Route path="/Arrivals" element={<Arrivals />} />
+            <Route path="/Shop" element={<Shop />} />
+            <Route path="/Arrivals" element={<Arrivals />} />
             <Route path="/Sales" element={<Sales />} />
-            <Route path="/Journals" element={<Jornals />} /> */}
+            <Route path="/Journals" element={<Journal />} />
             <Route path="/Panier" element={<Panier />} />
             <Route path="/admin" element={<AdminConnexion />} />
           </Routes>
