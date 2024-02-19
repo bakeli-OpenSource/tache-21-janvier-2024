@@ -10,7 +10,7 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
-import { ProduitsCategories } from "./DetailsCategorie";
+import { ProduitsCategoriesNumber } from "./DetailsCategorie";
 
 export let newCategorie;
 export let categorieIdCli;
@@ -27,7 +27,6 @@ const Categories = () => {
   const { open } = useSidebare();
   const { setShowModal } = useGlobal();
 
-  console.log(ProduitsCategories.length);
 
   const inputs = [
     {
@@ -44,6 +43,8 @@ const Categories = () => {
       icon: <TbEyeShare />,
       color: "bg-green-500",
       handleClick: (categoryId) => {
+        // Stocker l'ID de la catégorie dans le stockage local
+        localStorage.setItem("categorieIdCli", categoryId);
         navigate("/admin/categories/DetailsCategorie");
         handleDetail(categoryId)
       },
@@ -54,9 +55,10 @@ const Categories = () => {
       handleClick: (category) => {
         setIsEditing(true);
         setShowModal(true);
-        setEditingCategoryId(category._id);
+        console.log(category);
+        setEditingCategoryId(category);
         handleEditData(category);
-      },
+      }
     },
     {
       icon: <MdOutlineDelete />,
@@ -64,11 +66,12 @@ const Categories = () => {
       handleClick: (categoryId) => {
         handleDelete(categoryId);
       },
-    },
+    }
   ];
 
   const handleDetail = (categoryId) => {
-    categorieIdCli = categoryId
+    // Récupérer l'ID de la catégorie depuis le stockage local
+    categorieIdCli = localStorage.getItem("categorieIdCli");
     console.log({categoryId});
   };
 
@@ -102,7 +105,7 @@ const Categories = () => {
         console.error("Erreur lors de l'ajout de la catégorie:", error);
       }
     }
-  };
+  }
 
   const handleDelete = async (categoryId) => {
     try {
@@ -121,7 +124,7 @@ const Categories = () => {
   };
 
   const handleEditData = (category) => {
-    setNom(category.nom);
+    // setNom(category.nom);
     // setQuantite(category.quantite);
   };
 
@@ -132,6 +135,12 @@ const Categories = () => {
         newData
       );
       console.log("Catégorie modifiée avec succès:", response.data);
+      
+      console.log({ProduitsCategoriesNumber});
+      setQuantite(ProduitsCategoriesNumber)
+
+      // Actualisez la liste des catégories après l'ajout
+      fetchCategories();
     } catch (error) {
       console.error("Erreur lors de la modification de la catégorie:", error);
     }
