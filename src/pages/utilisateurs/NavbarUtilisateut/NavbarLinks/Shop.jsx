@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../../../../usersComponents/footer/Footer";
-import { Link } from "react-router-dom";
 import { BsSuitHeartFill, BsPlus } from "react-icons/bs";
 import img0 from "../../../../assets/images/img.jpg";
 import img1 from "../../../../assets/images/imgShop1.jpg";
@@ -38,7 +37,7 @@ const Shop = () => {
                     {[img0, img1, img2, img3, img4, img5, img6, img7, img8, img9].map((img, index) => (
                         <div key={index} className=" items-center justify-center w-full h-full static border">
                             <div className="relative">
-                                <img className="h-[20rem] w-[50rem]" src={img} alt="image" />
+                                <img className="h-[20rem] w-[50rem]" src={img} alt="image_boutique" />
                                 <div className="flex flex-col items-center justify-center p-1 transition-all ">
                                     <button className="absolute top-3 right-2 ">
                                         <div className="flex items-center justify-center text-black w-7 h-7">
