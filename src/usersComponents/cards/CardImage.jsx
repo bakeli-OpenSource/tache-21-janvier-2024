@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsPlus, BsEyeFill, BsSuitHeartFill } from "react-icons/bs";
 import { Tooltip } from 'react-tooltip';
-import DetailsCard from './DetailsCard';
 
 const CardImage = ({ image, heartColor, changeHeartColor }) => {
   return (
     <div className='relative group transition'>
         {/* image */}
         <div>
-          <img class="w-full h-full" src={image} alt="vêtement" />
+          <img className="w-full h-full" src={image} alt="vêtement" />
         </div>
         {/* boutons */}
         <div className='p-1 flex flex-col justify-center items-center
