@@ -23,9 +23,9 @@ const DetailsProduits = () => {
       <HeaderTable title="Détail du produit" />
       {data !== null ?
       <section className="overflow-hidden py-11 font-poppins ">
-        <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-            <div className="flex flex-wrap -mx-4">
-                <div className="w-full px-4 md:w-1/2 ">
+        <div className="max-w-6xl py-4 mx-auto lg:py-8 md:px-6">
+            <div className="flex flex-wrap">
+                <div className="w-full md:w-1/2 ">
                     <div className=" top-0 z-50 overflow-hidden ">
                         <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
                             <img src={data.imageUrl} alt=""
@@ -39,7 +39,7 @@ const DetailsProduits = () => {
                         </div> */}
                     </div>
                 </div>
-                <div className="w-full px-4 md:w-1/2 ">
+                <div className="w-fullmd:w-1/2 ">
                     <div className="lg:pl-20">
                         <div className="mb-8 ">
                             <h2 className="max-w-xl mt-2 text-2xl font-bold  md:text-4xl">
