@@ -1,29 +1,73 @@
-import React, { useState } from 'react'
-import image5 from '../../assets/images/image5.jpg'
-import CardImage from './CardImage';
-
+import React from "react";
+import UniteCard from "./UniteCard";
+import { MdOutlineKeyboardCommandKey } from "react-icons/md";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { MdDeliveryDining } from "react-icons/md";
+import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 
 const Cards = () => {
-  const [heartColor, setHeartColor] = useState('white');
-
-  // Fonction pour changer la couleur du bouton "j'aime" au clic
-  const changeHeartColor = () => {
-    setHeartColor(heartColor === 'white' ? 'red' : 'white');
-  };
-
   return (
- 
-    <div class="max-w-sm z-0 rounded overflow-hidden shadow-lg">
-      {/* image du Card */}
-      <CardImage image={image5} heartColor={heartColor} changeHeartColor={changeHeartColor} />
-      
-      {/* catégorie, titre et prix */}
-      <div className='pl-4 py-2'>
-         <div className='text-md capitalize text-gray-500 mb-1'>Vetement Homme</div>
-          <h2 className='text-sm font-semi-bold mb-1'>Veste</h2>
-         <div className='font-semi-bold'>17500 FCFA</div>
-
-      </div>
+    <div className=" py-16 grid lg:grid-cols-12 md:grid-cols-6 gap-6 ">
+      <UniteCard bgColor="border-s-4 border-sky-500  ">
+        <div>
+          <div className="flex justify-between px-3">
+            <div>
+              <h5>101.5 k</h5>
+            </div>
+            <div className="bg-sky-500 rounded-full h-8 w-8 flex  place-items-center justify-center">
+              <MdOutlineKeyboardCommandKey className="text-2xl text-white" />
+            </div>
+          </div>
+          <div>
+            <p className="text-sm m-3">Nombre de commandes</p>
+          </div>
+        </div>
+      </UniteCard>
+      <UniteCard bgColor="border-s-4 border-lime-600">
+        <div>
+          <div className="flex justify-between px-3">
+            <div>
+              <h5>101.5 k</h5>
+            </div>
+            <div className="bg-lime-600 rounded-full h-8 w-8 flex  place-items-center justify-center">
+              <AiOutlineLoading3Quarters className="text-2xl text-white" />
+            </div>
+          </div>
+          <div>
+            <p className="text-sm m-3">Commandes en cours</p>
+          </div>
+        </div>
+      </UniteCard>
+      <UniteCard bgColor="border-s-4 border-yellow-700">
+        <div>
+          <div className="flex justify-between px-3">
+            <div>
+              <h5>101.5 k</h5>
+            </div>
+            <div className="bg-yellow-700 rounded-full h-8 w-8 flex  place-items-center justify-center">
+              <MdDeliveryDining className="text-2xl text-white" />
+            </div>
+          </div>
+          <div>
+            <p className="text-sm m-3">Commandes en livraison</p>
+          </div>
+        </div>
+      </UniteCard>
+      <UniteCard bgColor="border-s-4 border-blue-900">
+        <div>
+          <div className="flex justify-between px-3">
+            <div>
+              <h5>101.5 k</h5>
+            </div>
+            <div className="bg-blue-900 rounded-full h-8 w-8 flex place-items-center justify-center">
+              <AiOutlineDeliveredProcedure className="text-xl text-white " />
+            </div>
+          </div>
+          <div>
+            <p className="text-sm m-3">Commande livrées</p>
+          </div>
+        </div>
+      </UniteCard>
     </div>
   );
 };

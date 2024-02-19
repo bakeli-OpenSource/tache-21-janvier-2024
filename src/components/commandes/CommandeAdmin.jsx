@@ -90,6 +90,8 @@ const CommandeAdmin = () => {
     },
   ];
 
+  const handleSelectChange = (e) => {  
+  };
   
 
   const { setShowModal } = useGlobal();
@@ -178,7 +180,14 @@ const CommandeAdmin = () => {
       <HeaderTable
         title="Commandes"
         nomAjout="Ajouter des Commandes"
-        body={<Formulaire inputs={inputs} onSubmit={handleSubmit} />}
+        body=
+        {
+        <Formulaire 
+        inputs={inputs} 
+        onSubmit={handleSubmit} 
+        handleSelectChange = {handleSelectChange}
+        />}
+       
       />
       <Table thead={table} tbody={commandes} actions={actions} />
     </div>
