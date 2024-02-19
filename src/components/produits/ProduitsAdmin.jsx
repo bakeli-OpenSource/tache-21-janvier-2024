@@ -118,7 +118,7 @@ const ProduitsAdmin = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/categories");
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
         setCategories(response.data);
         console.log("Catégories récupérées avec succès");
       } catch (error) {

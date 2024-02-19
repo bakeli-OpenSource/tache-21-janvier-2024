@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 const SidebareLink = ({ menus, open }) => {
   const location = useLocation();
   const { screenSize, setOpen, smallScreen } = useSidebare();
-
   const handleSidebare = () => {
     setOpen(!open);
   };
