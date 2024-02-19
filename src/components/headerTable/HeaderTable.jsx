@@ -16,7 +16,7 @@ export default function HeaderTable({title, nomAjout, body}) {
   const breadcrumbs = pathnames.map((name, index) => {
     const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
     const isLast = index === pathnames.length - 1;
-    const textStyle = isLast ? "text-black font-semibold" : "text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white";
+    const textStyle = isLast ? "text-black font-semibold capitalize" : "capitalize text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue";
     const separator = (
       <span key={`separator-${index}`} className="mx-1 text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">{'>'}</span>
     );
@@ -62,7 +62,7 @@ export function BouttonComponent({onClick, nomAjout}) {
     <button 
       type="button"
       onClick={onClick}
-      className='text-white bg-gradient-to-r from-green-600 via-green-700 to-green-900 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-500/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
+      className='text-white bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-900 shadow-lg shadow-blue-500/50 dark:shadow-sm dark:shadow-blue-300/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
     >
       {nomAjout}
     </button>

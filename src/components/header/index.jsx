@@ -11,7 +11,6 @@ const Header = () => {
   const location = useLocation();
   const urlPageActuel = location.pathname.split("/");
   const pageActuel = urlPageActuel[urlPageActuel.length - 1];
-  console.log(urlPageActuel, pageActuel);
 
   return (
     <header className="z-[10] bg-gray-800 fixed w-full m-0 flex justify-between text-gray-100 w-100 px-5 py-3">
