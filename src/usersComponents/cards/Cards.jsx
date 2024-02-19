@@ -12,7 +12,6 @@ const Cards = () => {
   };
 
   return (
- 
     <div class="max-w-sm z-0 rounded overflow-hidden shadow-lg">
       {/* image du Card */}
       <CardImage image={image5} heartColor={heartColor} changeHeartColor={changeHeartColor} />

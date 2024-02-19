@@ -11,6 +11,7 @@ import Jornals from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Journal'
 import DetailsCard from "./usersComponents/cards/DetailsCard";
 import { Route, Routes } from 'react-router';
 import { PanierProvider } from "./utils/contexte/PanierContext";
+import ProduitProvider from './usersComponents/cards/ProduitContext';
 
 
 
@@ -18,18 +19,20 @@ function App() {
   return (
     <div className="min-h-screen App">
       <GlobalContextProvider>
-      <PanierProvider>
-        <Routes>
-          <Route path="/" element={<Accueil />} />
-          <Route path="/Panier" element={<Panier />} />
-          <Route path="/Shop" element={<Shop />} />        
-          <Route path="/Arrivals" element={<Arrivals />} />        
-          <Route path="/Sales" element={<Sales />} />        
-          <Route path="/Journals" element={<Jornals />} />        
-          <Route path="/admin" element={<AdminConnexion />} />
-          <Route path="/admin/*" element={<IsLogin />} />
-          <Route path="/Details" element={<DetailsCard />} />
-        </Routes>
+        <PanierProvider>
+          <ProduitProvider>
+            <Routes>
+              <Route path="/" element={<Accueil />} />
+              <Route path="/Panier" element={<Panier />} />
+              <Route path="/Shop" element={<Shop />} />        
+              <Route path="/Arrivals" element={<Arrivals />} />        
+              <Route path="/Sales" element={<Sales />} />        
+              <Route path="/Journals" element={<Jornals />} />        
+              <Route path="/admin" element={<AdminConnexion />} />
+              <Route path="/admin/*" element={<IsLogin />} />
+              <Route path="/Details" element={<DetailsCard />} />
+            </Routes>
+          </ProduitProvider>
         </PanierProvider>
       </GlobalContextProvider>
     </div>
