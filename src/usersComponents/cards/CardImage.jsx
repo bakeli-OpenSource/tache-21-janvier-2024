@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsPlus, BsEyeFill, BsSuitHeartFill } from "react-icons/bs";
 import { Tooltip } from 'react-tooltip';
-import DetailsCard from './DetailsCard';
 
 const CardImage = ({ image, heartColor, changeHeartColor }) => {
   return (

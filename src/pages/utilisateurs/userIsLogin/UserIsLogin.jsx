@@ -4,13 +4,14 @@ import { Route, Routes } from "react-router-dom";
 import Accueil from "../Accueil";
 import Profil from "../../admin/Profil";
 import Panier from "../panier/Panier";
-import AdminConnexion from "../../admin/connexion/AdminConnexion";
 import Navbar from "../NavbarUtilisateut/Navbar/Navbar";
 import { PanierProvider } from "../../../utils/contexte/PanierContext";
 import Shop from "../NavbarUtilisateut/NavbarLinks/Shop";
 import Arrivals from "../NavbarUtilisateut/NavbarLinks/Arrivals";
 import Sales from "../NavbarUtilisateut/NavbarLinks/Sales";
 import Journal from "../NavbarUtilisateut/NavbarLinks/Journal";
+import Inscription from "../../../usersComponents/incription/Inscription";
+import UserConnexion from "../../../usersComponents/userConnexion/UserConnexion";
 
 const UserIsLogin = () => {
   return (
@@ -25,13 +26,11 @@ const UserIsLogin = () => {
           <Route path="/vente" element={<Sales />} />
           <Route path="/apropos" element={<Journal />} />
           <Route path="/Panier" element={<Panier />} />
-          <Route path="/admin" element={<AdminConnexion />} />
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/connexion" element={<UserConnexion />} />
         </Routes>
       </PanierProvider>
     </SidebareContextProvider>
-    // <div>
-
-    // </div>
   );
 };
 
