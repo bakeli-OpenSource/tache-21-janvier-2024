@@ -14,17 +14,8 @@ export default function CategorieContextProvider({children}) {
       const valueContext = {
         table,
         categories,
-        nom,
-        quantite,
-        statutVisible,
-        statutInvisible, 
-        imageUrl,
-        setCategories, 
-        setNom,
-        setQuantite,
-        setStatutVisible,
-        setStatutInvisible,
-        setImageUrl
+        setCategories
+
       }
 
   return (
@@ -33,4 +24,3 @@ export default function CategorieContextProvider({children}) {
     </CategorieContext.Provider>
   );
 }
-

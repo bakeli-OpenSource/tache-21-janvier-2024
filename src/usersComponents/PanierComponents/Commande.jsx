@@ -64,7 +64,7 @@ const Commande = () => {
             required
         />
         <ComponentButton
-            className={`w-20 h-10 my-5 text-white bg-purple-500 ${
+            className={`w-auto py-2 px-3 my-5 rounded text-white bg-purple-500 ${
                 isPromoCodeApplied ? 'bg-gray-500 cursor-not-allowed' : ''
             }`}
             texte="Appliquez"
@@ -83,9 +83,8 @@ const Commande = () => {
         </h5>
     </div>
 
-    <button className="w-full px-4 py-2 rounded-lg text-[20px] text-white bg-black">
-        Valider la commande
-    </button>
+    <ComponentButton className="w-auto px-3 py-2 rounded text-[20px] text-white bg-black" texte="Valider la commande" />
+        
 </div>
     </div>
   );

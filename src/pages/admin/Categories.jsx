@@ -10,23 +10,14 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
+import { ProduitsCategories } from "./DetailsCategorie";
 
 export let newCategorie;
+export let categorieIdCli;
 
 const Categories = () => {
-  
-    const { 
-            table,
-            categories,
-            nom, 
-            quantite,
-            imageUrl,
-            setCategories,
-            setNom,
-            setQuantite,
-            setImageUrl
-          } = useContext(CategorieContext);
 
+  const { table, categories, setCategories } = useContext(CategorieContext);
 
   const [nom, setNom] = useState("");
   const [quantite, setQuantite] = useState("");
@@ -35,6 +26,8 @@ const Categories = () => {
   const navigate = useNavigate();
   const { open } = useSidebare();
   const { setShowModal } = useGlobal();
+
+  console.log(ProduitsCategories.length);
 
   const inputs = [
     {
@@ -58,8 +51,9 @@ const Categories = () => {
     {
       icon: <TbEyeShare />,
       color: "bg-green-500",
-      handleClick: () => {
+      handleClick: (categoryId) => {
         navigate("/admin/categories/DetailsCategorie");
+        handleDetail(categoryId)
       },
     },
     {
@@ -68,7 +62,7 @@ const Categories = () => {
       handleClick: (category) => {
         setIsEditing(true);
         setShowModal(true);
-        setEditingCategoryId(category._id); // Stockez l'ID de la catégorie
+        setEditingCategoryId(category._id);
         handleEditData(category);
       },
     },
@@ -78,24 +72,13 @@ const Categories = () => {
       handleClick: (categoryId) => {
         handleDelete(categoryId);
       },
+    },
+  ];
 
-      {
-        icon: <MdEdit />,
-        color: 'bg-orange-500',
-        hanldleClick: () => {
-          console.log('Ca marche 2');
-        },
-      },
-      {
-        icon: <MdOutlineDelete />,                       
-        color: 'bg-red-600',
-        hanldleClick: (categoryId) => {
-          handleDelete(categoryId);
-        },
-      },
-    }
-    ];
-
+  const handleDetail = (categoryId) => {
+    categorieIdCli = categoryId
+    console.log({categoryId});
+  };
 
   const [editingCategoryId, setEditingCategoryId] = useState(null);
 
@@ -112,7 +95,7 @@ const Categories = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:4000/api/categorie",
+          "https://kay-solu-api.onrender.com/api/categorie",
           formData
         );
         console.log("Catégorie ajoutée avec succès:", response.data);
@@ -130,7 +113,7 @@ const Categories = () => {
 
   const handleDelete = async (categoryId) => {
     try {
-      await axios.delete(`http://localhost:4000/api/categorie/${categoryId}`);
+      await axios.delete(`https://kay-solu-api.onrender.com/api/categorie/${categoryId}`);
       const updatedCategories = categories.filter(
         (category) => category._id !== categoryId
       );
@@ -152,7 +135,7 @@ const Categories = () => {
   const handleEdit = async (categoryId, newData) => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/categorie/${categoryId}`,
+        `https://kay-solu-api.onrender.com/api/categorie/${categoryId}`,
         newData
       );
       console.log("Catégorie modifiée avec succès:", response.data);
@@ -168,7 +151,7 @@ const Categories = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/categories");
+      const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
       setCategories(response.data);
       console.log("Catégories récupérées avec succès");
     } catch (error) {
