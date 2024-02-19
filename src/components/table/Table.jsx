@@ -17,10 +17,6 @@ const Tbody = ({tbody, actions}) => {
                 {tbody.length !== 0 ?
                 tbody.map((td, index) => (
                 <tr className="text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100" key={index}>
-                    {/* {td._id?
-                        <td className="px-4 py-3 font-semibold border text-ms">{td._id}</td>
-                        :null
-                    } */}
                         <td className="px-4 py-3 border">
                         <div className="flex items-center text-sm">
                         <div className="md:relative w-8 h-8 mr-3 rounded-full md:block">
@@ -79,7 +75,7 @@ const Tbody = ({tbody, actions}) => {
                     }
                 </tr>
                 ))  : (<tr className="h-[400px] ">
-                            <td className="" colSpan="4">
+                            <td className="" colSpan="8">
                                 <h3 className="text-center">Loading...</h3>
                             </td>
                         </tr>)}
