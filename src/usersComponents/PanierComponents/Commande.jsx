@@ -86,12 +86,12 @@ const Commande = () => {
 					</div>
 
 					<div className="flex justify-between">
-						<h4 className="text-uppercase mt-1 text-[15px]">Prix total</h4>
-						<h4 className="font-bold text-[20px]">{totalPrice} FCFA</h4>
+						<h4 className="text-uppercase mt-1 text-[14px]">Prix total</h4>
+						<h4 className="font-bold text-[21px]">{totalPrice} FCFA</h4>
 					</div>
 					<div className="flex justify-between">
-						<h4 className="text-uppercase mt-2 text-[15px]">Livraison</h4>
-						<h4 className="font-bold text-[20px]">
+						<h4 className="text-uppercase mt-2 text-[14px]">Livraison</h4>
+						<h4 className="font-bold text-[21px]">
 							{deliveryCosts[deliveryOption]} FCFA
 						</h4>
 					</div>
@@ -99,11 +99,11 @@ const Commande = () => {
 					<hr className="my-4 border-black" />
 
 					<div className="flex justify-between mb-5">
-						<h4 className="text-uppercase mt-2 text-[25px] text-blue-400">
+						<h4 className="text-uppercase mt-2 text-[20px] text-blue-400">
 							Total
 						</h4>
-						<h4 className="font-bold text-[35px] text-red-500">
-							{Number(totalPrice) + Number(deliveryCosts[deliveryOption])}
+						<h4 className="font-bold text-[30px] text-red-500">
+							{totalPrice + deliveryCosts[deliveryOption]}
 							FCFA
 						</h4>
 					</div>
