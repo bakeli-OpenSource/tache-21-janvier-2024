@@ -38,9 +38,6 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
       setter(e.target.value);
   }
 
-  const selectIs = () => {
-    
-  }
 
   useEffect(() => {
 
