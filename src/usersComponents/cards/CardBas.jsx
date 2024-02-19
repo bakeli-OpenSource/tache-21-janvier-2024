@@ -7,12 +7,12 @@ const CardBas = () => {
     <div className='relative group transition'>
         
         <div>
-          <img class="w-full h-full rounded-lg" src={image6} alt="vêtement" />
+          <img className="w-full h-full rounded-lg" src={image6} alt="vêtement" />
         </div>
         
         <div className='absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 
             opacity-0 group-hover:opacity-100 transition-opacity'>
-            <a href="https://www.instagram.com/bakelischool?igsh=ZTFza20yMjh2eml0" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/direct/t/104457564393183" target="_blank" rel="noopener noreferrer">
               <button className='flex justify-center items-center text-white w-7 h-7 rounded-full'>
                 <BsInstagram className='text-3xl' />
               </button>

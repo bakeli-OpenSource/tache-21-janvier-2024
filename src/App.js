@@ -1,17 +1,15 @@
-import AdminConnexion from './pages/admin/connexion/AdminConnexion';
-import IsLogin from './pages/admin/IsLogin';
-import GlobalContextProvider from './utils/contexte/GlobalContext';
-import Accueil from './pages/utilisateurs/Accueil';
-import Panier from './pages/utilisateurs/panier/Panier';
-import { Route, Routes } from 'react-router';
+import AdminConnexion from "./pages/admin/connexion/AdminConnexion";
+import IsLogin from "./pages/admin/IsLogin";
+import GlobalContextProvider from "./utils/contexte/GlobalContext";
+import { Route, Routes } from "react-router";
+import UserIsLogin from "./pages/utilisateurs/userIsLogin/UserIsLogin";
 
 function App() {
   return (
     <div className="min-h-screen App">
       <GlobalContextProvider>
         <Routes>
-          <Route path="/" element={<Accueil />} />
-          <Route path="/Panier" element={<Panier />} />
+          <Route path="/*" element={<UserIsLogin />} />
           <Route path="/admin" element={<AdminConnexion />} />
           <Route path="/admin/*" element={<IsLogin />} />
         </Routes>
@@ -19,6 +17,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

@@ -6,18 +6,20 @@ import { BsPersonCircle, BsSearch } from "react-icons/bs";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import NavInput from "../NavInput";
 
-const Navbar = () => {
+const Navbar = ({className}) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState(false);
+  
 
   return (
-    <nav className="bg-white fixed top-0 w-full">
+    <nav className={className}>
       <div className="flex px-8 py-3 items-center justify-between">
         <div className="flex items-center gap-8 w-full md:w-auto justify-between ">
           <div className="z-50 p- md:w-auto w-full flex justify-between">
-            <h1 className="md:cursor-pointer  text-2xl uppercase font-bold">
+            <Link to={'/'} className="md:cursor-pointer  text-2xl uppercase font-bold">
+
               Cein.
-            </h1>
+            </Link>
             <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
               {open ? <MdClose /> : <MdMenu />}
             </div>
@@ -30,8 +32,8 @@ const Navbar = () => {
         <div className="md:block hidden">
           <div className=" text-gray-800 py-1 flex items-center gap-9 justify-around ">
             <div
-              className={`flex flex-row-reverse   items-center ${
-                search ? "rounded-2xl border  py-1 px-3" : " "
+              className={`flex flex-row-reverse m-0 p-0 transition ease-in-out delay-150  items-center ${
+                search ? "rounded-2xl border  px-3 py-1" : " "
               } `}
             >
               <div
@@ -44,7 +46,11 @@ const Navbar = () => {
 
               <NavInput type="text" search={search} />
             </div>
-            <BsPersonCircle className="cursor-pointer " size={20} />
+            <Link to={"/admin"}>
+            
+            {/* <BsPersonCircle className="cursor-pointer " size={20} /> */}
+            Se connecter
+            </Link>
             <Link to="/Panier" className="flex items-center">
               <span className="mr-">
                 <ShoppingCartIcon className="w-6 h-6" />
