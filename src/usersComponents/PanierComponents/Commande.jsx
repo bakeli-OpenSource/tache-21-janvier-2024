@@ -76,7 +76,7 @@ const Commande = () => {
 							}}
 						/>
 						<ComponentButton
-							className={`w-20 h-10 my-3 text-white bg-purple-500 ${
+							className={`w-auto px-3 py-2 rounded my-3 text-white bg-purple-500 ${
 								isPromoCodeApplied ? 'bg-gray-500 cursor-not-allowed' : ''
 							}`}
 							texte="Appliquez"
@@ -110,7 +110,7 @@ const Commande = () => {
 
 					<ComponentButton
 						type="submit"
-						className="w-full px-2 py-2 rounded-lg text-[18px] text-white bg-black"
+						className="bg-black text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded"
 						texte="Valider la commande"
 					></ComponentButton>
 				</form>
