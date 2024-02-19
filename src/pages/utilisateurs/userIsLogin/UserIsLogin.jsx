@@ -13,10 +13,12 @@ import Journal from "../NavbarUtilisateut/NavbarLinks/Journal";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
 import Inscription from "../../../usersComponents/incription/Inscription";
 import UserConnexion from "../../../usersComponents/userConnexion/UserConnexion";
+import DetailsCard from "../../../usersComponents/cards/DetailsCard";
 
 const UserIsLogin = () => {
   return (
     <SidebareContextProvider>
+
       <ProduitProvider>
         <PanierProvider>
           <Navbar className="bg-white z-50 fixed top-0 w-full" />
@@ -30,6 +32,7 @@ const UserIsLogin = () => {
             <Route path="/Panier" element={<Panier />} />
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/connexion" element={<UserConnexion />} />
+            <Route path="/details/:_id" element={<DetailsCard />} />
           </Routes>
         </PanierProvider>
       </ProduitProvider>

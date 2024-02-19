@@ -11,7 +11,7 @@ const Produit = ({ produit }) => {
       <div className='border border-[#e4e4e4] h-[300px] relative overflow-hidden group transition'>
         <div className='w-full h-full flex justify-center items-center'>
           {/* image */}
-          <Link to={`/produit/${_id}`} className='w-[200px] mx-auto flex justify-center items-center'>
+          <Link to={`/details/${_id}`} className='w-[200px] mx-auto flex justify-center items-center'>
             <img className='max-h-[160px] group-hover:scale-110 transition duration-300' src={imageUrl} alt='vetement' />
           </Link>
           {/* bouton plus */}
