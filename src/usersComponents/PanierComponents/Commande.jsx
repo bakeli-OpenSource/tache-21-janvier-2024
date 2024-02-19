@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { usePanier } from '../../utils/contexte/PanierContext';
 import ComponentButton from '../button/ComponentButton';
 
@@ -18,6 +19,10 @@ const Commande = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (deliveryOption === '') {
+			alert('Veuillez choisir une option de livraison.');
+			return;
+		}
 		alert(
 			`Votre commande a bien été prise en compte. Vous recevrez un courriel de confirmation dans 24 heures.`,
 		);
@@ -34,9 +39,7 @@ const Commande = () => {
 					<h5 className="text-uppercase text-[20px] font-bold">
 						Produits {totalItems}
 					</h5>
-					<h5 className="text-[20px] font-bold">
-						{totalPrice.toFixed(2)} FCFA
-					</h5>
+					<h5 className="text-[20px] font-bold">{totalPrice} FCFA</h5>
 				</div>
 
 				<form action="" onSubmit={handleSubmit}>
@@ -47,7 +50,6 @@ const Commande = () => {
 							className="w-full p-2 bg-white rounded"
 							value={deliveryOption}
 							onChange={(e) => setDeliveryOption(e.target.value)}
-							required
 						>
 							<option value="" disabled hidden>
 								Choisir votre livraison
@@ -85,10 +87,7 @@ const Commande = () => {
 
 					<div className="flex justify-between">
 						<h4 className="text-uppercase mt-1 text-[15px]">Prix total</h4>
-						<h4 className="font-bold text-[20px]">
-							{totalPrice.toFixed(2)}
-							FCFA
-						</h4>
+						<h4 className="font-bold text-[20px]">{totalPrice} FCFA</h4>
 					</div>
 					<div className="flex justify-between">
 						<h4 className="text-uppercase mt-2 text-[15px]">Livraison</h4>
@@ -104,7 +103,7 @@ const Commande = () => {
 							Total
 						</h4>
 						<h4 className="font-bold text-[35px] text-red-500">
-							{(totalPrice + deliveryCosts[deliveryOption]).toFixed(2)}
+							{Number(totalPrice) + Number(deliveryCosts[deliveryOption])}
 							FCFA
 						</h4>
 					</div>
