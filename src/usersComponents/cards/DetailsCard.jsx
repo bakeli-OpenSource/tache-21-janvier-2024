@@ -1,11 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-// import CardImage from './CardImage'
-// import Cards from './Cards'
-import { IoArrowBack } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
 import useSidebare from '../../utils/hooks/useSidebare';
-import HeaderTable, { BouttonComponent } from '../../components/headerTable/HeaderTable';
 import ComponentButton from '../button/ComponentButton';
 
 // https://kay-solu-api.onrender.com/api/produits
@@ -28,7 +24,7 @@ const DetailsCard = () => {
       {/* <HeaderTable title="Détail du produit" /> */}
       {produits !== null ?
       <section className="overflow-hidden py-11 font-poppins ">
-        <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6 shadow-xl">
+        <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 shadow-xl bg-gray-600">
             <div className="flex flex-wrap -mx-4">
                 <div className="w-full px-4 md:w-1/2 ">
                     <div className=" top-0 z-50 overflow-hidden ">
