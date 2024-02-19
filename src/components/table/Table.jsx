@@ -14,7 +14,7 @@ const Thead = ({thead}) => {
 const Tbody = ({tbody, actions}) => {
     return (
         <tbody className='bg-white'>
-                {tbody !== null ?
+                {tbody.length !== 0 ?
                 tbody.map((td, index) => (
                 <tr className="text-gray-700" key={index}>
                     {/* {td._id?
@@ -24,12 +24,14 @@ const Tbody = ({tbody, actions}) => {
                         <td className="px-4 py-3 border">
                         <div className="flex items-center text-sm">
                         <div className="md:relative w-8 h-8 mr-3 rounded-full md:block">
-                            <img className="object-cover w-full h-full rounded-full" src={td.imageUrl} alt="" loading="lazy" />
+                            {td.imageUrl?
+                                <img className="object-cover w-full h-full rounded-full" src={td.imageUrl} alt="" loading="lazy" />
+                            :null}
                             <div className="md:absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
                             <p className="font-semibold text-black">{td.nom}</p>
-                            <p className="text-xs text-gray-600">{td.description}</p>
+                            <p className="text-xs text-gray-600">{td.titre}</p>
                         </div>
                         </div>
                     </td>
@@ -71,7 +73,7 @@ const Tbody = ({tbody, actions}) => {
                     {actions ?
                         <td className="px-4 py-3 text-ms font-semibold border text-center">
                             {actions.map((action, index) => (
-                                <button key={index} className={`${action.color} p-1 text-white rounded ml-2`} onClick={() => action.hanldleClick(td._id)}>{action.icon}</button>
+                                <button key={index} className={`${action.color} p-1 text-white rounded ml-2`} onClick={() => action.handleClick(td._id)}>{action.icon}</button>
                             ))}
                         </td> : null
                     }

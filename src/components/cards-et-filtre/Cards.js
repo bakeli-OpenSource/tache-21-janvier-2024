@@ -7,7 +7,7 @@ import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 
 const Cards = () => {
   return (
-    <div className=" py-16 grid lg:grid-cols-12 md:grid-cols-6   gap-6 ">
+    <div className=" py-16 grid lg:grid-cols-12 md:grid-cols-6 gap-6 ">
       <UniteCard bgColor="border-s-4 border-sky-500  ">
         <div>
           <div className="flex justify-between px-3">

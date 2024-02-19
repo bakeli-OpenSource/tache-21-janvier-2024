@@ -4,6 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../hooks/useGlobal";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 
 export const ProduitsContext = createContext();
@@ -11,7 +12,7 @@ export const ProduitsContext = createContext();
 const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
-  const [url, setUrl] = useState("http://localhost:4000/api/produits")
+  // const [url, setUrl] = useState("https://kay-solu-api.onrender.com/api/produits")
   // Création des contexts pour formuulaire
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -31,57 +32,83 @@ const ProduitContextProvider = ({ children }) => {
 
   // Récupération de tous les produits
   useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(json => setProduits(json))
-  }, [url])
+    const fetchProduit = async () => {
+      try {
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits");
+        setProduits(response.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des produits:", error);
+      }
+    };
+
+    fetchProduit();
+  }, [produits]);
 
   // Suppression Produit
-  const deleteProduit = (id) => {
-    setUrl(`http://localhost:4000/api/supprimerproduit/${id}`, {
-      method: "DELETE",
-    })
-      .then(response => response.json())
-      .then(() => {
-        setProduits(values => {
-          return values.filter(item => item.id !== id)
-        })
-      })
-  }
+  const deleteProduit = async (id) => {
+    try {
+      // Effectuez une requête DELETE vers votre API avec axios
+      await axios.delete(`https://kay-solu-api.onrender.com/api/produits/${id}`);
+
+      // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
+      const updatedProd = produits.filter(
+        (prod) => prod._id !== id
+      );
+      setProduits(updatedProd);
+
+      console.log("Produit supprimée avec succès");
+    } catch (error) {
+      console.error("Erreur lors de la suppression du produit:", error);
+    }
+  };
 
   // Ajout de Produit
-  const addProduit = (newProd) => {
-    if (newProd.nom && newProd.imageUrl && newProd.titre && newProd.description && newProd.quantite && newProd.categorie && newProd.carracteristique && newProd.prix && newProd.couleur && newProd.taille && newProd.fournisseur) {
-      fetch("http://localhost:4000/api/produit", {
-        method: "POST",
-        body: JSON.stringify({
-          nom: newProd.nom,
-          imageUrl: newProd.imageUrl,
-          titre: newProd.titre,
-          description: newProd.description,
-          quantite: newProd.quantite,
-          categorie: newProd.categorie,
-          carracteristique: newProd.carracteristique,
-          prix: newProd.prix,
-          couleur: newProd.couleur,
-          taille: newProd.taille,
-          fournisseur: newProd.fournisseur
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then(response => response.json())
-        .then(data => {
-          // setProduits([...produits, data]) 
-          setShowModal(false)
-          alert('Produit ajouté avec succès')
-        })
+  const addProduit = async (produit) => {
+    try {
+        const formData = new FormData();
+        formData.append('nom', produit.nom);
+        formData.append('imageUrl', produit.imageUrl);
+        formData.append('titre', produit.titre);
+        formData.append('description', produit.description);
+        formData.append('quantite', produit.quantite);
+        formData.append('categorie', produit.categorie);
+        formData.append('carracteristique', produit.carracteristique);
+        formData.append('prix', produit.prix);
+        formData.append('couleur', produit.couleur);
+        formData.append('taille', produit.taille);
+        formData.append('fournisseur', produit.fournisseur);
+        const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+
+        if (response.status === 201) {
+            console.log('Produit ajouté avec succès:', response.data);
+            alert('Produit ajouté avec succès:');
+            setShowModal(false);
+        }
+         else {
+            throw new Error('Erreur lors de l\'ajout du produit');
+        }
+    } catch (error) {
+        console.error('Erreur lors de l\'ajout du produit:', error);
     }
   }
 
+  const hanldleUpdate = async (id) => {
+    setShowModal(true)
+      try {
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
+        setNom(response.nom)
+      } catch (error) {
+        console.error("Erreur lors de la récupération des produits:", error);
+      }
+  }
+
     const table = [
-      'Article', 'Quantité','Prix' , 'Actions'
+      'Article', 'Quantité', 'Prix', 'Actions'
     ]
 
     
@@ -90,7 +117,7 @@ const ProduitContextProvider = ({ children }) => {
         // Voire Détails
         icon: <TbEyeShare/>,
         color: 'bg-green-500',
-        hanldleClick: (id) => {
+        handleClick: (id) => {
           console.log('Ca marche 1')
           navigate("DetailsProd/" + id);
         }
@@ -99,13 +126,15 @@ const ProduitContextProvider = ({ children }) => {
           // Modification
           icon: <MdEdit />,
           color: 'bg-orange-500',
-          hanldleClick: () => console.log('Modifier')
+          handleClick: (id) => {
+            hanldleUpdate(id)
+          }
         },
         {
           // Suppression
           icon: <MdOutlineDelete />,
           color: 'bg-red-600',
-          hanldleClick: (id) => {
+          handleClick: (id) => {
             deleteProduit(id)
           }
         }
