@@ -12,7 +12,6 @@ export const ProduitsContext = createContext();
 const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
-  // const [url, setUrl] = useState("https://kay-solu-api.onrender.com/api/produits")
   // Création des contexts pour formuulaire
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -20,11 +19,14 @@ const ProduitContextProvider = ({ children }) => {
   const [description, setDescription] = useState('')
   const [quantite, setQuantite] = useState('')
   const [categorie, setCategorie] = useState('')
+  const [categorieId, setCategorieId] = useState('')
   const [carracteristique, setCarracteristique] = useState('')
   const [prix, setPrix] = useState('')
   const [couleur, setCouleur] = useState('')
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
+  const [titreModal, setTitreModal] = useState('')
+  const [corpModal, setCorpModal] = useState('')
   // 
   const { setShowModal } = useGlobal()
   
@@ -72,11 +74,13 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('description', produit.description);
         formData.append('quantite', produit.quantite);
         formData.append('categorie', produit.categorie);
+        formData.append('categorieId', produit.categorieId);
         formData.append('carracteristique', produit.carracteristique);
         formData.append('prix', produit.prix);
         formData.append('couleur', produit.couleur);
         formData.append('taille', produit.taille);
         formData.append('fournisseur', produit.fournisseur);
+        
         const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -87,6 +91,7 @@ const ProduitContextProvider = ({ children }) => {
         if (response.status === 201) {
             console.log('Produit ajouté avec succès:', response.data);
             alert('Produit ajouté avec succès:');
+            
             setShowModal(false);
         }
          else {
@@ -99,9 +104,21 @@ const ProduitContextProvider = ({ children }) => {
 
   const hanldleUpdate = async (id) => {
     setShowModal(true)
-      try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
-        setNom(response.nom)
+    setTitreModal('Modification du produit')
+    try {
+      const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
+      const datasUpdates = response.data
+        setNom(datasUpdates.nom)
+        setTitre(datasUpdates.titre)
+        setQuantite(datasUpdates.quantite)
+        setCarracteristique(datasUpdates.carracteristique)
+        setPrix(datasUpdates.prix)
+        setCouleur(datasUpdates.couleur)
+        setTaille(datasUpdates.taille)
+        setFournisseur(datasUpdates.fournisseur)
+        setCategorie(datasUpdates.categorie)
+        setCategorieId(datasUpdates.categorieId)
+        setDescription(datasUpdates.description)
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
@@ -145,8 +162,9 @@ const ProduitContextProvider = ({ children }) => {
     produits,
     addProduit,
     actions,
+    titreModal, setTitreModal, corpModal, setCorpModal,
     nom, setNom, imageUrl, setImageUrl, titre, setTitre, description, setDescription, quantite, setQuantite,
-    carracteristique, setCarracteristique, categorie, setCategorie, prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
+    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
   };
 
   return <ProduitsContext.Provider value={value}>{children}</ProduitsContext.Provider>;

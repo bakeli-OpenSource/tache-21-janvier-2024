@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
-import { useLocation } from 'react-router-dom';
-import { newCategorie } from "../../pages/admin/Categories";
 import axios from 'axios';
 
 const ProduitsAdmin = () => {
 
 
-  const {table, produits, addProduit, actions, nom, setNom, imageUrl, setImageUrl,
+  const {table, produits, addProduit, actions, titreModal, setTitreModal, corpModal, setCorpModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
-          carracteristique, setCarracteristique, categorie, setCategorie,
+          carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
         } = useProduits();
   
@@ -32,6 +30,7 @@ const ProduitsAdmin = () => {
       label: "Image du produit",
       type: "file",
       name: "imageUrl",
+      // value: imageUrl,
       setValue: setImageUrl
     },
     {
@@ -75,13 +74,7 @@ const ProduitsAdmin = () => {
       type: "text",
       value: fournisseur,
       setValue: setFournisseur
-    },
-    // {
-    //   label: "Descrip",
-    //   type: "text",
-    //   value: description,
-    //   setValue: setDescription
-    // },
+    }
   ]
 
 
@@ -92,14 +85,16 @@ const ProduitsAdmin = () => {
     setValue: setDescription
   }
 
-  const [selectedCategoryId, setSelectedCategoryId] = useState('');
 
   const hanldleSubmit = (e) => {
     e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      categorie: selectedCategoryId, carracteristique, prix, couleur, taille, fournisseur,
+      categorie,categorieId, carracteristique, prix, couleur, taille, fournisseur,
     }
+    console.log({categorie})
+    console.log({categorieId})
+    console.log({recupInput})
     addProduit(recupInput)
     setNom('')
     setImageUrl('')
@@ -120,7 +115,7 @@ const ProduitsAdmin = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/categories");
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
         setCategories(response.data);
         console.log("Catégories récupérées avec succès");
       } catch (error) {
@@ -141,10 +136,9 @@ const ProduitsAdmin = () => {
     const selectedCategoryName = e.target.value;
     const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
     if (selectedCategory) {
-      setSelectedCategoryId(selectedCategory._id);
-    } else {
-      setSelectedCategoryId('');
-    }
+      setCategorie(selectedCategoryName);
+      setCategorieId(selectedCategory._id);
+    } 
     
   };
   
@@ -158,11 +152,23 @@ const ProduitsAdmin = () => {
     }
   ]
 
+  setTitreModal(
+    'Ajouter un produits'
+  )
+  // setCorpModal(
+  //   <Formulaire 
+  //               inputs={inputs} 
+  //               textarea={textarea} 
+  //               selects={selects}
+  //               onSubmit={hanldleSubmit} 
+  //               handleSelectChange = {handleSelectChange}
+  //               />
+  // )
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
       <HeaderTable
        title="Produits"
-       nomAjout="Ajouter des produits" 
+       nomAjout={titreModal} 
        body={<Formulaire 
                 inputs={inputs} 
                 textarea={textarea} 

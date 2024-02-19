@@ -19,7 +19,6 @@ export default function Accueil() {
     <div>
       <Navbar className="bg-white z-50 fixed top-0 w-full"/>
       <Header />
-      
     <div className='flex flex-col px-[35px]'>
       <section className='py-10'>
         <div className='container mx-auto'>
@@ -33,6 +32,7 @@ export default function Accueil() {
           </div>
         </div>
       </section>
+
       <div>
         <ScrollingText />
       </div>
