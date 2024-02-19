@@ -40,9 +40,9 @@ const DetailsProduits = () => {
                     </div>
                 </div>
                 <div className="w-fullmd:w-1/2 ">
-                    <div className="lg:pl-20">
+                    <div className="lg:pl-10">
                         <div className="mb-8 ">
-                            <h2 className="max-w-xl mt-2 text-2xl font-bold  md:text-4xl">
+                            <h2 className="max-w-xl mt-2 text-2xl font-bold md:text-4xl">
                               {data.nom}
                             </h2>
                             <div className="flex items-center mb-6">
@@ -55,7 +55,7 @@ const DetailsProduits = () => {
                             <h2 className="w-16 text-xl font-bold mt-2">
                                 Prix:
                             </h2>
-                                <span>{data.prix} f cfa</span>
+                                <span>{data.prix.toLocaleString('de-DE')} f cfa</span>
                             </p>
                         </div>
                        <Titre cle="Catégorie" valeure={data.categorie} />
