@@ -3,11 +3,12 @@ import { SidebareContext } from "../contexte/SidebareContext";
 
 const useSidebare = () => {
     const useContextSidebare = useContext(SidebareContext)
-    const { open, setSmallScreen, screenSize, smallScreen } = useContextSidebare
+    const { open, setSmallScreen, screenSize, smallScreen, profile } = useContextSidebare
 
     const smallScreenSize = useCallback(() => {
         setSmallScreen(window.innerWidth);
         screenSize()
+        // profile()
     }, [setSmallScreen, screenSize]);
 
     useEffect(() => {
@@ -20,11 +21,15 @@ const useSidebare = () => {
         return () => {
             window.removeEventListener('resize', handleResize)
         };
+
+
     }, [smallScreenSize]);
 
     useEffect(() => {
         smallScreenSize();
         screenSize()
+        // profile()
+
     }, [open, setSmallScreen, screenSize, smallScreenSize, smallScreen]);
 
     return useContextSidebare

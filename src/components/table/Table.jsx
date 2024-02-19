@@ -1,3 +1,4 @@
+import Loader from "../loader/loader"
 
 const Thead = ({thead}) => {
     return (
@@ -76,7 +77,8 @@ const Tbody = ({tbody, actions}) => {
                 </tr>
                 ))  : (<tr className="h-[400px] ">
                             <td className="" colSpan="8">
-                                <h3 className="text-center">Loading...</h3>
+                                {/* <h3 className="text-center">Loading...</h3> */}
+                                <Loader />
                             </td>
                         </tr>)}
         </tbody>

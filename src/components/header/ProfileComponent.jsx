@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 import useSidebare from "../../utils/hooks/useSidebare";
 import Form from "./Form";
 
 const ProfileComponent = () => {
-  const { user, updateUserProfile } = useSidebare();
+  const { user, updateUserProfile, profile } = useSidebare();
   const [editedUser, setEditedUser] = useState({ ...user, profileImage: null });
+
+  useEffect(() => {
+    setEditedUser(user)
+    profile()
+  }, [user, profile])
+
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();

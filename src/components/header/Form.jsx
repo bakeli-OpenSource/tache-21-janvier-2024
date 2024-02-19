@@ -46,32 +46,32 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
         <div className="flex w-full mt-5 align-center justify-center flex-col  md:flex-row gap-5">
           <div className="mb-5 mt-5 w-full md:w-1/2">
             <label
-              htmlFor="fullName"
+              htmlFor="prenom"
               className="block text-sm font-medium text-gray-600"
             >
-              FullName
+              Prenom
             </label>
             <input
               type="text"
-              id="fullName"
-              name="fullName"
-              value={editedUser.fullName}
+              id="prenom"
+              name="prenom"
+              value={editedUser.prenom}
               onChange={handleChange}
               className="mt-1 p-2 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
             />
           </div>
           <div className="mb-5 mt-5 w-full md:w-1/2">
             <label
-              htmlFor="lastName"
+              htmlFor="nom"
               className="block text-sm font-medium text-gray-600"
             >
-              LastName
+              nom
             </label>
             <input
               type="text"
-              id="lastName"
-              name="lastName"
-              value={editedUser.lastName}
+              id="nom"
+              name="nom"
+              value={editedUser.nom}
               onChange={handleChange}
               className="mt-1 p-2 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
             />
