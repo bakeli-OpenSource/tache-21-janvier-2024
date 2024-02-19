@@ -69,14 +69,15 @@ function Revenue() {
 
   return (
 
-    <div className='basis-[50%] w-[34.6rem] border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
+    <div className='basis-[50%] border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
           <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
       </div>
 
       <div className="w-full">
           <LineChart
-              width={550}
+              width={500}
+              min-width={320}
               height={450}
               data={datas}
               margin={{
