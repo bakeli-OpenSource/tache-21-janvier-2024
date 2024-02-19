@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 
 const Form = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+
   return (
     <form className="w-full md:w-3/4 translate-x- duration-700 transition-all">
         <h1 className="text-2xl text-center">Connexion</h1>
@@ -20,6 +31,8 @@ const Form = () => {
                 id="email"
                 name="email"
                 className="mt-1 p-2 bg-gray-200 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-5 mt- w-full ">
@@ -35,6 +48,8 @@ const Form = () => {
                 id="password"
                 name="password"
                 className="mt-1 p-2 bg-gray-200 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+                value={formData.password}
+                onChange={handleChange}
               />
             </div>
          
