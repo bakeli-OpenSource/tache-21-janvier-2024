@@ -14,21 +14,21 @@ import Journal from "../NavbarUtilisateut/NavbarLinks/Journal";
 
 const UserIsLogin = () => {
   return (
-      <SidebareContextProvider>
-        <PanierProvider>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Accueil />} />
-            <Route path="/profil" element={<Profil />} />
-            <Route path="/Shop" element={<Shop />} />
-            <Route path="/Arrivals" element={<Arrivals />} />
-            <Route path="/Sales" element={<Sales />} />
-            <Route path="/Journals" element={<Journal />} />
-            <Route path="/Panier" element={<Panier />} />
-            <Route path="/admin" element={<AdminConnexion />} />
-          </Routes>
-        </PanierProvider>
-      </SidebareContextProvider>
+    <SidebareContextProvider>
+      <PanierProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Accueil />} />
+          <Route path="/profil" element={<Profil />} />
+          <Route path="/boutique" element={<Shop />} />
+          <Route path="/Arrivals" element={<Arrivals />} />
+          <Route path="/vente" element={<Sales />} />
+          <Route path="/apropos" element={<Journal />} />
+          <Route path="/Panier" element={<Panier />} />
+          <Route path="/admin" element={<AdminConnexion />} />
+        </Routes>
+      </PanierProvider>
+    </SidebareContextProvider>
     // <div>
 
     // </div>
