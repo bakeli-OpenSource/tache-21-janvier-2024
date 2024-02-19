@@ -1,13 +1,13 @@
 import React from 'react'
 import ProduitContextProvider from '../../utils/contexte/ProduitsContext'
 import DetailsCategorie from '../../pages/admin/DetailsCategorie'
-import Graphique2 from '../../pages/admin/graphique2/Graph'
+import Shop from '../../pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Shop'
 
 
 const DetailsCategorieUseProvider = () => {
   return (
     <ProduitContextProvider>
-      <Graphique2/>
+      <Shop/>
       <DetailsCategorie />
     </ProduitContextProvider>
   )
