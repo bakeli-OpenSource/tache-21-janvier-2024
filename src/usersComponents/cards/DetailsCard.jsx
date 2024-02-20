@@ -10,18 +10,18 @@ import HeaderTable from '../../components/headerTable/HeaderTable';
 // https://kay-solu-api.onrender.com/api/produits
 
 const DetailsCard = () => {
-  const { _id, imageUrl, categorie, titre, prix } = Produit;
+  // const { _id, imageUrl, categorie, titre, prix } = Produit;
   const {id} = useParams();
     const [produits, setProduits] = useState([])
     const fetchProduit = async (_id) => {
       try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + _id);
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
         setProduits(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
     };
-    fetchProduit(_id);
+    fetchProduit(id);
     const {open} = useSidebare()
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>
@@ -33,11 +33,9 @@ const DetailsCard = () => {
                 <div className="w-full px-4 md:w-1/2 ">
                     <div className=" top-0 z-50 overflow-hidden ">
                         <div className="relative mb-6 lg:mb-10 lg:h-full ">
-                            <img src={imageUrl} alt="" className="object-cover w-full lg:h-full " />
+                            <img src={produits.imageUrl} alt="" className="object-cover w-full lg:h-full " />
                         </div>
                         <div className="flex-wrap hidden md:flex ">
-                            <image src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg" />
-                            <image src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg" />
                             <image src={produits.imageUrl} />
                             <image src={produits.imageUrl} />
                         </div>
@@ -47,7 +45,7 @@ const DetailsCard = () => {
                     <div className="lg:pl-20">
                         <div className="mb-8 ">
                             <h2 className="max-w-xl mt-2 text-2xl font-bold  md:text-4xl">
-                             Image de la nature {produits.nom}
+                             {produits.nom}
                             </h2>
                             <div className="flex items-center mb-6">
                                 <p className="">{produits.titre}</p>
@@ -59,7 +57,7 @@ const DetailsCard = () => {
                             <h2 className="w-16 text-xl font-bold mt-2">
                                 Prix:
                             </h2>
-                                <span>{prix}</span>
+                                <span>{produits.prix}</span>
                             </div>
                             <div>
                               <h3 className='text-sm font-bold mt-2'>Couleur du produit</h3>
