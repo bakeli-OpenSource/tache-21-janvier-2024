@@ -1,4 +1,3 @@
-
 import CategoriesAdmin from "../../components/categories/CategoriesAdmin";
 import Header from "../../components/header";
 import Sidebare from "../../components/sidebare/Sidebare";
@@ -12,30 +11,78 @@ import DetailsCommandeProvide from "./DetailsCommandeProvide";
 import Profil from "./Profil";
 import { useNavigate, Route, Routes } from "react-router";
 import useGlobal from "../../utils/hooks/useGlobal";
+import ListeClients from "../../components/Clients/ListeClients";
 // import Navigate from "navigate";
 
-
 function IsLogin() {
+  const { isLoggedIn } = useGlobal();
 
-  const { isLoggedIn } = useGlobal()
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="App min-h-screen">
       <SidebareContextProvider>
-        { isLoggedIn() ? <Header /> : (navigate("/admin")) }
+        {isLoggedIn() ? <Header /> : navigate("/admin")}
         <div className="App pt-[56px] h-screen  gap-6 bg-gray-100">
-          { isLoggedIn() ? <Sidebare /> : (navigate("/admin")) }
+          {isLoggedIn() ? <Sidebare /> : navigate("/admin")}
           <Routes>
-            {isLoggedIn() ? ( <Route path="/dashboard" element={<Dashboard />} /> ) : (navigate("/admin"))}
-            {isLoggedIn() ? ( <Route path="/profil" element={<Profil />} /> ) : (navigate("/admin"))}
-            {isLoggedIn() ? ( <Route path="/categories" element={<CategoriesAdmin />} /> ) : (navigate("/admin"))}
-            {isLoggedIn() ? ( <Route path="/categories/DetailsCategorie" element={<DetailsCategorieUseProvider />} /> ) : (navigate("/admin"))}
-            {isLoggedIn() ? ( <Route path="/produits/*" element={<Produits />} /> ) : (navigate("/admin"))}
-            {isLoggedIn() ? ( <Route path='/produits/DetailsProd/:id' element={<DetailsProduits />} /> ) : (navigate("/admin"))}
-            {isLoggedIn() ? ( <Route path="/commandes" element={<Commandes />} /> ) : (navigate("/admin"))}
-            {isLoggedIn() ? ( <Route path="/commandes/DetailsCommande" element={ < DetailsCommandeProvide />} /> ) : (navigate("/admin"))}
+            {isLoggedIn() ? (
+              <Route path="/dashboard" element={<Dashboard />} />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route path="/profil" element={<Profil />} />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route path="/categories" element={<CategoriesAdmin />} />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route
+                path="/categories/DetailsCategorie"
+                element={<DetailsCategorieUseProvider />}
+              />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route path="/produits/*" element={<Produits />} />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route
+                path="/produits/DetailsProd/:id"
+                element={<DetailsProduits />}
+              />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route path="/commandes" element={<Commandes />} />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route
+                path="/commandes/DetailsCommande"
+                element={<DetailsCommandeProvide />}
+              />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route
+                path="/clients"
+                element={<ListeClients />}
+              />
+            ) : (
+              navigate("/admin")
+            )}
           </Routes>
         </div>
       </SidebareContextProvider>

@@ -6,13 +6,12 @@ import { NavLink } from "react-router-dom";
 const SidebareLink = ({ menus, open }) => {
   const location = useLocation();
   const { screenSize, setOpen, smallScreen } = useSidebare();
-
   const handleSidebare = () => {
     setOpen(!open);
   };
 
   return (
-    <div className="mt-4 flex flex-col gap-4 relative">
+    <div className="mt-7 flex flex-col gap-5 relative">
       {menus?.map((menu, i) => (
         <NavLink
           to={menu?.link}
