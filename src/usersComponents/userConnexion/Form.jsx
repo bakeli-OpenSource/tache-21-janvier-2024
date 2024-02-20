@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
+import { FaEyeSlash } from "react-icons/fa";
 
 const Form = () => {
   const navigate = useNavigate()
@@ -72,6 +73,7 @@ const Form = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
+
             </div>
          
         </div>

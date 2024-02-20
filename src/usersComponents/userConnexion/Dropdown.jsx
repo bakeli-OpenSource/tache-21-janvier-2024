@@ -10,11 +10,7 @@ const Dropdown = () => {
   const { handleLogoutUser, profileUser, dropdown, handleToggle } = useGlobal();
 
   const navigate = useNavigate();
-  // const [dropdown, setDropdown] = useState(false);
-
-  // const handleToggle = () => {
-  //   setDropdown(!dropdown);
-  // };
+  
 
   useEffect(() => {
     profileUser()
@@ -40,7 +36,7 @@ const Dropdown = () => {
       >
         <FaRegUser className="cursor-pointer mr-2" size={20} />
         
-        {tokenClient === null ? "Se connecter" : `bonjour ${prenom}` }
+        {tokenClient === null ? "Se connecter" : `bonjour ${prenom === undefined ? "" : prenom}` }
         <RiArrowDropDownLine className="p-0 mt-2 mx-0" size={30} />
       </div>
 
