@@ -1,38 +1,45 @@
-import React, { createContext } from "react";
-import { TbEyeShare } from "react-icons/tb";
+import React, { createContext, useState } from "react";
+// import { TbEyeShare } from "react-icons/tb";
+// import { useNavigate } from "react-router";
 
 export const CommandeContext = createContext();
 
 const CommandeContextProvider = ({ children }) => {
+  // const navigate = useNavigate()
+  
   
       const table = [
         'Référence', 'E-mail','Nombres article', 'Date','Etat de la commande',  'Prix total', 'Actions'
     ]
-      const table2 = [
-        {
-          id: Math.floor(Math.random()*10000000),
-          email:'test@gmail.com',
-          quantite: 50,
-          date: '6/4/2000',
-          etat:'En attente',
-          prix:"30 000fr"
-        }
-    ]
     
-    const actions = [
-        {
-          icon: <TbEyeShare/>,
-          color: 'bg-green-500',
-          hanldleClick: () => console.log('Ca marche 1')
-        }
-      ]
-    
+    const [email, setEmail] = useState("")
+    const [quantite, setQuantite] = useState(0)
+    const [date, setDate] = useState('')
+    const [etat, setEtat] = useState('')
+    const [price, setPrice] = useState("")
+    const [commandes, setCommandes] = useState([])
+
+    const table1 = [
+      'Référenc', 'Nom du Produict','Taille', 'Quantité','kilo',  'Prix Unitaire ', 'Prix'
+  ]
 
     
-  
-
   const value = {
-    table, table2, actions
+    table, 
+    commandes,
+    table1, 
+    // actions,  
+    email,
+    quantite,
+    price,
+    setPrice,
+    setEmail,
+    date,
+    etat,
+    setEtat,
+    setDate,
+    setQuantite,
+    setCommandes
   };
 
   return <CommandeContext.Provider value={value}>{children}</CommandeContext.Provider>;

@@ -1,50 +1,50 @@
-import React from 'react'
-import Cards from '../../usersComponents/cards/Cards'
+import React, {useContext} from 'react'
 import Footer from '../../usersComponents/footer/Footer'
-import { Link } from 'react-router-dom'; 
-import { ShoppingCartIcon } from '@heroicons/react/outline';
+import Navbar from './NavbarUtilisateut/Navbar/Navbar'
+import Header from '../../usersComponents/headerUserComponent/Header'
+import ScrollingText from '../../usersComponents/cards/ScrollingText'
+import Produit from '../../usersComponents/cards/Produit'
+import { ProduitContext } from '../../usersComponents/cards/ProduitContext'
+import useGlobal from '../../utils/hooks/useGlobal'
 
 
 export default function Accueil() {
-  
+  const { produits } = useContext(ProduitContext);
+  const filteredProducts = produits.filter((item) => {
+    return (
+      item.categorie === "Chaussures" || item.categorie === "Accessoires" || item.categorie === "vetements"
+    )
+  })
+  const {setDropdown} = useGlobal()
+
   return (
-    <div className='container flex flex-col items-center justify-center mx-auto'>
-        <Link to="/Panier" className="flex items-center">
-          <span className="mr-2">
-            <ShoppingCartIcon className="w-6 h-6" />
-          </span>
-          <span className="text-sm font-semibold">Aller au panier</span>
-        </Link>
-        <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center mx-auto gap-[20px]
-          max-w-sm mx-auto md:max-w-none md:mx-auto py-16 justify-center content-center'>
-          <div className='w-full mb-4'>
-            <Cards />
-          </div>
-          <div className='w-full mb-4'>
-            <Cards />
-          </div>
-          <div className='w-full  mb-4'>
-            <Cards />
-          </div>
-          <div className='w-full  mb-4'>
-            <Cards />
-          </div>
-          <div className='w-full mb-4'>
-            <Cards />
-          </div>
-          <div className='w-full mb-4'>
-            <Cards />
-          </div>
-          <div className='w-full mb-4'>
-            <Cards />
+    <div >
+      <Navbar className="bg-white z-50 fixed top-0 w-full"/>
+     <div onClick={() => setDropdown(false)}>
+     <Header />
+    <div className='flex flex-col px-[35px]' >
+      <section className='py-10'>
+        <div className='container mx-auto'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] 
+            max-w-sm mx-auto md:max-w-none md:mx-0'>
+            {filteredProducts.map((produit) => {
+              return (
+                <Produit produit={produit} key={produit._id} />
+              ) 
+            })}
           </div>
         </div>
+      </section>
 
+      <div>
+        <ScrollingText />
+      </div>
       
-    <footer>
-        <Footer/>
-    </footer>
-
     </div>
-  )
+    <footer>
+        <Footer />
+      </footer>
+     </div>
+    </div>
+  );
 }
