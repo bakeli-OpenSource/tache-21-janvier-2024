@@ -1,3 +1,4 @@
+import '@fontsource/montserrat';
 
 const Thead = ({thead}) => {
     return (
@@ -52,12 +53,12 @@ const Tbody = ({tbody, actions}) => {
                     }
                     {td.prix ?
                     <td className="px-4 py-5 text-xl text-center border">
-                        {td.prix}
+                        {td.prix.toLocaleString('de-DE')}
                     </td> : null
                     }
                     {td.PrixUnitaire ?
                     <td className="px-4 py-5 text-xl text-center border">
-                        {td.PrixUnitaire}
+                        {td.PrixUnitaire.toLocaleString('de-DE')}
                     </td> : null
                     }
                     {td.statut ?
@@ -85,7 +86,7 @@ const Tbody = ({tbody, actions}) => {
 
 const Table = ({thead, tbody, actions}) => {
   return (
-    <section className=" mx-  font-mono">
+    <section className="font-montserrat">
         <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
           <div className="w-full overflow-x-auto">
             <table className="w-full">

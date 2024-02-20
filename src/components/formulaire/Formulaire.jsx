@@ -69,8 +69,9 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
         }
         {selects? 
         <>
-        {selects.map((select)=>(
+        {selects.map((select, index)=>(
           <Select 
+          key={index}
             label={select.label} 
             options={select.options} 
             handleSelectChange={handleSelectChange}  
