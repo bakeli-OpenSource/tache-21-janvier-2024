@@ -5,13 +5,17 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import ProduitContextProvider from './utils/contexte/ProduitsContext'
 import GlobalContextProvider from "./utils/contexte/GlobalContext";
+import CategorieContextProvider from "./utils/contexte/CategorieContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <GlobalContextProvider>
     <ProduitContextProvider>
+    <CategorieContextProvider>
       <App />
+    </CategorieContextProvider>
+
     </ProduitContextProvider>
     </GlobalContextProvider>
     </BrowserRouter>

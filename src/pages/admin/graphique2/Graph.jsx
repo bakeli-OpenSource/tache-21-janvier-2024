@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { PieChart, Legend, Pie, Cell } from "recharts";
 
 
 const Graphique2 = () => {
-
+  const [chartWidth, setChartWidth] = useState(window.innerWidth > 1225 ? 500 : 230);
+  const [chartPosition, setChartPosition] = useState("center");
 
   const data = [
     { name: "Value1", users: 2000000000 },
@@ -14,24 +15,36 @@ const Graphique2 = () => {
 
   const COLORS = ["rgb(30 58 138)", "rgb(161 98 7)", "rgb(101 163 13)", "rgb(14 165 233)"];
 
+  useEffect(() => {
+    const handleResize = () => {
+      setChartWidth(window.innerWidth > 1225 ? 500 : 230); // Mise à jour de la largeur du graphique en fonction de la taille de l'écran
+      setChartPosition(window.innerWidth > 1225 ? "center" : "center");
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // Exécuté uniquement lors du montage et du démontage du composant
+
   return (
-    <div className='basis-[50%] w-[31.2rem]  border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
+    <div className='md:w-[15rem] lg:w-[23rem] xl:w-[38rem] border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
           <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
       </div>
-      <div className="text-lg">
-        <PieChart width={500} height={450}>
+      <div className="text-[16px]">
+        <PieChart width={chartWidth} height={450}>
         <Legend
-          className=""
           verticalAlign="top" 
-          width={500}
+          
         />
           <Pie
             nameKey="name"
             dataKey="users"
             isAnimationActive={true}
             data={data}
-            cx={250}
+            cx={chartPosition}
             cy={200}
             outerRadius={100}
             fill="#8884d"
