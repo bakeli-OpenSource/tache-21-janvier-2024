@@ -10,7 +10,7 @@ export default function HeaderTable({title, nomAjout, body}) {
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   // if (pathnames.length > 1) {
-  //   pathnames.splice(0, 1);
+  //   pathnames.splice(0, 1); 
   // }
 
   const breadcrumbs = pathnames.map((name, index) => {
