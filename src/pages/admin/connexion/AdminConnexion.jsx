@@ -21,7 +21,7 @@ const AdminConnexion = () => {
      <div className='flex flex-col items-center  justify-center min-h-screen py-2 bg-gray-100'>  
         <form 
         onSubmit={handleSubmit}
-        className='flex flex-col items-center justify-center flex-row-reverse w-full  px-20 text-center'>
+        className='flex flex-col items-center justify-center w-full  px-20 text-center'>
         <div className='min-w-96 bg-white rounded-2xl shadow-2xl flex flex-col-reverse md:flex-row w-2/3 max-w-4xl'>
             <div className='md:w-3/5 py-5'>
               

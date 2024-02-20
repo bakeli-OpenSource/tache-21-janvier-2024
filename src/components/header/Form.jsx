@@ -17,8 +17,8 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
           <div className="md:relative">
             <img
               src={
-                editedUser.profileImage
-                  ? URL.createObjectURL(editedUser.profileImage)
+                user.profileImage
+                  ? URL.createObjectURL(user.profileImage)
                   : user?.profileImage || profile
               }
               alt="img profil"
@@ -55,7 +55,7 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
               type="text"
               id="prenom"
               name="prenom"
-              value={editedUser.prenom}
+              value={user.prenom}
               onChange={handleChange}
               className="mt-1 p-2 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
             />
@@ -71,7 +71,7 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
               type="text"
               id="nom"
               name="nom"
-              value={editedUser.nom}
+              value={user.nom}
               onChange={handleChange}
               className="mt-1 p-2 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
             />
@@ -89,7 +89,7 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
               type="tel"
               id="telephone"
               name="telephone"
-              value={editedUser.telephone}
+              value={user.telephone}
               onChange={handleChange}
               className="mt-1 p-2 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
             />
@@ -105,7 +105,7 @@ const Form = ({ editedUser, handleSubmit, handleChange, user }) => {
               type="email"
               id="email"
               name="email"
-              value={editedUser.email}
+              value={user.email}
               onChange={handleChange}
               className="mt-1 p-2 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
             />

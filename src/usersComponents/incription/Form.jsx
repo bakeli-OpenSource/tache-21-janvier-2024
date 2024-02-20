@@ -1,9 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    prenom: '',
+    nom: '',
+    telephone: '',
+    email: '',
+    adresse: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    try {
+      const response = axios.post('https://kay-solu-api.onrender.com/api/authclient/signup', formData);
+      setFormData(
+        {
+          prenom: '',
+          nom: '',
+          telephone: '',
+          email: '',
+          adresse: '',
+          password: '',
+        }
+      )
+      alert("Inscription réussi")
+      navigate('/connexion')
+      console.log(response.data); 
+    } catch (error) {
+      console.error(error); 
+    }
+  };
+
   return (
-    <form className="w-full md:w-3/4">
+    <form className="w-full md:w-3/4" onSubmit={handleSubmit}>
       <h1 className="text-2xl text-center">Inscription</h1>
       <div className="mt-5">
         <div className="flex w-full mt-5 align-center justify-center flex-col  md:flex-row gap-5">
@@ -20,6 +59,8 @@ const Form = () => {
               id="prenom"
               name="prenom"
               className="mt-1 p-2 bg-gray-200 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+              value={formData.prenom}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-5 mt-5 w-full md:w-1/2">
@@ -35,6 +76,8 @@ const Form = () => {
               id="nom"
               name="nom"
               className="mt-1 p-2 bg-gray-200 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+              value={formData.nom}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -52,6 +95,8 @@ const Form = () => {
               id="email"
               name="email"
               className="mt-1 p-2 bg-gray-200 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+              value={formData.email}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-5 mt- w-full md:w-1/2">
@@ -67,6 +112,8 @@ const Form = () => {
               id="password"
               name="password"
               className="mt-1 p-2 bg-gray-200 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+              value={formData.password}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -84,6 +131,8 @@ const Form = () => {
               id="adresse"
               name="adresse"
               className="mt-1 p-2 bg-gray-200 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+              value={formData.adresse}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-5 mt- w-full md:w-1/2">
@@ -99,6 +148,8 @@ const Form = () => {
               id="telephone"
               name="telephone"
               className="mt-1 p-2 bg-gray-200 border focus:border text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+              value={formData.telephone}
+              onChange={handleChange}
             />
           </div>
         </div>

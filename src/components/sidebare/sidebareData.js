@@ -8,4 +8,5 @@ export const menus = [
   { name: "Catégories", link: "/admin/categories", icon: <BsCardList /> },
   { name: "Liste des produits", link: "/admin/produits", icon: <IoMdCube /> },
   { name: "Commandes", link: "/admin/commandes", icon: <FaShoppingBasket />, margin: true },
+  { name: "Clients", link: "/admin/clients", icon: <FaShoppingBasket /> },
 ];

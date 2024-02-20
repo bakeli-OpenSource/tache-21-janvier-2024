@@ -1,14 +1,5 @@
 import React, { createContext, useState } from "react";
-import profile from "../../../src/assets/images/profile.png";
 import axios from "axios";
-
-const initialUser = {
-  fullName: "miss ",
-  lastName: "ndeya",
-  telephone: "763676576",
-  email: "missndeya@gmail.com",
-  profileImage: profile,
-};
 
 export const SidebareContext = createContext();
 
@@ -85,7 +76,7 @@ const SidebareContextProvider = ({ children }) => {
     updateUserProfile,
     handleToggle,
     profile,
-    setUser
+    setUser,
   };
 
   return (
