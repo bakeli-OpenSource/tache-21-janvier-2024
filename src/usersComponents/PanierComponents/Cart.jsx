@@ -33,19 +33,19 @@ const Cart = () => {
 							</thead>
 							<tbody>
 								{items.map((item) => (
-									<tr key={item.id}>
+									<tr key={item._id}>
 										<td className="flex items-center justify-center py-2 mb-5 text-sm">
 											<img
-												src={item.image}
-												alt={item.name}
+												src={item.imageUrl}
+												alt={item.nom}
 												className="w-16 h-auto"
 											/>
-											<div className="flex flex-col content-between gap-2 ml-3 text-sm">
-												<h5>{item.name}</h5>
+											<div className="flex flex-col content-between gap-1 ml-3 text-sm">
+												<h5>{item.nom}</h5>
 												<h5 className="text-blue-300">{item.categorie}</h5>
 												<h4
 													className="flex items-center text-red-500 cursor-pointer"
-													onClick={() => removeItem(item.id)}
+													onClick={() => removeItem(item._id)}
 												>
 													<span className="">Supprimer</span>
 													<MdDelete className="mt-1 text-sm font-bold text-red-500" />
@@ -58,33 +58,33 @@ const Cart = () => {
 													className="px-2 py-1 bg-gray-200"
 													texte="-"
 													onClick={() =>
-														updateQuantity(item.id, item.quantity - 1)
+														updateQuantity(item._id, item.quantite - 1)
 													}
 												/>
 												<input
 													min={1}
 													defaultValue={1}
-													value={item.quantity}
+													value={item.quantite}
 													className="w-8 h-8 text-center border border-gray-300"
 													onChange={(e) =>
-														updateQuantity(item.id, parseInt(e.target.value))
+														updateQuantity(item._id, parseInt(e.target.value))
 													}
 												/>
 												<ComponentButton
 													className="px-2 py-1 bg-gray-200"
 													texte="+"
 													onClick={() =>
-														updateQuantity(item.id, item.quantity + 1)
+														updateQuantity(item._id, item.quantite + 1)
 													}
 												/>
 											</div>
 										</td>
 										<td className="py-2 text-sm text-center">
-											<div className="mb-4">{item.price.toFixed(2)} FCFA</div>
+											<div className="mb-4">{item.prix} FCFA</div>
 										</td>
 										<td className="hidden py-2 text-center md:table-cell">
 											<div className="mb-7">
-												{(item.price * item.quantity).toFixed(2)} FCFA
+												{item.prix * item.quantite} FCFA
 											</div>
 										</td>
 									</tr>
