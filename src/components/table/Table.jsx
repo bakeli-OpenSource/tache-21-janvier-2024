@@ -4,7 +4,7 @@ import '@fontsource/montserrat';
 const Thead = ({thead}) => {
     return (
         <thead>
-            <tr className="font-semibold tracking-wide text-center text-gray-900 uppercase bg-gray-100 border border-x-0 border-top border-gray-300 text-md">
+            <tr className="font-semibold tracking-wide text-center text-white uppercase bg-gray-800 border border-x-0 border-top border-gray-300 text-sm">
                 {thead.map((th, index) => (
                     <th key={index} className="px-4 py-3">{th}</th>
                 ))}
@@ -19,13 +19,12 @@ const Tbody = ({tbody, actions}) => {
                 {tbody.length !== 0 ?
                 tbody.map((td, index) => (
                 <tr className="text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100" key={index}>
+                    {td.imageUrl && td.titre && td.nom ?
                         <td className="px-4 py-3 border">
                         <div className="flex items-center text-sm">
                         <div className="md:relative w-8 h-8 mr-3 rounded-full md:block">
 
-                            {td.imageUrl?
-                                <img className="object-cover w-full h-full rounded-full" src={td.imageUrl} alt="" loading="lazy" />
-                            :null}
+                            <img className="object-cover w-full h-full rounded-full" src={td.imageUrl} alt="" loading="lazy" />
                             <div className="md:absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
@@ -33,15 +32,18 @@ const Tbody = ({tbody, actions}) => {
                             <p className="text-xs text-gray-600">{td.titre}</p>
                         </div>
                         </div>
-                    </td>
+                    </td> : null
+                    }
                     {td.email ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.email}
                     </td> : null
                     }
+                    {td.quantite ?
                     <td className="px-4 py-3 text-center border text-md">
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
-                    </td> 
+                    </td> : null
+                    } 
                     {td.date ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.date}
@@ -63,8 +65,33 @@ const Tbody = ({tbody, actions}) => {
                     </td> : null
                     }
                     {td.statut ?
-                    <td className="px-4 py-5 TEXT-center text-xl border">
+                    <td className="px-4 py-5 text-center text-xl border">
                         {td.statut}
+                    </td> : null
+                    }
+                    {td.prenomCli ?
+                    <td className="px-4 py-5 text-center text-xxl border">
+                        {td.prenomCli}
+                    </td> : null
+                    }
+                    {td.nomCli ?
+                    <td className="px-4 py-5 text-center text-xxl border">
+                        {td.nomCli}
+                    </td> : null
+                    }
+                    {td.adresseCli ?
+                    <td className="px-4 py-5 text-center text-xxl border">
+                        {td.adresseCli}
+                    </td> : null
+                    }
+                    {td.emailCli ?
+                    <td className="px-4 py-5 text-center text-xxl border">
+                        {td.emailCli}
+                    </td> : null
+                    }
+                    {td.telCli ?
+                    <td className="px-4 py-5 text-center text-xxl border">
+                        {td.telCli}
                     </td> : null
                     }
 
