@@ -36,11 +36,11 @@ export default function Accueil() {
       <div>
         <ScrollingText />
       </div>
-      <footer>
+      
+    </div>
+    <footer>
         <Footer />
       </footer>
-    </div>
-
     </div>
   );
 }
