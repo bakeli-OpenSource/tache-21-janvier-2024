@@ -69,23 +69,24 @@ const CommandeAdmin = () => {
     {
       icon: <TbEyeShare />,
       color: 'bg-green-500',
-      hanldleClick: () => {
+      handleClick: (commandeId) => {
         console.log('Ca marche 1');
-        navigate("DetailsCommande")
+        navigate("/admin/commandes/DetailsCommande")
       },
     },
     {
       icon: <MdEdit />,
       color: 'bg-orange-500',
-      hanldleClick: () => {
+      handleClick: () => {
         console.log('Ca marche 2');
       },
     },
     {
       icon: <MdOutlineDelete />,                       
       color: 'bg-red-600',
-      hanldleClick: (commandeId) => {
+      handleClick: (commandeId) => {
         handleDelete(commandeId);
+        console.log('Ca commandeId:', commandeId);
       },
     },
   ];
@@ -107,15 +108,23 @@ const CommandeAdmin = () => {
       prix: price,
     };
 
+    console.log('Form Data:', formData);
+
     try {
       // Effectuez une requête POST vers votre API avec axios
-      const response = await axios.post('http://localhost:4000/api/commande', formData);
+      const response = await axios.post('https://kay-solu-api.onrender.com/api/commande', formData);
       if (response.status === 201) {
         console.log('Commande ajoutée avec succès:', response.data);
         setShowModal(false);
+        setEmail("")
+        setQuantite("")
+        setDate("")
+        setEtat("")
+        setPrice("")
       } else {
         console.error('Erreur lors de l\'ajout de commande:', response.data);
       }
+      fetchCommandes();
     } catch (error) {
       console.error('Erreur lors de l\'ajout de commande:', error);
     }
@@ -123,8 +132,10 @@ const CommandeAdmin = () => {
 
   const handleDelete = async (commandeId) => {
     try {
+      console.log('Avant la requête DELETE');
       // Effectuez une requête DELETE vers votre API avec axios
-      await axios.delete(`http://localhost:4000/api/commande/${commandeId}`);
+      await axios.delete(`https://kay-solu-api.onrender.com/api/commande/${commandeId}`);
+      console.log('Aprés la requête DELETE');
 
       // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
       const updatedCommande = commandes.filter(
@@ -133,47 +144,26 @@ const CommandeAdmin = () => {
       setCommandes(updatedCommande);
 
       console.log("Commande supprimée avec succès");
+      fetchCommandes();
     } catch (error) {
       console.error("Erreur lors de la suppression de la commande:", error);
     }
   };
 
-  // const handleDelete = async (commandeId) => {
-  //   try {
-  //     // Effectuez une requête DELETE vers votre API avec axios
-  //     const response = await axios.delete(`http://localhost:4000/api/commande/${commandeId}`);
   
-  //     // Vérifiez si la suppression a réussi côté serveur
-  //     if (response.status === 200) {
-  //       // Mettez à jour l'état des commandes en filtrant la commande supprimée de la liste
-  //       const updatedCommandes = commandes.filter(
-  //         (commande) => commande._id !== commandeId
-  //       );
-  //       setCommandes(updatedCommandes);
-  
-  //       console.log("Commande supprimée avec succès");
-  //     } else {
-  //       console.error('Erreur lors de la suppression de la commande:', response.data);
-  //     }
-  //   } catch (error) {
-  //     console.error("Erreur lors de la suppression de la commande:", error.response || error.message || error);
-  //   }
-  // };
+  const fetchCommandes = async () => {
+    try {
+      const response = await axios.get('https://kay-solu-api.onrender.com/api/commandes');
+      setCommandes(response.data);
+      console.log('Commandes récupérées avec succès');
+    } catch (error) {
+      console.error('Erreur lors de la récupération des commandes:', error);
+    }
+  };
 
-  
   useEffect(() => {
-    const fetchCommandes = async () => {
-      try {
-        const response = await axios.get('http://localhost:4000/api/commande');
-        setCommandes(response.data);
-        console.log('Commandes récupérées avec succès');
-      } catch (error) {
-        console.error('Erreur lors de la récupération des commandes:', error);
-      }
-    };
-
     fetchCommandes();
-  }, [setCommandes]);
+  }, []);
 
   return (
     <div className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>

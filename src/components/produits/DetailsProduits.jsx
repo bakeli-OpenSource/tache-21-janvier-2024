@@ -41,41 +41,42 @@ const DetailsProduits = () => {
                             <Image src={data.imageUrl} />
                             <Image src={data.imageUrl} />
                         </div> */}
-								</div>
-							</div>
-							<div className="w-fullmd:w-1/2 ">
-								<div className="lg:pl-20">
-									<div className="mb-8 ">
-										<h2 className="max-w-xl mt-2 text-2xl font-bold md:text-4xl">
-											{data.nom}
-										</h2>
-										<div className="flex items-center mb-6">
-											<p className="">{data.titre}</p>
-										</div>
-										<p className="max-w-md mb-8 text-gray-700 ">
-											{data.description}
-										</p>
-										<p className="flex mb-8 text-4xl font-bold text-gray-700 ">
-											<h2 className="w-16 mt-2 text-xl font-bold">Prix:</h2>
-											<span>{data.prix} f cfa</span>
-										</p>
-									</div>
-									<Titre cle="Catégorie" valeure={data.categorie} />
-									<Titre cle="Taille" valeure={data.taille} />
-									<Titre cle="Quantité" valeure={data.quantite} />
-									<Titre cle="Fournisseur" valeure={data.fournisseur} />
-									<Titre cle="Couleur" valeure={data.couleur} />
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			) : (
-				<div>Loader...</div>
-			)}
-		</div>
-	);
-};
+                    </div>
+                </div>
+                <div className="w-fullmd:w-1/2 ">
+                    <div className="lg:pl-10">
+                        <div className="mb-8 ">
+                            <h2 className="max-w-xl mt-2 text-2xl font-bold md:text-4xl">
+                              {data.nom}
+                            </h2>
+                            <div className="flex items-center mb-6">
+                                <p className="">{data.titre}</p>
+                            </div>
+                            <p className="max-w-md mb-8 text-gray-700 ">
+                              {data.description}
+                            </p>
+                            <p className="mb-8 text-4xl font-bold text-gray-700 flex ">
+                            <h2 className="w-16 text-xl font-bold mt-2">
+                                Prix:
+                            </h2>
+                                <span>{data.prix} F cfa</span>
+                            </p>
+                        </div>
+                       <Titre cle="Catégorie" valeure={data.categorie} />
+                       <Titre cle="Taille" valeure={data.taille} />
+                       <Titre cle="Quantité" valeure={data.quantite} />
+                       <Titre cle="Fournisseur" valeure={data.fournisseur} />
+                       <Titre cle="Couleur" valeure={data.couleur} />
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> ) : <div>Loader...</div>
+      }
+    </div>
+  )
+}
 
 const Titre = ({ cle, valeure }) => {
 	return (
