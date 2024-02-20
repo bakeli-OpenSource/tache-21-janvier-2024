@@ -15,7 +15,6 @@ const Dropdown = () => {
   useEffect(() => {
     profileUser()
   }, [])
-// Testtttttttttttttttttttt
   const deconnexion = () => {
     handleToggle();
 
