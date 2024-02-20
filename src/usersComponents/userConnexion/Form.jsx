@@ -1,7 +1,9 @@
+import axios from 'axios';
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -12,9 +14,28 @@ const Form = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post('https://kay-solu-api.onrender.com/api/authclient/login', formData)
+      .then((response) => {
+        console.log(response.data); // Connexion réussie, vous pouvez gérer le token ici
+        const token = response.data.token;
+        // Stocker le token dans le local storage
+        localStorage.setItem('tokenclient', token);
+        // Rediriger l'utilisateur vers une autre page par exemple
+        navigate('/Panier');
+      })
+      .catch((error) => {
+        console.error(error); // Gérer les erreurs ici
+        alert('Email ou mot de passe incorrect');
+      })
+    }
+
+
 
   return (
-    <form className="w-full md:w-3/4 translate-x- duration-700 transition-all">
+    <form className="w-full md:w-3/4 translate-x- duration-700 transition-all" onSubmit={handleSubmit}>
         <h1 className="text-2xl text-center">Connexion</h1>
         <div className="mt-5 mx-auto w-full md:w-1/2">
           
