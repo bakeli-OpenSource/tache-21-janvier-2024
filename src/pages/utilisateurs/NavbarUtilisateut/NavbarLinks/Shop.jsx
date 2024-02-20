@@ -12,6 +12,7 @@ import img6 from "../../../../assets/images/imgShop6.webp";
 import img7 from "../../../../assets/images/imgShop7.jpg";
 import img8 from "../../../../assets/images/imgShop8.webp";
 import img9 from "../../../../assets/images/imgShop9.webp";
+import useGlobal from "../../../../utils/hooks/useGlobal";
 
 const Shop = () => {
   const [heartColors, setHeartColors] = useState(Array(10).fill("white"));
@@ -23,12 +24,10 @@ const Shop = () => {
     setHeartColors(newHeartColors);
   };
 
+    const {setDropdown} = useGlobal()
   return (
     <>
-      <div className="mb-9">
-        <Navbar className="border-2 bg-white  border-b-gray-400 z-50 fixed top-0 w-full" />
-      </div>
-      <div className=" bg-white px-9 mx-auto z-0 flex flex-col  ">
+      <div onClick={() => setDropdown(false)} className=" bg-white px-9 mx-auto z-0 flex flex-col  ">
         <h1 className="mt-9 text-2xl">Shop</h1>
         <div
           className="container  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px]
