@@ -19,29 +19,16 @@ const CommandeContextProvider = ({ children }) => {
     const [price, setPrice] = useState("")
     const [commandes, setCommandes] = useState([])
 
-
-
-
     const table1 = [
       'Référenc', 'Nom du Produict','Taille', 'Quantité','kilo',  'Prix Unitaire ', 'Prix'
   ]
-    
 
-    // const actions = [
-    //     {
-    //       icon: <TbEyeShare/>,
-    //       color: 'bg-green-500',
-    //       hanldleClick: () => {
-    //       navigate("DetailsCommande")
-    //       }
-    //     }
-    //   ]
     
   const value = {
     table, 
     commandes,
     table1, 
-    // actions, 
+    // actions,  
     email,
     quantite,
     price,

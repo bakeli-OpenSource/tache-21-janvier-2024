@@ -1,9 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Form = () => {
+	const navigate = useNavigate();
+	const [formData, setFormData] = useState({
+		prenom: '',
+		nom: '',
+		telephone: '',
+		email: '',
+		adresse: '',
+		password: '',
+	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(formData);
+		try {
+			const response = axios.post(
+				'https://kay-solu-api.onrender.com/api/authclient/signup',
+				formData,
+			);
+			setFormData({
+				prenom: '',
+				nom: '',
+				telephone: '',
+				email: '',
+				adresse: '',
+				password: '',
+			});
+			alert('Inscription réussi');
+			navigate('/connexion');
+			console.log(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
-		<form className="w-full md:w-3/4">
+		<form className="w-full md:w-3/4" onSubmit={handleSubmit}>
 			<h1 className="text-2xl text-center">Inscription</h1>
 			<div className="mt-5">
 				<div className="flex flex-col justify-center w-full gap-5 mt-5 align-center md:flex-row">
@@ -20,6 +60,8 @@ const Form = () => {
 							id="prenom"
 							name="prenom"
 							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							value={formData.prenom}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="w-full mt-5 mb-5 md:w-1/2">
@@ -35,6 +77,8 @@ const Form = () => {
 							id="nom"
 							name="nom"
 							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							value={formData.nom}
+							onChange={handleChange}
 						/>
 					</div>
 				</div>
@@ -52,6 +96,8 @@ const Form = () => {
 							id="email"
 							name="email"
 							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							value={formData.email}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="w-full mb-5 mt- md:w-1/2">
@@ -67,6 +113,8 @@ const Form = () => {
 							id="password"
 							name="password"
 							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							value={formData.password}
+							onChange={handleChange}
 						/>
 					</div>
 				</div>
@@ -84,6 +132,8 @@ const Form = () => {
 							id="adresse"
 							name="adresse"
 							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							value={formData.adresse}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="w-full mb-5 mt- md:w-1/2">
@@ -99,6 +149,8 @@ const Form = () => {
 							id="telephone"
 							name="telephone"
 							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							value={formData.telephone}
+							onChange={handleChange}
 						/>
 					</div>
 				</div>

@@ -38,14 +38,8 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
       setter(e.target.value);
   }
 
-  const selectIs = () => {
-    
-  }
-
   useEffect(() => {
-
-      handleSelectChange({ target: { value: '' } })
-    
+      handleSelectChange({ target: { value: '' } })    
   }, [handleSelectChange]);
   
 
@@ -75,8 +69,9 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
         }
         {selects? 
         <>
-        {selects.map((select)=>(
+        {selects.map((select, index)=>(
           <Select 
+          key={index}
             label={select.label} 
             options={select.options} 
             handleSelectChange={handleSelectChange}  
