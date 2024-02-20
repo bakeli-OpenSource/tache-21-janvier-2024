@@ -5,6 +5,7 @@ import { MdMenu, MdClose } from "react-icons/md";
 import { BsPersonCircle, BsSearch } from "react-icons/bs";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import NavInput from "../NavInput";
+import Dropdown from "../../../../usersComponents/userConnexion/Dropdown";
 
 const Navbar = ({className}) => {
   const [open, setOpen] = useState(false);
@@ -46,12 +47,8 @@ const Navbar = ({className}) => {
 
               <NavInput type="text" search={search} />
             </div>
-            <Link to={"/connexion"} className="font-bold">
-            
-            {/* <BsPersonCircle className="cursor-pointer " size={20} /> */}
-            Se connecter
-            </Link>
-            <Link to="/Panier" className="flex items-center">
+            <Dropdown />
+           <Link to="/Panier" className="flex items-center">
               <span className="mr-">
                 <ShoppingCartIcon className="w-6 h-6" />
               </span>
