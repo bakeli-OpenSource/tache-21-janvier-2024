@@ -5,6 +5,7 @@ import Header from '../../usersComponents/headerUserComponent/Header'
 import ScrollingText from '../../usersComponents/cards/ScrollingText'
 import Produit from '../../usersComponents/cards/Produit'
 import { ProduitContext } from '../../usersComponents/cards/ProduitContext'
+import useGlobal from '../../utils/hooks/useGlobal'
 
 
 export default function Accueil() {
@@ -14,12 +15,14 @@ export default function Accueil() {
       item.categorie === "Chaussures" || item.categorie === "Accessoires" || item.categorie === "vetements"
     )
   })
+  const {setDropdown} = useGlobal()
 
   return (
-    <div>
+    <div >
       <Navbar className="bg-white z-50 fixed top-0 w-full"/>
-      <Header />
-    <div className='flex flex-col px-[35px]'>
+     <div onClick={() => setDropdown(false)}>
+     <Header />
+    <div className='flex flex-col px-[35px]' >
       <section className='py-10'>
         <div className='container mx-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] 
@@ -36,11 +39,12 @@ export default function Accueil() {
       <div>
         <ScrollingText />
       </div>
-      <footer>
+      
+    </div>
+    <footer>
         <Footer />
       </footer>
-    </div>
-
+     </div>
     </div>
   );
 }

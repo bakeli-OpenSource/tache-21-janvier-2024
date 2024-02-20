@@ -11,7 +11,7 @@ const SidebareLink = ({ menus, open }) => {
   };
 
   return (
-    <div className="mt-4 flex flex-col gap-4 relative">
+    <div className="mt-7 flex flex-col gap-7 relative">
       {menus?.map((menu, i) => (
         <NavLink
           to={menu?.link}
