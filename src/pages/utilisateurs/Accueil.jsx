@@ -2,21 +2,15 @@ import React, { useContext } from 'react';
 import Footer from '../../usersComponents/footer/Footer';
 import Navbar from './NavbarUtilisateut/Navbar/Navbar';
 import Header from '../../usersComponents/headerUserComponent/Header';
-import ScrollingText from '../../usersComponents/cards/ScrollingText';
-import Produit from '../../usersComponents/cards/Produit';
-import { ProduitContext } from '../../usersComponents/cards/ProduitContext';
+import ScrollingText from '../../usersComponents/Cards/ScrollingText';
+import Produit from '../../usersComponents/Cards/Produit';
+import { ProduitContext } from '../../usersComponents/Cards/ProduitContext';
 import useGlobal from '../../utils/hooks/useGlobal';
 
 
 export default function Accueil() {
 	const { produits } = useContext(ProduitContext);
-	// const filteredProducts = produits.filter((item) => {
-	// 	return (
-	// 		item.categorie === 'Chaussures' ||
-	// 		item.categorie === 'Accessoires' ||
-	// 		item.categorie === 'vetements'
-	// 	);
-	// });
+	
 	const produitsParCategorie = produits.reduce((acc, produit) => {
         if (!acc[produit.categorie]) {
             acc[produit.categorie] = [];
