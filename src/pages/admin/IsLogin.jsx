@@ -56,7 +56,7 @@ function IsLogin() {
             )}
             {isLoggedIn() ? (
               <Route
-                path="/produits/DetailsProd/:id"
+                path="/produits/:id"
                 element={<DetailsProduits />}
               />
             ) : (

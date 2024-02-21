@@ -45,7 +45,7 @@ const Form = () => {
     <form className="w-full md:w-3/4" onSubmit={handleSubmit}>
       <h1 className="text-2xl text-center">Inscription</h1>
       <div className="mt-5">
-        <div className="flex w-full mt-5 align-center justify-center flex-col  md:flex-row gap-5">
+        <div className="flex w-full mt-5 align-center justify-center flex-col md:flex-row gap-5">
           <div className="mb-5 mt-5 w-full md:w-1/2">
             <label
               htmlFor="prenom"

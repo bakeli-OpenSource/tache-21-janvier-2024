@@ -5,11 +5,11 @@ const Input = ({label, type, value, name, onChange}) => {
   if (type === "radio") {
     classInput = "bg-gray-200"
   }else{
-    classInput = "appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+    classInput = "mt-1 p-2 bg-gray-200 border focus:border text-gray-700 text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
   }
   return(
-    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2">
+    <div className="w-full md:w-1/2 px-3 my-6 md:mb-0">
+      <label className="block text-sm font-semibold  text-gray-900">
         { label }
       </label>
       <input className={classInput} name={name} value={value} type={type} onChange={onChange} required />
@@ -18,9 +18,9 @@ const Input = ({label, type, value, name, onChange}) => {
 }
 const Select = ({label, options, handleSelectChange }) => {
   return(
-    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2">{label}</label>
-      <select onChange={handleSelectChange} defaultValue=""  className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+    <div className="w-full md:w-1/2 px-3 my-6 md:mb-0">
+      <label className="block text-sm font-semibold  text-gray-900">{label}</label>
+      <select onChange={handleSelectChange} defaultValue=""  className="mt-1 p-2 bg-gray-200 border focus:border text-gray-700 focus:border-double focus:border-sky-600 outline-none rounded-md w-full">
         <option value="" disabled>Sélectionnez une catégorie</option>
         {options.map((option)=>(
           <option key={option._id} value={option}>{option}</option>
@@ -44,23 +44,23 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
   
 
   return (
-    <form className="w-full max-w-lg" onSubmit={onSubmit}>
-      <div className="flex flex-wrap -mx-3 mb-6">
+    <form className="w-full max-w-lg mx-3"  onSubmit={onSubmit}>
+      <div className="flex flex-wrap mb-6">
         {
           inputs.map((input, index)=>(
             input.type === "file" ?
-            (<Input 
-              key={index} 
+            (<Input
+              key={index}
               name={input.name} 
-              type={input.type} 
+              type={input.type}
               label={input.label} 
-              value={input.value} 
+              value={input.value}
               onChange={(e) => handleChangeFile(e, input.setValue)} 
             /> ) : (
-              <Input 
-              key={index} 
+              <Input
+              key={index}
               name={input.name} 
-              type={input.type} 
+              type={input.type}
               label={input.label} 
               value={input.value} 
               onChange={(e) => handleChange(e, input.setValue)} 
@@ -83,14 +83,14 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
         }
 
         {textarea ?
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className='block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2'>Description</label>
-            <textarea className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
+          <div className="w-full md:w-2/2 px-3 my-6 md:mb-0">
+            <label className='block text-sm font-semibold  text-gray-900'>Description</label>
+            <textarea className="mt-1 p-2 bg-gray-200 border focus:border text-gray-700 focus:border-double focus:border-sky-600 outline-none rounded-md w-full" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
           </div>
               : null
         }
       </div>
-      <button className='btn bg-green-900 text-white rounded p-2 shadow outline-none focus:outline-none ease-linear'>
+      <button className='mx-3 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:focus:ring-gray-850 shadow-lg shadow-gray-500/50 dark:shadow-sm font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'>
         Enregistrer
       </button>
 </form>
