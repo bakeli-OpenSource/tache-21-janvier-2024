@@ -26,7 +26,6 @@ const Header = () => {
       className="bg-Hero bg-cover h-screen md:bg-top bg-right px-5 transition-opacity duration-1000"
       style={{
         backgroundImage: `url(${backgroundImage})` ,
-        backgroundPosition: 'right' ,
 
       }}
     >
