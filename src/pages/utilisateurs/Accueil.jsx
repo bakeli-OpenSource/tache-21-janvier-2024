@@ -2,9 +2,9 @@ import React, {useContext} from 'react'
 import Footer from '../../usersComponents/footer/Footer'
 import Navbar from './NavbarUtilisateut/Navbar/Navbar'
 import Header from '../../usersComponents/headerUserComponent/Header'
-import ScrollingText from '../../usersComponents/cards/ScrollingText'
-import Produit from '../../usersComponents/cards/Produit'
-import { ProduitContext } from '../../usersComponents/cards/ProduitContext'
+import ScrollingText from '../../usersComponents/Cards/ScrollingText'
+import Produit from '../../usersComponents/Cards/Produit'
+import { ProduitContext } from '../../usersComponents/Cards/ProduitContext'
 
 
 export default function Accueil() {
@@ -20,7 +20,7 @@ export default function Accueil() {
       <Navbar className="bg-white z-50 fixed top-0 w-full"/>
       <Header />
     <div className='flex flex-col px-[35px]'>
-      <section className='py-10'>
+      <section className='py-16'>
         <div className='container mx-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] 
             max-w-sm mx-auto md:max-w-none md:mx-0'>
