@@ -14,6 +14,8 @@ import ProduitProvider from '../../../usersComponents/cards/ProduitContext';
 import Inscription from '../../../usersComponents/incription/Inscription';
 import UserConnexion from '../../../usersComponents/userConnexion/UserConnexion';
 import DetailsCard from '../../../usersComponents/cards/DetailsCard';
+import ComptePage from '../comptePage/ComptePage';
+
 
 const UserIsLogin = () => {
 	return (
@@ -31,6 +33,7 @@ const UserIsLogin = () => {
 						<Route path="/Panier" element={<Panier />} />
 						<Route path="/inscription" element={<Inscription />} />
 						<Route path="/connexion" element={<UserConnexion />} />
+						<Route path="/compte" element={<ComptePage />} />
 						<Route path="/details/:_id" element={<DetailsCard />} />
 					</Routes>
 				</PanierProvider>
