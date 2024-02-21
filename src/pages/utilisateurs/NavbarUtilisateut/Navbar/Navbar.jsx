@@ -6,6 +6,7 @@ import { BsSearch } from 'react-icons/bs';
 import { ShoppingCartIcon } from '@heroicons/react/outline';
 import NavInput from '../NavInput';
 import { usePanier } from '../../../../utils/contexte/PanierContext';
+import icone from '../../../../assets/images/icone.jpg'
 
 const Navbar = ({ className }) => {
 	const [open, setOpen] = useState(false);
@@ -16,18 +17,18 @@ const Navbar = ({ className }) => {
 		<nav className={className}>
 			<div className="flex items-center justify-between px-8 py-3">
 				<div className="flex items-center justify-between w-full gap-8 md:w-auto ">
-					<div className="z-50 flex justify-between w-full p- md:w-auto">
+					<div className="z-50 flex justify-between w-full md:w-auto">
 						<Link
 							to={'/'}
-							className="text-2xl font-bold uppercase md:cursor-pointer"
+							className="md:cursor-pointer w-[60px] h-[60px]"
 						>
-							Cein.
+							<img src={icone} className='w-full h-full' />.
 						</Link>
 						<div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
 							{open ? <MdClose /> : <MdMenu />}
 						</div>
 					</div>
-					<ul className="items-center hidden md:flex gap- ">
+					<ul className="items-center hidden md:flex">
 						<NavLinks />
 					</ul>
 				</div>
