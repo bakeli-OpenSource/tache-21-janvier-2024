@@ -11,6 +11,7 @@ import DetailsCommandeProvide from "./DetailsCommandeProvide";
 import Profil from "./Profil";
 import { useNavigate, Route, Routes } from "react-router";
 import useGlobal from "../../utils/hooks/useGlobal";
+import ListeClients from "../../components/Clients/ListeClients";
 // import Navigate from "navigate";
 
 function IsLogin() {
@@ -70,6 +71,14 @@ function IsLogin() {
               <Route
                 path="/commandes/DetailsCommande"
                 element={<DetailsCommandeProvide />}
+              />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route
+                path="/clients"
+                element={<ListeClients />}
               />
             ) : (
               navigate("/admin")

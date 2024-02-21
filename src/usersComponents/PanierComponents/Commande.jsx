@@ -1,9 +1,23 @@
 import React from 'react';
-
 import { usePanier } from '../../utils/contexte/PanierContext';
 import ComponentButton from '../button/ComponentButton';
+import { Link } from 'react-router-dom';
 
 const Commande = () => {
+	const donnees = {
+		email: 'upchh@example.com',
+		produit: 'Produit',
+		IdProduit: '1234567890',
+		adresse: 'Adresse',
+		telephone: '0612345678',
+		quantité: 1,
+		date: '2024-02-19',
+		etat: 'En cours',
+		prixProduit: '1000FCFA',
+		PrixLivraison: '1000FCFA',
+		prixTotal: '11000FFA',
+	};
+	console.log(donnees);
 	const {
 		deliveryOption,
 		setDeliveryOption,
@@ -23,9 +37,6 @@ const Commande = () => {
 			alert('Veuillez choisir une option de livraison.');
 			return;
 		}
-		alert(
-			`Votre commande a bien été prise en compte. Vous recevrez un courriel de confirmation dans 24 heures.`,
-		);
 	};
 
 	return (
@@ -86,33 +97,40 @@ const Commande = () => {
 					</div>
 
 					<div className="flex justify-between">
-						<h4 className="text-uppercase mt-1 text-[15px]">Prix total</h4>
-						<h4 className="font-bold text-[20px]">{totalPrice} FCFA</h4>
+						<h4 className="text-uppercase mt-1 text-[14px]">Prix total</h4>
+						<h4 className="font-bold text-[21px]">{totalPrice} FCFA</h4>
 					</div>
 					<div className="flex justify-between">
-						<h4 className="text-uppercase mt-2 text-[15px]">Livraison</h4>
-						<h4 className="font-bold text-[20px]">
-							{deliveryCosts[deliveryOption]} FCFA
+						<h4 className="text-uppercase mt-2 text-[14px]">Livraison</h4>
+						<h4 className="font-bold text-[21px]">
+							{typeof deliveryCosts[deliveryOption] === 'number'
+								? `${deliveryCosts[deliveryOption]}`
+								: 0}{' '}
+							{'FCFA'}
 						</h4>
 					</div>
 
 					<hr className="my-4 border-black" />
 
 					<div className="flex justify-between mb-5">
-						<h4 className="text-uppercase mt-2 text-[25px] text-blue-400">
+						<h4 className="text-uppercase mt-2 text-[20px] text-blue-400">
 							Total
 						</h4>
-						<h4 className="font-bold text-[35px] text-red-500">
-							{Number(totalPrice) + Number(deliveryCosts[deliveryOption])}
-							FCFA
+						<h4 className="font-bold text-[30px] text-red-500">
+							{totalPrice + deliveryCosts[deliveryOption]} FCFA
 						</h4>
 					</div>
 
 					<ComponentButton
 						type="submit"
-						className="bg-black text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded"
+						className="flex justify-center px-3 py-2 mx-auto my-5 text-xl tracking-widest text-white bg-black"
 						texte="Valider la commande"
-					></ComponentButton>
+					>
+						<Link
+							to="/connection"
+							className="text-blue-500 underline hover:text-blue-700"
+						></Link>
+					</ComponentButton>
 				</form>
 			</div>
 		</div>
