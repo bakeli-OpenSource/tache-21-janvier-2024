@@ -29,7 +29,6 @@ const Dropdown = () => {
   };
 
   if (tokenClient === null) {
-    // alert("Merci de vous connectez");
     connecter = "/connexion";
     commander = "/connexion"
     favoris = "/connexion"
