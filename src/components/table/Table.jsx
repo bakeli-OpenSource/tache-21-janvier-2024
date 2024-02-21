@@ -45,9 +45,29 @@ const Tbody = ({tbody, actions}) => {
                         {td.date}
                     </td> : null
                     }
+                    {td.telephone ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.telephone}
+                    </td> : null
+                    }
+                    {td.adresse ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.adresse}
+                    </td> : null
+                    }
                     {td.etat ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.etat}
+                    </td> : null
+                    }
+                    {td.prixProduit ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.prixProduit}
+                    </td> : null
+                    }
+                    {td.prixLivraison ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.prixLivraison}
                     </td> : null
                     }
                     {td.prix ?
@@ -60,8 +80,13 @@ const Tbody = ({tbody, actions}) => {
                         {td.PrixUnitaire}
                     </td> : null
                     }
+                    {td.prixTotal ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.prixTotal}
+                    </td> : null
+                    }
                     {td.statut ?
-                    <td className="px-4 py-5 TEXT-center text-xl border">
+                    <td className="px-4 py-5 text-center text-xl border">
                         {td.statut}
                     </td> : null
                     }

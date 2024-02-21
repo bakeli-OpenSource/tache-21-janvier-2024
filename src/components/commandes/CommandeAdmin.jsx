@@ -26,6 +26,14 @@ const CommandeAdmin = () => {
     setDate,
     setQuantite,
     setCommandes,
+    telephone,
+    setTelephone,
+    adresse,
+    setAdresse,
+    prixLivraison,
+    setPrixLivraison,
+    prixProduit,
+    setPrixProduit
   } = useCommandes();
 
   const { open } = useSidebare();
@@ -60,6 +68,30 @@ const CommandeAdmin = () => {
       type: 'number',
       value: price,
       setValue: setPrice,
+    },
+    {
+      label: 'Telephone',
+      type: 'number',
+      value: telephone,
+      setValue: setTelephone,
+    },
+    {
+      label: 'Adresse',
+      type: 'adresse',
+      value: adresse,
+      setValue: setAdresse,
+    },
+    {
+      label: 'Prix Livraison',
+      type: 'number',
+      value: prixLivraison,
+      setValue: setPrixLivraison,
+    },
+    {
+      label: 'Prix Produit',
+      type: 'number',
+      value: prixProduit,
+      setValue: setPrixProduit,
     },
   ];
 
@@ -101,11 +133,15 @@ const CommandeAdmin = () => {
     e.preventDefault();
 
     const formData = {
-      email: email,
-      quantite: quantite,
-      date: date,
-      etat: etat,
-      prix: price,
+      email,
+     quantite,
+      date,
+      etat,
+      "prixTotal": price,
+      telephone,
+      adresse,
+      prixProduit,
+      prixLivraison
     };
 
     console.log('Form Data:', formData);
@@ -121,8 +157,12 @@ const CommandeAdmin = () => {
         setDate("")
         setEtat("")
         setPrice("")
+        setTelephone("")
+        setAdresse("")
+        setPrixLivraison("")
+        setPrixProduit("")
       } else {
-        console.error('Erreur lors de l\'ajout de commande:', response.data);
+        console.error('Erreur lors de l\'ajout de commandes:', response.data);
       }
       fetchCommandes();
     } catch (error) {

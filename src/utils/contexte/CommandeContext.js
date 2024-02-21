@@ -9,7 +9,7 @@ const CommandeContextProvider = ({ children }) => {
   
   
       const table = [
-        'Référence', 'E-mail','Nombres article', 'Date','Etat de la commande',  'Prix total', 'Actions'
+        'Référence', 'E-mail','Nombres article', 'Date', 'Telephone', 'Adress', 'Etat de la commande', 'Prix Produit', 'Prix Livraison', 'Prix total', 'Actions'
     ]
     
     const [email, setEmail] = useState("")
@@ -17,6 +17,10 @@ const CommandeContextProvider = ({ children }) => {
     const [date, setDate] = useState('')
     const [etat, setEtat] = useState('')
     const [price, setPrice] = useState("")
+    const [telephone, setTelephone] = useState("")
+    const [adresse, setAdresse] = useState("")
+    const [prixLivraison, setPrixLivraison] = useState("")
+    const [prixProduit, setPrixProduit] = useState("")
     const [commandes, setCommandes] = useState([])
 
     const table1 = [
@@ -28,7 +32,15 @@ const CommandeContextProvider = ({ children }) => {
     table, 
     commandes,
     table1, 
-    // actions,  
+    // actions, 
+    telephone,
+    setTelephone,
+    adresse,
+    setAdresse,
+    prixLivraison,
+    setPrixLivraison,
+    prixProduit,
+    setPrixProduit, 
     email,
     quantite,
     price,
