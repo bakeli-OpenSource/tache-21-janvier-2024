@@ -1,20 +1,12 @@
 import React, { createContext, useState } from "react";
-import profile from "../../../src/assets/images/profile.png";
-
-const initialUser = {
-  fullName: "miss ",
-  lastName: "ndeya",
-  telephone: "763676576",
-  email: "missndeya@gmail.com",
-  profileImage: profile,
-};
+import axios from "axios";
 
 export const SidebareContext = createContext();
 
 const SidebareContextProvider = ({ children }) => {
   const [open, setOpen] = useState(true);
   const [smallScreen, setSmallScreen] = useState(null);
-  const [user, setUser] = useState(initialUser);
+  const [user, setUser] = useState("");
   const [dropdown, setDropdown] = useState(false);
   const [message, setMessage] = useState(false);
   const [notification, setNotification] = useState(false);
@@ -51,20 +43,22 @@ const SidebareContextProvider = ({ children }) => {
     }
   };
 
-  //   axios.get('https://kay-solu-api.onrender.com/api/auth/profile', {
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // })
-  // .then((response) => {
-  //   console.log("Informations de l'utilisateur connecté :", response.data);
-  // })
-  // .catch((error) => {
-  //   console.error(
-  //     "Erreur lors de la récupération des informations de l'utilisateur:",
-  //     error
-  //   );
-  // });
+  const profile = () => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get("https://kay-solu-api.onrender.com/api/auth/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const value = {
     open,
@@ -81,6 +75,8 @@ const SidebareContextProvider = ({ children }) => {
     setOpen,
     updateUserProfile,
     handleToggle,
+    profile,
+    setUser,
   };
 
   return (

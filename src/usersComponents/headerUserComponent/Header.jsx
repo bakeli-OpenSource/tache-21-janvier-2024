@@ -25,7 +25,9 @@ const Header = () => {
     <header
       className="bg-Hero bg-cover h-screen md:bg-top bg-right px-5 transition-opacity duration-1000"
       style={{
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${backgroundImage})` ,
+        backgroundPosition: 'right' ,
+
       }}
     >
       <div className="flex  flex-col justify-end  px-4 items-start h-5/6">

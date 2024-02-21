@@ -6,6 +6,7 @@ import axios from "axios";
 import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
+import useGlobal from "../../../../utils/hooks/useGlobal";
 
 const Shop = () => {
     const [heartColors, setHeartColors] = useState(Array(10).fill("white"));
@@ -45,13 +46,13 @@ const Shop = () => {
             newHeartColors[index] === "white" ? "red" : "white";
         setHeartColors(newHeartColors);
     };
-
+    const {setDropdown} = useGlobal()
     return (
         <>
             <div className="mb-9">
                 <Navbar className="border-2 bg-white  border-b-gray-400 z-50 fixed top-0 w-full" />
             </div>
-            <div className=" bg-white px-9 mx-auto z-0 flex flex-col  ">
+            <div onClick={() => setDropdown(false)} className=" bg-white px-9 mx-auto z-0 flex flex-col  ">
                 <div className="flex mt-10">
                     <h1 className=" text-2xl mr-5">Shop</h1>
                     {categories.map((categorie, index) => (
@@ -84,6 +85,7 @@ const Shop = () => {
             <Footer />
         </>
     );
+
 };
 
 export default Shop;
