@@ -24,11 +24,10 @@ const Form = () => {
 				const token = response.data.token;
 				// Stocker le token dans le local storage
 				localStorage.setItem('tokenclient', token);
-				// Rediriger l'utilisateur vers une autre page par exemple
 				navigate('/Panier');
 			})
 			.catch((error) => {
-				console.error(error); // Gérer les erreurs ici
+				console.error(error);
 				alert('Email ou mot de passe incorrect');
 			});
 	};

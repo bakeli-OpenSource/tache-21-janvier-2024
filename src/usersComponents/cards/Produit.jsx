@@ -8,6 +8,7 @@ const Produit = ({ produit }) => {
 	const { _id, imageUrl, categorie, titre, prix } = produit;
 
 	const handleAddToCart = () => {
+		console.log(produit);
 		addToCart(produit);
 	};
 

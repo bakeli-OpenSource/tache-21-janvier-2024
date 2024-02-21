@@ -2,8 +2,12 @@ import React from 'react';
 import { usePanier } from '../../utils/contexte/PanierContext';
 import ComponentButton from '../button/ComponentButton';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Commande = () => {
+	const navigate = useNavigate();
 	const donnees = {
 		email: 'upchh@example.com',
 		produit: 'Produit',
@@ -31,14 +35,36 @@ const Commande = () => {
 		deliveryCosts,
 	} = usePanier();
 
+	const [authenticated, setauthenticated] = useState(null);
+	useEffect(() => {
+		const loggedInUser = localStorage.getItem('tokenclient');
+		if (loggedInUser) {
+			setauthenticated(loggedInUser);
+		}
+	}, []);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (deliveryOption === '') {
-			alert('Veuillez choisir une option de livraison.');
+
+		if (!authenticated) {
+			// User is not authenticated, redirect to login page
+			navigate('/connection');
 			return;
 		}
-	};
 
+		axios
+			.post('https://kay-solu-api.onrender.com/api/authclient/login')
+			.then((response) => {
+				console.log(response.data);
+				const token = response.data.token;
+				localStorage.setItem('tokenclient', token);
+				navigate('/Panier');
+			})
+			.catch((error) => {
+				console.error(error);
+				alert('Email ou mot de passe incorrect');
+			});
+	};
 	return (
 		<div>
 			<div className="p-5 mx-3">
@@ -125,12 +151,7 @@ const Commande = () => {
 						type="submit"
 						className="flex justify-center px-3 py-2 mx-auto my-5 text-xl tracking-widest text-white bg-black"
 						texte="Valider la commande"
-					>
-						<Link
-							to="/connection"
-							className="text-blue-500 underline hover:text-blue-700"
-						></Link>
-					</ComponentButton>
+					></ComponentButton>
 				</form>
 			</div>
 		</div>

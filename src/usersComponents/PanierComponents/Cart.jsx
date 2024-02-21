@@ -65,31 +65,26 @@ const Cart = () => {
 													className="px-2 py-1 bg-gray-200"
 													texte="-"
 													onClick={() => {
-														const newQuantity = Math.max(quantity - 1, 1);
+														const newQuantity = Math.max(item.quantity - 1, 1);
 														updateQuantity(item._id, newQuantity);
-														setQuantity(newQuantity);
 													}}
 												/>
 												<input
 													min={1}
-													value={quantity}
+													value={item.quantity}
 													className="w-8 h-8 text-center border border-gray-300"
 													onChange={(e) => {
 														const newQuantity = parseInt(e.target.value);
-														setQuantity(isNaN(newQuantity) ? 1 : newQuantity);
+														updateQuantity(item._id, newQuantity);
 													}}
 												/>
 												<ComponentButton
 													className="px-2 py-1 bg-gray-200"
 													texte="+"
 													onClick={() => {
-														const newQuantity = Math.min(
-															quantity + 1,
-															item.quantite,
-														);
+														const newQuantity = item.quantity + 1;
 
 														updateQuantity(item._id, newQuantity);
-														setQuantity(newQuantity);
 													}}
 												/>
 											</div>
@@ -98,7 +93,9 @@ const Cart = () => {
 											<div className="mb-4">{item.prix} FCFA</div>
 										</td>
 										<td className="hidden py-2 text-center md:table-cell">
-											<div className="mb-7">{item.prix * quantity} FCFA</div>
+											<div className="mb-7">
+												{item.prix * item.quantity} FCFA
+											</div>
 										</td>
 									</tr>
 								))}
