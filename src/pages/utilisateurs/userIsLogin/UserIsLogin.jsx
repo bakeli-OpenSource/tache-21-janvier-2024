@@ -33,7 +33,7 @@ const UserIsLogin = () => {
 						<Route path="/Panier" element={<Panier />} />
 						<Route path="/inscription" element={<Inscription />} />
 						<Route path="/connexion" element={<UserConnexion />} />
-						<Route path="/compte" element={<ComptePage />} />
+						<Route path="/compte/*" element={<ComptePage />} />
 						<Route path="/details/:_id" element={<DetailsCard />} />
 					</Routes>
 				</PanierProvider>
