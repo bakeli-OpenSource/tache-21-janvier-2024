@@ -43,7 +43,7 @@ const Form = () => {
 				<div className="w-full mb-4 mt- ">
 					<label
 						htmlFor="email"
-						className="block text-sm font-medium text-gray-600"
+						className="block text-sm font-medium "
 					>
 						Email
 					</label>
@@ -52,7 +52,7 @@ const Form = () => {
 						type="email"
 						id="email"
 						name="email"
-						className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+						className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 						value={formData.email}
 						onChange={handleChange}
 					/>
@@ -60,7 +60,7 @@ const Form = () => {
 				<div className="w-full mb-5 mt- ">
 					<label
 						htmlFor="password"
-						className="block text-sm font-medium text-gray-600"
+						className="block text-sm font-medium "
 					>
 						Mot de pass
 					</label>
@@ -69,7 +69,7 @@ const Form = () => {
 						type="password"
 						id="password"
 						name="password"
-						className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+						className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 						value={formData.password}
 						onChange={handleChange}
 					/>
