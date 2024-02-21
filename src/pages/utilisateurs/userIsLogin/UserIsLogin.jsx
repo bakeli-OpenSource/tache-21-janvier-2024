@@ -10,11 +10,12 @@ import Shop from '../NavbarUtilisateut/NavbarLinks/Shop';
 import Arrivals from '../NavbarUtilisateut/NavbarLinks/Arrivals';
 import Sales from '../NavbarUtilisateut/NavbarLinks/Sales';
 import Journal from '../NavbarUtilisateut/NavbarLinks/Journal';
-import ProduitProvider from '../../../usersComponents/cards/ProduitContext';
+import ProduitProvider from '../../../usersComponents/Cards/ProduitContext';
 import Inscription from '../../../usersComponents/incription/Inscription';
 import UserConnexion from '../../../usersComponents/userConnexion/UserConnexion';
-import DetailsCard from '../../../usersComponents/cards/DetailsCard';
+import DetailsCard from '../../../usersComponents/Cards/DetailsCard';
 import ComptePage from '../comptePage/ComptePage';
+
 
 
 const UserIsLogin = () => {
