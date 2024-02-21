@@ -30,14 +30,14 @@ const Graphique2 = () => {
 
   return (
     <div className='md:w-[15rem] lg:w-[23rem] xl:w-[38rem] border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
+
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
-          <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
+          <h2 className='text-white text-[16px] leading-[19px] font-bold'>Produit</h2>
       </div>
       <div className="text-[16px]">
         <PieChart width={chartWidth} height={450}>
         <Legend
           verticalAlign="top" 
-          
         />
           <Pie
             nameKey="name"

@@ -1,13 +1,13 @@
 
 
 import React from "react";
-import Cards from "../../components/cards-et-filtre/Cards";
 import Filtre from "../../components/cards-et-filtre/Filtre";
 import Revenue from "./Revenue";
 import useSidebare from "../../utils/hooks/useSidebare";
-import Graphique2 from './graphique2/Graph'
 // import ListeProd from './ListeProd'
 import ListeProduit from './ListeProduit'
+import Graphique2 from "./graphique2/Graph";
+import Cards from "../../components/cards-et-filtre/Cards";
 
 
 const Dashboard = () => {
@@ -31,7 +31,7 @@ const Dashboard = () => {
           <Revenue />
         </div>
         <div >
-          <Graphique2 />
+        <Graphique2 />
         </div>
       </div>
 

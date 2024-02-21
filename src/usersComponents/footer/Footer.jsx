@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="">
-        <h3 className="text-xl font-bold italic tracking-widest opacity-85 my-6">
+        <h3 className="text-xl font-bold tracking-widest opacity-85 my-6">
           Recevez les dernières nouveautés de notre part
         </h3>
         <input

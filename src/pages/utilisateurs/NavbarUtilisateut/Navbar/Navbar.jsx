@@ -46,7 +46,7 @@ const Navbar = ({className}) => {
 
               <NavInput type="text" search={search} />
             </div>
-            <Link to={"/admin"}>
+            <Link to={"/connexion"} className="font-bold">
             
             {/* <BsPersonCircle className="cursor-pointer " size={20} /> */}
             Se connecter

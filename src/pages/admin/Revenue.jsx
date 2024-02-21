@@ -80,7 +80,9 @@ function Revenue() {
   }, []);
   return (
 
+
     <div className='md:w-[15rem] lg:w-[23rem]  xl:w-[38rem] border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
+
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
       </div>
@@ -105,6 +107,7 @@ function Revenue() {
           <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
         </LineChart>
+
       </div>
     </div>
   );
