@@ -4,6 +4,7 @@ import ComponentButton from '../button/ComponentButton';
 import { ProduitContext } from './ProduitContext';
 import HeaderTable from '../../components/headerTable/HeaderTable';
 import { useContext } from 'react';
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 const DetailsCard = () => {
@@ -15,7 +16,7 @@ const DetailsCard = () => {
  
     const {open} = useSidebare()
  
-const {prix, description, imageUrl, nom, titre} = produit 
+const { description, imageUrl, nom, titre} = produit 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>
       <HeaderTable title="Détail du produit" />
@@ -27,6 +28,9 @@ const {prix, description, imageUrl, nom, titre} = produit
                   <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 shadow-xl">
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full px-4 md:w-1/2 ">
+                          <div>
+                            <a href='/' className="bg-gray-600 p-2 m-3 text-light">Back</a>
+                          </div>
                             <div className=" top-0 z-50 overflow-hidden ">
                                 <div className="relative mb-6 lg:mb-10 lg:h-full ">
                                     <img src={imageUrl} alt="" className="object-cover w-full lg:h-full " />
@@ -52,7 +56,7 @@ const {prix, description, imageUrl, nom, titre} = produit
                                     <h2 className="w-16 text-xl font-bold mt-2">
                                         Prix:
                                     </h2>
-                                        <span>{prix} Fcfa</span>
+                                        <span>10000Fcfa</span>
                                     </div>
                                     <div>
                                       <h3 className='text-sm font-bold mt-2'>Couleur du produit</h3>

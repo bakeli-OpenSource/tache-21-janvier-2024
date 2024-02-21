@@ -45,7 +45,7 @@ const Footer = () => {
         </h3>
         <input
           placeholder="Enter your email adress"
-          className="w-full border-0 outline-none text-xl "
+          className="w-full border-0 outline-none text-xl my-5 py-2"
         />
         <p className="text-sm py-1 font-semibold">
           En vous inscrivant, vous acceptez notre politique privée et nos
