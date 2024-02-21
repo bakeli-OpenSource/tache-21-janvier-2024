@@ -4,8 +4,10 @@ import ComponentButton from "../button/ComponentButton";
 import '@fontsource/montserrat';
 
 
+import { BsFacebook, BsTwitterX, BsInstagram, BsLinkedin } from "react-icons/bs";
 const Footer = () => {
   const contact = ["+221 77 982 54 32", "kaysolu@gmail.com", "Dakar-bakeli"];
+  
   const customers = [
     "Démarrer un retour",
     "Politique de retour",
@@ -21,13 +23,13 @@ const Footer = () => {
     "Termes",
   ];
   return (
-    <div className="flex justify-between mt-5  flex-wrap w-full bg-gray-200 px-[35px] font-montserrat">
+    <div className="flex justify-between mt-5 pb-3 flex-wrap w-full bg-gray-200 px-[35px] font-montserrat">
       <div className=" flex  gap-x-10 flex-wrap  ">
         <div>
           <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
             CONTACTEZ-NOUS
           </h4>
-          <Paragraphe items={contact} />
+          <Paragraphe className="cursor-pointer hover:underline" items={contact} />
         </div>
         <div>
           <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
@@ -59,6 +61,20 @@ const Footer = () => {
           texte="Abonnez-vous"
         />
       </div>
+
+        {/* Bottom du Footer */}
+      <div className="w-full flex justify-between items-center md:flex-row flex-col pt-4 border-t-[1px] border-t-[#3F3E45]">
+        <p className="font-poppins font-normal text-center text-[15px] leading-[27px]">
+          Kaay-Solu Ⓒ 2024 Tous Droits Réservés.
+        </p>
+        <div className="flex flex-row md:mt-0 mt-6 gap-2">
+          <BsFacebook className="w-[21px] h-[21px] object-contain cursor-pointer" />
+          <BsTwitterX className="w-[21px] h-[21px] object-contain cursor-pointer" />
+          <BsInstagram className="w-[21px] h-[21px] object-contain cursor-pointer" />
+          <BsLinkedin className="w-[21px] h-[21px] object-contain cursor-pointer" />
+        </div>
+      </div>
+
     </div>
   );
 };

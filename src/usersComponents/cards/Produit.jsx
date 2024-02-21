@@ -6,7 +6,7 @@ import { usePanier } from '../../utils/contexte/PanierContext';
 const Produit = ({ produit }) => {
 	const { addToCart } = usePanier();
 	const { _id, imageUrl, categorie, titre, prix } = produit;
-
+	
 	const handleAddToCart = () => {
 		addToCart(produit);
 	};
@@ -36,6 +36,7 @@ const Produit = ({ produit }) => {
 			<div className="font-semibold">{prix} FCFA</div>
 		</div>
 	);
+
 };
 
 export default Produit;

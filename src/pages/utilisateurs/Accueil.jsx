@@ -7,6 +7,7 @@ import Produit from '../../usersComponents/cards/Produit';
 import { ProduitContext } from '../../usersComponents/cards/ProduitContext';
 import useGlobal from '../../utils/hooks/useGlobal';
 
+
 export default function Accueil() {
 	const { produits } = useContext(ProduitContext);
 	const filteredProducts = produits.filter((item) => {
