@@ -4,18 +4,17 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { DiGhostSmall } from "react-icons/di";
 import useGlobal from "../../utils/hooks/useGlobal";
-import { prenom } from "../../utils/contexte/GlobalContext";
 
 const Dropdown = () => {
-  const { handleLogoutUser, profileUser, dropdown, handleToggle } = useGlobal();
-
+  const { handleLogoutUser, profileUser, dropdown, handleToggle, client } = useGlobal();
+let connecter
   const navigate = useNavigate();
-  
 
   useEffect(() => {
-    profileUser()
-  }, [])
+    profileUser();
+  }, []);
 
+  const tokenClient = localStorage.getItem("tokenclient");
   const deconnexion = () => {
     handleToggle();
 
@@ -26,17 +25,25 @@ const Dropdown = () => {
     }
   };
 
-  const tokenClient = localStorage.getItem("tokenclient");
+  if(tokenClient === null) {
+    connecter = "/connexion"
+  } else {
+    alert('Merci de vous connectez')
+    connecter = "/compte"
+  }
+
 
   return (
     <div className="relative">
       <div
-        className="font-medium cursor-pointer flex items-center gap-"
+        className="font- cursor-pointer flex items-center gap-"
         onClick={handleToggle}
       >
         <FaRegUser className="cursor-pointer mr-2" size={20} />
-        
-        {tokenClient === null ? "Se connecter" : `bonjour ${prenom === undefined ? "" : prenom}` }
+
+        {tokenClient === null
+          ? "Se connecter"
+          : `bonjour, ${client.prenom === undefined ? "" : client.prenom}`}
         <RiArrowDropDownLine className="p-0 mt-2 mx-0" size={30} />
       </div>
 
@@ -51,8 +58,8 @@ const Dropdown = () => {
             className={`block ${
               tokenClient === null
                 ? " "
-                : "border-t-2 uppercase border-slate-700"
-            } px-4 mb-4 shadow-md py-2 mx-3 text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
+                : "uppercase "
+            } px-4 mb-4  py-2 mx-3 text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
           >
             {tokenClient === null ? "se connecter" : "deconnexion"}
           </button>
@@ -64,7 +71,7 @@ const Dropdown = () => {
             }  flex flex-col`}
           >
             <Link
-              to="/"
+              to={connecter}
               onClick={handleToggle}
               className=" px-4 my-0  py-2 flex items-center gap-3   text-upercase text-sm hover:bg-gray-200 "
             >

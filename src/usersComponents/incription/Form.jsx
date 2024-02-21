@@ -50,7 +50,7 @@ const Form = () => {
 					<div className="w-full mt-5 mb-5 md:w-1/2">
 						<label
 							htmlFor="prenom"
-							className="block text-sm font-medium text-gray-600"
+							className="block text-sm font-medium "
 						>
 							Prénom
 						</label>
@@ -59,7 +59,7 @@ const Form = () => {
 							type="text"
 							id="prenom"
 							name="prenom"
-							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.prenom}
 							onChange={handleChange}
 						/>
@@ -67,7 +67,7 @@ const Form = () => {
 					<div className="w-full mt-5 mb-5 md:w-1/2">
 						<label
 							htmlFor="nom"
-							className="block text-sm font-medium text-gray-600"
+							className="block text-sm font-medium "
 						>
 							Nom
 						</label>
@@ -76,7 +76,7 @@ const Form = () => {
 							type="text"
 							id="nom"
 							name="nom"
-							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.nom}
 							onChange={handleChange}
 						/>
@@ -86,7 +86,7 @@ const Form = () => {
 					<div className="w-full mb-4 mt- md:w-1/2">
 						<label
 							htmlFor="email"
-							className="block text-sm font-medium text-gray-600"
+							className="block text-sm font-medium "
 						>
 							Email
 						</label>
@@ -95,7 +95,7 @@ const Form = () => {
 							type="email"
 							id="email"
 							name="email"
-							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.email}
 							onChange={handleChange}
 						/>
@@ -103,7 +103,7 @@ const Form = () => {
 					<div className="w-full mb-5 mt- md:w-1/2">
 						<label
 							htmlFor="password"
-							className="block text-sm font-medium text-gray-600"
+							className="block text-sm font-medium "
 						>
 							Mot de pass
 						</label>
@@ -112,7 +112,7 @@ const Form = () => {
 							type="password"
 							id="password"
 							name="password"
-							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.password}
 							onChange={handleChange}
 						/>
@@ -122,7 +122,7 @@ const Form = () => {
 					<div className="w-full mb-4 mt- md:w-1/2">
 						<label
 							htmlFor="adresse"
-							className="block text-sm font-medium text-gray-600"
+							className="block text-sm font-medium "
 						>
 							Adresse
 						</label>
@@ -131,7 +131,7 @@ const Form = () => {
 							type="adresse"
 							id="adresse"
 							name="adresse"
-							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.adresse}
 							onChange={handleChange}
 						/>
@@ -139,7 +139,7 @@ const Form = () => {
 					<div className="w-full mb-5 mt- md:w-1/2">
 						<label
 							htmlFor="telephone"
-							className="block text-sm font-medium text-gray-600"
+							className="block text-sm font-medium "
 						>
 							Telephone
 						</label>
@@ -148,7 +148,7 @@ const Form = () => {
 							type="tel"
 							id="telephone"
 							name="telephone"
-							className="w-full p-2 mt-1 text-gray-400 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.telephone}
 							onChange={handleChange}
 						/>
