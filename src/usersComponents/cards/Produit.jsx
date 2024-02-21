@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BsPlus } from 'react-icons/bs'
+import { BsPlus } from 'react-icons/bs';
+import { usePanier } from '../../utils/contexte/PanierContext';
 
 const Produit = ({ produit }) => {
-  //Destructuration de Produit
-  const { _id, imageUrl, categorie, titre, prix } = produit;
-
+	const { addToCart } = usePanier();
+	const { _id, imageUrl, categorie, titre, prix } = produit;
+	
+	const handleAddToCart = () => {
+		addToCart(produit);
+	};
+	
   return (
     <div className='shadow-lg rounded bg-white'>
       <div className='border border-[#e4e4e4] h-[250px] relative overflow-hidden group transition'>
@@ -36,6 +41,7 @@ const Produit = ({ produit }) => {
       </div>
     </div>
   )
+	
 };
 
 export default Produit;

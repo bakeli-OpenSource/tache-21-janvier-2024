@@ -149,6 +149,7 @@ const Categories = () => {
     handleEdit(categoryId, { ...editData, quantite: totalProducts });
   };
 
+  
   const fetchCategories = async () => {
     try {
       const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
@@ -175,6 +176,7 @@ const Categories = () => {
       handleEditQuantiteCategory(category._id, totalProducts); // Appel de la fonction ici
       return { ...category, totalProducts };
     });
+    fetchCategories()
   }, [categories, produits]);
 
 
