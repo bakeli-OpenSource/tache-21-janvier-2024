@@ -101,7 +101,7 @@ const Commande = () => {
 					</div>
 					<ComponentButton
 						type="submit"
-						className="flex justify-center px-3 py-2 mx-auto my-5 text-xl tracking-widest text-white bg-black"
+						className="flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white bg-slate-800 rounded"
 						texte="Valider la commande"
 					></ComponentButton>
 				</form>

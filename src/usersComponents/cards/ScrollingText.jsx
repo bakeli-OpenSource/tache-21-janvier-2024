@@ -14,7 +14,7 @@ const ScrollingText = () => {
              de vie plus durable et plus conscient.
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   )
 }

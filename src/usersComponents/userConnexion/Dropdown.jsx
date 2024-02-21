@@ -6,8 +6,12 @@ import { DiGhostSmall } from "react-icons/di";
 import useGlobal from "../../utils/hooks/useGlobal";
 
 const Dropdown = () => {
-  const { handleLogoutUser, profileUser, dropdown, handleToggle, client } = useGlobal();
-let connecter
+
+  const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
+    useGlobal();
+  let connecter;
+  let commander;
+  let favoris;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,13 +29,15 @@ let connecter
     }
   };
 
-  if(tokenClient === null) {
-    connecter = "/connexion"
+  if (tokenClient === null) {
+    connecter = "/connexion";
+    commander = "/connexion"
+    favoris = "/connexion"
   } else {
-    alert('Merci de vous connectez')
-    connecter = "/compte"
+    connecter = "/compte";
+    commander = "/compte/commandes"
+    favoris = "/compte/favoris"
   }
-
 
   return (
     <div className="relative">
@@ -56,9 +62,8 @@ let connecter
           <button
             onClick={deconnexion}
             className={`block ${
-              tokenClient === null
-                ? " "
-                : "uppercase "
+
+              tokenClient === null ? " " : "uppercase "
             } px-4 mb-4  py-2 mx-3 text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
           >
             {tokenClient === null ? "se connecter" : "deconnexion"}
@@ -79,7 +84,7 @@ let connecter
               Votre compte
             </Link>
             <Link
-              to="/"
+              to={commander}
               onClick={handleToggle}
               className="flex gap-4 items-center px-4 my-0 mt- py-2   text-upercase text-sm hover:bg-gray-200"
             >
@@ -87,7 +92,7 @@ let connecter
               Vos commandes
             </Link>
             <Link
-              to="/"
+              to={favoris}
               onClick={handleToggle}
               className="flex items-center gap-3 px-4 my-0 mt- py-2 mb-3   text-upercase text-sm hover:bg-gray-200"
             >
