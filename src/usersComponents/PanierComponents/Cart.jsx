@@ -6,7 +6,16 @@ import ComponentButton from '../button/ComponentButton';
 import { usePanier } from '../../utils/contexte/PanierContext';
 
 const Cart = () => {
-	const { items, totalItems, removeItem, updateQuantity } = usePanier();
+	const {
+		items,
+		totalItems,
+		removeItem,
+		quantity,
+		cartQuantities,
+		updateQuantity,
+	} = usePanier();
+
+	console.log(quantity);
 
 	return (
 		<div>
@@ -57,25 +66,27 @@ const Cart = () => {
 												<ComponentButton
 													className="px-2 py-1 bg-gray-200"
 													texte="-"
-													onClick={() =>
-														updateQuantity(item._id, item.quantite - 1)
-													}
+													onClick={() => {
+														const newQuantity = Math.max(item.quantity - 1, 1);
+														updateQuantity(item._id, newQuantity);
+													}}
 												/>
 												<input
 													min={1}
-													defaultValue={1}
-													value={item.quantite}
+													value={cartQuantities[item._id] || 1} // Utilisez cartQuantities pour obtenir la quantité de l'article
 													className="w-8 h-8 text-center border border-gray-300"
-													onChange={(e) =>
-														updateQuantity(item._id, parseInt(e.target.value))
-													}
+													onChange={(e) => {
+														const newQuantity = parseInt(e.target.value);
+														updateQuantity(item._id, newQuantity);
+													}}
 												/>
 												<ComponentButton
 													className="px-2 py-1 bg-gray-200"
 													texte="+"
-													onClick={() =>
-														updateQuantity(item._id, item.quantite + 1)
-													}
+													onClick={() => {
+														const newQuantity = item.quantity + 1;
+														updateQuantity(item._id, newQuantity);
+													}}
 												/>
 											</div>
 										</td>
@@ -84,7 +95,7 @@ const Cart = () => {
 										</td>
 										<td className="hidden py-2 text-center md:table-cell">
 											<div className="mb-7">
-												{item.prix * item.quantite} FCFA
+												{item.prix * item.quantity} FCFA
 											</div>
 										</td>
 									</tr>
