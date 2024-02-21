@@ -9,7 +9,6 @@ const Dropdown = () => {
   const { handleLogoutUser, profileUser, dropdown, handleToggle, client } = useGlobal();
 let connecter
   const navigate = useNavigate();
-
   useEffect(() => {
     profileUser();
   }, []);
