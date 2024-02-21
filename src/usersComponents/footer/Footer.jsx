@@ -1,6 +1,9 @@
 import React from "react";
 import Paragraphe from "./Paragraphe";
 import ComponentButton from "../button/ComponentButton";
+import '@fontsource/montserrat';
+
+
 import { BsFacebook, BsTwitterX, BsInstagram, BsLinkedin } from "react-icons/bs";
 const Footer = () => {
   const contact = ["+221 77 982 54 32", "kaysolu@gmail.com", "Dakar-bakeli"];
@@ -20,7 +23,7 @@ const Footer = () => {
     "Termes",
   ];
   return (
-    <div className="flex justify-between mt-5 pb-3 flex-wrap w-full bg-gray-200 px-[35px]">
+    <div className="flex justify-between mt-5 pb-3 flex-wrap w-full bg-gray-200 px-[35px] font-montserrat">
       <div className=" flex  gap-x-10 flex-wrap  ">
         <div>
           <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
@@ -47,7 +50,7 @@ const Footer = () => {
         </h3>
         <input
           placeholder="Enter your email adress"
-          className="w-full border-0 outline-none text-xl "
+          className="w-full border-0 outline-none text-xl my-5 py-2"
         />
         <p className="text-sm py-1 font-semibold">
           En vous inscrivant, vous acceptez notre politique privée et nos

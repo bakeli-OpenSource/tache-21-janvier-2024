@@ -10,10 +10,11 @@ import Shop from '../NavbarUtilisateut/NavbarLinks/Shop';
 import Arrivals from '../NavbarUtilisateut/NavbarLinks/Arrivals';
 import Sales from '../NavbarUtilisateut/NavbarLinks/Sales';
 import Journal from '../NavbarUtilisateut/NavbarLinks/Journal';
-import ProduitProvider from '../../../usersComponents/Cards/ProduitContext';
+import ProduitProvider from '../../../usersComponents/cards/ProduitContext';
 import Inscription from '../../../usersComponents/incription/Inscription';
 import UserConnexion from '../../../usersComponents/userConnexion/UserConnexion';
-import DetailsCard from '../../../usersComponents/Cards/DetailsCard';
+import DetailsCard from '../../../usersComponents/cards/DetailsCard';
+import ComptePage from '../comptePage/ComptePage';
 
 
 const UserIsLogin = () => {
@@ -32,6 +33,7 @@ const UserIsLogin = () => {
 						<Route path="/Panier" element={<Panier />} />
 						<Route path="/inscription" element={<Inscription />} />
 						<Route path="/connexion" element={<UserConnexion />} />
+						<Route path="/compte" element={<ComptePage />} />
 						<Route path="/details/:_id" element={<DetailsCard />} />
 					</Routes>
 				</PanierProvider>
