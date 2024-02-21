@@ -13,13 +13,11 @@ const DetailsCard = () => {
   const produit = produits.find(item =>{
     return item._id === _id
   })
- 
     const {open} = useSidebare()
- 
-const {prix, description, imageUrl, nom, titre} = produit 
+
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>
-      {produit !== null ?
+      {produit !== undefined ?
       <section className="overflow-hidden py-4 font-poppins ">
         {/* <HeaderTable title="Détail du produit" /> */}
           <Link to="/" className='w-10 h-10' >
@@ -34,7 +32,7 @@ const {prix, description, imageUrl, nom, titre} = produit
                           
                             <div className=" top-0 z-50 overflow-hidden ">
                                 <div className="relative mb-6 lg:mb-10 lg:h-full ">
-                                    <img src={imageUrl} alt="" className="object-cover w-full lg:h-full " />
+                                    <img src={produit.imageUrl} alt="" className="object-cover w-full lg:h-full " />
                                 </div>
                                 <div className="flex-wrap hidden md:flex ">
                                   
@@ -45,23 +43,23 @@ const {prix, description, imageUrl, nom, titre} = produit
                             <div className="lg:pl-20">
                                 <div className="mb-8 ">
                                     <h2 className="max-w-xl mt-2 text-2xl font-bold  md:text-4xl">
-                                    {nom}
+                                    {produit.nom}
                                     </h2>
-                                    <div className="flex items-center mb-6">
-                                        <p className="">{titre}</p>
+                                    <div className="flex items-center mb-6 my-2">
+                                        <p className="">{produit.titre}</p>
                                     </div>
                                     <p className="max-w-md mb-8 text-gray-700 ">
-                                     {description}
+                                     {produit.description}
                                     </p>
                                     <div className="mb-8 text-4xl font-bold text-gray-700 flex ">
-                                    <h2 className="w-16 text-xl font-bold mt-2">
+                                    <h2 className="w-16 text-xl font-bold my-2">
                                         Prix:
                                     </h2>
-                                        <span>{prix} Fcfa</span>
+                                        <span>{produit.prix} Fcfa</span>
                                     </div>
                                     <div>
-                                      <h3 className='text-sm font-bold mt-2'>Couleur du produit</h3>
-                                      <div className='flex gap-7 mt-3'>
+                                      <h3 className='text-sm font-bold '>Couleur du produit</h3>
+                                      <div className='flex gap-7 my-3'>
                                         <button type="button" className='bg-gray-600 w-8 h-8 rounded-full'/>
                                         <button type="button" className='bg-gray-600 w-8 h-8 rounded-full'/>
                                         <button type="button" className='bg-gray-600 w-8 h-8 rounded-full'/>
