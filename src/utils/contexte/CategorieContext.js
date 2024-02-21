@@ -24,3 +24,5 @@ export default function CategorieContextProvider({children}) {
     </CategorieContext.Provider>
   );
 }
+
+

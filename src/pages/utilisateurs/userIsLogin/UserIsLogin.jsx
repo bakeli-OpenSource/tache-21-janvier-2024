@@ -17,6 +17,7 @@ import DetailsCard from '../../../usersComponents/cards/DetailsCard';
 import ComptePage from '../comptePage/ComptePage';
 
 
+
 const UserIsLogin = () => {
 	return (
 		<SidebareContextProvider>

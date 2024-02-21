@@ -136,7 +136,6 @@ const ProduitsAdmin = () => {
       setCategorie(selectedCategoryName);
       setCategorieId(selectedCategory._id);
     } 
-    
   };
   
   
@@ -180,3 +179,5 @@ const ProduitsAdmin = () => {
 }
 
 export default ProduitsAdmin
+
+

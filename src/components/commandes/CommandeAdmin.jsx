@@ -17,8 +17,12 @@ const CommandeAdmin = () => {
     commandes,
     email,
     quantite,
-    price,
-    setPrice,
+    prixTotal,
+    produit,
+    setProduit,
+    idProduit,
+    setIdProduit,
+    setPrixTotal,
     setEmail,
     date,
     etat,
@@ -26,16 +30,30 @@ const CommandeAdmin = () => {
     setDate,
     setQuantite,
     setCommandes,
+    telephone,
+    setTelephone,
+    adresse,
+    setAdresse,
+    prixLivraison,
+    setPrixLivraison,
+    prixProduit,
+    setPrixProduit
   } = useCommandes();
 
   const { open } = useSidebare();
 
-  const inputs = [
+  const inputs = [                                                                                                              
     {
       label: 'Email',
       type: 'text',
       value: email,
       setValue: setEmail,
+    },
+    {
+      label: 'Numero Produit',
+      type: 'number',
+      value: idProduit,
+      setValue: setIdProduit,
     },
     {
       label: 'Nombre',
@@ -58,10 +76,42 @@ const CommandeAdmin = () => {
     {
       label: 'Prix total',
       type: 'number',
-      value: price,
-      setValue: setPrice,
+      value: prixTotal,
+      setValue: setPrixTotal,
+    },
+    {
+      label: 'Telephone',
+      type: 'number',
+      value: telephone,
+      setValue: setTelephone,
+    },
+    {
+      label: 'Produit',
+      type: 'text',
+      value: produit,
+      setValue: setProduit,
+    },
+    {
+      label: 'Adresse',
+      type: 'adresse',
+      value: adresse,
+      setValue: setAdresse,
+    },
+    {
+      label: 'Prix Livraison',
+      type: 'number',
+      value: prixLivraison,
+      setValue: setPrixLivraison,
+    },
+    {
+      label: 'Prix Produit',
+      type: 'number',
+      value: prixProduit,
+      setValue: setPrixProduit,
     },
   ];
+
+  
 
   const navigate = useNavigate();
 
@@ -99,36 +149,48 @@ const CommandeAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = {
-      email: email,
-      quantite: quantite,
-      date: date,
-      etat: etat,
-      prix: price,
+  
+    const  ValidationCommande = {
+      email,
+      idProduit,
+      setIdProduit,
+      quantite,
+      produit,
+      date,
+      etat,
+      "prixTotal": prixTotal,
+      telephone,
+      adresse,
+      prixProduit,
+      prixLivraison
     };
-
-    console.log('Form Data:', formData);
-
+    
     try {
-      // Effectuez une requête POST vers votre API avec axios
-      const response = await axios.post('https://kay-solu-api.onrender.com/api/commande', formData);
+      // Effectuer une requête POST vers votre API avec Axios
+      const response = await axios.post('https://kay-solu-api.onrender.com/api/commande',  ValidationCommande);
+  
       if (response.status === 201) {
         console.log('Commande ajoutée avec succès:', response.data);
         setShowModal(false);
-        setEmail("")
-        setQuantite("")
-        setDate("")
-        setEtat("")
-        setPrice("")
+        setEmail("");
+        setQuantite("");
+        setDate("");
+        setEtat("");
+        setPrixTotal("");
+        setTelephone("");
+        setAdresse("");
+        setPrixLivraison("");
+        setPrixProduit("");
       } else {
-        console.error('Erreur lors de l\'ajout de commande:', response.data);
+        console.error('Erreur lors de l\'ajout de commandes:', response.data);
       }
+  
       fetchCommandes();
     } catch (error) {
       console.error('Erreur lors de l\'ajout de commande:', error);
     }
   };
+  
 
   const handleDelete = async (commandeId) => {
     try {
