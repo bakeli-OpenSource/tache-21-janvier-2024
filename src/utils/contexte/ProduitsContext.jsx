@@ -81,7 +81,7 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('taille', produit.taille);
         formData.append('fournisseur', produit.fournisseur);
         
-        const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
+        const response = await axios.post('http://localhost:4000/api/produits', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
