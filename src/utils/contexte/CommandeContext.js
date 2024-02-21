@@ -9,14 +9,16 @@ const CommandeContextProvider = ({ children }) => {
   
   
       const table = [
-        'Référence', 'E-mail','Nombres article', 'Date', 'Telephone', 'Adress', 'Etat de la commande', 'Prix Produit', 'Prix Livraison', 'Prix total', 'Actions'
+        'Référence', 'E-mail', 'Produit', 'Nombres article', 'Date', 'Telephone', 'Adress', 'Etat de la commande', 'Prix Produit', 'Prix Livraison', 'Prix total', 'Actions'
     ]
     
+    const [idProduit, setIdProduit] = useState("")
     const [email, setEmail] = useState("")
     const [quantite, setQuantite] = useState(0)
+    const [produit, setProduit] = useState("")
     const [date, setDate] = useState('')
     const [etat, setEtat] = useState('')
-    const [price, setPrice] = useState("")
+    const [prixTotal, setPrixTotal] = useState("")
     const [telephone, setTelephone] = useState("")
     const [adresse, setAdresse] = useState("")
     const [prixLivraison, setPrixLivraison] = useState("")
@@ -32,7 +34,11 @@ const CommandeContextProvider = ({ children }) => {
     table, 
     commandes,
     table1, 
-    // actions, 
+    // actions,
+    produit, 
+    setProduit, 
+    idProduit, 
+    setIdProduit,
     telephone,
     setTelephone,
     adresse,
@@ -43,8 +49,8 @@ const CommandeContextProvider = ({ children }) => {
     setPrixProduit, 
     email,
     quantite,
-    price,
-    setPrice,
+    prixTotal,
+    setPrixTotal,
     setEmail,
     date,
     etat,

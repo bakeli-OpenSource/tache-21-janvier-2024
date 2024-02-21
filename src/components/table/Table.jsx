@@ -34,12 +34,22 @@ const Tbody = ({tbody, actions}) => {
                         </div>
                     </td> : null
                     }
+                    {td.idProduit ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.idProduit}
+                    </td> : null
+                    }
                     {td.email ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.email}
                     </td> : null
                     }
-                    {td.quantite ?
+                    {td.produit ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.produit}
+                    </td> : null
+                    }
+                    {td.quantite !== 'undefined' ?
                     <td className="px-4 py-3 text-center border text-md">
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
                     </td> : null
