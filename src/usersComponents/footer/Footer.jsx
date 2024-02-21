@@ -1,6 +1,9 @@
 import React from "react";
 import Paragraphe from "./Paragraphe";
 import ComponentButton from "../button/ComponentButton";
+import '@fontsource/montserrat';
+
+
 const Footer = () => {
   const contact = ["+221 77 982 54 32", "kaysolu@gmail.com", "Dakar-bakeli"];
   const customers = [
@@ -18,7 +21,7 @@ const Footer = () => {
     "Termes",
   ];
   return (
-    <div className="flex justify-between mt-5  flex-wrap w-full bg-gray-200 px-[35px]">
+    <div className="flex justify-between mt-5  flex-wrap w-full bg-gray-200 px-[35px] font-montserrat">
       <div className=" flex  gap-x-10 flex-wrap  ">
         <div>
           <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
