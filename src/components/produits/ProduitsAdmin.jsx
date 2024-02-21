@@ -162,7 +162,7 @@ const ProduitsAdmin = () => {
   //               />
   // )
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
+    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable
        title="Produits"
        nomAjout={titreModal} 

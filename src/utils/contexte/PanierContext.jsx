@@ -3,35 +3,23 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 export const PanierContext = createContext();
 
 export const PanierProvider = ({ children }) => {
-	const [items, setItems] = useState([
-		{
-			id: 1,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 5000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp',
-		},
-		{
-			id: 2,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 10000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp',
-		},
-		{
-			id: 3,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 15000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp',
-		},
-	]);
+	const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+	const storedNotificationCount =
+		JSON.parse(localStorage.getItem('notificationCount')) || 0;
+
+	const [items, setItems] = useState(storedItems);
+	const [notificationCount, setNotificationCount] = useState(
+		storedNotificationCount,
+	);
+
+	useEffect(() => {
+		// Save the cart items to localStorage whenever it changes
+		localStorage.setItem('cartItems', JSON.stringify(items));
+		localStorage.setItem(
+			'notificationCount',
+			JSON.stringify(notificationCount),
+		);
+	}, [items, notificationCount]);
 
 	const [deliveryOption, setDeliveryOption] = useState('');
 	const deliveryCosts = {
@@ -53,16 +41,24 @@ export const PanierProvider = ({ children }) => {
 		PROMO03: 0.3,
 	};
 
+	const addToCart = (newItem) => {
+		// You might want to check if the item is already in the cart and update the quantity
+		setItems((prevItems) => [...prevItems, newItem]);
+		setNotificationCount((prevCount) => prevCount + 1);
+	};
+
 	const removeItem = (id) => {
-		const updatedItems = items.filter((item) => item.id !== id);
+		const updatedItems = items.filter((item) => item._id !== id);
 		setItems(updatedItems);
+		localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+		setNotificationCount((prevCount) => Math.max(prevCount - 1, 0));
 	};
 
 	const updateQuantity = (id, newQuantity) => {
 		const updatedQuantity = Math.max(newQuantity, 1);
 
 		const updatedItems = items.map((item) =>
-			item.id === id ? { ...item, quantity: updatedQuantity } : item,
+			item._id === id ? { ...item, quantite: updatedQuantity } : item,
 		);
 
 		setItems(updatedItems);
@@ -90,13 +86,13 @@ export const PanierProvider = ({ children }) => {
 
 	useEffect(() => {
 		const newTotalItems = items.reduce(
-			(total, item) => total + item.quantity,
+			(total, item) => total + item.quantite,
 			0,
 		);
 		setTotalItems(newTotalItems);
 
 		const newTotalPrice = items.reduce(
-			(total, item) => total + item.price * item.quantity,
+			(total, item) => total + item.prix * item.quantite,
 			0,
 		);
 		setTotalPrice(newTotalPrice);
@@ -117,6 +113,9 @@ export const PanierProvider = ({ children }) => {
 		updateQuantity,
 		handleApplyPromoCode,
 		deliveryCosts,
+		addToCart,
+		notificationCount,
+		setNotificationCount,
 	};
 
 	return (

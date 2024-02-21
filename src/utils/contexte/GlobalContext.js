@@ -2,13 +2,21 @@ import axios from 'axios';
 import React, { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+export let prenom
+
 export const GlobalContext = createContext();
 
 const GlobalContextProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState('');
+  const [client, setClient] = useState("");
   const [password, setPassword] = useState('');
+  const [dropdown, setDropdown] = useState(false);
   const navigate = useNavigate();
+
+  const handleToggle = () => {
+    setDropdown(!dropdown);
+  };
 
   // Fonction de connexion
   const handleLogin = () => {
@@ -37,6 +45,11 @@ const GlobalContextProvider = ({ children }) => {
     navigate('/admin');
   };
 
+  const handleLogoutUser = () => {
+    localStorage.removeItem('tokenclient');
+    navigate('/');
+  };
+
   // Fonction pour vérifier si l'utilisateur est connecté
   const isLoggedIn = () => {
     // Vérifie si un token est présent dans le local storage
@@ -44,6 +57,31 @@ const GlobalContextProvider = ({ children }) => {
     // Si un token est présent, retourne true, sinon retourne false
     return !!token;
   };
+
+  const profileUser = () => {
+    const token = localStorage.getItem("tokenclient");
+
+    axios
+      .get("https://kay-solu-api.onrender.com/api/authclient/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+         setClient(res.data);
+        console.log(client);
+        prenom = res.data.prenom
+        console.log(prenom);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+   
+
+
+
 
   const value = {
     showModal,
@@ -55,6 +93,11 @@ const GlobalContextProvider = ({ children }) => {
     handleLogin,
     handleLogout,
     isLoggedIn,
+    handleLogoutUser,
+    profileUser,
+    handleToggle,
+    dropdown,
+    setDropdown,
   };
 
   return (

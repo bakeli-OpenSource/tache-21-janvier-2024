@@ -1,107 +1,70 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import NavLinks from "./NavLinks";
-import { MdMenu, MdClose } from "react-icons/md";
-import { BsPersonCircle, BsSearch } from "react-icons/bs";
-import { ShoppingCartIcon } from "@heroicons/react/outline";
-import NavInput from "../NavInput";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import NavLinks from './NavLinks';
+import { MdMenu, MdClose } from 'react-icons/md';
+import { BsSearch } from 'react-icons/bs';
+import { ShoppingCartIcon } from '@heroicons/react/outline';
+import NavInput from '../NavInput';
+import { usePanier } from '../../../../utils/contexte/PanierContext';
 
-const Navbar = ({className}) => {
-  const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState(false);
-  
+const Navbar = ({ className }) => {
+	const [open, setOpen] = useState(false);
+	const [search, setSearch] = useState(false);
+	const { notificationCount } = usePanier();
 
-  return (
-    <nav className={className}>
-      <div className="flex px-8 py-3 items-center justify-between">
-        <div className="flex items-center gap-8 w-full md:w-auto justify-between ">
-          <div className="z-50 p- md:w-auto w-full flex justify-between">
-            <Link to={'/'} className="md:cursor-pointer  text-2xl uppercase font-bold">
+	return (
+		<nav className={className}>
+			<div className="flex items-center justify-between px-8 py-3">
+				<div className="flex items-center justify-between w-full gap-8 md:w-auto ">
+					<div className="z-50 flex justify-between w-full p- md:w-auto">
+						<Link
+							to={'/'}
+							className="text-2xl font-bold uppercase md:cursor-pointer"
+						>
+							Cein.
+						</Link>
+						<div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
+							{open ? <MdClose /> : <MdMenu />}
+						</div>
+					</div>
+					<ul className="items-center hidden md:flex gap- ">
+						<NavLinks />
+					</ul>
+				</div>
 
-              Cein.
-            </Link>
-            <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
-              {open ? <MdClose /> : <MdMenu />}
-            </div>
-          </div>
-          <ul className="md:flex hidden  items-center gap- ">
-            <NavLinks />
-          </ul>
-        </div>
+				<div className="hidden md:block">
+					<div className="flex items-center justify-around py-1 text-gray-800 gap-9">
+						<div
+							className={`flex flex-row-reverse m-0 p-0 transition ease-in-out delay-150 items-center ${
+								search ? 'rounded-full border border-gray-300 px-3 py-1' : ''
+							}`}
+						>
+							<div
+								className="text-gray-900 duration-500 cursor-pointer mt"
+								onClick={() => setSearch(!search)}
+							>
+								{!search ? <BsSearch /> : <MdClose />}
+							</div>
 
-        <div className="md:block hidden">
-          <div className=" text-gray-800 py-1 flex items-center gap-9 justify-around ">
-            <div
-              className={`flex flex-row-reverse m-0 p-0 transition ease-in-out delay-150  items-center ${
-                search ? "rounded-2xl border  px-3 py-1" : " "
-              } `}
-            >
-              <div
-                className="cursor-pointer duration-500 mt text-gray-900"
-                onClick={() => setSearch(!search)}
-                size={20}
-              >
-                {!search ? <BsSearch /> : <MdClose />}
-              </div>
+							<NavInput type="text" search={search} />
+						</div>
+						<Link to={'/connexion'} className="font-bold">
+							Se connecter
+						</Link>
+						<Link to="/Panier" className="relative flex items-center group">
+							<span className="mr-2">
+								<ShoppingCartIcon className="w-6 h-6" />
+							</span>
 
-              <NavInput type="text" search={search} />
-            </div>
-            <Link to={"/connexion"} className="font-bold">
-            
-            {/* <BsPersonCircle className="cursor-pointer " size={20} /> */}
-            Se connecter
-            </Link>
-            <Link to="/Panier" className="flex items-center">
-              <span className="mr-">
-                <ShoppingCartIcon className="w-6 h-6" />
-              </span>
-            </Link>
-          </div>
-        </div>
-
-        {/* Mobile nav */}
-        <ul
-          className={`
-        md:hidden bg-white fixed w-full text-2xl h-[80%] top-0 overflow-y-auto bottom-0 py-16 flex flex-col items-center justify-center opacity- pl-4
-        duration-500 ${open ? "left-0" : "left-[-100%]"}
-        `}
-        >
-          <NavLinks />
-          <div className="py-5">
-            <div
-              className={` text-gray-800 flex items-center ${
-                search ? "flex-col-reverse" : ""
-              } gap-4 justify-around `}
-            >
-              <div
-                className={`flex flex-row-reverse   items-center ${
-                  search ? "rounded-2xl border  py-1 px-3" : " "
-                } `}
-              >
-                <div
-                  className="cursor-pointer duration-500 mt text-gray-900"
-                  onClick={() => setSearch(!search)}
-                  size={20}
-                >
-                  {!search ? <BsSearch /> : <MdClose />}
-                </div>
-
-                <NavInput type="text" search={search} />
-              </div>
-              <div className="flex gap-6">
-                <BsPersonCircle className="cursor-pointer" size={20} />
-                <Link to="/Panier" className="flex items-center">
-                  <span className="mr-2">
-                    <ShoppingCartIcon className="w-6 h-6" />
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </ul>
-      </div>
-    </nav>
-  );
+							<span className="absolute px-2 py-1 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
+								{notificationCount}
+							</span>
+						</Link>
+					</div>
+				</div>
+			</div>
+		</nav>
+	);
 };
 
 export default Navbar;
