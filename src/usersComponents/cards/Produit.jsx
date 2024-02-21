@@ -6,7 +6,7 @@ import { usePanier } from '../../utils/contexte/PanierContext';
 const Produit = ({ produit }) => {
 	const { addToCart } = usePanier();
 	const { _id, imageUrl, categorie, titre, prix } = produit;
-
+	
 	const handleAddToCart = () => {
 		addToCart(produit);
 	};
@@ -14,7 +14,7 @@ const Produit = ({ produit }) => {
 	return (
 		<div className="border border-[#e4e4e4] h-[300px] relative overflow-hidden group transition">
 			<div className="flex flex-col items-center justify-center h-full">
-				<Link to={`/produit/${_id}`} className="w-[200px] mx-auto">
+				<Link to={`/details/${_id}`} className="w-[200px] mx-auto">
 					<img
 						className="max-h-[160px] group-hover:scale-110 transition duration-300"
 						src={imageUrl}
@@ -30,12 +30,13 @@ const Produit = ({ produit }) => {
 				</div>
 			</div>
 			<div className="mb-1 text-sm text-gray-500 capitalize">{categorie}</div>
-			<Link to={`/produit/${_id}`}>
+			<Link to={`/details/${_id}`}>
 				<h2 className="mb-1 font-semibold">{titre}</h2>
 			</Link>
 			<div className="font-semibold">{prix} FCFA</div>
 		</div>
 	);
+
 };
 
 export default Produit;

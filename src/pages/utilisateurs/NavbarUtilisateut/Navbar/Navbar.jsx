@@ -7,31 +7,35 @@ import { ShoppingCartIcon } from "@heroicons/react/outline";
 import NavInput from "../NavInput";
 import Dropdown from "../../../../usersComponents/userConnexion/dropdown";
 import { usePanier } from "../../../../utils/contexte/PanierContext";
+import icone from "../../../../assets/images/icone.jpg"
+
+
 
 const Navbar = ({ className }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState(false);
   const { notificationCount } = usePanier();
 
-  return (
-    <nav className={className}>
-      <div className="flex px-8 py-3 items-center justify-between">
-        <div className="flex items-center gap-8 w-full md:w-auto justify-between ">
-          <div className="z-50 p- md:w-auto w-full flex justify-between">
-            <Link
-              to={"/"}
-              className="md:cursor-pointer  text-2xl uppercase font-bold"
-            >
-              Cein.
-            </Link>
-            <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
-              {open ? <MdClose /> : <MdMenu />}
-            </div>
-          </div>
-          <ul className="md:flex hidden  items-center gap- ">
-            <NavLinks />
-          </ul>
-        </div>
+
+	return (
+		<nav className={className}>
+			<div className="flex items-center justify-between px-8 py-3">
+				<div className="flex items-center justify-between w-full gap-8 md:w-auto ">
+					<div className="z-50 flex justify-between w-full md:w-auto">
+						<Link
+							to={'/'}
+							className="md:cursor-pointer w-[60px] h-[60px]"
+						>
+							<img src={icone} className='w-full h-full' />.
+						</Link>
+						<div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
+							{open ? <MdClose /> : <MdMenu />}
+						</div>
+					</div>
+					<ul className="items-center hidden md:flex">
+						<NavLinks />
+					</ul>
+				</div>
 
         <div className="md:block hidden">
           <div className=" text-gray-800 py-1 flex items-center gap-9 justify-around ">
