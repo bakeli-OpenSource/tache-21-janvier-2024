@@ -1,69 +1,47 @@
 import React from 'react';
 import { usePanier } from '../../utils/contexte/PanierContext';
 import ComponentButton from '../button/ComponentButton';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const Commande = () => {
 	const navigate = useNavigate();
-	const donnees = {
-		email: 'upchh@example.com',
-		produit: 'Produit',
-		IdProduit: '1234567890',
-		adresse: 'Adresse',
-		telephone: '0612345678',
-		quantité: 1,
-		date: '2024-02-19',
-		etat: 'En cours',
-		prixProduit: '1000FCFA',
-		PrixLivraison: '1000FCFA',
-		prixTotal: '11000FFA',
-	};
-	console.log(donnees);
+	// const donnees = {
+	// 	email: 'upchh@example.com',
+	// 	produit: 'Produit',
+	// 	IdProduit: '1234567890',
+	// 	adresse: 'Adresse',
+	// 	telephone: '0612345678',
+	// 	quantité: 1,
+	// 	date: '2024-02-19',
+	// 	etat: 'En cours',
+	// 	prixProduit: '1000FCFA',
+	// 	PrixLivraison: '1000FCFA',
+	// 	prixTotal: '11000FFA',
+	// };
+	// console.log(donnees);
 	const {
 		deliveryOption,
 		setDeliveryOption,
 		totalItems,
 		totalPrice,
-		promoCode,
-		setPromoCode,
-		isPromoCodeApplied,
-		setIsPromoCodeApplied,
-		handleApplyPromoCode,
+		// promoCode,
+		// setPromoCode,
+		// isPromoCodeApplied,
+		// setIsPromoCodeApplied,
+		// handleApplyPromoCode,
 		deliveryCosts,
 	} = usePanier();
 
-	const [authenticated, setauthenticated] = useState(null);
-	useEffect(() => {
-		const loggedInUser = localStorage.getItem('tokenclient');
-		if (loggedInUser) {
-			setauthenticated(loggedInUser);
-		}
-	}, []);
+	const loggedInUser = localStorage.getItem('tokenclient');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (!authenticated) {
+		if (loggedInUser == null) {
 			// User is not authenticated, redirect to login page
-			navigate('/connection');
+			navigate('/connexion');
 			return;
 		}
-
-		axios
-			.post('https://kay-solu-api.onrender.com/api/authclient/login')
-			.then((response) => {
-				console.log(response.data);
-				const token = response.data.token;
-				localStorage.setItem('tokenclient', token);
-				navigate('/Panier');
-			})
-			.catch((error) => {
-				console.error(error);
-				alert('Email ou mot de passe incorrect');
-			});
 	};
 	return (
 		<div>
@@ -81,12 +59,12 @@ const Commande = () => {
 
 				<form action="" onSubmit={handleSubmit}>
 					<h5 className="mb-3 text-uppercase">Livraison</h5>
-
 					<div className="pb-2 mb-4">
 						<select
 							className="w-full p-2 bg-white rounded"
 							value={deliveryOption}
 							onChange={(e) => setDeliveryOption(e.target.value)}
+							required
 						>
 							<option value="" disabled hidden>
 								Choisir votre livraison
@@ -98,30 +76,7 @@ const Commande = () => {
 							<option value="5">Dakar-Regions-4000 FCFA</option>
 						</select>
 					</div>
-
-					<h5 className="mb-3 text-uppercase">Code Promo</h5>
-
-					<div className="mb-5">
-						<input
-							type="text"
-							className="w-full p-2 border rounded"
-							placeholder="Enter your code"
-							value={promoCode}
-							onChange={(e) => {
-								setPromoCode(e.target.value);
-								setIsPromoCodeApplied(false);
-							}}
-						/>
-						<ComponentButton
-							className={`w-auto px-3 py-2 rounded my-3 text-white bg-purple-500 ${
-								isPromoCodeApplied ? 'bg-gray-500 cursor-not-allowed' : ''
-							}`}
-							texte="Appliquez"
-							onClick={handleApplyPromoCode}
-							disabled={isPromoCodeApplied}
-						/>
-					</div>
-
+					,
 					<div className="flex justify-between">
 						<h4 className="text-uppercase mt-1 text-[14px]">Prix total</h4>
 						<h4 className="font-bold text-[21px]">{totalPrice} FCFA</h4>
@@ -135,9 +90,7 @@ const Commande = () => {
 							{'FCFA'}
 						</h4>
 					</div>
-
 					<hr className="my-4 border-black" />
-
 					<div className="flex justify-between mb-5">
 						<h4 className="text-uppercase mt-2 text-[20px] text-blue-400">
 							Total
@@ -146,7 +99,6 @@ const Commande = () => {
 							{totalPrice + deliveryCosts[deliveryOption]} FCFA
 						</h4>
 					</div>
-
 					<ComponentButton
 						type="submit"
 						className="flex justify-center px-3 py-2 mx-auto my-5 text-xl tracking-widest text-white bg-black"

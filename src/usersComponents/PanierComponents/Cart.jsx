@@ -9,11 +9,13 @@ const Cart = () => {
 	const {
 		items,
 		totalItems,
-		quantity,
-		setQuantity,
 		removeItem,
+		quantity,
+		cartQuantities,
 		updateQuantity,
 	} = usePanier();
+
+	console.log(quantity);
 
 	return (
 		<div>
@@ -71,7 +73,7 @@ const Cart = () => {
 												/>
 												<input
 													min={1}
-													value={item.quantity}
+													value={cartQuantities[item._id] || 1} // Utilisez cartQuantities pour obtenir la quantité de l'article
 													className="w-8 h-8 text-center border border-gray-300"
 													onChange={(e) => {
 														const newQuantity = parseInt(e.target.value);
@@ -83,7 +85,6 @@ const Cart = () => {
 													texte="+"
 													onClick={() => {
 														const newQuantity = item.quantity + 1;
-
 														updateQuantity(item._id, newQuantity);
 													}}
 												/>
