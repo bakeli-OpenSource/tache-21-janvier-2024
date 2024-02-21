@@ -10,7 +10,6 @@ const Dropdown = () => {
 		useGlobal();
 	let connecter;
 	const navigate = useNavigate();
-
 	useEffect(() => {
 		profileUser();
 	}, []);
@@ -70,7 +69,7 @@ const Dropdown = () => {
 						<Link
 							to={connecter}
 							onClick={handleToggle}
-							className="flex items-center gap-3 px-4 py-2 my-0 text-sm  text-upercase hover:bg-gray-200"
+							className="flex items-center gap-3 px-4 py-2 my-0 text-sm text-upercase hover:bg-gray-200"
 						>
 							<FaRegUser size={16} />
 							Votre compte

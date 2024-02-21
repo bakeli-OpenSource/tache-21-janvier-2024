@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect} from 'react';
 import axios from 'axios';
+import Produit from './Produit';
 
 export const ProduitContext = createContext();
 
@@ -18,7 +19,7 @@ const ProduitProvider = ({ children }) => {
       }
     };
     fetchProduits();
-  }, [])
+  }, [Produit])
 
   return <ProduitContext.Provider value={ {produits} }>{ children }</ProduitContext.Provider>;
 };
