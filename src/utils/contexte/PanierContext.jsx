@@ -7,13 +7,13 @@ export const PanierProvider = ({ children }) => {
 	const storedNotificationCount =
 		JSON.parse(localStorage.getItem('notificationCount')) || 0;
 
+	const [quantity, setQuantity] = useState(1);
 	const [items, setItems] = useState(storedItems);
 	const [notificationCount, setNotificationCount] = useState(
 		storedNotificationCount,
 	);
 
 	useEffect(() => {
-		// Save the cart items to localStorage whenever it changes
 		localStorage.setItem('cartItems', JSON.stringify(items));
 		localStorage.setItem(
 			'notificationCount',
@@ -58,7 +58,7 @@ export const PanierProvider = ({ children }) => {
 		const updatedQuantity = Math.max(newQuantity, 1);
 
 		const updatedItems = items.map((item) =>
-			item._id === id ? { ...item, quantite: updatedQuantity } : item,
+			item._id === id ? { ...item, quantity: updatedQuantity } : item,
 		);
 
 		setItems(updatedItems);
@@ -85,18 +85,15 @@ export const PanierProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		const newTotalItems = items.reduce(
-			(total, item) => total + item.quantite,
-			0,
-		);
+		const newTotalItems = items.reduce((total) => total + quantity, 0);
 		setTotalItems(newTotalItems);
 
 		const newTotalPrice = items.reduce(
-			(total, item) => total + item.prix * item.quantite,
+			(total, item) => total + item.prix * quantity,
 			0,
 		);
 		setTotalPrice(newTotalPrice);
-	}, [items]);
+	}, [items, quantity]);
 
 	const value = {
 		items,
@@ -116,6 +113,8 @@ export const PanierProvider = ({ children }) => {
 		addToCart,
 		notificationCount,
 		setNotificationCount,
+		quantity,
+		setQuantity,
 	};
 
 	return (

@@ -6,7 +6,14 @@ import ComponentButton from '../button/ComponentButton';
 import { usePanier } from '../../utils/contexte/PanierContext';
 
 const Cart = () => {
-	const { items, totalItems, removeItem, updateQuantity } = usePanier();
+	const {
+		items,
+		totalItems,
+		quantity,
+		setQuantity,
+		removeItem,
+		updateQuantity,
+	} = usePanier();
 
 	return (
 		<div>
@@ -57,25 +64,33 @@ const Cart = () => {
 												<ComponentButton
 													className="px-2 py-1 bg-gray-200"
 													texte="-"
-													onClick={() =>
-														updateQuantity(item._id, item.quantite - 1)
-													}
+													onClick={() => {
+														const newQuantity = Math.max(quantity - 1, 1);
+														updateQuantity(item._id, newQuantity);
+														setQuantity(newQuantity);
+													}}
 												/>
 												<input
 													min={1}
-													defaultValue={1}
-													value={item.quantite}
+													value={quantity}
 													className="w-8 h-8 text-center border border-gray-300"
-													onChange={(e) =>
-														updateQuantity(item._id, parseInt(e.target.value))
-													}
+													onChange={(e) => {
+														const newQuantity = parseInt(e.target.value);
+														setQuantity(isNaN(newQuantity) ? 1 : newQuantity);
+													}}
 												/>
 												<ComponentButton
 													className="px-2 py-1 bg-gray-200"
 													texte="+"
-													onClick={() =>
-														updateQuantity(item._id, item.quantite + 1)
-													}
+													onClick={() => {
+														const newQuantity = Math.min(
+															quantity + 1,
+															item.quantite,
+														);
+
+														updateQuantity(item._id, newQuantity);
+														setQuantity(newQuantity);
+													}}
 												/>
 											</div>
 										</td>
@@ -83,9 +98,7 @@ const Cart = () => {
 											<div className="mb-4">{item.prix} FCFA</div>
 										</td>
 										<td className="hidden py-2 text-center md:table-cell">
-											<div className="mb-7">
-												{item.prix * item.quantite} FCFA
-											</div>
+											<div className="mb-7">{item.prix * quantity} FCFA</div>
 										</td>
 									</tr>
 								))}
