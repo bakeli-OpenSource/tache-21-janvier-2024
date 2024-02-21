@@ -24,11 +24,10 @@ const Form = () => {
 				const token = response.data.token;
 				// Stocker le token dans le local storage
 				localStorage.setItem('tokenclient', token);
-				// Rediriger l'utilisateur vers une autre page par exemple
 				navigate('/Panier');
 			})
 			.catch((error) => {
-				console.error(error); // Gérer les erreurs ici
+				console.error(error);
 				alert('Email ou mot de passe incorrect');
 			});
 	};
@@ -41,10 +40,7 @@ const Form = () => {
 			<h1 className="text-2xl text-center">Connexion</h1>
 			<div className="w-full mx-auto mt-5 md:w-1/2">
 				<div className="w-full mb-4 mt- ">
-					<label
-						htmlFor="email"
-						className="block text-sm font-medium "
-					>
+					<label htmlFor="email" className="block text-sm font-medium ">
 						Email
 					</label>
 					<input
@@ -52,16 +48,13 @@ const Form = () => {
 						type="email"
 						id="email"
 						name="email"
-						className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+						className="w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 						value={formData.email}
 						onChange={handleChange}
 					/>
 				</div>
 				<div className="w-full mb-5 mt- ">
-					<label
-						htmlFor="password"
-						className="block text-sm font-medium "
-					>
+					<label htmlFor="password" className="block text-sm font-medium ">
 						Mot de pass
 					</label>
 					<input
@@ -69,7 +62,7 @@ const Form = () => {
 						type="password"
 						id="password"
 						name="password"
-						className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+						className="w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 						value={formData.password}
 						onChange={handleChange}
 					/>
