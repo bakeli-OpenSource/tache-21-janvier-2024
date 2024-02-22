@@ -3,35 +3,25 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 export const PanierContext = createContext();
 
 export const PanierProvider = ({ children }) => {
-	const [items, setItems] = useState([
-		{
-			id: 1,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 5000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp',
-		},
-		{
-			id: 2,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 10000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp',
-		},
-		{
-			id: 3,
-			name: 'Cotton T-shirt',
-			categorie: 'T-shirt',
-			price: 15000,
-			quantity: 1,
-			image:
-				'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp',
-		},
-	]);
+	const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+	const storedNotificationCount =
+		JSON.parse(localStorage.getItem('notificationCount')) || 0;
+
+	const [cartQuantities, setCartQuantities] = useState({});
+
+	const [items, setItems] = useState(storedItems);
+	const [notificationCount, setNotificationCount] = useState(
+		storedNotificationCount,
+	);
+
+	useEffect(() => {
+		// Save the cart items to localStorage whenever it changes
+		localStorage.setItem('cartItems', JSON.stringify(items));
+		localStorage.setItem(
+			'notificationCount',
+			JSON.stringify(notificationCount),
+		);
+	}, [items, notificationCount]);
 
 	const [deliveryOption, setDeliveryOption] = useState('');
 	const deliveryCosts = {
@@ -44,63 +34,100 @@ export const PanierProvider = ({ children }) => {
 
 	const [totalItems, setTotalItems] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
-	const [promoCode, setPromoCode] = useState('');
-	const [isPromoCodeApplied, setIsPromoCodeApplied] = useState(false);
+	// const [promoCode, setPromoCode] = useState('');
+	// const [isPromoCodeApplied, setIsPromoCodeApplied] = useState(false);
 
-	const promoCodes = {
-		PROMO01: 0.9,
-		PROMO02: 0.8,
-		PROMO03: 0.3,
-	};
+	// const promoCodes = {
+	// 	PROMO01: 0.9,
+	// 	PROMO02: 0.8,
+	// 	PROMO03: 0.3,
+	// };
 
-	const removeItem = (id) => {
-		const updatedItems = items.filter((item) => item.id !== id);
-		setItems(updatedItems);
+	const addToCart = (newItem) => {
+		setItems((prevItems) => {
+			const existingItem = prevItems.find((item) => item._id === newItem._id);
+
+			if (existingItem) {
+				// Mettre à jour l'état des quantités aussi
+				setCartQuantities((prevQuantities) => ({
+					...prevQuantities,
+					[newItem._id]: (prevQuantities[newItem._id] || 0) + 1,
+				}));
+				return prevItems.map((item) =>
+					item._id === newItem._id
+						? { ...item, quantity: (item.quantity || 0) + 1 }
+						: item,
+				);
+			} else {
+				// Initialiser la quantité à 1 pour le nouvel article
+				setCartQuantities((prevQuantities) => ({
+					...prevQuantities,
+					[newItem._id]: 1,
+				}));
+				return [...prevItems, { ...newItem, quantity: 1 }];
+			}
+		});
+
+		setNotificationCount((prevCount) => prevCount + 1);
 	};
 
 	const updateQuantity = (id, newQuantity) => {
-		const updatedQuantity = Math.max(newQuantity, 1);
+		// Mettre à jour l'état des quantités
+		setCartQuantities((prevQuantities) => ({
+			...prevQuantities,
+			[id]: Math.max(newQuantity, 0),
+		}));
 
+		// Mettre à jour la liste des articles avec la nouvelle quantité
 		const updatedItems = items.map((item) =>
-			item.id === id ? { ...item, quantity: updatedQuantity } : item,
+			item._id === id ? { ...item, quantity: Math.max(newQuantity, 0) } : item,
 		);
-
 		setItems(updatedItems);
 	};
 
-	const applyPromoCode = (total, promoCode) => {
-		const uppercasePromoCode = promoCode.toUpperCase();
-
-		if (promoCodes.hasOwnProperty(uppercasePromoCode)) {
-			return total * promoCodes[uppercasePromoCode];
-		}
-		if (promoCode === '') {
-			alert('Entrez le Code Promo');
-		} else {
-			alert('Invalid Promo Code');
-		}
-
-		return total;
-	};
-
-	const handleApplyPromoCode = () => {
-		setTotalPrice(applyPromoCode(totalPrice, promoCode));
-		setIsPromoCodeApplied(true);
-	};
+	// ...
 
 	useEffect(() => {
-		const newTotalItems = items.reduce(
-			(total, item) => total + item.quantity,
+		// Calculer les totaux en utilisant l'état des quantités maintenant
+		const newTotalItems = Object.values(cartQuantities).reduce(
+			(total, qty) => total + qty,
 			0,
 		);
 		setTotalItems(newTotalItems);
 
 		const newTotalPrice = items.reduce(
-			(total, item) => total + item.price * item.quantity,
+			(total, item) => total + item.prix * (cartQuantities[item._id] || 1),
 			0,
 		);
 		setTotalPrice(newTotalPrice);
-	}, [items]);
+	}, [items, cartQuantities]);
+
+	const removeItem = (id) => {
+		const updatedItems = items.filter((item) => item._id !== id);
+		setItems(updatedItems);
+		localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+		setNotificationCount((prevCount) => Math.max(prevCount - 1, 0));
+	};
+
+	// const applyPromoCode = (total, promoCode) => {
+	// 	const uppercasePromoCode = promoCode.toUpperCase();
+
+	// 	if (promoCodes.hasOwnProperty(uppercasePromoCode)) {
+	// 		return total * promoCodes[uppercasePromoCode];
+	// 	}
+	// 	if (promoCode === '') {
+	// 		alert('Entrez le Code Promo');
+	// 	} else {
+	// 		alert('Invalid Promo Code');
+	// 	}
+
+	// 	return total;
+	// };
+
+	// const handleApplyPromoCode = () => {
+	// 	setTotalPrice(applyPromoCode(totalPrice, promoCode));
+	// 	setIsPromoCodeApplied(true);
+	// };
 
 	const value = {
 		items,
@@ -109,14 +136,13 @@ export const PanierProvider = ({ children }) => {
 		setDeliveryOption,
 		totalItems,
 		totalPrice,
-		promoCode,
-		setPromoCode,
-		isPromoCodeApplied,
-		setIsPromoCodeApplied,
 		removeItem,
 		updateQuantity,
-		handleApplyPromoCode,
 		deliveryCosts,
+		addToCart,
+		notificationCount,
+		setNotificationCount,
+		cartQuantities,
 	};
 
 	return (

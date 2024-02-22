@@ -5,27 +5,28 @@ import { MdMenu, MdClose } from "react-icons/md";
 import { BsPersonCircle, BsSearch } from "react-icons/bs";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import NavInput from "../NavInput";
-import Dropdown from "../../../../usersComponents/userConnexion/dropdown";
+import Dropdown from "../../../../usersComponents/userConnexion/Dropdown";
+import { usePanier } from "../../../../utils/contexte/PanierContext";
+import icone from "../../../../assets/images/icone.jpg";
 
-const Navbar = ({className}) => {
+const Navbar = ({ className }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState(false);
-  
+  const { notificationCount } = usePanier();
 
   return (
     <nav className={className}>
-      <div className="flex px-8 py-3 items-center justify-between">
-        <div className="flex items-center gap-8 w-full md:w-auto justify-between ">
-          <div className="z-50 p- md:w-auto w-full flex justify-between">
-            <Link to={'/'} className="md:cursor-pointer  text-2xl uppercase font-bold">
-
-              Cein.
+      <div className="flex items-center justify-between px-8 py-3">
+        <div className="flex items-center justify-between w-full gap-8 md:w-auto ">
+          <div className="z-50 flex justify-between w-full md:w-auto">
+            <Link to={"/"} className="md:cursor-pointer w-[60px] h-[60px]">
+              <img src={icone} className="w-full h-full" />.
             </Link>
             <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
               {open ? <MdClose /> : <MdMenu />}
             </div>
           </div>
-          <ul className="md:flex hidden  items-center gap- ">
+          <ul className="items-center hidden md:flex">
             <NavLinks />
           </ul>
         </div>
@@ -33,14 +34,15 @@ const Navbar = ({className}) => {
         <div className="md:block hidden">
           <div className=" text-gray-800 py-1 flex items-center gap-9 justify-around ">
             <div
-              className={`flex flex-row-reverse m-0 p-0 transition ease-in-out delay-150  items-center ${
-                search ? "rounded-2xl border  px-3 py-1" : " "
-              } `}
+              className={`flex flex-row-reverse m-0 p-0 duration-500   items-center ${
+                search
+                  ? "rounded-full border transition ease-in-out delay-150 border-gray-300 px-3 py-1"
+                  : "translate-x-1"
+              }`}
             >
               <div
-                className="cursor-pointer duration-500 mt text-gray-900"
+                className="text-gray-900 duration-500 cursor-pointer mt"
                 onClick={() => setSearch(!search)}
-                size={20}
               >
                 {!search ? <BsSearch /> : <MdClose />}
               </div>
@@ -48,9 +50,13 @@ const Navbar = ({className}) => {
               <NavInput type="text" search={search} />
             </div>
             <Dropdown />
-           <Link to="/Panier" className="flex items-center">
-              <span className="mr-">
+            <Link to="/Panier" className="relative flex items-center group">
+              <span className="mr-2">
                 <ShoppingCartIcon className="w-6 h-6" />
+              </span>
+
+              <span className="absolute px-2 py-1 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
+                {notificationCount}
               </span>
             </Link>
           </div>
