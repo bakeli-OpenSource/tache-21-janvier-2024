@@ -19,7 +19,7 @@ const ProduitProvider = ({ children }) => {
       }
     };
     fetchProduits();
-  }, [Produit])
+  }, [])
 
   return <ProduitContext.Provider value={ {produits} }>{ children }</ProduitContext.Provider>;
 };
