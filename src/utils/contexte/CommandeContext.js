@@ -23,6 +23,7 @@ const CommandeContextProvider = ({ children }) => {
     const [adresse, setAdresse] = useState("")
     const [prixLivraison, setPrixLivraison] = useState("")
     const [prixProduit, setPrixProduit] = useState("")
+    const [modif, setModifModal]= useState("")
     const [commandes, setCommandes] = useState([])
 
     const table1 = [
@@ -57,6 +58,8 @@ const CommandeContextProvider = ({ children }) => {
     setEtat,
     setDate,
     setQuantite,
+    modif, 
+    setModifModal,
     setCommandes
   };
 
