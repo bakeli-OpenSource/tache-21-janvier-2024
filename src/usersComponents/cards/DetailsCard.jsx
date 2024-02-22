@@ -5,6 +5,7 @@ import { ProduitContext } from './ProduitContext';
 import HeaderTable from '../../components/headerTable/HeaderTable';
 import { useContext } from 'react';
 import { IoMdArrowRoundBack } from "react-icons/io";
+import Loader from '../../components/loader/loader';
 
 
 const DetailsCard = () => {
@@ -16,9 +17,9 @@ const DetailsCard = () => {
     const {open} = useSidebare()
 
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>
+    <div className={`flex w- justify-center`}>
       {produit !== undefined ?
-      <section className="overflow-hidden py-4 font-poppins ">
+      <section className="overflow-hidden w-full px-9 py-4 font-poppins ">
         {/* <HeaderTable title="Détail du produit" /> */}
           <Link to="/" className='w-10 h-10' >
             <IoMdArrowRoundBack className='mt-20 text-black bg-gray-300 shadow-xl text-xl w-6 h-6' />
@@ -26,7 +27,7 @@ const DetailsCard = () => {
 
 
                 <div key={_id} >
-                  <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 shadow-xl">
+                  <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 -xl">
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full px-4 md:w-1/2 ">
                           
@@ -83,7 +84,7 @@ const DetailsCard = () => {
                   </div>
                 </div>
 
-    </section> : <div>Loader...</div>
+    </section> : <Loader />
       }
     </div>
   )

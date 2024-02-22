@@ -37,7 +37,7 @@ const Header = () => {
           Timeless Fashion, Choice
         </h2>
         <div className="text-xl">
-          <Link to={"/panier"} >
+          <Link to={"/boutique"} >
           <ComponentButton className='bg-white text-black w-auto px-3 py-2 my-5 text-xl tracking-widest rounded' texte='Shop Now'/>
           </Link>
         </div>
