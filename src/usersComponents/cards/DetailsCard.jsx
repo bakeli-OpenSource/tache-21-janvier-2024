@@ -1,10 +1,9 @@
 import { Link, useParams } from 'react-router-dom';
-import useSidebare from '../../utils/hooks/useSidebare';
 import ComponentButton from '../button/ComponentButton';
 import { ProduitContext } from './ProduitContext';
-import HeaderTable from '../../components/headerTable/HeaderTable';
 import { useContext } from 'react';
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { usePanier } from '../../utils/contexte/PanierContext';
 
 
 const DetailsCard = () => {
@@ -13,21 +12,23 @@ const DetailsCard = () => {
   const produit = produits.find(item =>{
     return item._id === _id
   })
-    const {open} = useSidebare()
+  const { addToCart } = usePanier();
+  const handleAddToCart = () => {
+      addToCart(produit);
+    };
 
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4`}>
+    <div className=''>
       {produit !== undefined ?
-      <section className="overflow-hidden py-4 font-poppins ">
-        {/* <HeaderTable title="Détail du produit" /> */}
+      <section className="overflow-hidden py-4 mx-auto">
           <Link to="/" className='w-10 h-10' >
-            <IoMdArrowRoundBack className='mt-20 text-black bg-gray-300 shadow-xl text-xl w-6 h-6' />
+            <IoMdArrowRoundBack className='mt-20 ml-10 text-black bg-gray-300 shadow-xl text-xl w-6 h-6' />
           </Link>
 
 
                 <div key={_id} >
-                  <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 shadow-xl">
-                    <div className="flex flex-wrap -mx-4">
+                  <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 shadow-xl mx-auto">
+                    <div className="flex flex-wrap mx-4">
                         <div className="w-full px-4 md:w-1/2 ">
                           
                             <div className=" top-0 z-50 overflow-hidden ">
@@ -39,7 +40,7 @@ const DetailsCard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full px-4 md:w-1/2 ">
+                        <div className="w-full px-4 md:w-1/2 h-screen">
                             <div className="lg:pl-20">
                                 <div className="mb-8 ">
                                     <h2 className="max-w-xl mt-2 text-2xl font-bold  md:text-4xl">
@@ -75,7 +76,7 @@ const DetailsCard = () => {
                                           <button type="button" className=' w-8 h-8'>XL</button>
                                       </div>
                                     </div>
-                                    <ComponentButton  className="bg-black text-white w-full px-3 py-2 my-5 text-sm tracking-widest rounded" texte="Ajouter au panier"/>
+                                    <ComponentButton onClick={handleAddToCart}  className="bg-slate-800 text-white w-full px-3 py-2 my-5 text-sm tracking-widest rounded" texte="Ajouter au panier"/>
                                 </div>
                             </div>
                         </div>
