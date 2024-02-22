@@ -136,7 +136,6 @@ const ProduitsAdmin = () => {
       setCategorie(selectedCategoryName);
       setCategorieId(selectedCategory._id);
     } 
-    
   };
   
   
