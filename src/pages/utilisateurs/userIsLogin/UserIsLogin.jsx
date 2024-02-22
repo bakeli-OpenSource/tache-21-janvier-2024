@@ -17,6 +17,7 @@ import DetailsCard from "../../../usersComponents/cards/DetailsCard";
 import ComptePage from "../comptePage/ComptePage";
 import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
+import Aprops from "../apropos/Aprops";
 
 const UserIsLogin = () => {
   const location = useLocation();
@@ -37,7 +38,7 @@ const UserIsLogin = () => {
             <Route path="/boutique" element={<Shop />} />
             <Route path="/Arrivals" element={<Arrivals />} />
             <Route path="/contacts" element={<ContactsPage />} />
-            <Route path="/apropos" element={<Journal />} />
+            <Route path="/apropos" element={<Aprops />} />
             <Route path="/Panier" element={<Panier />} />
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/connexion" element={<UserConnexion />} />

@@ -121,7 +121,7 @@ const ContactsPage = () => {
                   <textarea
                     required
                     rows={8}
-                    placeholder="Comment pouvons-nous vous aider ?"
+                    placeholder="Votre message"
                     className="w-full mb-5 bg-gray-200 border p-5 pt-3 rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
                   ></textarea>
                 </div>
