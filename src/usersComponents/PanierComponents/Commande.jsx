@@ -2,45 +2,89 @@ import React from 'react';
 import { usePanier } from '../../utils/contexte/PanierContext';
 import ComponentButton from '../button/ComponentButton';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import useGlobal from '../../utils/hooks/useGlobal';
+import { useState, useEffect } from 'react';
 
 const Commande = () => {
 	const navigate = useNavigate();
-	// const donnees = {
-	// 	email: 'upchh@example.com',
-	// 	produit: 'Produit',
-	// 	IdProduit: '1234567890',
-	// 	adresse: 'Adresse',
-	// 	telephone: '0612345678',
-	// 	quantité: 1,
-	// 	date: '2024-02-19',
-	// 	etat: 'En cours',
-	// 	prixProduit: '1000FCFA',
-	// 	PrixLivraison: '1000FCFA',
-	// 	prixTotal: '11000FFA',
-	// };
-	// console.log(donnees);
+	const { client } = useGlobal();
+	const [loggedInUserToken, setLoggedInUserToken] = useState(null);
+
 	const {
 		deliveryOption,
 		setDeliveryOption,
 		totalItems,
 		totalPrice,
-		// promoCode,
-		// setPromoCode,
-		// isPromoCodeApplied,
-		// setIsPromoCodeApplied,
-		// handleApplyPromoCode,
+		cartQuantities,
+		items,
 		deliveryCosts,
 	} = usePanier();
 
-	const loggedInUser = localStorage.getItem('tokenclient');
+	useEffect(() => {
+		setLoggedInUserToken(localStorage.getItem('tokenclient'));
+	}, []);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (loggedInUser == null) {
-			// User is not authenticated, redirect to login page
+		if (!loggedInUserToken) {
 			navigate('/connexion');
 			return;
+		}
+
+		const orderItems = items.map((item) => ({
+			_id: item._id,
+			quantity: cartQuantities[item._id],
+			prix: item.prix,
+			prixTotal: item.prix * cartQuantities[item._id],
+			name: item.nom,
+		}));
+
+		const prixLivraison = deliveryCosts[deliveryOption];
+
+		const orderData = {
+			email: client.email,
+			idProduit: orderItems.map((item) => item._id),
+			produit: orderItems.map((item) => item.nom),
+			adresse: client.adresse,
+			telephone: client.telephone,
+			quantite: orderItems.map((item) => item.quantity),
+			date: new Date().toISOString().split('T')[0],AudioScheduledSourceNode
+			etat: 'En cours',
+			prixProduit: orderItems.reduce(
+				(total, item) => total + item.prixTotal,
+				0,
+			),
+			prixLivraison: prixLivraison,
+			prixTotal: orderItems.reduce(
+				(total, item) => total + item.prixTotal,
+				prixLivraison,
+			),
+		};
+		console.log('orderData', orderData);
+
+		const urlApiAdmin = 'https://kay-solu-api.onrender.com/api/commande';
+
+		try {
+			const response = await axios.post(urlApiAdmin, orderData, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+
+			if (response.status === 201) {
+				console.log('Commande ajoutée avec succès:', response.data);
+			} else {
+				console.error("Erreur lors de l'ajout de commandes:", response.data);
+			}
+
+			console.log('Commande envoyée avec succès:', response.data);
+		} catch (error) {
+			console.error(
+				"Erreur lors de l'envoi de la commande:",
+				error.response?.data || error.message,
+			);
 		}
 	};
 	return (
@@ -101,7 +145,7 @@ const Commande = () => {
 					</div>
 					<ComponentButton
 						type="submit"
-						className="flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white bg-slate-800 rounded"
+						className="flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white rounded bg-slate-800"
 						texte="Valider la commande"
 					></ComponentButton>
 				</form>

@@ -10,20 +10,18 @@ import Shop from '../NavbarUtilisateut/NavbarLinks/Shop';
 import Arrivals from '../NavbarUtilisateut/NavbarLinks/Arrivals';
 import Sales from '../NavbarUtilisateut/NavbarLinks/Sales';
 import Journal from '../NavbarUtilisateut/NavbarLinks/Journal';
-import ProduitProvider from '../../../usersComponents/Cards/ProduitContext';
+import ProduitProvider from '../../../usersComponents/cards/ProduitContext';
 import Inscription from '../../../usersComponents/incription/Inscription';
 import UserConnexion from '../../../usersComponents/userConnexion/UserConnexion';
-import DetailsCard from '../../../usersComponents/Cards/DetailsCard';
+import DetailsCard from '../../../usersComponents/cards/DetailsCard';
 import ComptePage from '../comptePage/ComptePage';
-
-
 
 const UserIsLogin = () => {
 	return (
 		<SidebareContextProvider>
 			<ProduitProvider>
 				<PanierProvider>
-					<Navbar className="bg-white z-50 fixed top-0 w-full" />
+					<Navbar className="fixed top-0 z-50 w-full bg-white" />
 					<Routes>
 						<Route path="/" element={<Accueil />} />
 						<Route path="/profil" element={<Profil />} />
