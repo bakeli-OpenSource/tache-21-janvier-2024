@@ -50,7 +50,8 @@ const Commande = () => {
 			adresse: client.adresse,
 			telephone: client.telephone,
 			quantite: orderItems.map((item) => item.quantity),
-			date: new Date().toISOString().split('T')[0],AudioScheduledSourceNode
+			date: new Date().toISOString().split('T')[0],
+			AudioScheduledSourceNode,
 			etat: 'En cours',
 			prixProduit: orderItems.reduce(
 				(total, item) => total + item.prixTotal,
