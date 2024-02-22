@@ -36,6 +36,8 @@ const Cards = () => {
     return item2.etat === "non traité";
   });
 
+  console.log(filterEtat1);
+
   return (
     <div className=" py-16 grid lg:grid-cols-12 md:grid-cols-6 gap-6 ">
       <UniteCard bgColor="border-s-4 border-sky-500  ">
@@ -57,9 +59,7 @@ const Cards = () => {
         <div>
           <div className="flex justify-between px-3">
             <div>
-              {filterEtat.map((produit) => (
-                <h5 key={produit._id}>{filterEtat.length}</h5>
-              ))}
+              <h5>{filterEtat.length}</h5>
             </div>
             <div className="bg-lime-600 rounded-full h-8 w-8 flex  place-items-center justify-center">
               <AiOutlineLoading3Quarters className="text-2xl text-white" />
@@ -74,9 +74,7 @@ const Cards = () => {
         <div>
           <div className="flex justify-between px-3">
             <div>
-              {filterEtat1.map((produit) => (
-                <h5 key={produit._id}>{filterEtat1.length}</h5>
-              ))}
+              <h5>{filterEtat1.length}</h5>
             </div>
             <div className="bg-yellow-700 rounded-full h-8 w-8 flex  place-items-center justify-center">
               <MdDeliveryDining className="text-2xl text-white" />
@@ -91,9 +89,7 @@ const Cards = () => {
         <div>
           <div className="flex justify-between px-3">
             <div>
-              {filterEtat2.map((produit) => (
-                <h5 key={produit._id}>{filterEtat2.length}</h5>
-              ))}
+              <h5>{filterEtat2.length}</h5>
             </div>
             <div className="bg-blue-900 rounded-full h-8 w-8 flex place-items-center justify-center">
               <AiOutlineDeliveredProcedure className="text-xl text-white " />
