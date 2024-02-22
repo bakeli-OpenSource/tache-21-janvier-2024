@@ -20,7 +20,7 @@ const Navbar = ({ className }) => {
         <div className="flex items-center justify-between w-full gap-8 md:w-auto ">
           <div className="z-50 flex justify-between w-full md:w-auto">
             <Link to={"/"} className="md:cursor-pointer w-[60px] h-[60px]">
-              <img src={icone} className="w-full h-full" />.
+              <img src={icone} className="w-full h-full" />
             </Link>
             <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
               {open ? <MdClose /> : <MdMenu />}
