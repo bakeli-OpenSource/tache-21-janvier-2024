@@ -16,14 +16,24 @@ const Navbar = ({ className }) => {
 
   return (
     <nav className={className}>
-      <div className="flex items-center justify-between px-8 py-3">
-        <div className="flex items-center justify-between w-full gap-8 md:w-auto ">
-          <div className="z-50 flex justify-between w-full md:w-auto">
-            <Link to={"/"} className="md:cursor-pointer w-[60px] h-[60px]">
+      <div className="flex items-center h-full justify-between px-8 py-">
+        <div className="flex items-center justify-between w-full gap-3 md:w-auto ">
+          <div className="z-50 flex justify-between items-center w-full md:w-auto">
+            <Link to={"/"} className="cursor-pointer w-[60px] h-[60px]">
               <img src={icone} className="w-full h-full" />.
             </Link>
-            <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
-              {open ? <MdClose /> : <MdMenu />}
+            <div className="text-3xl md:hidden flex flex-row-reverse gap-5 items-center justify-center">
+
+            <Link to="/Panier" className="relative flex items-center group">
+              <span className="mr-2">
+                <ShoppingCartIcon className="w-6 h-6" />
+              </span>
+              <span className="absolute px-2 py-1 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
+                {notificationCount}
+              </span>
+            </Link>
+              {open ? <MdClose onClick={() => setOpen(!open)} /> : <MdMenu onClick={() => setOpen(!open)} />}
+              <Dropdown />
             </div>
           </div>
           <ul className="items-center hidden md:flex">
@@ -65,39 +75,30 @@ const Navbar = ({ className }) => {
         {/* Mobile nav */}
         <ul
           className={`
-        md:hidden bg-white fixed w-full text-2xl h-[80%] top-0 overflow-y-auto bottom-0 py-16 flex flex-col items-center justify-center opacity- pl-4
+        md:hidden bg-white fixed w-full px-9 text-2xl h-[80%] top-0 overflow-y-auto bottom-0 py-16 flex flex-col-reverse items-center justify-center opacity- pl-
         duration-500 ${open ? "left-0" : "left-[-100%]"}
         `}
         >
           <NavLinks />
-          <div className="py-5">
+          <div className="py-5 w-full ">
             <div
-              className={` text-gray-800 flex items-center ${
-                search ? "flex-col-reverse" : ""
-              } gap-4 justify-around `}
+              className={` text-gray-800  w-full flex items-center gap-4 justify-around `}
             >
               <div
-                className={`flex flex-row-reverse   items-center ${
-                  search ? "rounded-2xl border  py-1 px-3" : " "
-                } `}
+                className={`flex  duration-500 w-full flex-row-reverse items-center border-2 px-9 gap-5 hover:border-blue-500 focus:border-blue-500 active:border-blue-500 py-3 rounded-full
+             `}
               >
                 <div
-                  className="cursor-pointer duration-500 mt text-gray-900"
-                  onClick={() => setSearch(!search)}
-                  size={20}
+                  className="text-gray-900 rounded duration-500 cursor-pointer mt"
                 >
-                  {!search ? <BsSearch /> : <MdClose />}
+                  <BsSearch />
                 </div>
-
-                <NavInput type="text" search={search} />
-              </div>
-              <div className="flex gap-6">
-                <BsPersonCircle className="cursor-pointer" size={20} />
-                <Link to="/Panier" className="flex items-center">
-                  <span className="mr-2">
-                    <ShoppingCartIcon className="w-6 h-6" />
-                  </span>
-                </Link>
+                <form className="w-full">
+                  <input
+                    type="search"
+                    className="appearance-none py-auto w-full duration-500  transition ease-in-out delay-150  m-0  text-gray-700 pl-2  py-1  mb- leading-tight outline-none focus:bg-white"
+                  />
+                </form>
               </div>
             </div>
           </div>

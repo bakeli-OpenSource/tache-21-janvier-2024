@@ -5,7 +5,7 @@ import Choix from "../../../usersComponents/compteComponent/Choix";
 const FavorisPage = () => {
   return (
     <div>
-      <h1 className="border border-t-0 border-s-0 border-e-0 pb-2 ">
+      <h1 className="border font-medium border-t-0 border-s-0 border-e-0 pb-2 ">
         Votre liste d'envies
       </h1>
       <Choix

@@ -6,7 +6,6 @@ import useGlobal from "../../../utils/hooks/useGlobal";
 import CompteComponent from "../../../usersComponents/compteComponent/CompteComponent";
 import CommandePage from "../commandesPage/CommandePage";
 import FavorisPage from "../favorisPage.jsx/FavorisPage";
-import Footer from "../../../usersComponents/footer/Footer";
 
 const ComptePage = () => {
   const { client, handleLogoutUser } = useGlobal();
@@ -72,7 +71,6 @@ const ComptePage = () => {
         </div>
       </div>
     </div>
-      <Footer />
     </div>
   );
 };

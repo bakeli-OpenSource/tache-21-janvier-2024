@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import useGlobal from "../../utils/hooks/useGlobal";
 
 const Form = () => {
   const navigate = useNavigate();
+  const {profileUser} = useGlobal()
   const [showPassword, setShowPassword] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [formData, setFormData] = useState({
@@ -48,6 +50,7 @@ const Form = () => {
         console.error(error); // Gérer les erreurs ici
         alert("Email ou mot de passe incorrect");
       });
+      profileUser()
   };
 
   return (

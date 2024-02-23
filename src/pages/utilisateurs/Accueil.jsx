@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import Footer from '../../usersComponents/footer/Footer';
 import Navbar from './NavbarUtilisateut/Navbar/Navbar';
 import Header from '../../usersComponents/headerUserComponent/Header';
-import ScrollingText from '../../usersComponents/Cards/ScrollingText';
-import Produit from '../../usersComponents/Cards/Produit';
-import { ProduitContext } from '../../usersComponents/Cards/ProduitContext';
+import ScrollingText from '../../usersComponents/cards/ScrollingText';
+import Produit from '../../usersComponents/cards/Produit';
+import { ProduitContext } from '../../usersComponents/cards/ProduitContext';
 import useGlobal from '../../utils/hooks/useGlobal';
 
 
@@ -43,9 +42,6 @@ export default function Accueil() {
 						<ScrollingText />
 					</div>
 				</div>
-				<footer>
-					<Footer />
-				</footer>
 			</div>
 		</div>
 	);
