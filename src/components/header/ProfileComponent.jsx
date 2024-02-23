@@ -6,7 +6,6 @@ import Loader from "../loader/loader";
 const ProfileComponent = () => {
   const { user, updateUserProfile, profile, setUser } = useSidebare();
   const [editedUser, setEditedUser] = useState({ ...user, profileImage: null });
-  console.log("fall");
 
   useEffect(() => {
     profile();

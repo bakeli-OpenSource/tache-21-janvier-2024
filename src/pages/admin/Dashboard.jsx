@@ -27,7 +27,7 @@ const Dashboard = () => {
 
 
       <div className="md:flex md:grid md:grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-        <div className="line-chart-container md:w-full lg:w-auto overflow-auto">
+        <div className="line-chart-container md:w-full lg:w-[25rem] xl:w-auto overflow-auto">
           <Revenue />
         </div>
         <div className="pie-chart-container md:w-full lg:w-auto">

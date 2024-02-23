@@ -20,7 +20,7 @@ const Graphique2 = () => {
       setChartWidth(window.innerWidth > 768 ? 500 : 300);
 
       // Déterminez la position en fonction de la largeur de la fenêtre
-      setChartPosition(window.innerWidth > 768 ? "center" : "left");
+      setChartPosition(window.innerWidth > 768 ? "center" : "right");
     };
 
     window.addEventListener("resize", handleResize);

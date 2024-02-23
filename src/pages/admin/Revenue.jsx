@@ -66,13 +66,13 @@ const datas = [
 
 function Revenue() {
 
-  const [chartWidth, setChartWidth] = useState(window.innerWidth > 768 ? 400 : 200);
+  const [chartWidth, setChartWidth] = useState(window.innerWidth > 768 ? 370 : 320);
   const [chartPosition, setChartPosition] = useState("center"); // Position par défaut
 
 
   useEffect(() => {
     const handleResize = () => {
-      setChartWidth(window.innerWidth > 1025 ? 200 : 100);
+      setChartWidth(window.innerWidth > 1025 ? 370 : 320);
 
       // Déterminez la position en fonction de la largeur de la fenêtre
       setChartPosition(window.innerWidth > 768 ? "center" : "left");
@@ -87,7 +87,7 @@ function Revenue() {
   return (
 
 
-    <div className='border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
+    <div className='border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-[100%]'>
 
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>

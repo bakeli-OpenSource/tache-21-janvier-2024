@@ -7,7 +7,7 @@ import HeaderTable from "../../components/headerTable/HeaderTable";
 import { useNavigate } from "react-router-dom";
 import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
-import { MdOutlineDelete } from "react-icons/md";
+// import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
 import useProduits from "../../utils/hooks/useProduits";
