@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
@@ -7,7 +7,6 @@ import Formulaire from '././../formulaire/Formulaire';
 import axios from 'axios';
 
 const ProduitsAdmin = () => {
-
 
   const {table, produits, addProduit, actions, titreModal, setTitreModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,

@@ -7,7 +7,6 @@ import HeaderTable from "../../components/headerTable/HeaderTable";
 import { useNavigate } from "react-router-dom";
 import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
-import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
 import useProduits from "../../utils/hooks/useProduits";
@@ -16,18 +15,15 @@ export let newCategorie;
 export let categorieIdCli;
 
 const Categories = () => {
-
-  const { table, categories, setCategories } = useContext(CategorieContext);
+  const { table, categories, setCategories, nom, quantite, setNom, setQuantite, } = useContext(CategorieContext);
   const { produits } = useProduits();
+  
 
-  const [nom, setNom] = useState("");
-  const [quantite, setQuantite] = useState('0');
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({});
   const navigate = useNavigate();
   const { open } = useSidebare();
   const { setShowModal } = useGlobal();
-
 
   const inputs = [
     {
@@ -36,7 +32,7 @@ const Categories = () => {
       value: nom,
       name: "catégorie",
       setValue: setNom,
-    }
+    },
   ];
 
   const actions = [
@@ -47,7 +43,7 @@ const Categories = () => {
         // Stocker l'ID de la catégorie dans le stockage local
         localStorage.setItem("categorieIdCli", categoryId);
         navigate("/admin/categories/DetailsCategorie");
-        handleDetail(categoryId)
+        handleDetail(categoryId);
       },
     },
     {
@@ -56,9 +52,8 @@ const Categories = () => {
       handleClick: (category) => {
         setIsEditing(true);
         setShowModal(true);
-        console.log(category);
         setEditingCategoryId(category);
-      }
+      },
     },
     // {
     //   icon: <MdOutlineDelete />,
@@ -84,8 +79,6 @@ const Categories = () => {
       quantite: quantite,
     };
 
-    console.log({formData});
-
     if (isEditing) {
       handleEditCategory(editingCategoryId, formData);
     } else {
@@ -104,7 +97,7 @@ const Categories = () => {
         console.error("Erreur lors de l'ajout de la catégorie:", error);
       }
     }
-  }
+  };
 
   // const handleDelete = async (categoryId) => {
   //   try {
@@ -129,7 +122,7 @@ const Categories = () => {
         newData
       );
       console.log("Catégorie modifiée avec succès:", response.data);
-      
+
       // Actualisez la liste des catégories après l'ajout
       fetchCategories();
     } catch (error) {
@@ -142,46 +135,72 @@ const Categories = () => {
     handleEdit(categoryId, newData);
   };
 
-  const handleEditQuantiteCategory = (categoryId, totalProducts) => {
-    // Mettre à jour la quantité en fonction du nombre total de produits
-    setQuantite(totalProducts.toString());
-    // Mettre à jour la catégorie avec la nouvelle quantité
-    handleEdit(categoryId, { ...editData, quantite: totalProducts });
-  };
+  // const handleEditQuantiteCategory = (categoryId, totalProducts) => {
+  //   // Mettre à jour la quantité en fonction du nombre total de produits
+  //   setQuantite(totalProducts.toString());
+  //   // Mettre à jour la catégorie avec la nouvelle quantité
+  //   const updatedCategories = categories.map((category) => {
+  //     if (category._id === categoryId) {
+  //       return { ...category, quantite: totalProducts };
+  //     }
+  //     return category;
+  //   });
+  //   setCategories(updatedCategories);
+  // };
+  
+  const updateCategoryQuantities = async () => {
+  try {
+    const updatedCategories = await Promise.all(categories.map(async (category) => {
+      const filteredProduits = produits.filter((produit) => produit.categorieId === category._id);
+      const quantite = filteredProduits.length;
+      setQuantite(quantite)
+      console.log({quantite});
+      return { ...category, quantite };
+    }));
+
+    console.log(updatedCategories);
+
+    await Promise.all(updatedCategories.map(async (category) => {
+      await axios.put(`https://kay-solu-api.onrender.com/api/categorie/${category._id}`, { quantite: category.quantite });
+    }));
+
+    console.log("Quantités de produits mises à jour avec succès dans la base de données");
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour des quantités de produits:", error);
+  }
+};
 
   
   const fetchCategories = async () => {
     try {
       const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
-      setCategories(response.data);
+      setCategories(response.data)
       console.log("Catégories récupérées avec succès");
     } catch (error) {
       console.error("Erreur lors de la récupération des catégories:", error);
     }
   };
+  
 
   // Fonction pour calculer le nombre total de produits pour une catégorie donnée
-  const calculateTotalProducts = (categoryId) => {
-    const filteredProduits = produits.filter(
-      (produit) => produit.categorieId === categoryId
-    );
-    return filteredProduits.reduce((acc, cur) => acc + cur.quantite, 0);
+  // const calculateTotalProducts = (categoryId) => {
+  //   const filteredProduits = produits.filter(
+  //     (produit) => produit.categorieId === categoryId
+  //   );
+  //   return filteredProduits.reduce((acc, cur) => acc + cur.quantite, 0);
+  // };
+useEffect(() => {
+  const fetchData = async () => {
+    await fetchCategories();
+    await updateCategoryQuantities();
   };
 
-  useEffect(() => {
-    // Mettre à jour le nombre total de produits pour chaque catégorie
-    const updatedCategories = categories.map((category) => {
-      const totalProducts = calculateTotalProducts(category._id);
-      console.log({ totalProducts });
-      handleEditQuantiteCategory(category._id, totalProducts); // Appel de la fonction ici
-      return { ...category, totalProducts };
-    });
-    fetchCategories()
-  }, [categories, produits]);
+  fetchData();
+
+}, []);
 
 
-  const handleSelectChange = (e) => {    
-  };
+  const handleSelectChange = (e) => {};
 
   newCategorie = categories;
 
