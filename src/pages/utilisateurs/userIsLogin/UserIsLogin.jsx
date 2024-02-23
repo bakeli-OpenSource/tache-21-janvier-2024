@@ -10,7 +10,6 @@ import Shop from "../NavbarUtilisateut/NavbarLinks/Shop";
 import Arrivals from "../NavbarUtilisateut/NavbarLinks/Arrivals";
 import Sales from "../NavbarUtilisateut/NavbarLinks/Sales";
 import Journal from "../NavbarUtilisateut/NavbarLinks/Journal";
-import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
 import Inscription from "../../../usersComponents/incription/Inscription";
 import UserConnexion from "../../../usersComponents/userConnexion/UserConnexion";
 import DetailsCard from "../../../usersComponents/cards/DetailsCard";
@@ -18,6 +17,7 @@ import ComptePage from "../comptePage/ComptePage";
 import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
+import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
 
 const UserIsLogin = () => {
   const location = useLocation();

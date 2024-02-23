@@ -4,10 +4,7 @@ import imagePropos from "../../../assets/images/bgImage.png";
 const Aprops = () => {
   return (
     <div className="ps-9 md:ps-0 pe-9 py-5 mt-[25px] flex items-center gap-9 mb-9 px-9">
-      {/* <div className="w-1/2">
-        <img src={imagePropos} alt="img-propos" />
-      </div> */}
-       <div
+      <div
         style={{
           backgroundImage: `url(${imagePropos})`,
         }}
