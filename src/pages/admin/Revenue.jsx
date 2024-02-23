@@ -66,10 +66,16 @@ const datas = [
 
 function Revenue() {
 
-  const [chartWidth, setChartWidth] = useState(window.innerWidth > 1225 ? 600 : 300);
+  const [chartWidth, setChartWidth] = useState(window.innerWidth > 768 ? 400 : 200);
+  const [chartPosition, setChartPosition] = useState("center"); // Position par défaut
+
+
   useEffect(() => {
     const handleResize = () => {
-      setChartWidth(window.innerWidth > 1225 ? 400 : 300); // Mise à jour de la largeur du graphique en fonction de la taille de l'écran
+      setChartWidth(window.innerWidth > 1025 ? 200 : 100);
+
+      // Déterminez la position en fonction de la largeur de la fenêtre
+      setChartPosition(window.innerWidth > 768 ? "center" : "left");
     };
 
     window.addEventListener("resize", handleResize);
@@ -81,13 +87,12 @@ function Revenue() {
   return (
 
 
-    <div className='md:w-[15rem] lg:w-[23rem]  xl:w-[38rem] border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
+    <div className='border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
 
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
       </div>
 
-      <div className="w-full">
         <LineChart
           width={chartWidth}
           height={450}
@@ -109,7 +114,6 @@ function Revenue() {
         </LineChart>
 
       </div>
-    </div>
   );
 }
 

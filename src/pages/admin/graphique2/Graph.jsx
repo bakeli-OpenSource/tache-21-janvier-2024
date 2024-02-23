@@ -3,8 +3,8 @@ import { PieChart, Legend, Pie, Cell } from "recharts";
 
 
 const Graphique2 = () => {
-  const [chartWidth, setChartWidth] = useState(window.innerWidth > 1225 ? 500 : 230);
-  const [chartPosition, setChartPosition] = useState("center");
+  const [chartWidth, setChartWidth] = useState(window.innerWidth > 768 ? 500 : 300);
+  const [chartPosition, setChartPosition] = useState("center"); // Position par défaut
 
   const data = [
     { name: "Value1", users: 2000000000 },
@@ -17,8 +17,10 @@ const Graphique2 = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setChartWidth(window.innerWidth > 1225 ? 500 : 230); // Mise à jour de la largeur du graphique en fonction de la taille de l'écran
-      setChartPosition(window.innerWidth > 1225 ? "center" : "center");
+      setChartWidth(window.innerWidth > 768 ? 500 : 300);
+
+      // Déterminez la position en fonction de la largeur de la fenêtre
+      setChartPosition(window.innerWidth > 768 ? "center" : "left");
     };
 
     window.addEventListener("resize", handleResize);
@@ -26,39 +28,38 @@ const Graphique2 = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // Exécuté uniquement lors du montage et du démontage du composant
+  }, []);
+
 
   return (
-    <div className='md:w-[15rem] lg:w-[23rem] xl:w-[38rem] border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px]'>
-
+    <div className="text-[16px] bg-white border  shadow-md cursor-pointer rounded-[4px] mr-[20px] w-[100%]">
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
-          <h2 className='text-white text-[16px] leading-[19px] font-bold'>Produit</h2>
+        <h2 className='text-white text-[16px] leading-[19px] font-bold'>Produit</h2>
       </div>
-      <div className="text-[16px]">
-        <PieChart width={chartWidth} height={450}>
+      <PieChart width={chartWidth} height={450}>
         <Legend
-          verticalAlign="top" 
+          verticalAlign="top"
         />
-          <Pie
-            nameKey="name"
-            dataKey="users"
-            isAnimationActive={true}
-            data={data}
-            cx={chartPosition}
-            cy={200}
-            outerRadius={100}
-            fill="#8884d"
-          >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-      </div>
+        <Pie
+          nameKey="name"
+          dataKey="users"
+          isAnimationActive={true}
+          data={data}
+          cx={chartPosition}
+          cy={200}
+          outerRadius={100}
+          fill="#8884d"
+        >
+          {data.map((entry, index) => (
+            <Cell
+              key={`cell-${index}`}
+              fill={COLORS[index % COLORS.length]}
+            />
+          ))}
+        </Pie>
+      </PieChart>
     </div>
+
   );
 };
 

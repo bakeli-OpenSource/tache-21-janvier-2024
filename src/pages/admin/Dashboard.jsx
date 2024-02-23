@@ -26,18 +26,18 @@ const Dashboard = () => {
       </div>
 
 
-      <div className='flex container grid md:grid-cols-1 lg:grid-cols-2 gap-[25px] w-[100%]'>
-        <div>
+      <div className="md:flex md:grid md:grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+        <div className="line-chart-container md:w-full lg:w-auto overflow-auto">
           <Revenue />
         </div>
-        <div >
-        <Graphique2 />
+        <div className="pie-chart-container md:w-full lg:w-auto">
+          <Graphique2 />
         </div>
       </div>
 
       <div>
         <ListeProduit />
-         {/* <ListeProd /> */}
+        {/* <ListeProd /> */}
       </div>
 
     </div>

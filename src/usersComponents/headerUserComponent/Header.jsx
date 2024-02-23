@@ -23,16 +23,16 @@ const Header = () => {
   }, [index])
   return (
     <header
-      className="bg-Hero bg-cover h-screen md:bg-top bg-right px-5 transition-opacity duration-1000"
+      className="bg-Hero bg-cover h-screen md:bg-top bg-right px-5"
       style={{
         backgroundImage: `url(${backgroundImage})` ,
-
+        transition: 'background-image 2s ease-in-out'
       }}
     >
       <div className="flex  flex-col justify-end  px-4 items-start h-5/6">
         {/* <h2 className="text-white text-2xl font-medium ">hlKSKdjks</h2> */}
 
-        <h2 className=" text-2xl text-white ">
+        <h2 className=" text-2xl text-white font-bold">
           Elevate Your style <br/>
           Timeless Fashion, Choice
         </h2>
