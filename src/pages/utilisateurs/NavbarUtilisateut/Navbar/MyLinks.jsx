@@ -9,8 +9,8 @@ export const links = [
     link: "/arrivals",
   },
   {
-    name: "Vente",
-    link: "vente",
+    name: "Contacts",
+    link: "contacts",
   },
 
   {

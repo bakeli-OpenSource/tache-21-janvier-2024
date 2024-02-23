@@ -4,22 +4,20 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { DiGhostSmall } from "react-icons/di";
 import useGlobal from "../../utils/hooks/useGlobal";
-import { prenom } from "../../utils/contexte/GlobalContext";
 
 const Dropdown = () => {
-  const { handleLogoutUser, profileUser, dropdown, handleToggle } = useGlobal();
-
+  const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
+    useGlobal();
+  let connecter;
+  let commander;
+  let favoris;
   const navigate = useNavigate();
-  // const [dropdown, setDropdown] = useState(false);
-
-  // const handleToggle = () => {
-  //   setDropdown(!dropdown);
-  // };
 
   useEffect(() => {
-    profileUser()
-  }, [])
+    profileUser();
+  }, []);
 
+  const tokenClient = localStorage.getItem("tokenclient");
   const deconnexion = () => {
     handleToggle();
 
@@ -30,17 +28,27 @@ const Dropdown = () => {
     }
   };
 
-  const tokenClient = localStorage.getItem("tokenclient");
+  if (tokenClient === null) {
+    connecter = "/connexion";
+    commander = "/connexion"
+    favoris = "/connexion"
+  } else {
+    connecter = "/compte";
+    commander = "/compte/commandes"
+    favoris = "/compte/favoris"
+  }
 
   return (
     <div className="relative">
       <div
-        className="font-medium cursor-pointer flex items-center gap-"
+        className="font- cursor-pointer flex items-center gap-"
         onClick={handleToggle}
       >
         <FaRegUser className="cursor-pointer mr-2" size={20} />
-        
-        {tokenClient === null ? "Se connecter" : `bonjour ${prenom}` }
+
+        <p className="text-sm">{tokenClient === null
+          ? "Se connecter"
+          : `bonjour, ${client.prenom === undefined ? "" : client.prenom}`}</p>
         <RiArrowDropDownLine className="p-0 mt-2 mx-0" size={30} />
       </div>
 
@@ -53,10 +61,8 @@ const Dropdown = () => {
           <button
             onClick={deconnexion}
             className={`block ${
-              tokenClient === null
-                ? " "
-                : "border-t-2 uppercase border-slate-700"
-            } px-4 mb-4 shadow-md py-2 mx-3 text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
+              tokenClient === null ? " " : "uppercase "
+            } px-4 mb-4  py-2 mx-3 text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
           >
             {tokenClient === null ? "se connecter" : "deconnexion"}
           </button>
@@ -68,7 +74,7 @@ const Dropdown = () => {
             }  flex flex-col`}
           >
             <Link
-              to="/"
+              to={connecter}
               onClick={handleToggle}
               className=" px-4 my-0  py-2 flex items-center gap-3   text-upercase text-sm hover:bg-gray-200 "
             >
@@ -76,7 +82,7 @@ const Dropdown = () => {
               Votre compte
             </Link>
             <Link
-              to="/"
+              to={commander}
               onClick={handleToggle}
               className="flex gap-4 items-center px-4 my-0 mt- py-2   text-upercase text-sm hover:bg-gray-200"
             >
@@ -84,7 +90,7 @@ const Dropdown = () => {
               Vos commandes
             </Link>
             <Link
-              to="/"
+              to={favoris}
               onClick={handleToggle}
               className="flex items-center gap-3 px-4 my-0 mt- py-2 mb-3   text-upercase text-sm hover:bg-gray-200"
             >
