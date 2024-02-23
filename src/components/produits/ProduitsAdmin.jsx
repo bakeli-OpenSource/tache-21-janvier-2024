@@ -135,7 +135,6 @@ const ProduitsAdmin = () => {
       setCategorie(selectedCategoryName);
       setCategorieId(selectedCategory._id);
     } 
-    
   };
   
   
@@ -161,7 +160,7 @@ const ProduitsAdmin = () => {
   //               />
   // )
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4 `}>
+    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable
        title="Produits"
        nomAjout={titreModal} 
@@ -179,3 +178,5 @@ const ProduitsAdmin = () => {
 }
 
 export default ProduitsAdmin
+
+

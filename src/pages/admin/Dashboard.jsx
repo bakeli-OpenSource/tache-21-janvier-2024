@@ -26,7 +26,7 @@ const Dashboard = () => {
       </div>
 
 
-      <div className='flex container justify-between flex-wrap'>
+      <div className='flex container grid md:grid-cols-1 lg:grid-cols-2 gap-[25px] w-[100%]'>
         <div>
           <Revenue />
         </div>
