@@ -182,13 +182,6 @@ const Categories = () => {
   };
   
 
-  // Fonction pour calculer le nombre total de produits pour une catégorie donnée
-  // const calculateTotalProducts = (categoryId) => {
-  //   const filteredProduits = produits.filter(
-  //     (produit) => produit.categorieId === categoryId
-  //   );
-  //   return filteredProduits.reduce((acc, cur) => acc + cur.quantite, 0);
-  // };
 useEffect(() => {
   const fetchData = async () => {
     await fetchCategories();
@@ -196,9 +189,10 @@ useEffect(() => {
   };
 
   fetchData();
+  console.log({Categories});
+  
 
 }, []);
-
 
   const handleSelectChange = (e) => {};
 
