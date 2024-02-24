@@ -65,6 +65,8 @@ const Shop = () => {
             </div>
           ))}
         </div>
+        <Link to={`/detailsShop/${_id}`}>
+
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
           {filteredProducts.map((produit, index) => (
             <div
@@ -108,6 +110,7 @@ const Shop = () => {
             </div>
           ))}
         </div>
+        </Link>
       </div>
     </>
   );

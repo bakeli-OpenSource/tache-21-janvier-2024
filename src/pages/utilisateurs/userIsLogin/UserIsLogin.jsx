@@ -13,10 +13,12 @@ import Journal from "../NavbarUtilisateut/NavbarLinks/Journal";
 import Inscription from "../../../usersComponents/incription/Inscription";
 import UserConnexion from "../../../usersComponents/userConnexion/UserConnexion";
 import DetailsCard from "../../../usersComponents/cards/DetailsCard";
+import DetailsCardShop from "../NavbarUtilisateut/NavbarLinks/DetailShop/DetailShopCards"
 import ComptePage from "../comptePage/ComptePage";
 import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
+import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
 
 const UserIsLogin = () => {
@@ -44,6 +46,7 @@ const UserIsLogin = () => {
             <Route path="/connexion" element={<UserConnexion />} />
             <Route path="/compte/*" element={<ComptePage />} />
             <Route path="/details/:_id" element={<DetailsCard />} />
+            <Route path="/detailsShop/:_id" element={<DetailsCardShop />} />
           </Routes>
           <Footer />
         </PanierProvider>
