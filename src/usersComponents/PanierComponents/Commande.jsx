@@ -46,12 +46,11 @@ const Commande = () => {
 		const orderData = {
 			email: client.email,
 			idProduit: orderItems.map((item) => item._id),
-			produit: orderItems.map((item) => item.nom),
+			produit: orderItems.map((item) => item.name),
 			adresse: client.adresse,
 			telephone: client.telephone,
 			quantite: orderItems.map((item) => item.quantity),
 			date: new Date().toISOString().split('T')[0],
-			AudioScheduledSourceNode,
 			etat: 'En cours',
 			prixProduit: orderItems.reduce(
 				(total, item) => total + item.prixTotal,
@@ -63,6 +62,7 @@ const Commande = () => {
 				prixLivraison,
 			),
 		};
+
 		console.log('orderData', orderData);
 
 		const urlApiAdmin = 'https://kay-solu-api.onrender.com/api/commande';
