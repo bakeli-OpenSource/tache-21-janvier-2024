@@ -46,7 +46,6 @@ export default function CategorieContextProvider({children}) {
       icon: <TbEyeShare />,
       color: "bg-green-500",
       handleClick: (categoryId) => {
-        // Stocker l'ID de la catégorie dans le stockage local
         localStorage.setItem("categorieIdCli", categoryId);
         navigate("/admin/categories/DetailsCategorie");
         handleDetail(categoryId);
@@ -56,7 +55,6 @@ export default function CategorieContextProvider({children}) {
       icon: <MdEdit />,
       color: "bg-orange-500",
       handleClick: (category) => {
-        console.log({category});
         categories.map((categorie) =>{
           if (categorie._id === category) {
             setNom(categorie.nom)            
@@ -116,7 +114,7 @@ export default function CategorieContextProvider({children}) {
       );
       console.log("Catégorie modifiée avec succès:", response.data);
 
-      // Actualisez la liste des catégories après l'ajout
+      
       fetchCategories();
     } catch (error) {
       console.error("Erreur lors de la modification de la catégorie:", error);
