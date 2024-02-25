@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useCommandes from '../../utils/hooks/useCommandes';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
@@ -43,6 +43,10 @@ const CommandeAdmin = () => {
   } = useCommandes();
 
   const { open } = useSidebare();
+
+  const { setShowModal } = useGlobal();
+  
+  const [editingCommandeId, setEditingCommandeId] = useState(null);
 
   const inputs = [                                                                                                              
     {
@@ -111,9 +115,7 @@ const CommandeAdmin = () => {
       value: prixProduit,
       setValue: setPrixProduit,
     },
-  ];
-
-  
+  ];  
 
   const navigate = useNavigate();
 
@@ -123,51 +125,65 @@ const CommandeAdmin = () => {
       color: 'bg-green-500',
       handleClick: (commandeId) => {
         navigate("/admin/commandes/DetailsCommande")
-      },
+      }
     },
     {
       icon: <MdEdit />,
       color: 'bg-orange-500',
       handleClick: (commandeId) => {
-        console.log(commandeId);
-        hanldleUpdate(commandeId)
-      },
+        commandes.map((commande) =>{
+          if (commande._id === commandeId) {
+            setEmail(commande.email)
+            setQuantite(commande.quantite);
+            setDate(commande.data);
+            setEtat(commande.etat);
+            setPrixTotal(commande.prixTotal);
+            setTelephone(commande.telephone);
+            setAdresse(commande.adresse);
+            setPrixLivraison(commande.prixLivraison);
+            setPrixProduit(commande.prixProduit);         
+          }
+        })
+        setIsEditing(true);
+        setShowModal(true);
+        setEditingCommandeId(commandeId);
+      }
     },
     {
       icon: <MdOutlineDelete />,                       
       color: 'bg-red-600',
       handleClick: (commandeId) => {
         handleDelete(commandeId);
-      },
+      }
     },
   ];
 
   const handleSelectChange = (e) => {  
   };
 
-  const hanldleUpdate = async (commandeId) => {
-    setShowModal(true)
-    setModifModal('Modification Commande')
-    try {
-      const response = await axios.get("https://kay-solu-api.onrender.com/api/commande/" + commandeId);
-      const datasUpdates = response.data
-        setEmail(datasUpdates.email)
-        setIdProduit(datasUpdates.idproduit)
-        setQuantite(datasUpdates.quantite)
-        setDate(datasUpdates.date)
-        setEtat(datasUpdates.etat)
-        setTelephone(datasUpdates.telephone)
-        setProduit(datasUpdates.produit)
-        setAdresse(datasUpdates.adresse)
-        setPrixLivraison(datasUpdates.prixLivraison)
-        setPrixProduit(datasUpdates.prixProduit)
-      } catch (error) {
-        console.error("Erreur lors de la récupération des commandes:", error);
-      }
-  }
   
+  const [editData, setEditData] = useState({});
 
-  const { setShowModal } = useGlobal();
+  const hanldleUpdate = async (commandeId, newData) => {
+    try {
+      const response = await axios.put(
+        `https://kay-solu-api.onrender.com/api/commande/${commandeId}`,
+        newData
+      );
+      console.log("commande modifiée avec succès:", response.data);
+
+      fetchCommandes();
+    } catch (error) {
+      console.error("Erreur lors de la modification de la commande:", error);
+    }
+  };
+
+  
+  const handleEditCommande = (commandeId, newData) => {
+    setEditData(newData);
+    hanldleUpdate(commandeId, newData);
+    setShowModal(false);
+  };
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -222,6 +238,8 @@ const CommandeAdmin = () => {
     return totalPrice.toFixed(2);
   };
   
+  const [isEditing, setIsEditing] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -239,29 +257,32 @@ const CommandeAdmin = () => {
       prixProduit,
       prixLivraison
     };
-  
-    try {
-      const response = await axios.post('https://kay-solu-api.onrender.com/api/commande', ValidationCommande);
-  
-      if (response.status === 201) {
-        console.log('Commande ajoutée avec succès:', response.data);
-        setShowModal(false);
-        setEmail("");
-        setQuantite("");
-        setDate("");
-        setEtat("");
-        setPrixTotal("");
-        setTelephone("");
-        setAdresse("");
-        setPrixLivraison("");
-        setPrixProduit("");
-      } else {
-        console.error('Erreur lors de l\'ajout de commandes:', response.data);
+    if (isEditing) {
+      handleEditCommande(editingCommandeId, ValidationCommande);      
+    }else{
+      try {
+        const response = await axios.post('https://kay-solu-api.onrender.com/api/commande', ValidationCommande);
+    
+        if (response.status === 201) {
+          console.log('Commande ajoutée avec succès:', response.data);
+          setShowModal(false);
+          setEmail("");
+          setQuantite("");
+          setDate("");
+          setEtat("");
+          setPrixTotal("");
+          setTelephone("");
+          setAdresse("");
+          setPrixLivraison("");
+          setPrixProduit("");
+        } else {
+          console.error('Erreur lors de l\'ajout de commandes:', response.data);
+        }
+    
+        fetchCommandes();
+      } catch (error) {
+        console.error('Erreur lors de l\'ajout de commande:', error);
       }
-  
-      fetchCommandes();
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout de commande:', error);
     }
   };
 
