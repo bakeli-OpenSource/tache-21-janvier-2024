@@ -5,19 +5,20 @@ import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 import useGlobal from "../../../../utils/hooks/useGlobal";
+import { Link } from 'react-router-dom';
+
 
 const Shop = () => {
-  const [heartColors, setHeartColors] = useState(Array(10).fill("white"));
-  const { produits } = useContext(ProduitsContext);
+
+  const [heartColors, setHeartColors] = useState(Array(10).fill('black'));
+  const { produits, _id } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     const fetchFilterCategories = async () => {
       try {
-        const response = await axios.get(
-          "https://kay-solu-api.onrender.com/api/categories"
-        );
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
         setCategories(response.data);
         console.log("Catégories récupérées avec succès");
       } catch (error) {
@@ -33,21 +34,19 @@ const Shop = () => {
     let updatedProducts = produits;
 
     if (selectedCategorie !== "Tous") {
-      updatedProducts = produits.filter(
-        (produit) => produit.categorie === selectedCategorie
-      );
+      updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
     }
 
     setFilteredProducts(updatedProducts);
-  };
+  }
+  const { setDropdown } = useGlobal()
 
-  // Fonction pour changer la couleur du bouton "j'aime" au clic
-  const changeHeartColor = (index) => {
+   // Fonction pour changer la couleur du bouton "j'aime" au clic
+   const changeHeartColor = (index) => {
     const newHeartColors = [...heartColors];
-    newHeartColors[index] = newHeartColors[index] === "white" ? "red" : "white";
+    newHeartColors[index] = newHeartColors[index] === 'black' ? 'red' : 'black';
     setHeartColors(newHeartColors);
-  };
-  const { setDropdown } = useGlobal();
+};
   return (
     <>
       <div
@@ -78,7 +77,24 @@ const Shop = () => {
                   src={produit.imageUrl}
                   alt={produit.nom}
                 />
-                {/*  */}
+                <button className="absolute top-3 right-2 ">
+                  <div className="flex items-center justify-center text-black w-7 h-7">
+                    <BsSuitHeartFill className='text-3xl cursor-pointer' style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
+                  </div>
+                </button>
+                <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
+
+                  <div className='flex justify-center items-center text-black font-bold w-7 h-7'>
+                    <BsPlus className='text-3xl' />
+                  </div>
+                </div>
+                <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
+
+                  <div className='flex justify-center items-center text-black font-bold w-7 h-7'>
+                    <BsPlus className='text-3xl' />
+                  </div>
+
+                </div>
               </div>
               <div className="p-3">
                 <div className="mb-1 text-gray-500 capitalize text-md">
