@@ -32,12 +32,12 @@ const Tbody = ({tbody, actions}) => {
                                     <p className="text-xs text-gray-600">{td.titre}</p>
                                 </div>
                             </div>
-                        </td> : null
-                                    // <td className="px-4 py-3 border">
-                                    //     <div className="flex items-center text-sm">
-                                    //         <p className="font-semibold text-black">{td.nom}</p>
-                                    //     </div>
-                                    // </td>
+                        </td> : 
+                                    <td className="px-4 py-3 border">
+                                        <div className="text-center text-sm">
+                                            <p className="font-semibold text-black">{td.nom}</p>
+                                        </div>
+                                    </td>
                     }
                     {td.idProduit ?
                     <td className="px-4 py-5 text-xl text-center border">
