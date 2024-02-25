@@ -46,9 +46,11 @@ const Dropdown = () => {
 			>
 				<FaRegUser className="mr-2 cursor-pointer" size={20} />
 
-				{tokenClient === null
-					? 'Se connecter'
-					: `bonjour, ${client.prenom === undefined ? '' : client.prenom}`}
+				<p className="text-sm">
+					{tokenClient === null
+						? 'Se connecter'
+						: `bonjour, ${client.prenom === undefined ? '' : client.prenom}`}
+				</p>
 				<RiArrowDropDownLine className="p-0 mx-0 mt-2" size={30} />
 			</div>
 

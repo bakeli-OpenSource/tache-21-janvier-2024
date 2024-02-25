@@ -10,10 +10,12 @@ import Jornals from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Journal'
 import { Route, Routes } from 'react-router';
 import UserIsLogin from './pages/utilisateurs/userIsLogin/UserIsLogin';
 import { PanierProvider } from './utils/contexte/PanierContext';
+import '@fontsource/montserrat';
+
 
 function App() {
 	return (
-		<div className="min-h-screen App">
+		<div className="min-h-screen App font-montserrat">
 			<GlobalContextProvider>
 				<PanierProvider>
 					<Routes>

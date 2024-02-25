@@ -25,7 +25,7 @@ const CompteComponent = () => {
 	};
 	return (
 		<div>
-			<h1 className="pb-2 border border-t-0 border-s-0 border-e-0 ">
+			<h1 className="pb-2 font-medium border border-t-0 border-s-0 border-e-0 ">
 				Information personnelles{' '}
 				<span className="font-medium text-red-500 uppercase ms-5">
 					"modification indisponible pour le moment"
