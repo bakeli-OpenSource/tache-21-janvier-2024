@@ -25,7 +25,7 @@ const CompteComponent = () => {
   };
   return (
     <div>
-      <h1 className="border border-t-0 border-s-0 border-e-0 pb-2 ">
+      <h1 className="border font-medium border-t-0 border-s-0 border-e-0 pb-2 ">
         Information personnelles <span className="text-red-500 font-medium ms-5 uppercase">"modification indisponible pour le moment"</span>
       </h1>
       <form className="w-full md:w-3/4 mx-auto" onSubmit={handleSubmit}>
