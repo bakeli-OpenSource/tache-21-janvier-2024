@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
@@ -8,14 +8,12 @@ import axios from 'axios';
 
 const ProduitsAdmin = () => {
 
-
   const {table, produits, addProduit, actions, titreModal, setTitreModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, 
           soumettre, updateProduit
         } = useProduits();
-  
   const {open} = useSidebare()
 
   const [selectsValue] = useState('');
@@ -84,8 +82,8 @@ const ProduitsAdmin = () => {
   }
 
 
-  const hanldleSubmit = (e) => {
-    e.preventDefault()
+  const hanldleSubmit = async (e) => {
+    e.preventDefault();
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
       categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur,
@@ -117,6 +115,7 @@ const ProduitsAdmin = () => {
     setFournisseur('')
   }
 
+
   
   const [categories, setCategories] = useState([]); 
 
@@ -138,6 +137,7 @@ const ProduitsAdmin = () => {
 
   useEffect(() => {
     setCategoryNames(categories.map((categorie) => categorie.nom));
+    // console.log({Monmom});
   }, [categories]); 
   
   const handleSelectChange = (e) => {

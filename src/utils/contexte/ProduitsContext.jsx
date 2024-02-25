@@ -10,6 +10,10 @@ import axios from "axios";
 export const ProduitsContext = createContext();
 
 const ProduitContextProvider = ({ children }) => {
+
+  // const {test} = useContext(CategorieContext)
+  // console.log({test});
+
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
   // Création des contexts pour formulaire
@@ -89,6 +93,8 @@ const ProduitContextProvider = ({ children }) => {
             'Content-Type': 'multipart/form-data'
           }
         });
+        
+        // await updateCategoryQuantities();
 
 
         if (response.status === 201) {
