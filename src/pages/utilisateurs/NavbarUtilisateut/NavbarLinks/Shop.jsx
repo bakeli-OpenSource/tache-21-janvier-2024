@@ -28,17 +28,24 @@ const Shop = () => {
     fetchFilterCategories();
 
     setFilteredProducts(produits);
-  }, [produits]);
+  }, []);
 
-  const handleChange = (selectedCategorie) => {
-    let updatedProducts = produits;
-
-    if (selectedCategorie !== "Tous") {
-      updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
-    }
-
-    setFilteredProducts(updatedProducts);
+  const handleClick = () => {
+    
+      setFilteredProducts(produits); // Afficher tous les produits si aucune catégorie sélectionnée
+  
   }
+
+  // Logique de filtrage des produits
+  const handleChange = (selectedCategorie) => {
+     
+      const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
+      setFilteredProducts(updatedProducts);
+
+  }
+
+  
+
   const { setDropdown } = useGlobal()
 
    // Fonction pour changer la couleur du bouton "j'aime" au clic
@@ -55,6 +62,11 @@ const Shop = () => {
       >
         <div className="flex mt-10">
           <h1 className=" text-2xl mr-5">Shop</h1>
+          <ComponentButton
+                className="bg-gray-200 text-black ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
+                texte={"Tous les Produits"}
+                onClick={() => handleClick()}
+              />
           {categories.map((categorie, index) => (
             <div className="flex" key={index}>
               <ComponentButton
@@ -62,10 +74,11 @@ const Shop = () => {
                 texte={categorie.nom}
                 onClick={() => handleChange(categorie.nom)}
               />
+              
             </div>
           ))}
         </div>
-        <Link to={`/detailsShop/${_id}`}>
+        <Link to={`/detailShop/${_id}`}>
 
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
           {filteredProducts.map((produit, index) => (

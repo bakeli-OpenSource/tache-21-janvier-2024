@@ -1,11 +1,14 @@
+
 import { Link, useParams } from "react-router-dom";
-import ComponentButton from "../../../../../usersComponents/button/ComponentButton";
-import { ProduitContext } from "../../../../../utils/contexte/ProduitsContext";
+// import ComponentButton from "../../../../usersComponents/button/ComponentButton";
+// import  {ProduitContext}  from "../../../../usersComponents/button/ComponentButton";
 import { useContext } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import Loader from "../../../../../components/loader/loader";
+import Loader from "../../../../components/loader/loader";
+import { ProduitContext } from "../../../../usersComponents/cards/ProduitContext";
+import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 
-const DetailsCardShop = () => {
+const DetailShopCards = () => {
   const { _id } = useParams();
   const { produits } = useContext(ProduitContext);
   const produit = produits.find((item) => {
@@ -111,4 +114,6 @@ const DetailsCardShop = () => {
   );
 };
 
-export default DetailsCardShop;
+export default DetailShopCards;
+
+
