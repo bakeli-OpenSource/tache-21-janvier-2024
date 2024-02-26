@@ -6,6 +6,7 @@ import { usePanier } from '../../utils/contexte/PanierContext';
 import useProduits from '../../utils/hooks/useProduits';
 
 const Produit = ({ produit }) => {
+
     const { addToCart } = usePanier();
     const {produits} = useProduits()
     const { _id, imageUrl, categorie, titre, prix, promo} = produit;  
@@ -16,6 +17,7 @@ const Produit = ({ produit }) => {
       const produitAAjouter = { ...produit, prix: prixAAjouter };
       addToCart(produitAAjouter);
       };
+
 
     return (
         <div className='shadow-lg rounded bg-white'>
