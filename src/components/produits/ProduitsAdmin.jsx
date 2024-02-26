@@ -5,7 +5,6 @@ import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
 import axios from 'axios';
-import { CategorieContext } from '../../utils/contexte/CategorieContext';
 
 const ProduitsAdmin = () => {
 
@@ -82,26 +81,29 @@ const ProduitsAdmin = () => {
   }
 
 
-  const hanldleSubmit = async (e) => {
-    e.preventDefault();
+  const hanldleSubmit = (e) => {
+    e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur,
+      categorie,categorieId, carracteristique, prix, couleur, taille, fournisseur,
     }
-    addProduit(recupInput);
-    setNom('');
-    setImageUrl('');
-    setTitre('');
-    setDescription('');
-    setQuantite('');
-    setCategorie('');
-    setCarracteristique('');
-    setPrix('');
-    setCouleur('');
-    setTaille('');
-    setFournisseur(''); 
-  }
+    console.log({categorie})
+    console.log({categorieId})
+    console.log({recupInput})
+    addProduit(recupInput)
+    setNom('')
+    setImageUrl('')
+    setTitre('')
+    setDescription('')
+    setQuantite('')
+    setCategorie('')
+    setCarracteristique('')
+    setPrix('')
+    setCouleur('')
+    setTaille('')
+    setFournisseur('')
 
+  }
 
   
   const [categories, setCategories] = useState([]); 
@@ -124,7 +126,6 @@ const ProduitsAdmin = () => {
 
   useEffect(() => {
     setCategoryNames(categories.map((categorie) => categorie.nom));
-    // console.log({Monmom});
   }, [categories]); 
   
   const handleSelectChange = (e) => {

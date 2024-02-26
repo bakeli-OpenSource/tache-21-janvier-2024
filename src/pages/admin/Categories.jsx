@@ -12,7 +12,7 @@ const Categories = () => {
           inputs,
           actions,
           handleSubmit,
-          updateCategoryQuantities,
+          // updateCategoryQuantities,
           fetchCategories} = useContext(CategorieContext);
   
 
@@ -21,7 +21,7 @@ const Categories = () => {
   useEffect(() => {
     const fetchData = async () => {
       await fetchCategories();
-      await updateCategoryQuantities()
+      // await updateCategoryQuantities()
     };
 
     fetchData();
