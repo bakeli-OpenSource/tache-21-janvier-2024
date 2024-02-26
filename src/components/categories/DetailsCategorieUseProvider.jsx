@@ -7,7 +7,7 @@ import DetailsCategorie from '../../pages/admin/DetailsCategorie'
 const DetailsCategorieUseProvider = () => {
   return (
     <ProduitContextProvider>
-      <DetailsCategorie />
+        <DetailsCategorie />
     </ProduitContextProvider>
   )
 }

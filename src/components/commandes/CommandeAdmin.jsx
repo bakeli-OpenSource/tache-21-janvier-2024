@@ -47,6 +47,7 @@ const CommandeAdmin = () => {
   const [editingCommandeId, setEditingCommandeId] = useState(null);
 
   const inputs = [                                                                                                              
+<<<<<<< HEAD
     // {
     //   label: 'Email',
     //   type: 'text',
@@ -131,6 +132,7 @@ const CommandeAdmin = () => {
     }
   ]
 
+
   const navigate = useNavigate();
 
   const actions = [
@@ -183,10 +185,77 @@ const CommandeAdmin = () => {
   };
 
   
+
   // const handleEditCommande = (commandeId, newData) => {
   //   setEditData(newData);
   //   hanldleUpdate(commandeId, newData);
   //   setShowModal(false);
+
+  const [editData, setEditData] = useState({});
+
+  const hanldleUpdate = async (commandeId, newData) => {
+    try {
+      const response = await axios.put(
+        `https://kay-solu-api.onrender.com/api/commande/${commandeId}`,
+        newData
+      );
+      console.log("commande modifiée avec succès:", response.data);
+
+      fetchCommandes();
+    } catch (error) {
+      console.error("Erreur lors de la modification de la commande:", error);
+    }
+  };
+
+  
+  const handleEditCommande = (commandeId, newData) => {
+    setEditData(newData);
+    hanldleUpdate(commandeId, newData);
+    setShowModal(false);
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
+  //   const  ValidationCommande = {
+  //     email,
+  //     idProduit,
+  //     setIdProduit,
+  //     quantite,
+  //     produit,
+  //     date,
+  //     etat,
+  //     "prixTotal": prixTotal,
+  //     telephone,
+  //     adresse,
+  //     prixProduit,
+  //     prixLivraison
+  //   };
+    
+  //   try {
+  //     // Effectuer une requête POST vers votre API avec Axios
+  //     const response = await axios.post('https://kay-solu-api.onrender.com/api/commande',  ValidationCommande);
+  
+  //     if (response.status === 201) {
+  //       console.log('Commande ajoutée avec succès:', response.data);
+  //       setShowModal(false);
+  //       setEmail("");
+  //       setQuantite("");
+  //       setDate("");
+  //       setEtat("");
+  //       setPrixTotal("");
+  //       setTelephone("");
+  //       setAdresse("");
+  //       setPrixLivraison("");
+  //       setPrixProduit("");
+  //     } else {
+  //       console.error('Erreur lors de l\'ajout de commandes:', response.data);
+  //     }
+  
+  //     fetchCommandes();
+  //   } catch (error) {
+  //     console.error('Erreur lors de l\'ajout de commande:', error);
+  //   }
   // };
 
   const handleEditCommande = (commandeId, newData) => {
