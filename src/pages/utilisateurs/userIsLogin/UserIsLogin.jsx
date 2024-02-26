@@ -46,7 +46,6 @@ const UserIsLogin = () => {
             <Route path="/connexion" element={<UserConnexion />} />
             <Route path="/compte/*" element={<ComptePage />} />
             <Route path="/details/:_id" element={<DetailsCard />} />
-            <Route path="/filtrageCommande" element={<FiltreCommande />} />
           </Routes>
           <Footer />
         </PanierProvider>

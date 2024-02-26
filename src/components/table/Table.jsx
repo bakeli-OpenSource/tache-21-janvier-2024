@@ -32,12 +32,12 @@ const Tbody = ({tbody, actions}) => {
                                     <p className="text-xs text-gray-600">{td.titre}</p>
                                 </div>
                             </div>
-                        </td> : 
+                        </td> : td.nom ? 
                                     <td className="px-4 py-3 border">
                                         <div className="text-center text-sm">
                                             <p className="font-semibold text-black">{td.nom}</p>
                                         </div>
-                                    </td>
+                                    </td> : null
                     }
                     {td.idProduit ?
                     <td className="px-4 py-5 text-xl text-center border">
@@ -59,11 +59,11 @@ const Tbody = ({tbody, actions}) => {
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
                     </td> : null
                     } 
-                    {td.date ?
+                    {/* {td.date ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.date}
                     </td> : null
-                    }
+                    } */}
                     {td.telephone ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.telephone}
@@ -144,8 +144,7 @@ const Tbody = ({tbody, actions}) => {
                     }
                 </tr>
                 ))  : (<tr className="h-[400px] ">
-                            <td className="" colSpan="8">
-                                {/* <h3 className="text-center">Loading...</h3> */}
+                            <td className="" colSpan="15">
                                 <Loader />
                             </td>
                         </tr>)}
