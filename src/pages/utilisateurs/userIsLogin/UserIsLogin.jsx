@@ -18,6 +18,7 @@ import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
+import DetailsCommandeProvide from "../../admin/DetailsCommandeProvide";
 
 const UserIsLogin = () => {
   const location = useLocation();
@@ -44,6 +45,10 @@ const UserIsLogin = () => {
             <Route path="/connexion" element={<UserConnexion />} />
             <Route path="/compte/*" element={<ComptePage />} />
             <Route path="/details/:_id" element={<DetailsCard />} />
+            <Route
+              path="/commandes/DetailsCommande"
+              element={<DetailsCommandeProvide />}
+            />
           </Routes>
           <Footer />
         </PanierProvider>

@@ -14,6 +14,10 @@ const Form = () => {
     password: "",
   });
 
+  useEffect(() => {
+    profileUser()
+  })
+
   const updateShowPassword = () => {
     setShowPassword(!showPassword);
   };

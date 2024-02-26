@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { MdMenu, MdClose } from "react-icons/md";
-import { BsPersonCircle, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import { ShoppingCartIcon } from "@heroicons/react/outline";
 import NavInput from "../NavInput";
 import Dropdown from "../../../../usersComponents/userConnexion/Dropdown";
@@ -14,30 +14,39 @@ const Navbar = ({ className }) => {
   const [search, setSearch] = useState(false);
   const { notificationCount } = usePanier();
 
+  const handleOpen = () => {
+   setOpen(false)
+  }
+
   return (
     <nav className={className}>
       <div className="flex items-center h-full justify-between px-8 py-">
         <div className="flex items-center justify-between w-full gap-3 md:w-auto ">
-          <div className="z-50 flex justify-between items-center w-full md:w-auto">
+          <div className="z-50 flex flex-row-reverse justify-between items-center w-full md:w-auto">
+            <div className="md:hidden flex  gap-4 items-center justify-center">
+              <Dropdown />
+              <Link to="/Panier" className="relative flex items-center group">
+                <span className="mr-2">
+                  <ShoppingCartIcon className="w-6 h-6" />
+                </span>
+                <span className="absolute px-2 py-1 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
+                  {notificationCount}
+                </span>
+              </Link>
+            </div>
             <Link to={"/"} className="cursor-pointer w-[60px] h-[60px]">
               <img src={icone} className="w-full h-full" />.
             </Link>
-            <div className="text-3xl md:hidden flex flex-row-reverse gap-5 items-center justify-center">
-
-            <Link to="/Panier" className="relative flex items-center group">
-              <span className="mr-2">
-                <ShoppingCartIcon className="w-6 h-6" />
-              </span>
-              <span className="absolute px-2 py-1 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
-                {notificationCount}
-              </span>
-            </Link>
-              {open ? <MdClose onClick={() => setOpen(!open)} /> : <MdMenu onClick={() => setOpen(!open)} />}
-              <Dropdown />
+            <div className="text-3xl md:hidden flex  gap-5 items-center justify-center">
+              {open ? (
+                <MdClose onClick={() => setOpen(!open)} />
+              ) : (
+                <MdMenu onClick={() => setOpen(!open)} />
+              )}
             </div>
           </div>
           <ul className="items-center hidden md:flex">
-            <NavLinks />
+            <NavLinks/>
           </ul>
         </div>
 
@@ -65,7 +74,7 @@ const Navbar = ({ className }) => {
                 <ShoppingCartIcon className="w-6 h-6" />
               </span>
 
-              <span className="absolute px-2 py-1 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
+              <span className="absolute px-2 py-1 text-xs text-white bg-red-500 rounded-full -top-3 -right-2">
                 {notificationCount}
               </span>
             </Link>
@@ -79,7 +88,7 @@ const Navbar = ({ className }) => {
         duration-500 ${open ? "left-0" : "left-[-100%]"}
         `}
         >
-          <NavLinks />
+          <NavLinks handleOpen={handleOpen}/>
           <div className="py-5 w-full ">
             <div
               className={` text-gray-800  w-full flex items-center gap-4 justify-around `}
@@ -88,9 +97,7 @@ const Navbar = ({ className }) => {
                 className={`flex  duration-500 w-full flex-row-reverse items-center border-2 px-9 gap-5 hover:border-blue-500 focus:border-blue-500 active:border-blue-500 py-3 rounded-full
              `}
               >
-                <div
-                  className="text-gray-900 rounded duration-500 cursor-pointer mt"
-                >
+                <div className="text-gray-900 rounded duration-500 cursor-pointer mt">
                   <BsSearch />
                 </div>
                 <form className="w-full">
