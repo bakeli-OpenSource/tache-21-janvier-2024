@@ -25,7 +25,7 @@ const Modal = ({modalTitle, body}) => {
                     </span>
                   </button>
                 </div>
-                <div className="relative p-6 flex-auto">
+                <div className="relative p-6 flex-auto overflow-y-auto">
                   {body}
                 </div>
               </div>
