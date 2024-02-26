@@ -13,6 +13,7 @@ const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
   // Création des contexts pour formulaire
+  const [url, setUrl] = useState('')
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [titre, setTitre] = useState('')
