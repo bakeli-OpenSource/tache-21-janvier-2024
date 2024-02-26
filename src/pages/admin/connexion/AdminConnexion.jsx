@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import { FaEyeSlash } from "react-icons/fa";
+import {FaEye} from "react-icons/fa"
 import useGlobal from "../../../utils/hooks/useGlobal";
 
-const AdminConnexion = ({ label, placeholder, value, onChange }) => {
+const AdminConnexion = ({ label, placeholder, value}) => {
   const { email, setEmail, password, setPassword, handleLogin } = useGlobal();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -112,10 +112,17 @@ const AdminConnexion = ({ label, placeholder, value, onChange }) => {
                   }`}
                   placeholder={active || value ? "" : placeholder}
                 />
-                <FaEyeSlash
-                  onClick={updateShowPassword}
-                  className="absolute right-10 bottom-3 flex flex-col justify-center items-center"
-                />
+                {showPassword ? (
+            <FaEye
+              onClick={updateShowPassword}
+              className="absolute right-9 bottom-3 flex flex-col justify-center items-center"
+            />
+          ) : (
+            <FaEyeSlash
+              onClick={updateShowPassword}
+              className="absolute right-9 bottom-3 flex flex-col justify-center items-center"
+            />
+          )}
               </div>
               <div className=" items-center text-center text-xs mt-3">
                 <label htmlFor="default-checkbox" className="text-center ">
