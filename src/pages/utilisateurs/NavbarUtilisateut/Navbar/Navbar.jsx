@@ -20,6 +20,7 @@ const Navbar = ({ className }) => {
 
   return (
     <nav className={className}>
+
       <div className="flex items-center h-full justify-between px-8 py-">
         <div className="flex items-center justify-between w-full gap-3 md:w-auto ">
           <div className="z-50 flex flex-row-reverse justify-between items-center w-full md:w-auto">
