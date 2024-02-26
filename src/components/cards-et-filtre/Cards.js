@@ -26,7 +26,7 @@ const Cards = () => {
   }, []);
 
   const filterEtat = maCommande.filter((item) => {
-    return item.etat === "en cours";
+    return item.etat === "En cours";
   });
 
   const filterEtat1 = maCommande.filter((item1) => {

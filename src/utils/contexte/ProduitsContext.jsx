@@ -1,15 +1,20 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useContext, createContext, useEffect, useState } from "react";
 import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../hooks/useGlobal";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { CategorieContext } from "./CategorieContext";
 
 
 export const ProduitsContext = createContext();
 
 const ProduitContextProvider = ({ children }) => {
+
+  // const {test} = useContext(CategorieContext)
+  // console.log({test});
+
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
   // Création des contexts pour formuulaire
@@ -86,6 +91,8 @@ const ProduitContextProvider = ({ children }) => {
             'Content-Type': 'multipart/form-data'
           }
         });
+        
+        // await updateCategoryQuantities();
 
 
         if (response.status === 201) {
