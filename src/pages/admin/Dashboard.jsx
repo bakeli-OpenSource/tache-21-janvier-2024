@@ -4,7 +4,6 @@ import React from "react";
 import Filtre from "../../components/cards-et-filtre/Filtre";
 import Revenue from "./Revenue";
 import useSidebare from "../../utils/hooks/useSidebare";
-// import ListeProd from './ListeProd'
 import ListeProduit from './ListeProduit'
 import Graphique2 from "./graphique2/Graph";
 import Cards from "../../components/cards-et-filtre/Cards";
@@ -35,9 +34,8 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div>
+      <div className="mt-5">
         <ListeProduit />
-        {/* <ListeProd /> */}
       </div>
 
     </div>

@@ -12,7 +12,7 @@ const ProduitsAdmin = () => {
   const {table, produits, addProduit, actions, titreModal, setTitreModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
-          prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
+          prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, 
           soumettre, updateProduit
         } = useProduits();
   
@@ -75,12 +75,6 @@ const ProduitsAdmin = () => {
       type: "text",
       value: fournisseur,
       setValue: setFournisseur
-    },
-    {
-      label: "Promo en %",
-      type: "number",
-      value: promo,
-      setValue: setPromo
     }
   ]
 
@@ -94,14 +88,11 @@ const ProduitsAdmin = () => {
     e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-
-      categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
-
+      categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur,
     }
     console.log({categorie})
     console.log({categorieId})
     console.log({recupInput})
-
     console.log(soumettre);
     if (soumettre === 'Ajouter') {
       console.log('Ajout de produit');
@@ -110,6 +101,9 @@ const ProduitsAdmin = () => {
       console.log('modification de produit');
       updateProduit(recupInput)
     }
+    // soumettre === 'Ajouter' ? 
+    // (addProduit(recupInput)) :
+    // (updateProduit(recupInput))
     setNom('')
     setImageUrl('')
     setTitre('')
@@ -121,8 +115,6 @@ const ProduitsAdmin = () => {
     setCouleur('')
     setTaille('')
     setFournisseur('')
-
-    setPromo('')
   }
 
   
@@ -198,5 +190,3 @@ const ProduitsAdmin = () => {
 }
 
 export default ProduitsAdmin
-
-

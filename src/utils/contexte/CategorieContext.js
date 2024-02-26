@@ -149,9 +149,9 @@ export default function CategorieContextProvider({children}) {
       const updatedCategories = await Promise.all(categories.map(async (category) => {
         const filteredProduits = produits.filter((produit) => produit.categorieId === category._id);
         const quantite = filteredProduits.length;
-        console.log({quantite});
         return { ...category, quantite };
       }));  
+        console.log({quantite});
       
       await Promise.all(updatedCategories.map(async (category) => {
         await axios.put(`https://kay-solu-api.onrender.com/api/categorie/${category._id}`, { quantite: category.quantite });

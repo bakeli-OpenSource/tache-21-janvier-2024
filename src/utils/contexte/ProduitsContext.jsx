@@ -25,7 +25,6 @@ const ProduitContextProvider = ({ children }) => {
   const [couleur, setCouleur] = useState('')
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
-  const [promo, setPromo] = useState(0)
   const [titreModal, setTitreModal] = useState('')
   const [corpModal, setCorpModal] = useState('')
   const [soumettre, setSoumettre] = useState('Ajouter')
@@ -84,7 +83,6 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('couleur', produit.couleur);
         formData.append('taille', produit.taille);
         formData.append('fournisseur', produit.fournisseur);
-        formData.append('promo', produit.promo);
         
         const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
           headers: {
@@ -122,7 +120,6 @@ const ProduitContextProvider = ({ children }) => {
       formData.append('couleur', produit.couleur);
       formData.append('taille', produit.taille);
       formData.append('fournisseur', produit.fournisseur);
-      formData.append('promo', produit.promo);
       
       const response = await axios.put('https://kay-solu-api.onrender.com/api/produits/' + idAModifie, formData, {
         headers: {
@@ -158,7 +155,6 @@ const ProduitContextProvider = ({ children }) => {
         setCouleur(datasUpdates.couleur)
         setTaille(datasUpdates.taille)
         setFournisseur(datasUpdates.fournisseur)
-        setPromo(datasUpdates.promo)
         setCategorie(datasUpdates.categorie)
         setCategorieId(datasUpdates.categorieId)
         setDescription(datasUpdates.description)
@@ -209,7 +205,7 @@ const ProduitContextProvider = ({ children }) => {
     actions,
     titreModal, setTitreModal, corpModal, setCorpModal,
     nom, setNom, imageUrl, setImageUrl, titre, setTitre, description, setDescription, quantite, setQuantite,
-    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
+    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur,
     soumettre, setSoumettre
   };
 
@@ -217,5 +213,3 @@ const ProduitContextProvider = ({ children }) => {
 };
 
 export default ProduitContextProvider;
-
-
