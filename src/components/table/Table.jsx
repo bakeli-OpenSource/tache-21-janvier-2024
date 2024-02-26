@@ -1,7 +1,7 @@
 import Loader from "../loader/loader"
 import '@fontsource/montserrat';
 
-const Thead = ({thead}) => {
+export const Thead = ({thead}) => {
     return (
         <thead>
             <tr className="font-semibold tracking-wide text-center text-white uppercase bg-gray-800 border border-x-0 border-top border-gray-300 text-sm">
