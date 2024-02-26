@@ -1,8 +1,8 @@
 import React from "react";
 import ComponentButton from "../button/ComponentButton";
-import slide1 from '../../assets/images/slide1.png';
-import slide2 from '../../assets/images/slide2.png';
-import slide3 from '../../assets/images/slide3.png'
+import slide1 from "../../assets/images/slide1.png";
+import slide2 from "../../assets/images/slide2.png";
+import slide3 from "../../assets/images/slide3.png";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
@@ -31,7 +31,6 @@ const ImageList = [
 ];
 
 const Header = ({ handleOrderPopup }) => {
-
   var settings = {
     dots: false,
     arrows: false,
@@ -78,9 +77,13 @@ const Header = ({ handleOrderPopup }) => {
                     data-aos-duration="500"
                     data-aos-delay="300"
                   >
-                    <Link to={"/panier"} >
-                      <ComponentButton onClick={handleOrderPopup} className='bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded' texte='Shop Now'/>
-                  </Link>
+                    <Link to={"/panier"}>
+                      <ComponentButton
+                        onClick={handleOrderPopup}
+                        className="bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded"
+                        texte="Shop Now"
+                      />
+                    </Link>
                   </div>
                 </div>
                 {/* section image */}
@@ -107,5 +110,3 @@ const Header = ({ handleOrderPopup }) => {
 };
 
 export default Header;
-
-
