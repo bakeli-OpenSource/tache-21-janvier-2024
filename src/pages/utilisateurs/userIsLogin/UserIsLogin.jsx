@@ -19,6 +19,7 @@ import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
+import FiltreCommande from "../../../components/cards-et-filtre/FiltreCommande";
 
 const UserIsLogin = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const UserIsLogin = () => {
             <Route path="/connexion" element={<UserConnexion />} />
             <Route path="/compte/*" element={<ComptePage />} />
             <Route path="/details/:_id" element={<DetailsCard />} />
+            <Route path="/filtrageCommande" element={<FiltreCommande />} />
           </Routes>
           <Footer />
         </PanierProvider>

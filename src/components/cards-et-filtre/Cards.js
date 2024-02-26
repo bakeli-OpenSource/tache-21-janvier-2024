@@ -1,11 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import UniteCard from "./UniteCard";
+import { TbTruckDelivery } from "react-icons/tb";
 import { MdOutlineKeyboardCommandKey } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdDeliveryDining } from "react-icons/md";
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import FiltreCommande from "./FiltreCommande";
 
 const Cards = () => {
   const [maCommande, setMaCommande] = useState([]);
@@ -36,7 +39,7 @@ const Cards = () => {
   });
 
   const filterEtat3 = maCommande.filter((item3) => {
-    return item3.etat === "livrées";
+    return item3.etat === "livrée";
   });
 
   console.log(filterEtat1);
@@ -65,7 +68,9 @@ const Cards = () => {
               <h5>{filterEtat.length}</h5>
             </div>
             <div className="bg-lime-600 rounded-full h-8 w-8 flex  place-items-center justify-center">
-              <AiOutlineLoading3Quarters className="text-2xl text-white cursor-pointer" />
+              <Link to="/filtrageCommande">
+                <AiOutlineLoading3Quarters className="text-2xl text-white cursor-pointer" />
+              </Link>
             </div>
           </div>
           <div>
@@ -80,7 +85,9 @@ const Cards = () => {
               <h5>{filterEtat1.length}</h5>
             </div>
             <div className="bg-yellow-700 rounded-full h-8 w-8 flex  place-items-center justify-center">
-              <MdDeliveryDining className="text-2xl text-white cursor-pointer" />
+              <Link to="/filtrageCommande">
+                <MdDeliveryDining className="text-2xl text-white cursor-pointer" />
+              </Link>
             </div>
           </div>
           <div>
@@ -95,7 +102,9 @@ const Cards = () => {
               <h5>{filterEtat2.length}</h5>
             </div>
             <div className="bg-blue-900 rounded-full h-8 w-8 flex place-items-center justify-center">
-              <AiOutlineDeliveredProcedure className="text-xl text-white cursor-pointer" />
+              <Link to="/filtrageCommande">
+                <AiOutlineDeliveredProcedure className="text-xl text-white cursor-pointer" />
+              </Link>
             </div>
           </div>
           <div>
@@ -110,7 +119,9 @@ const Cards = () => {
               <h5>{filterEtat3.length}</h5>
             </div>
             <div className="bg-sky-500 rounded-full h-8 w-8 flex place-items-center justify-center">
-              <AiOutlineDeliveredProcedure className="text-xl text-white cursor-pointer" />
+              <Link to="/filtrageCommande">
+                <TbTruckDelivery className="text-xl text-white cursor-pointer" />
+              </Link>
             </div>
           </div>
           <div>
