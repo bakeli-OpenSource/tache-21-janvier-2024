@@ -144,24 +144,24 @@ export default function CategorieContextProvider({children}) {
   // };
 
  
-  // const updateCategoryQuantities = async () => {
-  //   try {
-  //     const updatedCategories = await Promise.all(categories.map(async (category) => {
-  //       const filteredProduits = produits.filter((produit) => produit.categorieId === category._id);
-  //       const quantite = filteredProduits.length;
-  //       console.log({filteredProduits});
-  //       return { ...category, quantite };
-  //     }));  
+  const updateCategoryQuantities = async () => {
+    try {
+      const updatedCategories = await Promise.all(categories.map(async (category) => {
+        const filteredProduits = produits.filter((produit) => produit.categorieId === category._id);
+        const quantite = filteredProduits.length;
+        console.log({quantite});
+        return { ...category, quantite };
+      }));  
       
-  //     await Promise.all(updatedCategories.map(async (category) => {
-  //       await axios.put(`https://kay-solu-api.onrender.com/api/categorie/${category._id}`, { quantite: category.quantite });
-  //     }));
+      await Promise.all(updatedCategories.map(async (category) => {
+        await axios.put(`https://kay-solu-api.onrender.com/api/categorie/${category._id}`, { quantite: category.quantite });
+      }));
   
-  //     console.log("Quantités de produits mises à jour avec succès dans la base de données");
-  //   } catch (error) {
-  //     console.error("Erreur lors de la mise à jour des quantités de produits:", error);
-  //   }
-  // };
+      console.log("Quantités de produits mises à jour avec succès dans la base de données");
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour des quantités de produits:", error);
+    }
+  };
 
   const fetchCategories = async () => {
     try {
@@ -176,7 +176,7 @@ export default function CategorieContextProvider({children}) {
   const valueContext = {
     test,
         fetchCategories,
-        // updateCategoryQuantities,
+        updateCategoryQuantities,
         handleEditCategory,
         handleEdit,
         handleSubmit,

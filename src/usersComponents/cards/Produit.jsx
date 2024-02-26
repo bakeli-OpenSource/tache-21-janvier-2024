@@ -8,7 +8,7 @@ const Produit = ({ produit }) => {
 	const { _id, imageUrl, categorie, titre, prix } = produit;
 	
 	const handleAddToCart = () => {
-		addToCart(produit);
+		addToCart(produit); 
 	};
 
 	return (

@@ -12,7 +12,7 @@ export const ProduitsContext = createContext();
 const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
-  // Création des contexts pour formuulaire
+  // Création des contexts pour formulaire
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [titre, setTitre] = useState('')
@@ -25,8 +25,12 @@ const ProduitContextProvider = ({ children }) => {
   const [couleur, setCouleur] = useState('')
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
+  const [promo, setPromo] = useState(0)
   const [titreModal, setTitreModal] = useState('')
   const [corpModal, setCorpModal] = useState('')
+  const [soumettre, setSoumettre] = useState('Ajouter')
+  const [idAModifie, setIdAModifie] = useState('')
+  
   // 
   const { setShowModal } = useGlobal()
   
@@ -80,6 +84,7 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('couleur', produit.couleur);
         formData.append('taille', produit.taille);
         formData.append('fournisseur', produit.fournisseur);
+        formData.append('promo', produit.promo);
         
         const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
           headers: {
@@ -102,6 +107,43 @@ const ProduitContextProvider = ({ children }) => {
     }
   }
 
+  const updateProduit = async (produit) => {
+    try {
+      const formData = new FormData();
+      formData.append('nom', produit.nom);
+      formData.append('imageUrl', produit.imageUrl);
+      formData.append('titre', produit.titre);
+      formData.append('description', produit.description);
+      formData.append('quantite', produit.quantite);
+      formData.append('categorie', produit.categorie);
+      formData.append('categorieId', produit.categorieId);
+      formData.append('carracteristique', produit.carracteristique);
+      formData.append('prix', produit.prix);
+      formData.append('couleur', produit.couleur);
+      formData.append('taille', produit.taille);
+      formData.append('fournisseur', produit.fournisseur);
+      formData.append('promo', produit.promo);
+      
+      const response = await axios.put('https://kay-solu-api.onrender.com/api/produits/' + idAModifie, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+  
+      if (response.status === 200) { // Corrected to check for status 200
+        console.log('Produit modifié avec succès:', response.data);
+        alert('Produit modifié avec succès:');
+        setShowModal(false);
+        setSoumettre('Ajouter')
+      } else {
+        throw new Error('Erreur lors de la modification du produit');
+      }
+    } catch (error) {
+      console.error('Erreur lors de la modification du produit:', error);
+    }
+  }
+  
+
   const hanldleUpdate = async (id) => {
     setShowModal(true)
     setTitreModal('Modification du produit')
@@ -116,6 +158,7 @@ const ProduitContextProvider = ({ children }) => {
         setCouleur(datasUpdates.couleur)
         setTaille(datasUpdates.taille)
         setFournisseur(datasUpdates.fournisseur)
+        setPromo(datasUpdates.promo)
         setCategorie(datasUpdates.categorie)
         setCategorieId(datasUpdates.categorieId)
         setDescription(datasUpdates.description)
@@ -135,8 +178,7 @@ const ProduitContextProvider = ({ children }) => {
         icon: <TbEyeShare/>,
         color: 'bg-green-500',
         handleClick: (id) => {
-          console.log('Ca marche 1')
-          navigate("DetailsProd/" + id);
+          navigate(id);
         }
       },
         {
@@ -144,6 +186,8 @@ const ProduitContextProvider = ({ children }) => {
           icon: <MdEdit />,
           color: 'bg-orange-500',
           handleClick: (id) => {
+            setSoumettre('Modifier')
+            setIdAModifie(id)
             hanldleUpdate(id)
           }
         },
@@ -161,10 +205,12 @@ const ProduitContextProvider = ({ children }) => {
     table, 
     produits,
     addProduit,
+    updateProduit,
     actions,
     titreModal, setTitreModal, corpModal, setCorpModal,
     nom, setNom, imageUrl, setImageUrl, titre, setTitre, description, setDescription, quantite, setQuantite,
-    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
+    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
+    soumettre, setSoumettre
   };
 
   return <ProduitsContext.Provider value={value}>{children}</ProduitsContext.Provider>;
