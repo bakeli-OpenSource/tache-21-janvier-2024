@@ -10,10 +10,6 @@ import axios from "axios";
 export const ProduitsContext = createContext();
 
 const ProduitContextProvider = ({ children }) => {
-
-  // const {test} = useContext(CategorieContext)
-  // console.log({test});
-
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
   // Création des contexts pour formulaire
@@ -29,6 +25,7 @@ const ProduitContextProvider = ({ children }) => {
   const [couleur, setCouleur] = useState('')
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
+  const [promo, setPromo] = useState(0)
   const [titreModal, setTitreModal] = useState('')
   const [corpModal, setCorpModal] = useState('')
   const [soumettre, setSoumettre] = useState('Ajouter')
@@ -87,14 +84,13 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('couleur', produit.couleur);
         formData.append('taille', produit.taille);
         formData.append('fournisseur', produit.fournisseur);
+        formData.append('promo', produit.promo);
         
         const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         });
-        
-        // await updateCategoryQuantities();
 
 
         if (response.status === 201) {
@@ -126,6 +122,7 @@ const ProduitContextProvider = ({ children }) => {
       formData.append('couleur', produit.couleur);
       formData.append('taille', produit.taille);
       formData.append('fournisseur', produit.fournisseur);
+      formData.append('promo', produit.promo);
       
       const response = await axios.put('https://kay-solu-api.onrender.com/api/produits/' + idAModifie, formData, {
         headers: {
@@ -161,6 +158,7 @@ const ProduitContextProvider = ({ children }) => {
         setCouleur(datasUpdates.couleur)
         setTaille(datasUpdates.taille)
         setFournisseur(datasUpdates.fournisseur)
+        setPromo(datasUpdates.promo)
         setCategorie(datasUpdates.categorie)
         setCategorieId(datasUpdates.categorieId)
         setDescription(datasUpdates.description)
@@ -211,7 +209,7 @@ const ProduitContextProvider = ({ children }) => {
     actions,
     titreModal, setTitreModal, corpModal, setCorpModal,
     nom, setNom, imageUrl, setImageUrl, titre, setTitre, description, setDescription, quantite, setQuantite,
-    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur,
+    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
     soumettre, setSoumettre
   };
 
