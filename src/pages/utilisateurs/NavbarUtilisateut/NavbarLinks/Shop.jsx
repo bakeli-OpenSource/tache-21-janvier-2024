@@ -10,50 +10,55 @@ import { Link } from 'react-router-dom';
 
 const Shop = () => {
 
-  const [heartColors, setHeartColors] = useState(Array(10).fill('black'));
+  const [heartColors, setHeartColors] = useState(Array(10).fill('inherit'));
   const { produits, _id } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  useEffect(() => {
-    const fetchFilterCategories = async () => {
-      try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
-        setCategories(response.data);
-        console.log("Catégories récupérées avec succès");
-      } catch (error) {
-        console.error("Erreur lors de la récupération des catégories:", error);
-      }
-    };
-    fetchFilterCategories();
-
-    setFilteredProducts(produits);
-  }, []);
 
   const handleClick = () => {
-    
-      setFilteredProducts(produits); // Afficher tous les produits si aucune catégorie sélectionnée
-  
+
+    // Afficher tous les produits si aucune catégorie sélectionnée
+    setFilteredProducts(produits);
   }
 
-  // Logique de filtrage des produits
+  // // Logique de filtrage des produits
   const handleChange = (selectedCategorie) => {
-     
-      const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
-      setFilteredProducts(updatedProducts);
+
+
+    const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
+    setFilteredProducts(updatedProducts);
+    console.log(filteredProducts)
 
   }
 
-  
+  const fetchFilterCategories = async () => {
+    try {
+      const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
+      setCategories(response.data);
+      console.log("Catégories récupérées avec succès");
+      setFilteredProducts(produits)
+    } catch (error) {
+      console.error("Erreur lors de la récupération des catégories:", error);
+    }
+
+
+  };
+
+  useEffect(() => {
+
+    fetchFilterCategories(produits);
+  }, []);
+
 
   const { setDropdown } = useGlobal()
 
-   // Fonction pour changer la couleur du bouton "j'aime" au clic
-   const changeHeartColor = (index) => {
+  // Fonction pour changer la couleur du bouton "j'aime" au clic
+  const changeHeartColor = (index) => {
     const newHeartColors = [...heartColors];
-    newHeartColors[index] = newHeartColors[index] === 'black' ? 'red' : 'black';
+    newHeartColors[index] = newHeartColors[index] === 'inehrit' ? 'red' : 'inherit';
     setHeartColors(newHeartColors);
-};
+  };
   return (
     <>
       <div
@@ -63,10 +68,10 @@ const Shop = () => {
         <div className="flex mt-10">
           <h1 className=" text-2xl mr-5">Shop</h1>
           <ComponentButton
-                className="bg-gray-200 text-black ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
-                texte={"Tous les Produits"}
-                onClick={() => handleClick()}
-              />
+            className="bg-gray-200 text-black ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
+            texte={"Tous les Produits"}
+            onClick={() => handleClick()}
+          />
           {categories.map((categorie, index) => (
             <div className="flex" key={index}>
               <ComponentButton
@@ -74,11 +79,11 @@ const Shop = () => {
                 texte={categorie.nom}
                 onClick={() => handleChange(categorie.nom)}
               />
-              
+
             </div>
           ))}
         </div>
-        
+
 
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
           {filteredProducts.map((produit, index) => (
@@ -112,20 +117,20 @@ const Shop = () => {
                 </div>
               </div>
               <Link to={`/detailShop/${_id}`}>
-              <div className="p-3">
-                <div className="mb-1 text-gray-500 capitalize text-md">
-                  {produit.categorie}
+                <div className="p-3">
+                  <div className="mb-1 text-gray-500 capitalize text-md">
+                    {produit.categorie}
+                  </div>
+                  <div className="mb-1 text-gray-500 capitalize text-md">
+                    {produit.nom}
+                  </div>
+                  <div className="font-semi-bold">{produit.prix} FCFA</div>
                 </div>
-                <div className="mb-1 text-gray-500 capitalize text-md">
-                  {produit.nom}
-                </div>
-                <div className="font-semi-bold">{produit.prix} FCFA</div>
-              </div>
-              </Link> git add .
+              </Link>
             </div>
           ))}
         </div>
-    
+
       </div>
     </>
   );
