@@ -8,7 +8,8 @@ export default function HeaderTable({title, nomAjout, body}) {
   const { setShowModal } = useGlobal()
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-
+  
+  // console.log(pathnames);
   // if (pathnames.length > 1) {
   //   pathnames.splice(0, 1); 
   // }
@@ -24,11 +25,19 @@ export default function HeaderTable({title, nomAjout, body}) {
     return (
       <React.Fragment key={`breadcrumb-${index}`}>
         {separator}
-        <li className="inline-flex items-center">
+        {name ==='admin' ? (
+          <li className="inline-flex items-center">
+          <Link to="/admin/dashboard" className={`inline-flex items-center text-sm ${textStyle}`}>
+            {name}
+          </Link>
+        </li> ) : (
+          <li className="inline-flex items-center">
           <Link to={routeTo} className={`inline-flex items-center text-sm ${textStyle}`}>
             {name}
           </Link>
         </li>
+        )
+        }
       </React.Fragment>
     );
   });
@@ -64,7 +73,7 @@ export function BouttonComponent({onClick, nomAjout}) {
       onClick={onClick}
       className='text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:focus:ring-gray-850 shadow-lg shadow-gray-500/50 dark:shadow-sm font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
     >
-      {nomAjout}  
+      {nomAjout}
     </button>
   )
 }

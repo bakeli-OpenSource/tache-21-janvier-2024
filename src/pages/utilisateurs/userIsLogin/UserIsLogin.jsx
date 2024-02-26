@@ -19,6 +19,7 @@ import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
+import FiltreCommande from "../../../components/cards-et-filtre/FiltreCommande";
 
 const UserIsLogin = () => {
   const location = useLocation();
