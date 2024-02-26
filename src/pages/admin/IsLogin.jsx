@@ -12,6 +12,7 @@ import Profil from "./Profil";
 import { useNavigate, Route, Routes } from "react-router";
 import useGlobal from "../../utils/hooks/useGlobal";
 import ListeClients from "../../components/Clients/ListeClients";
+import FiltreCommande from "../../components/cards-et-filtre/FiltreCommande";
 // import Navigate from "navigate";
 
 function IsLogin() {
@@ -56,7 +57,7 @@ function IsLogin() {
             )}
             {isLoggedIn() ? (
               <Route
-                path="/produits/DetailsProd/:id"
+                path="/produits/:id"
                 element={<DetailsProduits />}
               />
             ) : (
@@ -79,6 +80,16 @@ function IsLogin() {
               <Route
                 path="/clients"
                 element={<ListeClients />}
+              />
+            ) : (
+              navigate("/admin")
+            )}
+
+
+            {isLoggedIn() ? (
+              <Route
+              path="/filtrageCommande"
+              element={<FiltreCommande />} 
               />
             ) : (
               navigate("/admin")
