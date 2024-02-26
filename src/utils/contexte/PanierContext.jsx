@@ -4,18 +4,20 @@ export const PanierContext = createContext();
 
 export const PanierProvider = ({ children }) => {
 	const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+	const validatedItems = storedItems.filter(
+		(item) => item && typeof item.prix === 'number',
+	);
 	const storedNotificationCount =
 		JSON.parse(localStorage.getItem('notificationCount')) || 0;
 
 	const [cartQuantities, setCartQuantities] = useState({});
-
-	const [items, setItems] = useState(storedItems);
+	const [items, setItems] = useState(validatedItems); // Utilisation des articles validés
 	const [notificationCount, setNotificationCount] = useState(
 		storedNotificationCount,
 	);
 
 	useEffect(() => {
-		// Save the cart items to localStorage whenever it changes
+		// Sauvegarde des articles du panier dans localStorage à chaque changement
 		localStorage.setItem('cartItems', JSON.stringify(items));
 		localStorage.setItem(
 			'notificationCount',
@@ -34,21 +36,44 @@ export const PanierProvider = ({ children }) => {
 
 	const [totalItems, setTotalItems] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
-	// const [promoCode, setPromoCode] = useState('');
-	// const [isPromoCodeApplied, setIsPromoCodeApplied] = useState(false);
 
-	// const promoCodes = {
-	// 	PROMO01: 0.9,
-	// 	PROMO02: 0.8,
-	// 	PROMO03: 0.3,
-	// };
+	const updateQuantity = (id, newQuantity) => {
+		setCartQuantities((prevQuantities) => ({
+			...prevQuantities,
+			[id]: Math.max(newQuantity, 0),
+		}));
+
+		const updatedItems = items.map((item) =>
+			item._id === id ? { ...item, quantity: Math.max(newQuantity, 0) } : item,
+		);
+		setItems(updatedItems);
+	};
+
+	useEffect(() => {
+		const totalItemsCount = items.reduce(
+			(total, item) => total + (cartQuantities[item._id] || 1),
+			0,
+		);
+		setTotalItems(totalItemsCount);
+
+		const newTotalPrice = items.reduce((total, item) => {
+			const itemPrice = item && typeof item.prix === 'number' ? item.prix : 0;
+			const quantity = cartQuantities[item._id] || 1;
+			return total + itemPrice * quantity;
+		}, 0);
+		setTotalPrice(newTotalPrice);
+	}, [items, cartQuantities]);
 
 	const addToCart = (newItem) => {
+		if (!newItem || typeof newItem.prix !== 'number') {
+			console.error("L'article ajouté est invalide ou manque un prix.");
+			return;
+		}
+
 		setItems((prevItems) => {
 			const existingItem = prevItems.find((item) => item._id === newItem._id);
 
 			if (existingItem) {
-				// Mettre à jour l'état des quantités aussi
 				setCartQuantities((prevQuantities) => ({
 					...prevQuantities,
 					[newItem._id]: (prevQuantities[newItem._id] || 0) + 1,
@@ -59,75 +84,27 @@ export const PanierProvider = ({ children }) => {
 						: item,
 				);
 			} else {
-				// Initialiser la quantité à 1 pour le nouvel article
-				setCartQuantities((prevQuantities) => ({
-					...prevQuantities,
-					[newItem._id]: 1,
-				}));
+				setCartQuantities({ ...cartQuantities, [newItem._id]: 1 });
 				return [...prevItems, { ...newItem, quantity: 1 }];
 			}
 		});
-
 		setNotificationCount((prevCount) => prevCount + 1);
 	};
 
-	const updateQuantity = (id, newQuantity) => {
-		// Mettre à jour l'état des quantités
-		setCartQuantities((prevQuantities) => ({
-			...prevQuantities,
-			[id]: Math.max(newQuantity, 0),
-		}));
-
-		// Mettre à jour la liste des articles avec la nouvelle quantité
-		const updatedItems = items.map((item) =>
-			item._id === id ? { ...item, quantity: Math.max(newQuantity, 0) } : item,
-		);
-		setItems(updatedItems);
+	const viderPanier = () => {
+		setItems([]);
+		setCartQuantities({});
+		setNotificationCount(0);
+		localStorage.removeItem('cartItems');
+		localStorage.removeItem('notificationCount');
 	};
-
-	// ...
-
-	useEffect(() => {
-		// Calculer les totaux en utilisant l'état des quantités maintenant
-		const newTotalItems = Object.values(cartQuantities).reduce(
-			(total, qty) => total + qty,
-			0,
-		);
-		setTotalItems(newTotalItems);
-
-		const newTotalPrice = items.reduce(
-			(total, item) => total + item.prix * (cartQuantities[item._id] || 1),
-			0,
-		);
-		setTotalPrice(newTotalPrice);
-	}, [items, cartQuantities]);
 
 	const removeItem = (id) => {
 		const updatedItems = items.filter((item) => item._id !== id);
 		setItems(updatedItems);
 		localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-		setNotificationCount((prevCount) => Math.max(prevCount - 1, 0));
+		setNotificationCount(updatedItems.length);
 	};
-
-	// const applyPromoCode = (total, promoCode) => {
-	// 	const uppercasePromoCode = promoCode.toUpperCase();
-
-	// 	if (promoCodes.hasOwnProperty(uppercasePromoCode)) {
-	// 		return total * promoCodes[uppercasePromoCode];
-	// 	}
-	// 	if (promoCode === '') {
-	// 		alert('Entrez le Code Promo');
-	// 	} else {
-	// 		alert('Invalid Promo Code');
-	// 	}
-
-	// 	return total;
-	// };
-
-	// const handleApplyPromoCode = () => {
-	// 	setTotalPrice(applyPromoCode(totalPrice, promoCode));
-	// 	setIsPromoCodeApplied(true);
-	// };
 
 	const value = {
 		items,
@@ -143,6 +120,7 @@ export const PanierProvider = ({ children }) => {
 		notificationCount,
 		setNotificationCount,
 		cartQuantities,
+		viderPanier,
 	};
 
 	return (

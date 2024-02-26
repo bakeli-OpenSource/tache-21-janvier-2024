@@ -7,8 +7,10 @@ import useGlobal from '../../utils/hooks/useGlobal';
 import { useState, useEffect } from 'react';
 
 const Commande = () => {
+	const [showModal, setShowModal] = useState(false);
 	const navigate = useNavigate();
 	const { client } = useGlobal();
+	const { viderPanier } = usePanier();
 	const [loggedInUserToken, setLoggedInUserToken] = useState(null);
 
 	const {
@@ -44,14 +46,16 @@ const Commande = () => {
 		const prixLivraison = deliveryCosts[deliveryOption];
 
 		const orderData = {
+			prenom: client.prenom,
+			nom: client.nom,
 			email: client.email,
-			idProduit: orderItems.map((item) => item._id),
-			produit: orderItems.map((item) => item.name),
 			adresse: client.adresse,
 			telephone: client.telephone,
+			idProduit: orderItems.map((item) => item._id),
+			produit: orderItems.map((item) => item.name),
 			quantite: orderItems.map((item) => item.quantity),
 			date: new Date().toISOString().split('T')[0],
-			etat: 'En cours',
+			etat: 'en attente',
 			prixProduit: orderItems.reduce(
 				(total, item) => total + item.prixTotal,
 				0,
@@ -61,6 +65,7 @@ const Commande = () => {
 				(total, item) => total + item.prixTotal,
 				prixLivraison,
 			),
+			lu: false,
 		};
 
 		console.log('orderData', orderData);
@@ -79,13 +84,17 @@ const Commande = () => {
 			} else {
 				console.error("Erreur lors de l'ajout de commandes:", response.data);
 			}
-
-			console.log('Commande envoyée avec succès:', response.data);
 		} catch (error) {
 			console.error(
 				"Erreur lors de l'envoi de la commande:",
 				error.response?.data || error.message,
 			);
+		}
+		setShowModal(true);
+		viderPanier();
+		if (items.length === 0) {
+			alert('veuillez ajouter au moins une commande');
+			return;
 		}
 	};
 	return (
@@ -114,6 +123,7 @@ const Commande = () => {
 							<option value="" disabled hidden>
 								Choisir votre livraison
 							</option>
+
 							<option value="1">Livraison-Dakar-1000 FCFA</option>
 							<option value="2">Dakar-Banlieu-1500 FCFA</option>
 							<option value="3">Dakar-Rufisque-2000 FCFA</option>
@@ -121,7 +131,6 @@ const Commande = () => {
 							<option value="5">Dakar-Regions-4000 FCFA</option>
 						</select>
 					</div>
-					,
 					<div className="flex justify-between">
 						<h4 className="text-uppercase mt-1 text-[14px]">Prix total</h4>
 						<h4 className="font-bold text-[21px]">{totalPrice} FCFA</h4>
@@ -137,20 +146,48 @@ const Commande = () => {
 					</div>
 					<hr className="my-4 border-black" />
 					<div className="flex justify-between mb-5">
-						<h4 className="text-uppercase mt-2 text-[20px] text-blue-400">
-							Total
-						</h4>
-						<h4 className="font-bold text-[30px] text-red-500">
+						<h4 className="text-uppercase mt-2 text-[20px]">Total</h4>
+						<h4 className="font-bold text-[30px]">
 							{totalPrice + deliveryCosts[deliveryOption]} FCFA
 						</h4>
 					</div>
+					{items.length === 0 && (
+						<div className="mb-3 text-sm text-red-500">
+							Veuillez ajouter au moins une commande avant de valider.
+						</div>
+					)}
 					<ComponentButton
 						type="submit"
-						className="flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white rounded bg-slate-800"
+						disabled={items.length === 0}
+						className={`flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white rounded ${
+							items.length === 0
+								? 'bg-gray-400 cursor-not-allowed'
+								: 'bg-slate-800 hover:bg-slate-900'
+						}`}
 						texte="Valider la commande"
 					></ComponentButton>
 				</form>
 			</div>
+			{showModal && (
+				<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+					<div className="p-8 bg-white rounded shadow-lg w-100">
+						<h2 className="mb-6 text-2xl font-bold text-center text-black-500">
+							Commande approuvée avec succès!
+						</h2>
+						<p className="mb-6 text-center text-gray-700">
+							Merci pour votre commande. Votre commande a été approuvée et est
+							en cours de traitement.
+							<br /> Vous recevrez votre commande dans les plus brefs délais.
+						</p>
+						<button
+							className="float-right px-4 py-2 text-sm text-white bg-black rounded hover:bg-blue-600"
+							onClick={() => setShowModal(false)}
+						>
+							Fermer
+						</button>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };
