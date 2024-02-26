@@ -6,6 +6,7 @@ import { DiGhostSmall } from "react-icons/di";
 import useGlobal from "../../utils/hooks/useGlobal";
 
 const Dropdown = () => {
+
   const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
     useGlobal();
   let connecter;
@@ -61,6 +62,7 @@ const Dropdown = () => {
           <button
             onClick={deconnexion}
             className={`block ${
+
               tokenClient === null ? " " : "uppercase "
             } px-4 mb-4  py-2 mx-3 text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
           >

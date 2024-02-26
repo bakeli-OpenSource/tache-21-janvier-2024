@@ -1,12 +1,12 @@
-import React, { createContext, useState } from "react";
-import axios from "axios";
+import React, { createContext, useState } from 'react';
+import axios from 'axios';
 
 export const SidebareContext = createContext();
 
 const SidebareContextProvider = ({ children }) => {
   const [open, setOpen] = useState(true);
   const [smallScreen, setSmallScreen] = useState(null);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState('');
   const [dropdown, setDropdown] = useState(false);
   const [message, setMessage] = useState(false);
   const [notification, setNotification] = useState(false);
@@ -38,16 +38,16 @@ const SidebareContextProvider = ({ children }) => {
   };
 
   const screenSize = () => {
-    if (open && smallScreen <= "767px") {
+    if (open && smallScreen <= '767px') {
       setOpen(false);
     }
   };
 
   const profile = () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     axios
-      .get("https://kay-solu-api.onrender.com/api/auth/profile", {
+      .get('https://kay-solu-api.onrender.com/api/auth/profile', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

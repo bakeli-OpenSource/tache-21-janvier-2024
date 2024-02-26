@@ -1,19 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
 import axios from 'axios';
-import { CategorieContext } from '../../utils/contexte/CategorieContext';
 
 const ProduitsAdmin = () => {
+
 
   const {table, produits, addProduit, actions, titreModal, setTitreModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
-          prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
+          prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
+          soumettre, updateProduit
         } = useProduits();
+  
   const {open} = useSidebare()
 
   const [selectsValue] = useState('');
@@ -73,6 +75,12 @@ const ProduitsAdmin = () => {
       type: "text",
       value: fournisseur,
       setValue: setFournisseur
+    },
+    {
+      label: "Promo en %",
+      type: "number",
+      value: promo,
+      setValue: setPromo
     }
   ]
 
@@ -82,26 +90,39 @@ const ProduitsAdmin = () => {
   }
 
 
-  const hanldleSubmit = async (e) => {
-    e.preventDefault();
+  const hanldleSubmit = (e) => {
+    e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur,
+      categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
     }
-    addProduit(recupInput);
-    setNom('');
-    setImageUrl('');
-    setTitre('');
-    setDescription('');
-    setQuantite('');
-    setCategorie('');
-    setCarracteristique('');
-    setPrix('');
-    setCouleur('');
-    setTaille('');
-    setFournisseur(''); 
+    console.log({categorie})
+    console.log({categorieId})
+    console.log({recupInput})
+    console.log(soumettre);
+    if (soumettre === 'Ajouter') {
+      console.log('Ajout de produit');
+      addProduit(recupInput)
+    }else{
+      console.log('modification de produit');
+      updateProduit(recupInput)
+    }
+    // soumettre === 'Ajouter' ? 
+    // (addProduit(recupInput)) :
+    // (updateProduit(recupInput))
+    setNom('')
+    setImageUrl('')
+    setTitre('')
+    setDescription('')
+    setQuantite('')
+    setCategorie('')
+    setCarracteristique('')
+    setPrix('')
+    setCouleur('')
+    setTaille('')
+    setFournisseur('')
+    setPromo('')
   }
-
 
   
   const [categories, setCategories] = useState([]); 
@@ -124,7 +145,6 @@ const ProduitsAdmin = () => {
 
   useEffect(() => {
     setCategoryNames(categories.map((categorie) => categorie.nom));
-    // console.log({Monmom});
   }, [categories]); 
   
   const handleSelectChange = (e) => {
