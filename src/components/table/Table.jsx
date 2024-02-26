@@ -32,12 +32,12 @@ const Tbody = ({tbody, actions}) => {
                                     <p className="text-xs text-gray-600">{td.titre}</p>
                                 </div>
                             </div>
-                        </td> : td.nom ? 
+                        </td> : 
                                     <td className="px-4 py-3 border">
                                         <div className="text-center text-sm">
                                             <p className="font-semibold text-black">{td.nom}</p>
                                         </div>
-                                    </td> : null
+                                    </td>
                     }
                     {td.idProduit ?
                     <td className="px-4 py-5 text-xl text-center border">
@@ -144,7 +144,8 @@ const Tbody = ({tbody, actions}) => {
                     }
                 </tr>
                 ))  : (<tr className="h-[400px] ">
-                            <td className="" colSpan="15">
+                            <td className="" colSpan="8">
+                                {/* <h3 className="text-center">Loading...</h3> */}
                                 <Loader />
                             </td>
                         </tr>)}
