@@ -6,7 +6,6 @@ import { usePanier } from '../../utils/contexte/PanierContext';
 import useProduits from '../../utils/hooks/useProduits';
 
 const Produit = ({ produit }) => {
-
     const { addToCart } = usePanier();
     const {produits} = useProduits()
     const { _id, imageUrl, categorie, titre, prix, promo} = produit;  
@@ -23,7 +22,7 @@ const Produit = ({ produit }) => {
         <div className='shadow-lg rounded bg-white'>
             <div className='border border-[#e4e4e4] h-[250px] relative overflow-hidden group transition'>
                 <div className='w-full h-full flex justify-center items-center'>
-                  <div className='absolute text-orange-400 text-sm px-1 bg-amber-100 top-0 right-2 bg-dark'>
+                  <div className='absolute text-orange-400 mt-1 text-sm px-1 bg-amber-100 top-0 right-1 bg-dark'>
                    -{promo}%
                   </div>
                     <Link to={`/details/${_id}`} className='w-[200px] mx-auto flex justify-center items-center'>
