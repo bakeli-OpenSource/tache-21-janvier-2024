@@ -13,6 +13,7 @@ import UserIsLogin from './pages/utilisateurs/userIsLogin/UserIsLogin';
 import { PanierProvider } from './utils/contexte/PanierContext';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import '@fontsource/montserrat';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
 	  }, []);
 
 	return (
-		<div className="min-h-screen App">
+		<div className="min-h-screen App font-montserrat">
 			<GlobalContextProvider>
 				<PanierProvider>
 					<Routes>

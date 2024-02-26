@@ -10,7 +10,7 @@ const Locale = () => {
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
           {/* image section */}
-          <div data-aos="zoom-in" className='bg-slate-800 rounded pb-3'>
+          <div data-aos="fade-right" className='bg-slate-800 rounded pb-3'>
             <img
               src={women}
               alt="public"

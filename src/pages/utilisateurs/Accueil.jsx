@@ -1,27 +1,17 @@
 import React, { useContext } from 'react';
-import Footer from '../../usersComponents/footer/Footer';
 import Navbar from './NavbarUtilisateut/Navbar/Navbar';
 import Header from '../../usersComponents/headerUserComponent/Header';
 import ScrollingText from '../../usersComponents/Cards/ScrollingText';
 import Produit from '../../usersComponents/Cards/Produit';
-import { ProduitContext } from '../../usersComponents/Cards/ProduitContext';
 import useGlobal from '../../utils/hooks/useGlobal';
 import Locale from '../../usersComponents/Cards/Locale';
+import { ProduitsContext } from '../../utils/contexte/ProduitsContext';
 
 
 export default function Accueil() {
-	const { produits } = useContext(ProduitContext);
-	
-	// const produitsParCategorie = produits.reduce((acc, produit) => {
-    //     if (!acc[produit.categorie]) {
-    //         acc[produit.categorie] = [];
-    //     }
-    //     acc[produit.categorie].push(produit);
-    //     return acc;
-    // }, {});
+	const { produits } = useContext(ProduitsContext);
 	const { setDropdown } = useGlobal();
 	const categories = ['Chaussures', 'Accessoires', 'Vetements'];
-	// const categories = ["men's clothing", "women's clothing", "jewelery", "electronics"];
 
 	return (
 		<div>
@@ -52,9 +42,6 @@ export default function Accueil() {
 						<Locale />
 					</div>
 				</div>
-				<footer>
-					<Footer />
-				</footer>
 			</div>
 		</div>
 	);

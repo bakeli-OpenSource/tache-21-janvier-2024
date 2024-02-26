@@ -1,8 +1,8 @@
 import React from "react";
 import ComponentButton from "../button/ComponentButton";
-import slide1 from '../../assets/images/slide1.png';
-import slide2 from '../../assets/images/slide2.png';
-import slide3 from '../../assets/images/slide3.png'
+import slide1 from "../../assets/images/slide1.png";
+import slide2 from "../../assets/images/slide2.png";
+import slide3 from "../../assets/images/slide3.png";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
@@ -77,10 +77,10 @@ const Header = () => {
                     data-aos="fade-up"
                     data-aos-duration="500"
                     data-aos-delay="300"
-                  >
+                  > 
                   <Link to={"/panier"} >
                     <ComponentButton className='bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded' texte='Shop Now'/>
-                  </Link>
+                  </Link>   
                   </div>
                 </div>
                 {/* section image */}
@@ -107,5 +107,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
