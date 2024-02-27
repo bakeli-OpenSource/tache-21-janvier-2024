@@ -1,7 +1,7 @@
 import Loader from "../loader/loader"
 import '@fontsource/montserrat';
 
-const Thead = ({thead}) => {
+export const Thead = ({thead}) => {
     return (
         <thead>
             <tr className="font-semibold tracking-wide text-center text-white uppercase bg-gray-800 border border-x-0 border-top border-gray-300 text-sm">
@@ -32,18 +32,18 @@ const Tbody = ({tbody, actions}) => {
                                     <p className="text-xs text-gray-600">{td.titre}</p>
                                 </div>
                             </div>
-                        </td> : 
+                        </td> : td.nom ? 
                                     <td className="px-4 py-3 border">
                                         <div className="text-center text-sm">
                                             <p className="font-semibold text-black">{td.nom}</p>
                                         </div>
-                                    </td>
+                                    </td> : null
                     }
-                    {td.idProduit ?
+                    {/* {td.idProduit ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.idProduit}
                     </td> : null
-                    }
+                    } */}
                     {td.email ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.email}
@@ -59,19 +59,14 @@ const Tbody = ({tbody, actions}) => {
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
                     </td> : null
                     } 
-                    {td.date ?
+                    {/* {td.date ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.date}
                     </td> : null
-                    }
+                    } */}
                     {td.telephone ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.telephone}
-                    </td> : null
-                    }
-                    {td.adresse ?
-                    <td className="px-4 py-5 text-xl text-center border">
-                        {td.adresse}
                     </td> : null
                     }
                     {td.etat ?
@@ -104,6 +99,12 @@ const Tbody = ({tbody, actions}) => {
                         {td.prixTotal}
                     </td> : null
                     }
+                    {/* {td.adresse ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.adresse}
+                    </td> : null
+                    } */}
+                    
                     {td.statut ?
                     <td className="px-4 py-5 text-center text-xl border">
                         {td.statut}
@@ -144,8 +145,7 @@ const Tbody = ({tbody, actions}) => {
                     }
                 </tr>
                 ))  : (<tr className="h-[400px] ">
-                            <td className="" colSpan="8">
-                                {/* <h3 className="text-center">Loading...</h3> */}
+                            <td className="" colSpan="15">
                                 <Loader />
                             </td>
                         </tr>)}

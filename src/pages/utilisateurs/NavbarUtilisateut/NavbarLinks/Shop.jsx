@@ -86,100 +86,65 @@ const Shop = () => {
         </div>
 
 
-        {/* <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
-          {filteredProducts.map((produit, index) => (
-            <div
-              key={index}
-              className="items-center justify-center w-full h-full static border"
-            >
-              <div className="relative">
-                <img
-                  className="h-[17rem] w-[50rem]"
-                  src={produit.imageUrl}
-                  alt={produit.nom}
-                />
+
+        <div className='shadow-lg rounded'>
+          <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-[20px] mt-8">
+            {filteredProducts.map((produit, index) => (
+              <div key={index}
+                data-aos="zoom-in"
+                className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 
+        group max-w-full flex flex-col justify-between"
+              >
+                {/* section image */}
+                <Link to={`/details/${_id}`} className="h-[200px] max-w-full flex items-center justify-center">
+                  <img
+                    src={produit.imageUrl}
+                    alt="tofs"
+                    className="max-h-full max-w-full mx-auto drop-shadow-md object-contain"
+                  />
+                </Link>
+                {/* section details */}
+                <div className="p-4 text-center">
+                  {/* star rating */}
+                  <div className="w-full flex items-center justify-center gap-1">
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
+                    <FaStar className="text-yellow-500" />
+                  </div>
+                  <h1 className="text-xl font-bold">{produit.categorie}</h1>
+                  <p className="text-gray-500 group-hover:text-white mb-2 duration-300 text-sm line-clamp-2">
+                    {produit.titre}
+                  </p>
+                  <div className="mt-auto">
+                    <span className='border border-black rounded-full px-3 py-1 text-sm text-black'>
+                      {produit.prix} FCFA
+                    </span>
+                  </div>
+                </div>
+                {/* Bouton ajout panier */}
+                <div className='absolute top-1 -right-1 p-2 flex flex-col justify-center items-center'>
+
+                  <div className='flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10'>
+                    <BsPlus className='text-3xl' />
+                  </div>
+
+                </div>
+
+
+                {/* 
                 <button className="absolute top-3 right-2 ">
                   <div className="flex items-center justify-center text-black w-7 h-7">
                     <BsSuitHeartFill className='text-3xl cursor-pointer' style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
                   </div>
                 </button>
-                <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
-
-                  <div className='flex justify-center items-center text-black font-bold w-7 h-7'>
-                    <BsPlus className='text-3xl' />
-                  </div>
-                </div>
-                <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
-
-                  <div className='flex justify-center items-center text-black font-bold w-7 h-7'>
-                    <BsPlus className='text-3xl' />
-                  </div>
-
-                </div>
+               
+         */}
               </div>
-              <Link to={`/detailShop/${_id}`}>
-                <div className="p-3">
-                  <div className="mb-1 text-gray-500 capitalize text-md">
-                    {produit.categorie}
-                  </div>
-                  <div className="mb-1 text-gray-500 capitalize text-md">
-                    {produit.nom}
-                  </div>
-                  <div className="font-semi-bold">{produit.prix} FCFA</div>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div> */}
+            ))}
+          </div>
 
-        <div className='shadow-lg rounded'>
-    <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-[20px] mt-8">   
-    {filteredProducts.map((produit, index) => ( 
-      <div key={index}
-        data-aos="zoom-in"
-        className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 
-        group max-w-full flex flex-col justify-between"
-        >
-          {/* section image */}
-          <Link to={`/details/${_id}`} className="h-[200px] max-w-full flex items-center justify-center">
-            <img
-              src={produit.imageUrl}
-              alt="tofs"
-              className="max-h-full max-w-full mx-auto drop-shadow-md object-contain"
-            />
-          </Link>
-          {/* section details */}
-          <div className="p-4 text-center">
-            {/* star rating */}
-            <div className="w-full flex items-center justify-center gap-1">
-                <FaStar className="text-yellow-500" />
-                <FaStar className="text-yellow-500" />
-                <FaStar className="text-yellow-500" />
-                <FaStar className="text-yellow-500" />
-            </div>
-            <h1 className="text-xl font-bold">{produit.categorie}</h1>
-            <p className="text-gray-500 group-hover:text-white mb-2 duration-300 text-sm line-clamp-2">
-                {produit.titre}
-            </p>
-            <div className="mt-auto">
-              <span className='border border-black rounded-full px-3 py-1 text-sm text-black'>
-                {produit.prix} FCFA
-              </span>
-            </div>
-          </div>
-          {/* Bouton ajout panier */}
-          <div className='absolute top-1 -right-1 p-2 flex flex-col justify-center items-center'>
-            
-              <div className='flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10'>
-                <BsPlus className='text-3xl' />
-              </div>
-           
-          </div>
-      </div> 
-       ))}         
-    </div>
-    
-  </div>
+        </div>
       </div>
     </>
   );
