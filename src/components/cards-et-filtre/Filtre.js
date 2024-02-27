@@ -1,7 +1,12 @@
-import React from "react";
+import React, {  useEffect, useState } from 'react'
+import axios from 'axios';
 import Select from "./Select";
+import useProduits from '../../utils/hooks/useProduits';
 
-const Filtre = () => {
+const Filtre = ({handleSelectChange}) => {
+  
+  const {categoryNames, setCategoryNames, categories, setCategories} = useProduits();
+
   const semaine = [
     "Lundi",
     "Mardi",
@@ -12,12 +17,17 @@ const Filtre = () => {
     "Dimanche",
   ];
 
-  const categorie = ["option1", "option1", "option1"];
+  
+
+  useEffect(() => {
+    setCategoryNames(categories.map((categorie) => categorie.nom));
+  }, [categories]); 
+
 
   return (
     <div className="flex flex-col sm:flex-row gap-3 font-normal">
-      <Select contenus={semaine} Title="Semaine" />
-      <Select contenus={categorie} Title="Catégorie" />
+      <Select contenus={semaine} Title="Jour"/>
+      <Select contenus={categoryNames} handleSelectChange={handleSelectChange} Title="Catégorie" />
     </div>
   );
 };

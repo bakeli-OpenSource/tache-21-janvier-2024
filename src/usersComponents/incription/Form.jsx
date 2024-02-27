@@ -48,10 +48,7 @@ const Form = () => {
 			<div className="mt-5">
 				<div className="flex flex-col justify-center w-full gap-5 mt-5 align-center md:flex-row">
 					<div className="w-full mt-5 mb-5 md:w-1/2">
-						<label
-							htmlFor="prenom"
-							className="block text-sm font-medium "
-						>
+						<label htmlFor="prenom" className="block text-sm font-medium ">
 							Prénom
 						</label>
 						<input
@@ -59,16 +56,13 @@ const Form = () => {
 							type="text"
 							id="prenom"
 							name="prenom"
-							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.prenom}
 							onChange={handleChange}
 						/>
 					</div>
 					<div className="w-full mt-5 mb-5 md:w-1/2">
-						<label
-							htmlFor="nom"
-							className="block text-sm font-medium "
-						>
+						<label htmlFor="nom" className="block text-sm font-medium ">
 							Nom
 						</label>
 						<input
@@ -76,7 +70,7 @@ const Form = () => {
 							type="text"
 							id="nom"
 							name="nom"
-							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.nom}
 							onChange={handleChange}
 						/>
@@ -84,10 +78,7 @@ const Form = () => {
 				</div>
 				<div className="flex flex-col justify-center w-full gap-5 mt- align-center md:flex-row">
 					<div className="w-full mb-4 mt- md:w-1/2">
-						<label
-							htmlFor="email"
-							className="block text-sm font-medium "
-						>
+						<label htmlFor="email" className="block text-sm font-medium ">
 							Email
 						</label>
 						<input
@@ -95,16 +86,13 @@ const Form = () => {
 							type="email"
 							id="email"
 							name="email"
-							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.email}
 							onChange={handleChange}
 						/>
 					</div>
 					<div className="w-full mb-5 mt- md:w-1/2">
-						<label
-							htmlFor="password"
-							className="block text-sm font-medium "
-						>
+						<label htmlFor="password" className="block text-sm font-medium ">
 							Mot de pass
 						</label>
 						<input
@@ -112,7 +100,7 @@ const Form = () => {
 							type="password"
 							id="password"
 							name="password"
-							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.password}
 							onChange={handleChange}
 						/>
@@ -120,10 +108,7 @@ const Form = () => {
 				</div>
 				<div className="flex flex-col justify-center w-full gap-5 mt- align-center md:flex-row">
 					<div className="w-full mb-4 mt- md:w-1/2">
-						<label
-							htmlFor="adresse"
-							className="block text-sm font-medium "
-						>
+						<label htmlFor="adresse" className="block text-sm font-medium ">
 							Adresse
 						</label>
 						<input
@@ -131,16 +116,13 @@ const Form = () => {
 							type="adresse"
 							id="adresse"
 							name="adresse"
-							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.adresse}
 							onChange={handleChange}
 						/>
 					</div>
 					<div className="w-full mb-5 mt- md:w-1/2">
-						<label
-							htmlFor="telephone"
-							className="block text-sm font-medium "
-						>
+						<label htmlFor="telephone" className="block text-sm font-medium ">
 							Telephone
 						</label>
 						<input
@@ -148,7 +130,7 @@ const Form = () => {
 							type="tel"
 							id="telephone"
 							name="telephone"
-							className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+							className="w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
 							value={formData.telephone}
 							onChange={handleChange}
 						/>

@@ -6,6 +6,7 @@ import useGlobal from "../../../utils/hooks/useGlobal";
 import CompteComponent from "../../../usersComponents/compteComponent/CompteComponent";
 import CommandePage from "../commandesPage/CommandePage";
 import FavorisPage from "../favorisPage.jsx/FavorisPage";
+import OrderDetail from "../../../usersComponents/userConnexion/commandeComponent/DetailsCommande";
 
 const ComptePage = () => {
   const { client, handleLogoutUser } = useGlobal();
@@ -56,16 +57,20 @@ const ComptePage = () => {
           </div>
           <button
             onClick={deconnexion}
-            className={`mx-5  w-3/4  px-4 mb-1  py-2  text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
+            className={`mx-5 w-3/4 px-4 mb-1  py-2  text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
           >
             Déconnexion
           </button>
         </div>
-        <div className="border px-9 py-5 w-full md:w-3/4">
+        <div className="border px-9  py-5 w-full md:w-3/4">
           <Routes>
             <Route path="/" element={<CompteComponent />}></Route>
             <Route path="/commandes" element={<CommandePage />}></Route>
             <Route path="/favoris" element={<FavorisPage />}></Route>
+            <Route
+              path="/commandes/DetailsCommande/:_id"
+              element={<OrderDetail />}
+            />
           </Routes>
           
         </div>
