@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {  useEffect, useState } from 'react'
 import Table from '../table/Table';
 import useProduits from '../../utils/hooks/useProduits';
 
-export default function ListeProdDashboard() {
+export default function ListeProdDashboard({tbody}) {	
 	
-	const { produits} = useProduits();
 	const table = [
 		'Article', 'Quantité', 'Prix'
 	  ]
+
 
 	return (
 		<div className="w-full my-3 mr-5">
@@ -16,7 +16,7 @@ export default function ListeProdDashboard() {
 					Revenue
 				</h2>
 			</div>
-			<Table thead={table} tbody={produits} />
+			<Table thead={table} tbody={tbody} />
 		</div>
 	);
 }

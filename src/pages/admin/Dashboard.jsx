@@ -1,23 +1,26 @@
-
-
-import React from "react";
+import React, {  useEffect, useState } from 'react'
 import Filtre from "../../components/cards-et-filtre/Filtre";
 import Revenue from "./Revenue";
 import useSidebare from "../../utils/hooks/useSidebare";
 import ListeProduit from './ListeProduit'
 import Graphique2 from "./graphique2/Graph";
 import Cards from "../../components/cards-et-filtre/Cards";
+import ProduitContextProvider from "../../utils/contexte/ProduitsContext";
+import useProduits from "../../utils/hooks/useProduits";
 
 
 const Dashboard = () => {
   const { open } = useSidebare();
 
+  const {filtreProduits, handleSelectChangeCategorie} = useProduits();
+
   return (
     <div className={`${open ? "md:ml-[230px] " : "md:ml-[85px] m-3 mb-0"} m-5 mb-0`}>
       <div className="container text-xl font-bold ">
         <div className="flex justify-end">
-          <Filtre />
-
+          <ProduitContextProvider>
+            <Filtre handleSelectChange = {handleSelectChangeCategorie}/>
+          </ProduitContextProvider>
         </div>
         <div>
           <Cards />
@@ -35,7 +38,7 @@ const Dashboard = () => {
       </div>
 
       <div className="mt-5">
-        <ListeProduit />
+        <ListeProduit tbody= {filtreProduits} />
       </div>
 
     </div>

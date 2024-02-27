@@ -2,10 +2,10 @@ import React from 'react'
 import ListeProdDashboard from '../../components/listeProd/ListeProdDashboard'
 import ProduitContextProvider from '../../utils/contexte/ProduitsContext'
 
-export default function ListeProduit() {
+export default function ListeProduit({tbody}) {
   return (
       <ProduitContextProvider>
-        <ListeProdDashboard />
+        <ListeProdDashboard tbody={tbody} />
       </ProduitContextProvider>
   )
 }

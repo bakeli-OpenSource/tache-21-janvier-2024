@@ -12,6 +12,7 @@ export const ProduitsContext = createContext();
 const ProduitContextProvider = ({ children }) => {
   const navigate = useNavigate()
   const [produits, setProduits] = useState([])
+  const [categoryNames, setCategoryNames] = useState([]);
   // Création des contexts pour formulaire
   const [url, setUrl] = useState('')
   const [nom, setNom] = useState('')
@@ -26,10 +27,12 @@ const ProduitContextProvider = ({ children }) => {
   const [couleur, setCouleur] = useState('')
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
+  const [promo, setPromo] = useState(0)
   const [titreModal, setTitreModal] = useState('')
   const [corpModal, setCorpModal] = useState('')
   const [soumettre, setSoumettre] = useState('Ajouter')
   const [idAModifie, setIdAModifie] = useState('')
+  const [filtreProduits, setFiltreProduits] = useState([])
   
   // 
   const { setShowModal } = useGlobal()
@@ -84,6 +87,7 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('couleur', produit.couleur);
         formData.append('taille', produit.taille);
         formData.append('fournisseur', produit.fournisseur);
+        formData.append('promo', produit.promo);
         
         const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
           headers: {
@@ -121,6 +125,7 @@ const ProduitContextProvider = ({ children }) => {
       formData.append('couleur', produit.couleur);
       formData.append('taille', produit.taille);
       formData.append('fournisseur', produit.fournisseur);
+      formData.append('promo', produit.promo);
       
       const response = await axios.put('https://kay-solu-api.onrender.com/api/produits/' + idAModifie, formData, {
         headers: {
@@ -156,6 +161,7 @@ const ProduitContextProvider = ({ children }) => {
         setCouleur(datasUpdates.couleur)
         setTaille(datasUpdates.taille)
         setFournisseur(datasUpdates.fournisseur)
+        setPromo(datasUpdates.promo)
         setCategorie(datasUpdates.categorie)
         setCategorieId(datasUpdates.categorieId)
         setDescription(datasUpdates.description)
@@ -197,8 +203,66 @@ const ProduitContextProvider = ({ children }) => {
           }
         }
       ]
+      const [categories, setCategories] = useState([]); 
+
+      useEffect(() => {
+        const fetchCategories = async () => {
+          try {
+            const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
+            setCategories(response.data);
+            console.log("Catégories récupérées avec succès");
+          } catch (error) {
+            console.error("Erreur lors de la récupération des catégories:", error);
+          }
+        };
+    
+        fetchCategories();
+      }, []);
+
+      const handleSelectChange = (e) => {
+        const selectedCategoryName = e.target.value;
+        const selectedCategory = categories.find((cat) => cat.nom === selectedCategoryName);
+        if (selectedCategory) {
+          setCategorie(selectedCategoryName);
+          setCategorieId(selectedCategory._id);
+          const filteredProducts = produits.filter((produit) => produit.categorieId === selectedCategory._id);
+          setFiltreProduits(filteredProducts);
+        } else {
+          setCategorie("");
+          setCategorieId("");
+          setFiltreProduits(produits)
+        }
+      };
+
+      const handleSelectChangeCategorie = (e) => {
+        const selectedCategoryName = e.target.value;
+        const selectedCategory = categories.find((cat) => cat.nom === selectedCategoryName);
+        if (selectedCategory) {
+          setCategorie(selectedCategoryName);
+          setCategorieId(selectedCategory._id);
+          const filteredProducts = produits.filter((produit) => produit.categorieId === selectedCategory._id);
+          setFiltreProduits(filteredProducts);
+        } else {
+          setCategorie("");
+          setCategorieId("");
+          setFiltreProduits(produits)
+        }
+      };
+      
+  useEffect(() => {
+		setCategoryNames(categories.map((categorie) => categorie.nom));
+		setFiltreProduits(produits)
+	  }, [categories]); 
 
   const value = {
+    handleSelectChangeCategorie,
+    categoryNames, 
+    setCategoryNames,
+    categories,
+    handleSelectChange,
+    filtreProduits, 
+    setFiltreProduits,
+    setProduits,
     table, 
     produits,
     addProduit,
@@ -206,7 +270,7 @@ const ProduitContextProvider = ({ children }) => {
     actions,
     titreModal, setTitreModal, corpModal, setCorpModal,
     nom, setNom, imageUrl, setImageUrl, titre, setTitre, description, setDescription, quantite, setQuantite,
-    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur,
+    carracteristique, setCarracteristique, categorie, setCategorie,categorieId,setCategorieId ,prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
     soumettre, setSoumettre
   };
 
