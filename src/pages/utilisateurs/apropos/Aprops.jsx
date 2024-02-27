@@ -11,29 +11,33 @@ const Aprops = () => {
         className="bg-gray-800 bg-bottom bg-no-repeat w-2/4 hidden md:block h-[503px] rounded-e-[80px] p-6 text-center text-"
       ></div>
       <div className="w-1/2">
-        <h1 className="font-medium mb-4">Qu'est-ce que le Lorem Ipsum?</h1>
-        <div className="mb-7">
-          <p>
-            Le Lorem Ipsum est simplement du faux texte employé dans la
-            composition et la mise en page avant impression.
+        <h1 className="font-medium mb-3 underline">Un petit résumé de notre boutique</h1>
+        <div className="mb-4">
+          <p className="mb-3">
+            Bienvenue sur <span className="font-bold">Kaay-Solu</span> ! Nous sommes une équipe
+            passionnée qui croit fermement en la puissance du shopping en ligne pour offrir 
+            commodité, qualité et variété à nos clients. Notre mission est de fournir une 
+            expérience d'achat exceptionnelle en proposant une sélection soigneusement choisie de produits
+            allant des dernières tendances aux classiques intemporels.
           </p>
           <p>
-            Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les
-            années 1500, quand un imprimeur anonyme assembla ensemble des
-            morceaux de texte pour réaliser un livre spécimen de polices de
-            texte.
+            Chez <span className="font-bold">Kaay-Solu</span>, nous mettons un point d'honneur à
+            offrir un service clientèle de premier ordre. Notre équipe dévouée est toujours là 
+            pour répondre à vos questions, vous aider à trouver le produit parfait et garantir 
+            que votre expérience d'achat soit fluide et agréable.
           </p>
         </div>
-        <div className="mb-7">
-          <p>
-            Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à
-            la bureautique informatique, sans que son contenu n'en soit modifié.
+        <div className="mb-4">
+          <p className="mb-3">
+            Nous nous engageons également à la durabilité et à l'éthique dans tout ce que nous
+            faisons. Nous travaillons avec des fournisseurs qui partagent nos valeurs pour nous 
+            assurer que nos produits sont fabriqués de manière responsable et respectueuse de 
+            l'environnement.
           </p>
           <p>
-            Il a été popularisé dans les années 1960 grâce à la vente de
-            feuilles Letraset contenant des passages du Lorem Ipsum, et, plus
-            récemment, par son inclusion dans des applications de mise en page
-            de texte, comme Aldus PageMaker.
+            Explorez notre site pour découvrir notre gamme de produits exceptionnels et 
+            laissez-nous vous aider à trouver exactement ce que vous cherchez. Merci de faire 
+            partie de la communauté <span className="font-bold">Kaay-Solu</span> !
           </p>
         </div>
       </div>
