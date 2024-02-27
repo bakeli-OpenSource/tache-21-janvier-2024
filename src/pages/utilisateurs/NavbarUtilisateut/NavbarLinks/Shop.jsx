@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const Shop = () => {
 
-  const [heartColors, setHeartColors] = useState(Array(10).fill('black'));
+  const [heartColors, setHeartColors] = useState(Array(10).fill('text-gray-300'));
   const { produits, _id } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -44,7 +44,7 @@ const Shop = () => {
    // Fonction pour changer la couleur du bouton "j'aime" au clic
    const changeHeartColor = (index) => {
     const newHeartColors = [...heartColors];
-    newHeartColors[index] = newHeartColors[index] === 'black' ? 'red' : 'black';
+    newHeartColors[index] = newHeartColors[index] === 'text-gray-300' ? 'red' : 'text-gray-300';
     setHeartColors(newHeartColors);
 };
   return (
@@ -78,8 +78,8 @@ const Shop = () => {
                   alt={produit.nom}
                 />
                 <button className="absolute top-3 right-2 ">
-                  <div className="flex items-center justify-center text-black w-7 h-7">
-                    <BsSuitHeartFill className='text-3xl cursor-pointer' style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
+                  <div className="flex items-center justify-center text- w-7 h-7">
+                    <BsSuitHeartFill className={`text-3xl ${heartColors[index]} cursor-pointer`} style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
                   </div>
                 </button>
                 <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>

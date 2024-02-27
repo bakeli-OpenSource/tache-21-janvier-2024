@@ -10,7 +10,6 @@ const GlobalContextProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [client, setClient] = useState("");
-  const [client2, setClient2] = useState([]);
   const [commandes, setCommandes] = useState([]);
   const [password, setPassword] = useState("");
   const [dropdown, setDropdown] = useState(false);
@@ -108,26 +107,7 @@ const GlobalContextProvider = ({ children }) => {
   //   fetchProduits();
   // }, [])
 
-  const fetchClients = async () => {
-    try {
-      const response = await axios.get(
-        "https://kay-solu-api.onrender.com/api/client"
-      );
-      const modifiedData = response.data.map((obj) => {
-        return {
-          nomCli: obj.nom,
-          prenomCli: obj.prenom,
-          emailCli: obj.email,
-          adresseCli: obj.adresse,
-          telCli: obj.telephone,
-        };
-      });
-      setClient2(modifiedData);
-      console.log(client, "client");
-    } catch (error) {
-      console.error("Erreur lors de la récupération des clients:", error);
-    }
-  };
+
 
   const fetchCommandes = async () => {
     try {
@@ -145,7 +125,6 @@ const GlobalContextProvider = ({ children }) => {
 
   useEffect(() => {
     profileUser();
-    fetchClients()
     fetchCommandes()
   }, []);
 
@@ -164,7 +143,6 @@ const GlobalContextProvider = ({ children }) => {
     handleToggle,
     client,
     setClient,
-    client2,
     commandes,
     dropdown,
     setDropdown,
