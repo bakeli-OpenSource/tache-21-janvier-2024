@@ -17,6 +17,7 @@ import CommandeContextProvider from "../../utils/contexte/CommandeContext";
 import FilterCommandeEnCours from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommandeEnCours";
 import FilterCommandeTraite from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommandeTraite";
 import FilterCommendeEnLivraison from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommendeEnLivraison";
+import Message from "../../components/messages/Message";
 // import Navigate from "navigate";
 
 function IsLogin() {
@@ -141,7 +142,30 @@ function IsLogin() {
               navigate("/admin")
             )}
 
-
+            {isLoggedIn() ? (
+              <Route
+                path="/messages/*"
+                element={ <Message/> }
+              />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route
+                path="/messages/:id"
+                element={ <Message/> }
+              />
+            ) : (
+              navigate("/admin")
+            )}
+            {/* {isLoggedIn() ? (
+              <Route
+              path="/filtrageCommande"
+              element={<FiltreCommande />} 
+              />
+            ) : (
+              navigate("/admin")
+            )} */}
           </Routes>
         </div>
       </SidebareContextProvider>

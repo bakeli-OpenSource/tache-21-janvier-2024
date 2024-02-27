@@ -14,6 +14,8 @@ const Header = () => {
   const pageActuel = urlPageActuel[urlPageActuel.length - 1];
 
   const [nouveauCommande, setNouveauCommande] = useState([])
+  const [nouveauMessage, setNouveauMessage] = useState([])
+
   useEffect(() => {
     const fetchCommandes = async () => {
       try {
@@ -28,6 +30,19 @@ const Header = () => {
     fetchCommandes();
   }, [nouveauCommande]);
 
+  useEffect(() => {
+    const fetchMessage = async () => {
+      try {
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/messages");
+        const messagesNonLuTrue = response.data.filter(message => message.lu === false);
+        setNouveauMessage(messagesNonLuTrue);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des commandes :", error);
+      }
+    };
+    fetchMessage();
+  }, [nouveauMessage]);
+
   return (
     <header className="z-[10] bg-gray-800 fixed w-full m-0 flex justify-between text-gray-100 w-100 px-5 py-3">
       <div className="flex gap-4 items-center">
@@ -39,8 +54,9 @@ const Header = () => {
         <h1 className="uppercase">{pageActuel}</h1>
       </div>
       <div className="flex gap-4 justify-around align-center">
-        <div className="  hover:bg-slate-50 p-1.5  hover:rounded-md hover:text-gray-700">
-          <Message />
+        <div className="flex hover:bg-slate-50 p-1.5  hover:rounded-md hover:text-gray-700">
+          <Message nouveauMessage={nouveauMessage} />
+          <div className="bg-red-700 rounded-full px-2">{nouveauMessage.length}</div>
         </div>
         <div className=" hover:bg-slate-50 p-1.5 hover:rounded-md hover:text-gray-700 flex">
           <Notification nouveauCommande={nouveauCommande} />

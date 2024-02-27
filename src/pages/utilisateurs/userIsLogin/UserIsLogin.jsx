@@ -19,7 +19,6 @@ import Aprops from "../apropos/Aprops";
 import DetailShopCards from "../NavbarUtilisateut/DetailShop/DetailShopCards"
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
 
-
 const UserIsLogin = () => {
   const location = useLocation();
   const urlPageActuel = location.pathname;
@@ -38,7 +37,8 @@ const UserIsLogin = () => {
             <Route path="/boutique" element={<Shop />} />
             <Route path="/Arrivals" element={<Arrivals />} />
             <Route path="/contacts" element={<ContactsPage />} />
-            {/* <Route path="/apropos" element={<CardProduit />} /> */}
+
+            <Route path="/apropos" element={<Aprops />} />
             <Route path="/Panier" element={<Panier />} />
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/connexion" element={<UserConnexion />} />
