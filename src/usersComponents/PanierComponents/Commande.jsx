@@ -56,7 +56,7 @@ const Commande = () => {
 			email: client.email,
 			adresse: client.adresse,
 			telephone: client.telephone,
-			imageUrl: orderItems.map((item) => item.image).join(', '),
+			imageUrl: orderItems.map((item) => item.image),
 			idProduit: orderItems.map((item) => item._id),
 			produit: orderItems.map((item) => item.name),
 			quantite: orderItems.map((item) => item.quantity),
@@ -157,7 +157,7 @@ const Commande = () => {
 							{deliveryCosts[deliveryOption] > 0 && (
 								<div className="flex justify-between">
 									<h4 className="text-uppercase mt-2 text-[20px]">Total</h4>
-									<h4 className="font-bold text-[30px]">
+									<h4 className="font-bold text-[27px] text-red-500">
 										{totalPrice + deliveryCosts[deliveryOption]} FCFA
 									</h4>
 								</div>

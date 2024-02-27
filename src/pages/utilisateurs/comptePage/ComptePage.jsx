@@ -57,18 +57,18 @@ const ComptePage = () => {
           </div>
           <button
             onClick={deconnexion}
-            className={`mx-5  w-3/4  px-4 mb-1  py-2  text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
+            className={`mx-5 w-3/4 px-4 mb-1  py-2  text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
           >
             Déconnexion
           </button>
         </div>
-        <div className="border px-9 shadow-lg py-5 w-full md:w-3/4">
+        <div className="border px-9  py-5 w-full md:w-3/4">
           <Routes>
             <Route path="/" element={<CompteComponent />}></Route>
             <Route path="/commandes" element={<CommandePage />}></Route>
             <Route path="/favoris" element={<FavorisPage />}></Route>
             <Route
-              path="/commandes/DetailsCommande/:id"
+              path="/commandes/DetailsCommande/:_id"
               element={<OrderDetail />}
             />
           </Routes>

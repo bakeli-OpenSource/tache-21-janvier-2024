@@ -1,11 +1,11 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
-import axios from 'axios';
 import Select from '../cards-et-filtre/Select';
+import { ToastContainer } from 'react-toastify';
 
 const ProduitsAdmin = () => {
 
@@ -15,7 +15,7 @@ const ProduitsAdmin = () => {
           carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
           soumettre, updateProduit, filtreProduits, setFiltreProduits, handleSelectChange, categories,
-          categoryNames, setCategoryNames
+          categoryNames, setCategoryNames, handleSelectChangeCategorie
         } = useProduits();
   
   const {open} = useSidebare()
@@ -98,10 +98,6 @@ const ProduitsAdmin = () => {
       nom, imageUrl, titre, description, quantite,
       categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
     }
-    console.log({categorie})
-    console.log({categorieId})
-    console.log({recupInput})
-    console.log(soumettre);
     if (soumettre === 'Ajouter') {
       console.log('Ajout de produit');
       addProduit(recupInput)
@@ -109,9 +105,6 @@ const ProduitsAdmin = () => {
       console.log('modification de produit');
       updateProduit(recupInput)
     }
-    // soumettre === 'Ajouter' ? 
-    // (addProduit(recupInput)) :
-    // (updateProduit(recupInput))
     setNom('')
     setImageUrl('')
     setTitre('')
@@ -135,6 +128,7 @@ const ProduitsAdmin = () => {
     }
   ]
   
+ 
   
   setTitreModal(
     'Ajouter un produits'
@@ -144,7 +138,7 @@ const ProduitsAdmin = () => {
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable
        title="Produits"
-       filtre={<Select  contenus={categoryNames}  handleSelectChange={handleSelectChange}
+       filtre={<Select  contenus={categoryNames}  handleSelectChange={handleSelectChangeCategorie}
                         Title="Catégorie" />}
        nomAjout={titreModal} 
        body={<Formulaire 
@@ -156,6 +150,7 @@ const ProduitsAdmin = () => {
             />} 
        />
       <Table thead={table} tbody={filtreProduits} actions={actions} />
+      <ToastContainer />
 </div>
   )
 }

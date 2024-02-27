@@ -11,6 +11,7 @@ import axios from 'axios';
 
 const DetailsCommande = () => {
  
+
   // const { commandes } = useCommandes([]);
   const { commandeId } = useParams();
 	const [data, setData] = useState([]);
@@ -25,6 +26,7 @@ const DetailsCommande = () => {
 		}
 	};
 	fetchCommande(commandeId);
+
   const { open } = useSidebare();
 
 
@@ -40,6 +42,7 @@ const DetailsCommande = () => {
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
+    
       <HeaderTable title="Détails Commandes"  />
 
       {data !== null ? (

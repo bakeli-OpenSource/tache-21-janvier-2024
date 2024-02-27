@@ -49,7 +49,7 @@ const Tbody = ({tbody, actions}) => {
                         {td.produit}
                     </td> : null
                     }
-                    {td.quantite !== 'undefined' ?
+                    {td.quantite ?
                     <td className="px-4 py-3 text-center border text-md">
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
                     </td> : null
