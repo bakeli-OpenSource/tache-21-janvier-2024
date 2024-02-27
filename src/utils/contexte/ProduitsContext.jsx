@@ -5,6 +5,8 @@ import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../hooks/useGlobal";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const ProduitsContext = createContext();
@@ -33,6 +35,7 @@ const ProduitContextProvider = ({ children }) => {
   const [soumettre, setSoumettre] = useState('Ajouter')
   const [idAModifie, setIdAModifie] = useState('')
   const [filtreProduits, setFiltreProduits] = useState([])
+  
   
   // 
   const { setShowModal } = useGlobal()
@@ -98,7 +101,8 @@ const ProduitContextProvider = ({ children }) => {
 
         if (response.status === 201) {
             console.log('Produit ajouté avec succès:', response.data);
-            alert('Produit ajouté avec succès:');
+            // alert('Produit ajouté avec succès:');
+            toast.success('Produit ajouté avec succès!');
             
             setShowModal(false);
         }
@@ -107,6 +111,7 @@ const ProduitContextProvider = ({ children }) => {
         }
     } catch (error) {
         console.error('Erreur lors de l\'ajout du produit:', error);
+        toast.error("Erreur lors de l'ajout du produit");
     }
   }
 
@@ -135,7 +140,7 @@ const ProduitContextProvider = ({ children }) => {
   
       if (response.status === 200) { // Corrected to check for status 200
         console.log('Produit modifié avec succès:', response.data);
-        alert('Produit modifié avec succès:');
+        toast.success('Produit modifié avec succès!');
         setShowModal(false);
         setSoumettre('Ajouter')
       } else {
@@ -143,6 +148,7 @@ const ProduitContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.error('Erreur lors de la modification du produit:', error);
+      toast.error('Erreur lors de la modification du produit!');
     }
   }
   

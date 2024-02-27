@@ -1,46 +1,46 @@
-import React from "react";
-import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 // import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { BsTelephone } from "react-icons/bs";
 import { VscMail } from "react-icons/vsc";
-import { DiGhostSmall } from "react-icons/di";
-import CompteComponent from "../../../usersComponents/compteComponent/CompteComponent";
-import CommandePage from "../commandesPage/CommandePage";
-import FavorisPage from "../favorisPage.jsx/FavorisPage";
-import useGlobal from "../../../utils/hooks/useGlobal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
+
 
 const ContactsPage = () => {
-  const { client, handleLogoutUser, setClient } = useGlobal();
-
-  const tokenClient = localStorage.getItem("tokenclient");
-
-  const navigate = useNavigate();
-  //   const { client, setClient } = useGlobal();
-  //   const [formData, setFormData] = useState({
-  //     prenom: "",
-  //     nom: "",
-  //     telephone: "",
-  //     email: "",
-  //     adresse: "",
-  //     password: "",
-  //   });
+  const  [client, setClient ] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setClient({ ...client, [name]: value });
+    
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const deconnexion = () => {
-    if (tokenClient === null) {
-      Navigate("/connexion");
-    } else {
-      handleLogoutUser();
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      console.log({client});
+      try {
+        const response = await axios.post('https://kay-solu-api.onrender.com/api/messages', client);
+        if (response.status === 201) {
+            console.log('Message envoyé avec succès!', response.data);
+            toast.success('Message envoyé avec succès!');
+            setClient({
+              prenomNom: "",
+              telephone: "",
+              email: "",
+              message: "",
+            });
+        }
+        else {
+            throw new Error('Erreur lors de l\'ajout du produit');
+        }
+    } catch (error) {
+        console.error('Erreur lors de l\'ajout du produit:', error);
+        toast.error("Erreur lors de l'envoie du message");
     }
   };
+
+  
   return (
     <div className="mt-[70px] px-9">
       <div className="container px-9 pb-3 mx-auto ">
@@ -85,10 +85,10 @@ const ContactsPage = () => {
                       required
                       type="text"
                       id="prenom"
-                      placeholder="Votre prenom"
-                      name="prenom"
+                      placeholder="Prénom et Nom"
+                      name="prenomNom"
                       className="w-full p-2 px- mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
-                      value={""}
+                      value={client.prenomNom}
                       onChange={handleChange}
                     />
                   </div>
@@ -97,10 +97,10 @@ const ContactsPage = () => {
                       required
                       type="tel"
                       id="nom"
-                      placeholder="Votre numero"
-                      name="nom"
+                      placeholder="Téléphone"
+                      name="telephone"
                       className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
-                      value={""}
+                      value={client.telephone}
                       onChange={handleChange}
                     />
                   </div>
@@ -110,9 +110,9 @@ const ContactsPage = () => {
                       type="email"
                       id="email"
                       name="email"
-                      placeholder="Votre email"
+                      placeholder="Email"
                       className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
-                      value={""}
+                      value={client.email}
                       onChange={handleChange}
                     />
                   </div>
@@ -121,8 +121,11 @@ const ContactsPage = () => {
                   <textarea
                     required
                     rows={8}
+                    name="message"
                     placeholder="Votre message"
                     className="w-full mb-5 bg-gray-200 border p-5 pt-3 rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+                    value={client.message}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
               </div>
@@ -139,6 +142,7 @@ const ContactsPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
