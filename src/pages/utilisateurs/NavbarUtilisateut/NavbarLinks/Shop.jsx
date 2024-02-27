@@ -11,6 +11,7 @@ import { FaStar } from "react-icons/fa";
 
 const Shop = () => {
 
+
   const [heartColors, setHeartColors] = useState(Array(10).fill('inherit'));
   const { produits, _id } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
@@ -57,6 +58,7 @@ const Shop = () => {
   // Fonction pour changer la couleur du bouton "j'aime" au clic
   const changeHeartColor = (index) => {
     const newHeartColors = [...heartColors];
+
     newHeartColors[index] = newHeartColors[index] === 'inehrit' ? 'red' : 'inherit';
     setHeartColors(newHeartColors);
   };
@@ -134,8 +136,8 @@ const Shop = () => {
 
                 {/* 
                 <button className="absolute top-3 right-2 ">
-                  <div className="flex items-center justify-center text-black w-7 h-7">
-                    <BsSuitHeartFill className='text-3xl cursor-pointer' style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
+                  <div className="flex items-center justify-center text- w-7 h-7">
+                    <BsSuitHeartFill className={`text-3xl ${heartColors[index]} cursor-pointer`} style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
                   </div>
                 </button>
                
