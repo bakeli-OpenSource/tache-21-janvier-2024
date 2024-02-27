@@ -15,7 +15,7 @@ const ProduitsAdmin = () => {
           carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
           soumettre, updateProduit, filtreProduits, setFiltreProduits, handleSelectChange, categories,
-          categoryNames, setCategoryNames
+          categoryNames, setCategoryNames, handleSelectChangeCategorie
         } = useProduits();
   
   const {open} = useSidebare()
@@ -128,6 +128,7 @@ const ProduitsAdmin = () => {
     }
   ]
   
+ 
   
   setTitreModal(
     'Ajouter un produits'
@@ -137,7 +138,7 @@ const ProduitsAdmin = () => {
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable
        title="Produits"
-       filtre={<Select  contenus={categoryNames}  handleSelectChange={handleSelectChange}
+       filtre={<Select  contenus={categoryNames}  handleSelectChange={handleSelectChangeCategorie}
                         Title="Catégorie" />}
        nomAjout={titreModal} 
        body={<Formulaire 

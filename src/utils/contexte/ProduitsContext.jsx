@@ -221,17 +221,11 @@ const ProduitContextProvider = ({ children }) => {
 
       const handleSelectChange = (e) => {
         const selectedCategoryName = e.target.value;
-        const selectedCategory = categories.find((cat) => cat.nom === selectedCategoryName);
+        const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
         if (selectedCategory) {
           setCategorie(selectedCategoryName);
           setCategorieId(selectedCategory._id);
-          const filteredProducts = produits.filter((produit) => produit.categorieId === selectedCategory._id);
-          setFiltreProduits(filteredProducts);
-        } else {
-          setCategorie("");
-          setCategorieId("");
-          setFiltreProduits(produits)
-        }
+        } 
       };
 
       const handleSelectChangeCategorie = (e) => {
