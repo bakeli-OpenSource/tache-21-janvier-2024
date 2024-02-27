@@ -13,16 +13,12 @@ const Header = () => {
   const urlPageActuel = location.pathname.split("/");
   const pageActuel = urlPageActuel[urlPageActuel.length - 1];
 
-  const [nouveauCommande, setNouveauCommande] = useState([]);
+  const [nouveauCommande, setNouveauCommande] = useState([])
   useEffect(() => {
     const fetchCommandes = async () => {
       try {
-        const response = await axios.get(
-          "https://kay-solu-api.onrender.com/api/commandes"
-        );
-        const produitsNonLuTrue = response.data.filter(
-          (produit) => produit.lu === false
-        );
+        const response = await axios.get("https://kay-solu-api.onrender.com/api/commandes");
+        const produitsNonLuTrue = response.data.filter(produit => produit.lu === false);
         setNouveauCommande(produitsNonLuTrue);
         // console.log(response.data);
       } catch (error) {
@@ -48,14 +44,7 @@ const Header = () => {
         </div>
         <div className=" hover:bg-slate-50 p-1.5 hover:rounded-md hover:text-gray-700 flex">
           <Notification nouveauCommande={nouveauCommande} />
-          {/* <div className="bg-red-700 rounded-full px-2">
-            {nouveauCommande.length}
-          </div> */}
-          {nouveauCommande.length > 0 ? <span class="relative flex h-3 w-3 right-2 bottom-1">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-            <span class="relative inline-flex rounded-full text-sm h-3 w-3 bg-red-500"></span>
-          </span> : ""}
-          
+          <div className="bg-red-700 rounded-full px-2">{nouveauCommande.length}</div>
         </div>
         <div className="  hover:bg-slate-50 px-0.5 hover:px-1 p-1.5 hover:rounded-md hover:text-gray-700">
           <UserDropdown />

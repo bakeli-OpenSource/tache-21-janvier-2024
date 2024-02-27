@@ -19,12 +19,16 @@ const FavorisPage = () => {
 
   return (
     <div>
+      <h1 className="pb-2 font-medium border border-t-0 border-s-0 border-e-0 ">
+      Votre liste d'envies ({listesEnvies.length})
+			</h1>
       {listesEnvies.length > 0 ? (
         listesEnvies?.map((item) => (
           <div
             className="flex shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap-"
             key={item?._id}
           >
+            
             <div className="flex items- gap-4">
               <div className="h-24 w-24">
                 <img
@@ -40,7 +44,7 @@ const FavorisPage = () => {
 
                   <p className="text-gray-300">
                     {item?.prix} FCFA{" "}
-                    <span className="font-medium bg-red-200 rounded px-1 py- text-red-500">
+                    <span className={`font-medium bg-red-200 rounded   ${item?.promo  === 0 ? "hidden" : "inline" } px-1 py- text-red-500`}>
                       -{item?.promo}%
                     </span>
                   </p>
