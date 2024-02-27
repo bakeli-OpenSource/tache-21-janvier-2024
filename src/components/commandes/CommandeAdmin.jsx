@@ -47,7 +47,9 @@ const CommandeAdmin = () => {
   const [editingCommandeId, setEditingCommandeId] = useState(null);
 
 
+
   const [selectsValue, setSelectsValue] = useState('');
+
 
   
   // const handleSelectChange = (e) => {  
@@ -67,36 +69,43 @@ const CommandeAdmin = () => {
 
   const navigate = useNavigate();
 
-  const actions = [
-    {
-      icon: <TbEyeShare />,
-      color: 'bg-green-500',
-      handleClick: (commandeId) => {
-        navigate("/admin/commandes/DetailsCommande")
-      }
-    },
-    {
-      icon: <MdEdit />,
-      color: 'bg-orange-500',
-      handleClick: (commandeId) => {
-        commandes.map((commande) => {
-          if (commande._id === commandeId) {
-            setEtat(commande.etat);        
-          }
-        })
-        setIsEditing(true);
-        setShowModal(true);
-        setEditingCommandeId(commandeId);
-      }
-    },
-    {
-      icon: <MdOutlineDelete />,                       
-      color: 'bg-red-600',
-      handleClick: (commandeId) => {
-        handleDelete(commandeId);
-      }
-    },
-  ];
+	const actions = [
+		{
+			icon: <TbEyeShare />,
+			color: 'bg-green-500',
+			handleClick: (commandeId) => {
+				localStorage.setItem("commandeIdCli", commandeId)
+				navigate('/admin/commandes/DetailsCommande');
+				handleDetail(commandeId)
+			},
+		},
+		{
+			icon: <MdEdit />,
+			color: 'bg-orange-500',
+			handleClick: (commandeId) => {
+				commandes.map((commande) => {
+					if (commande._id === commandeId) {
+						setEtat(commande.etat);
+					}
+				});
+				setIsEditing(true);
+				setShowModal(true);
+				setEditingCommandeId(commandeId);
+			},
+		},
+		{
+			icon: <MdOutlineDelete />,
+			color: 'bg-red-600',
+			handleClick: (commandeId) => {
+				handleDelete(commandeId);
+			},
+		},
+	];
+
+	const handleDetail = (commandeId) => {
+		const commandeIdCli = localStorage.getItem("commandeIdCli")
+	}
+	const [setEditData] = useState({});
 
 
   const handleEditCommande = async (id, newData) => {
@@ -116,6 +125,7 @@ const CommandeAdmin = () => {
 
   
   const [isEditing, setIsEditing] = useState(false);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -181,7 +191,7 @@ const CommandeAdmin = () => {
           
         // <Formulaire 
         // inputs={[]} 
-        // selects={selects}
+        // selects={selects} 
         // onSubmit={handleSubmit} 
         // handleSelectChange = {handleSelectChange}  
         // // selectsValue={selectsValue} 
@@ -191,6 +201,7 @@ const CommandeAdmin = () => {
       <Table thead={table} tbody={commandes} actions={actions} />
     </div>
   );
+
 };
 
 export default CommandeAdmin;
