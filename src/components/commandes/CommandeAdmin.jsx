@@ -115,7 +115,7 @@ const CommandeAdmin = () => {
     // },
   ];  
 
-  const [selectsValue, setSelectsValue] = useState('');
+  const [selectsValue, setSelectsValue] = useState();
 
   
   const handleSelectChange = (e) => {  
@@ -183,35 +183,6 @@ const CommandeAdmin = () => {
     }
   };
 
-  
-
-  // const handleEditCommande = (commandeId, newData) => {
-  //   setEditData(newData);
-  //   hanldleUpdate(commandeId, newData);
-  //   setShowModal(false);
-
-  // const [editData, setEditData] = useState({});
-
-  // const hanldleUpdate = async (commandeId, newData) => {
-  //   try {
-  //     const response = await axios.put(
-  //       `https://kay-solu-api.onrender.com/api/commande/${commandeId}`,
-  //       newData
-  //     );
-  //     console.log("commande modifiée avec succès:", response.data);
-
-  //     fetchCommandes();
-  //   } catch (error) {
-  //     console.error("Erreur lors de la modification de la commande:", error);
-  //   }
-  // };
-
-  
-  // const handleEditCommande = (commandeId, newData) => {
-  //   setEditData(newData);
-  //   hanldleUpdate(commandeId, newData);
-  //   setShowModal(false);
-  // };
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -257,11 +228,11 @@ const CommandeAdmin = () => {
   //   }
   // };
 
-  const handleEditCommande = (commandeId, newData) => {
+  const handleEditCommande = ( newData) => {
     const updatedData = { etat: newData.etat }; // Inclure uniquement le champ etat
     console.log("updated Data :", updatedData);
     setEditData(newData);
-    hanldleUpdate(commandeId, updatedData);
+    hanldleUpdate(updatedData);
     setShowModal(false);
   };
   
