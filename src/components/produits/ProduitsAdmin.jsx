@@ -1,12 +1,11 @@
-
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
-import axios from 'axios';
 import Select from '../cards-et-filtre/Select';
+import { ToastContainer } from 'react-toastify';
 
 const ProduitsAdmin = () => {
 
@@ -151,6 +150,7 @@ const ProduitsAdmin = () => {
             />} 
        />
       <Table thead={table} tbody={filtreProduits} actions={actions} />
+      <ToastContainer />
 </div>
   )
 }
