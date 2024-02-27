@@ -14,7 +14,7 @@ const ProduitContextProvider = ({ children }) => {
   const [produits, setProduits] = useState([])
   const [categoryNames, setCategoryNames] = useState([]);
   // Création des contexts pour formulaire
-  const [url, setUrl] = useState('')
+  // const [url, setUrl] = useState('')
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [titre, setTitre] = useState('')

@@ -6,6 +6,7 @@ import useGlobal from "../../../utils/hooks/useGlobal";
 import CompteComponent from "../../../usersComponents/compteComponent/CompteComponent";
 import CommandePage from "../commandesPage/CommandePage";
 import FavorisPage from "../favorisPage.jsx/FavorisPage";
+import OrderDetail from "../../../usersComponents/userConnexion/commandeComponent/DetailsCommande";
 
 const ComptePage = () => {
   const { client, handleLogoutUser } = useGlobal();
@@ -61,11 +62,15 @@ const ComptePage = () => {
             Déconnexion
           </button>
         </div>
-        <div className="border px-9 py-5 w-full md:w-3/4">
+        <div className="border px-9 shadow-lg py-5 w-full md:w-3/4">
           <Routes>
             <Route path="/" element={<CompteComponent />}></Route>
             <Route path="/commandes" element={<CommandePage />}></Route>
             <Route path="/favoris" element={<FavorisPage />}></Route>
+            <Route
+              path="/commandes/DetailsCommande/:id"
+              element={<OrderDetail />}
+            />
           </Routes>
           
         </div>

@@ -30,10 +30,11 @@ const ImageList = [
   },
 ];
 
-const Header = ({ handleOrderPopup }) => {
+const Header = () => {
+
   var settings = {
-    dots: false,
-    arrows: false,
+    dots: true,
+    arrows: true,
     infinite: true,
     speed: 800,
     slidesToScroll: 1,
@@ -45,11 +46,11 @@ const Header = ({ handleOrderPopup }) => {
   };
 
   return (
-    <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] flex justify-center items-center border-b-[1px] pl-[10px] border-b-[#3F3E45] duration-200 ">
+    <div className="relative shadow-lg sm:pt-8 overflow-hidden min-h-[550px] sm:min-h-[650px] flex justify-center items-center pl-[25px] duration-200">
       {/* background */}
       <div className="h-[700px] w-[700px] bg-slate-800 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
       {/* section bannière */}
-      <div className="container pb-8 sm:pb-0">
+      <div className="container pb-8 sm:pb-0 sm:pt-4 sm:mt-6">
         <Slider {...settings}>
           {ImageList.map((data) => (
             <div>
@@ -76,18 +77,14 @@ const Header = ({ handleOrderPopup }) => {
                     data-aos="fade-up"
                     data-aos-duration="500"
                     data-aos-delay="300"
-                  >
-                    <Link to={"/panier"}>
-                      <ComponentButton
-                        onClick={handleOrderPopup}
-                        className="bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded"
-                        texte="Shop Now"
-                      />
-                    </Link>
+                  > 
+                  <Link to={"/panier"} >
+                    <ComponentButton className='bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded' texte='Shop Now'/>
+                  </Link>   
                   </div>
                 </div>
                 {/* section image */}
-                <div className="order-1 sm:order-2">
+                <div className="order-1 sm:order-2 sm:mt-6">
                   <div
                     data-aos="zoom-in"
                     data-aos-once="true"
