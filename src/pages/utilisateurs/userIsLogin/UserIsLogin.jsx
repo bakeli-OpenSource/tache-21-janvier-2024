@@ -38,7 +38,7 @@ const UserIsLogin = () => {
             <Route path="/boutique" element={<Shop />} />
             <Route path="/Arrivals" element={<Arrivals />} />
             <Route path="/contacts" element={<ContactsPage />} />
-            <Route path="/apropos" element={<CardProduit />} />
+            {/* <Route path="/apropos" element={<CardProduit />} /> */}
             <Route path="/Panier" element={<Panier />} />
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/connexion" element={<UserConnexion />} />
