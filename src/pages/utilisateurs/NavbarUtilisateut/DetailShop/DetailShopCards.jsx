@@ -1,22 +1,20 @@
+
 import { Link, useParams } from "react-router-dom";
-import ComponentButton from "../button/ComponentButton";
-import { ProduitContext } from "./ProduitContext";
+// import ComponentButton from "../../../../usersComponents/button/ComponentButton";
+// import  {ProduitContext}  from "../../../../usersComponents/button/ComponentButton";
 import { useContext } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import Loader from "../../components/loader/loader";
-import { usePanier } from "../../utils/contexte/PanierContext";
+import Loader from "../../../../components/loader/loader";
+import { ProduitContext } from "../../../../usersComponents/cards/ProduitContext";
+import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 
-const DetailsCard = () => {
+const DetailShopCards = () => {
   const { _id } = useParams();
   const { produits } = useContext(ProduitContext);
   const produit = produits.find((item) => {
     return item._id === _id;
   });
-  console.log(produit);
-  const { addToCart } = usePanier();
-  const handleAddToCart = () => {
-    addToCart(produit);
-  };
+
 
   return (
     <div className="">
@@ -99,7 +97,6 @@ const DetailsCard = () => {
                         </div>
                       </div>
                       <ComponentButton
-                        onClick={handleAddToCart}
                         className="bg-slate-800 text-white w-full px-3 py-2 my-5 text-sm tracking-widest rounded"
                         texte="Ajouter au panier"
                       />
@@ -117,4 +114,6 @@ const DetailsCard = () => {
   );
 };
 
-export default DetailsCard;
+export default DetailShopCards;
+
+
