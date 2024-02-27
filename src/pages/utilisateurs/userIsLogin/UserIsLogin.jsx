@@ -16,8 +16,11 @@ import ComptePage from "../comptePage/ComptePage";
 import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
+
+
 import DetailShopCards from "../NavbarUtilisateut/DetailShop/DetailShopCards"
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
+
 
 const UserIsLogin = () => {
   const location = useLocation();
