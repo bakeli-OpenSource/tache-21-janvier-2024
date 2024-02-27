@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsPlus } from 'react-icons/bs';
+import { FaStar } from "react-icons/fa";
 import { usePanier } from '../../utils/contexte/PanierContext';
 import useProduits from '../../utils/hooks/useProduits';
 
@@ -18,35 +19,39 @@ const Produit = ({ produit }) => {
       };
 
 
-    return (
-        <div className='shadow-lg rounded bg-white'>
-            <div className='border border-[#e4e4e4] h-[250px] relative overflow-hidden group transition'>
-                <div className='w-full h-full flex justify-center items-center'>
-                  <div className='absolute text-orange-400 mt-1 text-sm px-1 bg-amber-100 top-0 right-1 bg-dark'>
-                   -{promo}%
-                  </div>
-                    <Link to={`/details/${_id}`} className='w-[200px] mx-auto flex justify-center items-center'>
-                        <img className='max-h-[160px] group-hover:scale-110 transition duration-300' src={imageUrl} alt='vetement' />
-                    </Link>
-                    <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
-                        <button onClick={handleAddToCart}>
-                            <div className='flex justify-center items-center text-black font-bold w-7 h-7'>
-                                <BsPlus className='text-3xl' />
-                            </div>
-                        </button>
-                    </div>
-                </div>
+return (
+  <div className='shadow-lg rounded'>
+    <div className="container">    
+      <div
+        data-aos="zoom-in"
+        className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 
+        group max-w-full flex flex-col justify-between"
+        >
+          
+          {/* section image */}
+          <Link to={`/details/${_id}`} className="h-[200px] max-w-full flex items-center justify-center">
+            <img
+              src={imageUrl}
+              alt="tofs"
+              className="max-h-full max-w-full mx-auto drop-shadow-md object-contain"
+            />
+          </Link>
+          {/* section details */}
+          <div className="p-4 text-center">
+            {/* star rating */}
+            <div className="w-full flex items-center justify-center gap-1">
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
             </div>
-            
-            <div className='p-2 flex flex-col justify-between'>
-                <div className='text-sm text-gray-500 mb-1'>{categorie}</div>
-                <Link to={`/details/${_id}`}>
-                    <h2 className='font-semibold mb-1'>{titre}</h2>
-                </Link>
-                <div className='font-semibold'>
-                    <div>
+            <h1 className="text-xl font-bold mb-3">{categorie}</h1>
+            <p className="text-gray-500  mb-2 duration-300 text-sm line-clamp-2">
+                {titre}
+            </p>
+            <div className="mt-auto mb-6">
                       {reduction ? (
-                        <div>
+                        <div className='absolute left-2 bottom-2 '>
                           <span className='bg-red-200 rounded-full px-3 py-1 text-sm text-red-700'>Promo: {prixAAjouter} FCFA</span>
                           &nbsp;
                           <span className='line-through text-gray-500'>{prix} FCFA</span>
@@ -56,12 +61,26 @@ const Produit = ({ produit }) => {
                         <span className='bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700'>{prix} FCFA</span>
 
                       )}
-                    </div>
-                </div>
-               
+
             </div>
-        </div>
-    );
+          </div>
+          {reduction  !== 0 && (
+            <div className='absolute text-orange-400 rounded-md  mt-3 text-sm px-1 bg-amber-100 top-0 left-2 bg-dark'>
+                -{promo}%
+                </div>
+          )}
+          {/* Bouton ajout panier */}
+          <div className='absolute top-1 -right-1 p-2 flex flex-col justify-center items-center'>
+            <button onClick={handleAddToCart}>
+              <div className='flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10'>
+                <BsPlus className='text-3xl' />
+              </div>
+            </button>
+          </div>
+      </div>          
+    </div>
+  </div>
+	);
 };
 
 export default Produit;
