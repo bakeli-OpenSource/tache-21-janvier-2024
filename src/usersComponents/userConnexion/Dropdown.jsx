@@ -4,6 +4,8 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 import { FaRegUser, FaRegHeart } from 'react-icons/fa';
 import { DiGhostSmall } from 'react-icons/di';
 import useGlobal from '../../utils/hooks/useGlobal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dropdown = () => {
 	const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
@@ -29,6 +31,7 @@ const Dropdown = () => {
 	};
 
 	if (tokenClient === null) {
+		toast.error("Merci de vous connecter");
 		connecter = '/connexion';
 		commander = '/connexion';
 		favoris = '/connexion';
@@ -103,7 +106,9 @@ const Dropdown = () => {
 							Votre Liste d'envies
 						</Link>
 					</div>
+					<ToastContainer />
 				</div>
+				
 			)}
 		</div>
 	);

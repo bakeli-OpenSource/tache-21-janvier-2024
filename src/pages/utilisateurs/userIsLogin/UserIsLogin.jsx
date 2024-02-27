@@ -22,6 +22,7 @@ import DetailsCommandeProvide from "../../admin/DetailsCommandeProvide";
 import OrderDetail from "../../../usersComponents/userConnexion/commandeComponent/DetailsCommande";
 import CardProduit from "../../../usersComponents/cards/CardProduit";
 
+
 const UserIsLogin = () => {
   const location = useLocation();
   const urlPageActuel = location.pathname;
@@ -40,7 +41,7 @@ const UserIsLogin = () => {
             <Route path="/boutique" element={<Shop />} />
             <Route path="/Arrivals" element={<Arrivals />} />
             <Route path="/contacts" element={<ContactsPage />} />
-            <Route path="/apropos" element={<Aprops />} />
+            <Route path="/apropos" element={<CardProduit />} />
             <Route path="/Panier" element={<Panier />} />
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/connexion" element={<UserConnexion />} />
