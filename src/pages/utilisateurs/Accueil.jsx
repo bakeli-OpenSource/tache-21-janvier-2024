@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import Navbar from './NavbarUtilisateut/Navbar/Navbar';
 import Header from '../../usersComponents/headerUserComponent/Header';
-import ScrollingText from '../../usersComponents/Cards/ScrollingText';
-import Produit from '../../usersComponents/Cards/Produit';
+import ScrollingText from '../../usersComponents/cards/ScrollingText';
+import Produit from '../../usersComponents/cards/Produit';
 import useGlobal from '../../utils/hooks/useGlobal';
-import Locale from '../../usersComponents/Cards/Locale';
+import Locale from '../../usersComponents/cards/Locale';
 import { ProduitsContext } from '../../utils/contexte/ProduitsContext';
 
 export default function Accueil() {
