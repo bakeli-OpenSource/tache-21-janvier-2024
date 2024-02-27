@@ -1,102 +1,138 @@
 import React from 'react'
 import Particles from 'react-tsparticles'
-// import { loadFull } from 'tsparticles'
+import { loadFull } from 'tsparticles'
 
 const Animationbg = () => {
-    // async function loaderParticles(main) {
-    //     await loadFull(main)
-    // }
+    async function loaderParticles(main) {
+        await loadFull(main)
+    }
+
   return (
-    <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+    <div className="absolute top-0 left-0 w-full h-full pointer-events-none ">
     <Particles
       id="tsparticles"
-    
+      init={(interactor) => loaderParticles(interactor)}
       options={{
-        background: {
-          color: {
-            value: "#333",
-          },
+        "fullScreen": {
+            "enable": true,
+            "zIndex": -1
         },
-        fpsLimit: 60,
-        interactivity: {
-          detectsOn: "canvas",
-          events: {
-            resize: true,
-          },
+        "particles": {
+            "number": {
+                "value": 10,
+                "density": {
+                    "enable": false,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#fff"
+            },
+            "shape": {
+                "type": "star",
+                "options": {
+                    "sides": 5
+                }
+            },
+            "opacity": {
+                "value": 0.8,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 4,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "rotate": {
+                "value": 0,
+                "random": true,
+                "direction": "clockwise",
+                "animation": {
+                    "enable": true,
+                    "speed": 5,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 600,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 2
+            },
+            "move": {
+                "enable": true,
+                "speed": 2,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
         },
-        particles: {
-          number: {
-            value: 160,
-            density: {
-              enable: true,
-              value_area: 800,
+        "interactivity": {
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": ["grab"]
+                },
+                "onclick": {
+                    "enable": false,
+                    "mode": "bubble"
+                },
+                "resize": true
             },
-          },
-          color: {
-            value: "#ffffff",
-          },
-          shape: {
-            type: "circle",
-            stroke: {
-              width: 0,
-              color: "#000000",
-            },
-            polygon: {
-              nb_sides: 5,
-            },
-            image: {
-              src: "img/github.svg",
-              width: 100,
-              height: 100,
-            },
-          },
-          opacity: {
-            value: 1,
-            random: true,
-            anim: {
-              enable: true,
-              speed: 1,
-              opacity_min: 0,
-              sync: false,
-            },
-          },
-          size: {
-            value: 3,
-            random: true,
-            anim: {
-              enable: false,
-              speed: 4,
-              size_min: 0.3,
-              sync: false,
-            },
-          },
-          line_linked: {
-            enable: false,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 1,
-            direction: "none",
-            random: true,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-            attract: {
-              enable: false,
-              rotateX: 600,
-              rotateY: 1200,
-            },
-          },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
         },
-        detectRetina: true,
-      }}
+        "retina_detect": true,
+        "background": {
+            "color": "#111",
+            "image": "",
+            "position": "50% 50%",
+            "repeat": "no-repeat",
+            "size": "cover"
+        }
+    }}
     />
   </div>
-
   )
 }
 

@@ -53,14 +53,24 @@ const Header = () => {
         />
         <h1 className="uppercase">{pageActuel}</h1>
       </div>
-      <div className="flex gap-4 justify-around align-center">
+      <div className="flex gap-6 justify-around align-center">
         <div className="flex hover:bg-slate-50 p-1.5  hover:rounded-md hover:text-gray-700">
-          <Message nouveauMessage={nouveauMessage} />
-          <div className="bg-red-700 rounded-full px-2">{nouveauMessage.length}</div>
+        <div class="relative inline-flex w-fit">
+          <div
+            class="absolute bottom-auto left-auto right-0 top-0 z-10 inline-block -translate-y-1/2 translate-x-2/4 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 whitespace-nowrap rounded-full bg-red-700 px-2.5 py-1 text-center align-baseline text-xs font-bold leading-none text-white">
+            {nouveauMessage.length}
+          </div>
+            <Message nouveauMessage={nouveauMessage} />
         </div>
-        <div className=" hover:bg-slate-50 p-1.5 hover:rounded-md hover:text-gray-700 flex">
-          <Notification nouveauCommande={nouveauCommande} />
-          <div className="bg-red-700 rounded-full px-2">{nouveauCommande.length}</div>
+        </div>
+        <div className="flex hover:bg-slate-50 p-1.5  hover:rounded-md hover:text-gray-700">
+        <div class="relative inline-flex w-fit">
+          <div
+            class="absolute bottom-auto left-auto right-0 top-0 z-10 inline-block -translate-y-1/2 translate-x-2/4 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 whitespace-nowrap rounded-full bg-red-700 px-2.5 py-1 text-center align-baseline text-xs font-bold leading-none text-white">
+            {nouveauCommande.length}
+          </div>
+            <Notification nouveauCommande={nouveauCommande} />
+        </div>
         </div>
         <div className="  hover:bg-slate-50 px-0.5 hover:px-1 p-1.5 hover:rounded-md hover:text-gray-700">
           <UserDropdown />
