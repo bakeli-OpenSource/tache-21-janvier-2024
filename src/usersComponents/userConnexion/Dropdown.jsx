@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { FaRegUser, FaRegHeart } from "react-icons/fa";
-import { DiGhostSmall } from "react-icons/di";
-import useGlobal from "../../utils/hooks/useGlobal";
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+import { FaRegUser, FaRegHeart } from 'react-icons/fa';
+import { DiGhostSmall } from 'react-icons/di';
+import useGlobal from '../../utils/hooks/useGlobal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Dropdown = () => {
 
@@ -29,6 +32,17 @@ const Dropdown = () => {
     }
   };
 
+
+	if (tokenClient === null) {
+		toast.error("Merci de vous connecter");
+		connecter = '/connexion';
+		commander = '/connexion';
+		favoris = '/connexion';
+	} else {
+		connecter = '/compte';
+		commander = '/compte/commandes';
+		favoris = '/compte/favoris';
+	}
 
 	return (
 		<div className="relative">
@@ -95,7 +109,9 @@ const Dropdown = () => {
 							Votre Liste d'envies
 						</Link>
 					</div>
+					<ToastContainer />
 				</div>
+				
 			)}
 		</div>
 	);

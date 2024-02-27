@@ -1,26 +1,18 @@
 import React from "react";
-import { usePanier } from "../../../utils/contexte/PanierContext";
 import useGlobal from "../../../utils/hooks/useGlobal";
 import { HiShoppingCart } from "react-icons/hi2";
 import Choix from "../../compteComponent/Choix";
 import { Link } from "react-router-dom";
-import image from "../../../assets/images/image6.jpg";
 import Loader from "../../../components/loader/loader";
 
 const CommandeComponent = () => {
   const { commandes, client } = useGlobal();
-  console.log(client.email);
 
   const clientCommande = commandes.filter(
     (commande) => commande.email === client?.email
   );
-  // console.log(clientCommande !== undefined ? clientCommande : "");
 
   const commande = clientCommande.map((com) => com?.email);
-
-  console.log(clientCommande, "clientCommande");
-
-  // console.log(client.email, "client");
 
   return (
     <div>
@@ -32,13 +24,6 @@ const CommandeComponent = () => {
               key={item?._id}
             >
               <div className="flex items-center gap-7">
-                {/* <div className="">
-                  <img
-                    src={image}
-                    alt={item?.produit}
-                    className="w-32 h-auto"
-                  />
-                </div> */}
                 <div>
                   <p> Vous avez commandes {item?.produit.length > 1 ? `${item?.produit.length}  produits` : `${item?.produit.length}  produit`} </p>
                   <p className="my-2 bg">Prix total:  {item?.prixTotal} FCFA</p>

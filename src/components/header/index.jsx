@@ -61,6 +61,10 @@ const Header = () => {
             {nouveauMessage.length}
           </div>
             <Message nouveauMessage={nouveauMessage} />
+            {/* {nouveauMessage.length > 0 ? <span class="relative flex h-3 w-3 right-2 bottom-1">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+            <span class="relative inline-flex rounded-full text-sm h-3 w-3 bg-red-500"></span>
+          </span> : ""} */}
         </div>
         </div>
         <div className="flex hover:bg-slate-50 p-1.5  hover:rounded-md hover:text-gray-700">
@@ -70,6 +74,10 @@ const Header = () => {
             {nouveauCommande.length}
           </div>
             <Notification nouveauCommande={nouveauCommande} />
+          {/* {nouveauCommande.length > 0 ? <span class="relative flex h-3 w-3 right-2 bottom-1">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+            <span class="relative inline-flex rounded-full text-sm h-3 w-3 bg-red-500"></span>
+          </span> : ""} */}
         </div>
         </div>
         <div className="  hover:bg-slate-50 px-0.5 hover:px-1 p-1.5 hover:rounded-md hover:text-gray-700">
