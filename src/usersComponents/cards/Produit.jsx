@@ -7,9 +7,13 @@ import { usePanier } from '../../utils/contexte/PanierContext';
 import useProduits from '../../utils/hooks/useProduits';
 
 const Produit = ({ produit }) => {
+
     const { addToCart } = usePanier();
-    const {produits} = useProduits()
+
+    const {produits} = useProduits();
+
     const { _id, imageUrl, categorie, titre, prix, promo} = produit;  
+    
     const produitCourant = produits.find(item => item._id === _id);
     const reduction = produitCourant ? produitCourant.promo : promo ? promo : 0; 
     const prixAAjouter = Math.floor( prix - (prix * (reduction / 100)));
@@ -19,8 +23,11 @@ const Produit = ({ produit }) => {
       };
 
 
+
+
+
 return (
-  <div className='shadow-lg rounded'>
+  <div className='rounded shadow-lg'>
     <div className="container">    
       <div
         data-aos="zoom-in"
@@ -33,18 +40,19 @@ return (
             <img
               src={imageUrl}
               alt="tofs"
-              className="max-h-full max-w-full mx-auto drop-shadow-md object-contain"
+              className="object-contain max-w-full max-h-full mx-auto drop-shadow-md"
             />
           </Link>
           {/* section details */}
           <div className="p-4 text-center">
             {/* star rating */}
-            <div className="w-full flex items-center justify-center gap-1">
+            <div className="flex items-center justify-center w-full gap-1">
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
             </div>
+
             <h1 className="text-xl font-bold mb-3">{categorie}</h1>
             <p className="text-gray-500  mb-2 duration-300 text-sm line-clamp-2">
                 {titre}
@@ -52,7 +60,7 @@ return (
             <div className="mt-auto mb-6">
                       {reduction ? (
                         <div className='absolute left-2 bottom-2 '>
-                          <span className='bg-red-200 rounded-full px-3 py-1 text-sm text-red-700'>Promo: {prixAAjouter} FCFA</span>
+                          <span className=' rounded-full px-3 py-1 text-sm text-red-500'>{prixAAjouter} FCFA</span>
                           &nbsp;
                           <span className='line-through text-gray-500'>{prix} FCFA</span>
 
@@ -61,8 +69,6 @@ return (
                         <span className='bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700'>{prix} FCFA</span>
 
                       )}
-
-            </div>
           </div>
           {reduction  !== 0 && (
             <div className='absolute text-orange-400 rounded-md  mt-3 text-sm px-1 bg-amber-100 top-0 left-2 bg-dark'>
@@ -70,15 +76,16 @@ return (
                 </div>
           )}
           {/* Bouton ajout panier */}
-          <div className='absolute top-1 -right-1 p-2 flex flex-col justify-center items-center'>
+          <div className='absolute flex flex-col items-center justify-center p-2 top-1 -right-1'>
             <button onClick={handleAddToCart}>
-              <div className='flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10'>
+              <div className='flex items-center justify-center w-10 h-10 font-bold text-black bg-gray-200 rounded-full'>
                 <BsPlus className='text-3xl' />
               </div>
             </button>
           </div>
       </div>          
     </div>
+  </div>
   </div>
 	);
 };
