@@ -9,7 +9,7 @@ const CommandeContextProvider = ({ children }) => {
   
   
       const table = [
-        'E-mail', 'Produit', ' Quantite', 'Telephone', 'Etat de la commande', 'Prix Produit', 'Prix Livraison', 'Prix total', 'Actions'
+        'Nom','E-mail', 'Produit', ' Quantite', 'Telephone', 'Etat de la commande', 'Prix Produit', 'Prix Livraison', 'Prix total', 'Actions'
     ]
     
     const [idProduit, setIdProduit] = useState("")
@@ -26,15 +26,12 @@ const CommandeContextProvider = ({ children }) => {
     const [modif, setModifModal]= useState("")
     const [commandes, setCommandes] = useState([])
 
-    const table1 = [
-      'Référence', 'Produict', 'Date', 'Nombres article', 'Adress', 'Etat de la commande', 'Quantité',  'Prix Produit ', 'Prix total'
-  ]
+    
 
     
   const value = {
     table, 
     commandes,
-    table1, 
     // actions,
     produit, 
     setProduit, 

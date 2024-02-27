@@ -69,7 +69,9 @@ const CommandeAdmin = () => {
 			icon: <TbEyeShare />,
 			color: 'bg-green-500',
 			handleClick: (commandeId) => {
+				localStorage.setItem("commandeIdCli", commandeId)
 				navigate('/admin/commandes/DetailsCommande');
+				handleDetail(commandeId)
 			},
 		},
 		{
@@ -95,7 +97,10 @@ const CommandeAdmin = () => {
 		},
 	];
 
-	const [editData, setEditData] = useState({});
+	const handleDetail = (commandeId) => {
+		const commandeIdCli = localStorage.getItem("commandeIdCli")
+	}
+	const [setEditData] = useState({});
 
 	const hanldleUpdate = async (commandeId, newData) => {
 		try {
@@ -110,24 +115,6 @@ const CommandeAdmin = () => {
 			console.error('Erreur lors de la modification de la commande:', error);
 		}
 	};
-
-  const handleEditCommande = ( newData) => {
-    const updatedData = { etat: newData.etat }; // Inclure uniquement le champ etat
-    console.log("updated Data :", updatedData);
-    setEditData(newData);
-    hanldleUpdate(updatedData);
-    setShowModal(false);
-  };
-  
-  
-  const calculateTotalPrice = () => {
-    const productPrice = parseFloat(prixProduit) || 0;
-    const quantity = parseFloat(quantite) || 0;
-    const deliveryPrice = parseFloat(prixLivraison) || 0;
-  
-    const totalPrice = productPrice * quantity + deliveryPrice;
-    return totalPrice.toFixed(2);
-  };
 
 	const handleEditCommande = (commandeId, newData) => {
 		const updatedData = { etat: newData.etat }; // Inclure uniquement le champ etat
@@ -243,7 +230,7 @@ const CommandeAdmin = () => {
 				// nomAjout="Ajouter des Commandes"
 				body={
 					<Formulaire
-						inputs={inputs}
+						// inputs={inputs}
 						selects={selects}
 						onSubmit={handleSubmit}
 						handleSelectChange={handleSelectChange}
