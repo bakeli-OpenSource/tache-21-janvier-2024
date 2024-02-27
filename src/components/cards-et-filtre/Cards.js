@@ -62,72 +62,74 @@ const Cards = () => {
         </div>
       </UniteCard> */}
       <UniteCard bgColor="border-s-4 border-lime-600">
-        <div>
-          <div className="flex justify-between px-3">
-            <div>
-              <h5>{filterEtat.length}</h5>
-            </div>
-            <div className="bg-lime-600 rounded-full h-8 w-8 flex  place-items-center justify-center">
-              <Link to="/filtrageCommande">
-                <AiOutlineLoading3Quarters className="text-2xl text-white cursor-pointer" />
-              </Link>
-            </div>
-          </div>
+        <Link to="/admin/dashboard/filtreCommande">
           <div>
-            <p className="text-sm m-3">Commandes en attente</p>
+            <div className="flex justify-between px-3">
+              <div>
+                <h5>{filterEtat.length}</h5>
+              </div>
+              <div className="bg-lime-600 rounded-full h-8 w-8 flex  place-items-center justify-center">
+                <AiOutlineLoading3Quarters className="text-2xl text-white cursor-pointer" />
+              </div>
+            </div>
+            <div>
+              <p className="text-sm m-3">Commandes en attente</p>
+            </div>
           </div>
-        </div>
+        </Link>
       </UniteCard>
       <UniteCard bgColor="border-s-4 border-yellow-700">
-        <div>
-          <div className="flex justify-between px-3">
-            <div>
-              <h5>{filterEtat1.length}</h5>
-            </div>
-            <div className="bg-yellow-700 rounded-full h-8 w-8 flex  place-items-center justify-center">
-              <Link to="/filtrageCommande">
+        <Link to="/admin/dashboard/filtreCommande">
+          <div>
+            <div className="flex justify-between px-3">
+              <div>
+                <h5>{filterEtat1.length}</h5>
+              </div>
+              <div className="bg-yellow-700 rounded-full h-8 w-8 flex  place-items-center justify-center">
                 <MdDeliveryDining className="text-2xl text-white cursor-pointer" />
-              </Link>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm m-3">Commandes en cours</p>
             </div>
           </div>
-          <div>
-            <p className="text-sm m-3">Commandes en cours</p>
-          </div>
-        </div>
+        </Link>
       </UniteCard>
       <UniteCard bgColor="border-s-4 border-blue-900">
-        <div>
-          <div className="flex justify-between px-3">
-            <div>
-              <h5>{filterEtat2.length}</h5>
-            </div>
-            <div className="bg-blue-900 rounded-full h-8 w-8 flex place-items-center justify-center">
-              <Link to="/filtrageCommande">
-                <AiOutlineDeliveredProcedure className="text-xl text-white cursor-pointer" />
-              </Link>
-            </div>
-          </div>
+        <Link to="/admin/dashboard/filtreCommande">
           <div>
-            <p className="text-sm m-3">Commande en livraison</p>
+            <div className="flex justify-between px-3">
+              <div>
+                <h5>{filterEtat2.length}</h5>
+              </div>
+              <div className="bg-blue-900 rounded-full h-8 w-8 flex place-items-center justify-center">
+                <Link to="/filtrageCommande">
+                  <AiOutlineDeliveredProcedure className="text-xl text-white cursor-pointer" />
+                </Link>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm m-3">Commande en livraison</p>
+            </div>
           </div>
-        </div>
+        </Link>
       </UniteCard>
       <UniteCard bgColor="border-s-4 border-blue-900">
-        <div>
-          <div className="flex justify-between px-3">
-            <div>
-              <h5>{filterEtat3.length}</h5>
-            </div>
-            <div className="bg-sky-500 rounded-full h-8 w-8 flex place-items-center justify-center">
-              <Link to="/filtrageCommande">
+        <Link to="/admin/dashboard/filtreCommande">
+          <div>
+            <div className="flex justify-between px-3">
+              <div>
+                <h5>{filterEtat3.length}</h5>
+              </div>
+              <div className="bg-sky-500 rounded-full h-8 w-8 flex place-items-center justify-center">
                 <TbTruckDelivery className="text-xl text-white cursor-pointer" />
-              </Link>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm m-3">Commandes livrées</p>
             </div>
           </div>
-          <div>
-            <p className="text-sm m-3">Commandes livrées</p>
-          </div>
-        </div>
+        </Link>
       </UniteCard>
     </div>
   );

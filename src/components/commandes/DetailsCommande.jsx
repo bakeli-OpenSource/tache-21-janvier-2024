@@ -7,14 +7,14 @@ import useSidebare from '../../utils/hooks/useSidebare';
 
 const DetailsCommande = () => {
  
-  const {table1} = useCommandes();
   const {open} = useSidebare()
 
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
-      <HeaderTable title="Détails Commandes"  />
-      <Table thead={table1} tbody={table1}  />
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt tempore incidunt modi non velit assumenda laudantium est delectus explicabo qui, ut adipisci eveniet reprehenderit dolorum, impedit unde, nemo molestiae debitis?
+      </p>
     </div>
   )
 }

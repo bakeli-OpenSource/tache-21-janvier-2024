@@ -33,6 +33,14 @@ function IsLogin() {
               navigate("/admin")
             )}
             {isLoggedIn() ? (
+              <Route
+              path="/dashboard/filtreCommande"
+              element={<FiltreCommande />} 
+              />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
               <Route path="/profil" element={<Profil />} />
             ) : (
               navigate("/admin")
@@ -86,14 +94,6 @@ function IsLogin() {
             )}
 
 
-            {isLoggedIn() ? (
-              <Route
-              path="/filtrageCommande"
-              element={<FiltreCommande />} 
-              />
-            ) : (
-              navigate("/admin")
-            )}
           </Routes>
         </div>
       </SidebareContextProvider>
