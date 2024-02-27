@@ -4,9 +4,9 @@ import ProduitsAdmin from '../../components/produits/ProduitsAdmin'
 
 const Produits = () => {
   return (
-    <ProduitContextProvider>
-      <ProduitsAdmin />
-    </ProduitContextProvider>
+        <ProduitContextProvider>
+            <ProduitsAdmin />
+        </ProduitContextProvider>
   )
 }
 

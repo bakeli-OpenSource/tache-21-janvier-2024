@@ -10,6 +10,7 @@ const GlobalContextProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [client, setClient] = useState("");
+  const [commandes, setCommandes] = useState([]);
   const [password, setPassword] = useState("");
   const [dropdown, setDropdown] = useState(false);
   const navigate = useNavigate();
@@ -106,8 +107,25 @@ const GlobalContextProvider = ({ children }) => {
   //   fetchProduits();
   // }, [])
 
+
+
+  const fetchCommandes = async () => {
+    try {
+      const response = await axios.get(
+        `https://kay-solu-api.onrender.com/api/commandes`,
+        
+      );
+      setCommandes(response.data);
+      console.log("Commandes récupérées avec succès");
+      console.log(response.data);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des commandes:", error);
+    }
+  };
+
   useEffect(() => {
     profileUser();
+    fetchCommandes()
   }, []);
 
   const value = {
@@ -125,6 +143,7 @@ const GlobalContextProvider = ({ children }) => {
     handleToggle,
     client,
     setClient,
+    commandes,
     dropdown,
     setDropdown,
   };

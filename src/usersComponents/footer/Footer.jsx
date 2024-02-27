@@ -57,7 +57,7 @@ const Footer = () => {
           conditions d'utilisation.
         </p>
         <ComponentButton
-          className="bg-black text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded"
+          className="bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded"
           texte="Abonnez-vous"
         />
       </div>

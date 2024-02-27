@@ -90,9 +90,12 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
               : null
         }
       </div>
-      <button className='mx-3 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:focus:ring-gray-850 shadow-lg shadow-gray-500/50 dark:shadow-sm font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'>
-        Enregistrer
-      </button>
+
+      <div className=' w-full'>        
+        <button className='mx-3 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:focus:ring-gray-850 shadow-lg shadow-gray-500/50 dark:shadow-sm font-medium rounded-lg text-sm px-5 py-3 text-center  me-2 mb-2'>
+          Enregistrer
+        </button>
+      </div>
 </form>
   )
 }
