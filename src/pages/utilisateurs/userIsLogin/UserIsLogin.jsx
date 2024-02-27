@@ -22,7 +22,6 @@ import DetailsCommandeProvide from "../../admin/DetailsCommandeProvide";
 import OrderDetail from "../../../usersComponents/userConnexion/commandeComponent/DetailsCommande";
 import CardProduit from "../../../usersComponents/cards/CardProduit";
 
-
 const UserIsLogin = () => {
   const location = useLocation();
   const urlPageActuel = location.pathname;
