@@ -19,7 +19,6 @@ const Shop = () => {
 
 
   const handleClick = () => {
-
     // Afficher tous les produits si aucune catégorie sélectionnée
     setFilteredProducts(produits);
   }
@@ -50,7 +49,7 @@ const Shop = () => {
   useEffect(() => {
     fetchFilterCategories(produits);
     setFilteredProducts(produits)
-  }, []);
+  }, [produits]);
 
 
   const { setDropdown } = useGlobal()
