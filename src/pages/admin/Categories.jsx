@@ -13,19 +13,17 @@ const Categories = () => {
           actions,
           handleSubmit,
           updateCategoryQuantities,
-          fetchCategories} = useContext(CategorieContext);
+          fetchCategories,
+        produits} = useContext(CategorieContext);
   
 
   const { open } = useSidebare();
 
   useEffect(() => {
-    const fetchData = async () => {
-      await fetchCategories();
-      await updateCategoryQuantities()
-    };
-
-    fetchData();
+    fetchCategories();
+    updateCategoryQuantities();
   }, []);
+
 
   const handleSelectChange = (e) => {};
 
