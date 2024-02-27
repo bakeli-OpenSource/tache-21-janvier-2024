@@ -167,21 +167,14 @@ const CommandeAdmin = () => {
         title="Commandes"
         // nomAjout="Ajouter des Commandes"
         body={
-          <form onSubmit={handleSubmit} className='w-full mx-3'>
-            <div className=" mb-6 w-full">              
-              <div className="w-full md:w-1/2 px-3 my-6 md:mb-0">
-                <label className="block text-sm font-semibold  text-gray-900">Changer l'état de la commande</label>
-                <select onChange={(e) => setSelectsValue(e.target.value)} className="mt-1 p-2 bg-gray-200 border focus:border text-gray-700 focus:border-double focus:border-sky-600 outline-none rounded-md w-full">
-                  <option value="en attente">En attente</option>
-                  <option value="en cours">En cours</option>
-                  <option value="en livraison">En livraison</option>
-                  <option value="livree">Livrée</option>
-                </select>
-              </div>
-              <button type='submit' className='mx-3 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:focus:ring-gray-850 shadow-lg shadow-gray-500/50 dark:shadow-sm font-medium rounded-lg text-sm px-5 py-3 text-center  me-2 mb-2'>
-                Valider
-              </button>
-            </div>
+          <form onSubmit={handleSubmit} >
+            <select onChange={(e) => setSelectsValue(e.target.value)}>
+              <option value="en attente">En attente</option>
+              <option value="en cours">En cours</option>
+              <option value="en livraison">En livraison</option>
+              <option value="livrée">Livrée</option>
+            </select>
+            <button type="submit">Valider</button>
           </form>
         }
         // {
