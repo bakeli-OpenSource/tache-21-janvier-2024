@@ -1,42 +1,34 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { RiArrowDropDownLine } from 'react-icons/ri';
-import { FaRegUser, FaRegHeart } from 'react-icons/fa';
-import { DiGhostSmall } from 'react-icons/di';
-import useGlobal from '../../utils/hooks/useGlobal';
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { FaRegUser, FaRegHeart } from "react-icons/fa";
+import { DiGhostSmall } from "react-icons/di";
+import useGlobal from "../../utils/hooks/useGlobal";
 
 const Dropdown = () => {
-	const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
-		useGlobal();
-	let connecter;
-	let commander;
-	let favoris;
-	const navigate = useNavigate();
 
-	useEffect(() => {
-		profileUser();
-	}, []);
+  const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
+    useGlobal();
+  let connecter;
+  let commander;
+  let favoris;
+  const navigate = useNavigate();
 
-	const tokenClient = localStorage.getItem('tokenclient');
-	const deconnexion = () => {
-		handleToggle();
+  useEffect(() => {
+    profileUser();
+  }, []);
 
-		if (tokenClient === null) {
-			navigate('/connexion');
-		} else {
-			handleLogoutUser();
-		}
-	};
+  const tokenClient = localStorage.getItem("tokenclient");
+  const deconnexion = () => {
+    handleToggle();
 
-	if (tokenClient === null) {
-		connecter = '/connexion';
-		commander = '/connexion';
-		favoris = '/connexion';
-	} else {
-		connecter = '/compte';
-		commander = '/compte/commandes';
-		favoris = '/compte/favoris';
-	}
+    if (tokenClient === null) {
+      navigate("/connexion");
+    } else {
+      handleLogoutUser();
+    }
+  };
+
 
 	return (
 		<div className="relative">

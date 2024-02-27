@@ -12,7 +12,11 @@ import Profil from "./Profil";
 import { useNavigate, Route, Routes } from "react-router";
 import useGlobal from "../../utils/hooks/useGlobal";
 import ListeClients from "../../components/Clients/ListeClients";
-import FiltreCommande from "../../components/cards-et-filtre/FiltreCommande";
+import FiltreCommandeEnAttente from "../../components/cards-et-filtre/filtreDesCommandes/FiltreCommandeEnAttente";
+import CommandeContextProvider from "../../utils/contexte/CommandeContext";
+import FilterCommandeEnCours from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommandeEnCours";
+import FilterCommandeTraite from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommandeTraite";
+import FilterCommendeEnLivraison from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommendeEnLivraison";
 import Message from "../../components/messages/Message";
 // import Navigate from "navigate";
 
@@ -33,6 +37,58 @@ function IsLogin() {
             ) : (
               navigate("/admin")
             )}
+            {isLoggedIn() ? (
+              <Route
+              path="/dashboard/EnAttente"
+              element={
+                        <CommandeContextProvider>
+                          <FiltreCommandeEnAttente />                          
+                        </CommandeContextProvider>
+                        } 
+              />
+            ) : (
+              navigate("/admin")
+            )}
+
+            {isLoggedIn() ? (
+              <Route
+              path="/dashboard/EnCours"
+              element={
+                        <CommandeContextProvider>
+                          <FilterCommandeEnCours />                          
+                        </CommandeContextProvider>
+                        } 
+              />
+            ) : (
+              navigate("/admin")
+            )}
+
+            {isLoggedIn() ? (
+              <Route
+              path="/dashboard/Traite"
+              element={
+                        <CommandeContextProvider>
+                          <FilterCommandeTraite />                          
+                        </CommandeContextProvider>
+                        } 
+              />
+            ) : (
+              navigate("/admin")
+            )}
+
+            {isLoggedIn() ? (
+              <Route
+              path="/dashboard/EnLivraison"
+              element={
+                        <CommandeContextProvider>
+                          <FilterCommendeEnLivraison />                          
+                        </CommandeContextProvider>
+                        } 
+              />
+            ) : (
+              navigate("/admin")
+            )}
+
             {isLoggedIn() ? (
               <Route path="/profil" element={<Profil />} />
             ) : (
@@ -85,6 +141,7 @@ function IsLogin() {
             ) : (
               navigate("/admin")
             )}
+
             {isLoggedIn() ? (
               <Route
                 path="/messages/*"
@@ -101,14 +158,14 @@ function IsLogin() {
             ) : (
               navigate("/admin")
             )}
-            {isLoggedIn() ? (
+            {/* {isLoggedIn() ? (
               <Route
               path="/filtrageCommande"
               element={<FiltreCommande />} 
               />
             ) : (
               navigate("/admin")
-            )}
+            )} */}
           </Routes>
         </div>
       </SidebareContextProvider>
