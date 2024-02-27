@@ -1,18 +1,21 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
-import axios from 'axios';
+import Select from '../cards-et-filtre/Select';
+import { ToastContainer } from 'react-toastify';
 
 const ProduitsAdmin = () => {
 
 
-  const {table, produits, addProduit, actions, titreModal, setTitreModal, nom, setNom, imageUrl, setImageUrl,
+  const {table, produits, setProduits, addProduit, actions, titreModal, setTitreModal, nom, setNom, imageUrl, setImageUrl,
           titre, setTitre, description, setDescription, quantite, setQuantite,
           carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
-          prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur
+          prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
+          soumettre, updateProduit, filtreProduits, setFiltreProduits, handleSelectChange, categories,
+          categoryNames, setCategoryNames, handleSelectChangeCategorie
         } = useProduits();
   
   const {open} = useSidebare()
@@ -74,6 +77,12 @@ const ProduitsAdmin = () => {
       type: "text",
       value: fournisseur,
       setValue: setFournisseur
+    },
+    {
+      label: "Promo en %",
+      type: "number",
+      value: promo,
+      setValue: setPromo
     }
   ]
 
@@ -87,12 +96,15 @@ const ProduitsAdmin = () => {
     e.preventDefault()
     const recupInput = {
       nom, imageUrl, titre, description, quantite,
-      categorie,categorieId, carracteristique, prix, couleur, taille, fournisseur,
+      categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
     }
-    console.log({categorie})
-    console.log({categorieId})
-    console.log({recupInput})
-    addProduit(recupInput)
+    if (soumettre === 'Ajouter') {
+      console.log('Ajout de produit');
+      addProduit(recupInput)
+    }else{
+      console.log('modification de produit');
+      updateProduit(recupInput)
+    }
     setNom('')
     setImageUrl('')
     setTitre('')
@@ -104,41 +116,9 @@ const ProduitsAdmin = () => {
     setCouleur('')
     setTaille('')
     setFournisseur('')
+    setPromo('')
   }
 
-  
-  const [categories, setCategories] = useState([]); 
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
-        setCategories(response.data);
-        console.log("Catégories récupérées avec succès");
-      } catch (error) {
-        console.error("Erreur lors de la récupération des catégories:", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  const [categoryNames, setCategoryNames] = useState([]); 
-
-  useEffect(() => {
-    setCategoryNames(categories.map((categorie) => categorie.nom));
-  }, [categories]); 
-  
-  const handleSelectChange = (e) => {
-    const selectedCategoryName = e.target.value;
-    const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
-    if (selectedCategory) {
-      setCategorie(selectedCategoryName);
-      setCategorieId(selectedCategory._id);
-    } 
-  };
-  
-  
   const selects = [
     {
       label: 'Catégorie',
@@ -147,23 +127,19 @@ const ProduitsAdmin = () => {
       setValue: handleSelectChange
     }
   ]
-
+  
+ 
+  
   setTitreModal(
     'Ajouter un produits'
   )
-  // setCorpModal(
-  //   <Formulaire 
-  //               inputs={inputs} 
-  //               textarea={textarea} 
-  //               selects={selects}
-  //               onSubmit={hanldleSubmit} 
-  //               handleSelectChange = {handleSelectChange}
-  //               />
-  // )
+
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable
        title="Produits"
+       filtre={<Select  contenus={categoryNames}  handleSelectChange={handleSelectChangeCategorie}
+                        Title="Catégorie" />}
        nomAjout={titreModal} 
        body={<Formulaire 
                 inputs={inputs} 
@@ -171,13 +147,12 @@ const ProduitsAdmin = () => {
                 selects={selects}
                 onSubmit={hanldleSubmit} 
                 handleSelectChange = {handleSelectChange}
-                />} 
+            />} 
        />
-      <Table thead={table} tbody={produits} actions={actions} />
+      <Table thead={table} tbody={filtreProduits} actions={actions} />
+      <ToastContainer />
 </div>
   )
 }
 
 export default ProduitsAdmin
-
-

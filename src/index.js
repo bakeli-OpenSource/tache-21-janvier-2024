@@ -1,25 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "../src/utils/styles/index.css";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import ProduitContextProvider from './utils/contexte/ProduitsContext'
-import GlobalContextProvider from "./utils/contexte/GlobalContext";
-import CategorieContextProvider from "./utils/contexte/CategorieContext";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-const root = ReactDOM.createRoot(document.getElementById("root"));
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import '../src/utils/styles/index.css';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import ProduitContextProvider from './utils/contexte/ProduitsContext';
+import GlobalContextProvider from './utils/contexte/GlobalContext';
+import CategorieContextProvider from './utils/contexte/CategorieContext';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <GlobalContextProvider>
-    <ProduitContextProvider>
-    <CategorieContextProvider>
-      <App />
-    </CategorieContextProvider>
-
-    </ProduitContextProvider>
-    </GlobalContextProvider>
+      <GlobalContextProvider>
+        <ProduitContextProvider>
+          <CategorieContextProvider>
+            <App />
+          </CategorieContextProvider>
+        </ProduitContextProvider>
+      </GlobalContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
