@@ -1,11 +1,11 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import Formulaire from '././../formulaire/Formulaire';
-import axios from 'axios';
 import Select from '../cards-et-filtre/Select';
+import { ToastContainer } from 'react-toastify';
 
 const ProduitsAdmin = () => {
 
@@ -98,10 +98,6 @@ const ProduitsAdmin = () => {
       nom, imageUrl, titre, description, quantite,
       categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
     }
-    console.log({categorie})
-    console.log({categorieId})
-    console.log({recupInput})
-    console.log(soumettre);
     if (soumettre === 'Ajouter') {
       console.log('Ajout de produit');
       addProduit(recupInput)
@@ -109,9 +105,6 @@ const ProduitsAdmin = () => {
       console.log('modification de produit');
       updateProduit(recupInput)
     }
-    // soumettre === 'Ajouter' ? 
-    // (addProduit(recupInput)) :
-    // (updateProduit(recupInput))
     setNom('')
     setImageUrl('')
     setTitre('')
@@ -157,6 +150,7 @@ const ProduitsAdmin = () => {
             />} 
        />
       <Table thead={table} tbody={filtreProduits} actions={actions} />
+      <ToastContainer />
 </div>
   )
 }
