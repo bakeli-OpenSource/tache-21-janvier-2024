@@ -26,12 +26,12 @@ const Shop = () => {
 
   // // Logique de filtrage des produits
   const handleChange = (selectedCategorie) => {
-
-
-    const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
-    setFilteredProducts(updatedProducts);
-    console.log(filteredProducts)
-
+    if(selectedCategorie){
+      const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
+      setFilteredProducts(updatedProducts);
+    }else{
+      setFilteredProducts(produits)      
+    }
   }
 
   const fetchFilterCategories = async () => {
@@ -48,8 +48,8 @@ const Shop = () => {
   };
 
   useEffect(() => {
-
     fetchFilterCategories(produits);
+    setFilteredProducts(produits)
   }, []);
 
 

@@ -1,3 +1,4 @@
+
 import React, {  useEffect, useState } from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
@@ -98,10 +99,6 @@ const ProduitsAdmin = () => {
       nom, imageUrl, titre, description, quantite,
       categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
     }
-    console.log({categorie})
-    console.log({categorieId})
-    console.log({recupInput})
-    console.log(soumettre);
     if (soumettre === 'Ajouter') {
       console.log('Ajout de produit');
       addProduit(recupInput)
@@ -109,9 +106,6 @@ const ProduitsAdmin = () => {
       console.log('modification de produit');
       updateProduit(recupInput)
     }
-    // soumettre === 'Ajouter' ? 
-    // (addProduit(recupInput)) :
-    // (updateProduit(recupInput))
     setNom('')
     setImageUrl('')
     setTitre('')
