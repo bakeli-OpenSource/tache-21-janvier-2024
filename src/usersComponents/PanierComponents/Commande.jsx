@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useGlobal from '../../utils/hooks/useGlobal';
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Commande = () => {
-	const [showModal, setShowModal] = useState(false);
 	const navigate = useNavigate();
 	const { client } = useGlobal();
-	const { viderPanier } = usePanier();
 	const [loggedInUserToken, setLoggedInUserToken] = useState(null);
 
 	const {
@@ -21,6 +21,7 @@ const Commande = () => {
 		cartQuantities,
 		items,
 		deliveryCosts,
+		viderPanier,
 	} = usePanier();
 
 	useEffect(() => {
@@ -31,6 +32,9 @@ const Commande = () => {
 		e.preventDefault();
 
 		if (!loggedInUserToken) {
+			window.alert(
+				'Veuillez vous connecter avant de passer votre commande svp.',
+			);
 			navigate('/connexion');
 			return;
 		}
@@ -41,6 +45,7 @@ const Commande = () => {
 			prix: item.prix,
 			prixTotal: item.prix * cartQuantities[item._id],
 			name: item.nom,
+			image: item.imageUrl,
 		}));
 
 		const prixLivraison = deliveryCosts[deliveryOption];
@@ -51,6 +56,7 @@ const Commande = () => {
 			email: client.email,
 			adresse: client.adresse,
 			telephone: client.telephone,
+			imageUrl: orderItems.map((item) => item.image).join(', '),
 			idProduit: orderItems.map((item) => item._id),
 			produit: orderItems.map((item) => item.name),
 			quantite: orderItems.map((item) => item.quantity),
@@ -81,21 +87,19 @@ const Commande = () => {
 
 			if (response.status === 201) {
 				console.log('Commande ajoutée avec succès:', response.data);
+				toast.success('Commande approuvée avec succès!');
 			} else {
 				console.error("Erreur lors de l'ajout de commandes:", response.data);
+				toast.error("Erreur lors de l'ajout de commandes");
 			}
 		} catch (error) {
 			console.error(
 				"Erreur lors de l'envoi de la commande:",
 				error.response?.data || error.message,
 			);
+			toast.error("Erreur lors de l'envoi de la commande");
 		}
-		setShowModal(true);
 		viderPanier();
-		if (items.length === 0) {
-			alert('veuillez ajouter au moins une commande');
-			return;
-		}
 	};
 	return (
 		<div>
@@ -131,26 +135,35 @@ const Commande = () => {
 							<option value="5">Dakar-Regions-4000 FCFA</option>
 						</select>
 					</div>
-					<div className="flex justify-between">
-						<h4 className="text-uppercase mt-1 text-[14px]">Prix total</h4>
-						<h4 className="font-bold text-[21px]">{totalPrice} FCFA</h4>
-					</div>
-					<div className="flex justify-between">
-						<h4 className="text-uppercase mt-2 text-[14px]">Livraison</h4>
-						<h4 className="font-bold text-[21px]">
-							{typeof deliveryCosts[deliveryOption] === 'number'
-								? `${deliveryCosts[deliveryOption]}`
-								: 0}{' '}
-							{'FCFA'}
-						</h4>
-					</div>
-					<hr className="my-4 border-black" />
-					<div className="flex justify-between mb-5">
-						<h4 className="text-uppercase mt-2 text-[20px]">Total</h4>
-						<h4 className="font-bold text-[30px]">
-							{totalPrice + deliveryCosts[deliveryOption]} FCFA
-						</h4>
-					</div>
+					{items.length > 0 && (
+						<div>
+							<div className="flex justify-between">
+								<h4 className="text-uppercase mt-1 text-[14px]">Prix total</h4>
+								<h4 className="font-bold text-[21px]">{totalPrice} FCFA</h4>
+							</div>
+							{deliveryCosts[deliveryOption] > 0 && (
+								<div className="flex justify-between">
+									<h4 className="text-uppercase mt-2 text-[14px]">Livraison</h4>
+									<h4 className="font-bold text-[21px]">
+										{typeof deliveryCosts[deliveryOption] === 'number'
+											? `${deliveryCosts[deliveryOption]}`
+											: 0}{' '}
+										{'FCFA'}
+									</h4>
+								</div>
+							)}
+
+							<hr className="my-4 border-black" />
+							{deliveryCosts[deliveryOption] > 0 && (
+								<div className="flex justify-between">
+									<h4 className="text-uppercase mt-2 text-[20px]">Total</h4>
+									<h4 className="font-bold text-[30px]">
+										{totalPrice + deliveryCosts[deliveryOption]} FCFA
+									</h4>
+								</div>
+							)}
+						</div>
+					)}
 					{items.length === 0 && (
 						<div className="mb-3 text-sm text-red-500">
 							Veuillez ajouter au moins une commande avant de valider.
@@ -168,26 +181,7 @@ const Commande = () => {
 					></ComponentButton>
 				</form>
 			</div>
-			{showModal && (
-				<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-					<div className="p-8 bg-white rounded shadow-lg w-100">
-						<h2 className="mb-6 text-2xl font-bold text-center text-black-500">
-							Commande approuvée avec succès!
-						</h2>
-						<p className="mb-6 text-center text-gray-700">
-							Merci pour votre commande. Votre commande a été approuvée et est
-							en cours de traitement.
-							<br /> Vous recevrez votre commande dans les plus brefs délais.
-						</p>
-						<button
-							className="float-right px-4 py-2 text-sm text-white bg-black rounded hover:bg-blue-600"
-							onClick={() => setShowModal(false)}
-						>
-							Fermer
-						</button>
-					</div>
-				</div>
-			)}
+			<ToastContainer />
 		</div>
 	);
 };

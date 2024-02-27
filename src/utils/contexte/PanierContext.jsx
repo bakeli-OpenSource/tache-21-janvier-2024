@@ -10,7 +10,9 @@ export const PanierProvider = ({ children }) => {
 	const storedNotificationCount =
 		JSON.parse(localStorage.getItem('notificationCount')) || 0;
 
-	const [cartQuantities, setCartQuantities] = useState({});
+	const storedCartQuantities =
+		JSON.parse(localStorage.getItem('cartQuantities')) || {};
+	const [cartQuantities, setCartQuantities] = useState(storedCartQuantities);
 	const [items, setItems] = useState(validatedItems); // Utilisation des articles validés
 	const [notificationCount, setNotificationCount] = useState(
 		storedNotificationCount,
@@ -23,7 +25,8 @@ export const PanierProvider = ({ children }) => {
 			'notificationCount',
 			JSON.stringify(notificationCount),
 		);
-	}, [items, notificationCount]);
+		localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
+	});
 
 	const [deliveryOption, setDeliveryOption] = useState('');
 	const deliveryCosts = {
@@ -55,6 +58,7 @@ export const PanierProvider = ({ children }) => {
 			0,
 		);
 		setTotalItems(totalItemsCount);
+		setNotificationCount(totalItemsCount);
 
 		const newTotalPrice = items.reduce((total, item) => {
 			const itemPrice = item && typeof item.prix === 'number' ? item.prix : 0;
@@ -95,6 +99,7 @@ export const PanierProvider = ({ children }) => {
 		setItems([]);
 		setCartQuantities({});
 		setNotificationCount(0);
+		setDeliveryOption('');
 		localStorage.removeItem('cartItems');
 		localStorage.removeItem('notificationCount');
 	};
