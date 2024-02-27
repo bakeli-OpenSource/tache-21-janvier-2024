@@ -15,7 +15,6 @@ const Panier = () => {
           <div className="overflow-hidden bg-white rounded-lg shadow-lg md:w-1/2 lg:w-1/2 xl:w-1/2 md:mb-0">
             <Cart />
           </div>
-
           <div className="bg-gray-200 shadow-md md:w-full lg:w-1/4 xl:w-1/4">
             <Commande />
           </div>
