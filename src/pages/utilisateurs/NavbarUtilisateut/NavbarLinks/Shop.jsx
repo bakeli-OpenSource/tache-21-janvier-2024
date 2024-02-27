@@ -15,7 +15,7 @@ const Shop = () => {
   const [heartColors, setHeartColors] = useState(Array(10).fill('inherit'));
   const { produits, _id } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
-  const [filteredProducts, setFilteredProducts] = useState(produits);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
 
   const handleClick = () => {
@@ -26,8 +26,12 @@ const Shop = () => {
 
   // // Logique de filtrage des produits
   const handleChange = (selectedCategorie) => {
-    const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
-    setFilteredProducts(updatedProducts);
+    if(selectedCategorie){
+      const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
+      setFilteredProducts(updatedProducts);
+    }else{
+      setFilteredProducts(produits)      
+    }
   }
 
   const fetchFilterCategories = async () => {
@@ -44,8 +48,8 @@ const Shop = () => {
   };
 
   useEffect(() => {
-
     fetchFilterCategories(produits);
+    setFilteredProducts(produits)
   }, []);
 
 
