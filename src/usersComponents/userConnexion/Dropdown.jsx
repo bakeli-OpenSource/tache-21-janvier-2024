@@ -1,56 +1,64 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { FaRegUser, FaRegHeart } from "react-icons/fa";
-import { DiGhostSmall } from "react-icons/di";
-import useGlobal from "../../utils/hooks/useGlobal";
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+import { FaRegUser, FaRegHeart } from 'react-icons/fa';
+import { DiGhostSmall } from 'react-icons/di';
+import useGlobal from '../../utils/hooks/useGlobal';
 
 const Dropdown = () => {
+	const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
+		useGlobal();
+	let connecter;
+	let commander;
+	let favoris;
+	const navigate = useNavigate();
 
-  const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
-    useGlobal();
-  let connecter;
-  let commander;
-  let favoris;
-  const navigate = useNavigate();
+	useEffect(() => {
+		profileUser();
+	}, []);
 
-  useEffect(() => {
-    profileUser();
-  }, []);
+	const tokenClient = localStorage.getItem('tokenclient');
+	const deconnexion = () => {
+		handleToggle();
 
-  const tokenClient = localStorage.getItem("tokenclient");
-  const deconnexion = () => {
-    handleToggle();
+		if (tokenClient === null) {
+			navigate('/connexion');
+		} else {
+			handleLogoutUser();
+		}
+	};
 
-    if (tokenClient === null) {
-      navigate("/connexion");
-    } else {
-      handleLogoutUser();
-    }
-  };
+	if (tokenClient === null) {
+		connecter = '/connexion';
+		commander = '/connexion';
+		favoris = '/connexion';
+	} else {
+		connecter = '/compte';
+		commander = '/compte/commandes';
+		favoris = '/compte/favoris';
+	}
 
-  if (tokenClient === null) {
-    connecter = "/connexion";
-    commander = "/connexion"
-    favoris = "/connexion"
-  } else {
-    connecter = "/compte";
-    commander = "/compte/commandes"
-    favoris = "/compte/favoris"
-  }
+	return (
+		<div className="relative">
+			<div
+				className="flex items-center cursor-pointer font- gap-"
+				onClick={handleToggle}
+			>
+				<FaRegUser className="mr-2 cursor-pointer" size={20} />
 
-  return (
-    <div className="relative">
-      <div
-        className="font- cursor-pointer flex items-center gap-"
-        onClick={handleToggle}
-      >
-        <FaRegUser className="cursor-pointer mr-2" size={20} />
+				<p className="text-sm">
+					{tokenClient === null
+						? 'Se connecter'
+						: `bonjour, ${client.prenom === undefined ? '' : client.prenom}`}
+				</p>
+				<RiArrowDropDownLine className="p-0 mx-0 mt-2" size={30} />
+			</div>
 
-        <p className="text-sm">{tokenClient === null
+
+        <p className="text-sm hidden md:block">{tokenClient === null
           ? "Se connecter"
           : `bonjour, ${client.prenom === undefined ? "" : client.prenom}`}</p>
-        <RiArrowDropDownLine className="p-0 mt-2 mx-0" size={30} />
+        <RiArrowDropDownLine className="p-0 mt-2 mx-0 hidden md:block" size={30} />
       </div>
 
       {dropdown && (

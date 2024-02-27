@@ -18,7 +18,7 @@ const Tbody = ({tbody, actions}) => {
         <tbody className='bg-white '>
                 {tbody.length !== 0 ?
                 tbody.map((td, index) => (
-                <tr className="text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100" key={index}>
+                <tr className="text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100" key={index}> 
                     {td.imageUrl && td.titre && td.nom ?
                         <td className="px-4 py-3 border">
                             <div className="flex items-center text-sm">
@@ -38,11 +38,6 @@ const Tbody = ({tbody, actions}) => {
                                             <p className="font-semibold text-black">{td.nom}</p>
                                         </div>
                                     </td> : null
-                    }
-                    {td.idProduit ?
-                    <td className="px-4 py-5 text-xl text-center border">
-                        {td.idProduit}
-                    </td> : null
                     }
                     {td.email ?
                     <td className="px-4 py-5 text-xl text-center border">
@@ -67,11 +62,6 @@ const Tbody = ({tbody, actions}) => {
                     {td.telephone ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.telephone}
-                    </td> : null
-                    }
-                    {td.adresse ?
-                    <td className="px-4 py-5 text-xl text-center border">
-                        {td.adresse}
                     </td> : null
                     }
                     {td.etat ?
@@ -104,6 +94,12 @@ const Tbody = ({tbody, actions}) => {
                         {td.prixTotal}
                     </td> : null
                     }
+                    {/* {td.adresse ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.adresse}
+                    </td> : null
+                    } */}
+                    
                     {td.statut ?
                     <td className="px-4 py-5 text-center text-xl border">
                         {td.statut}

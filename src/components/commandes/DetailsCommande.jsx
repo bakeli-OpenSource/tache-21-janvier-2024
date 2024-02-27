@@ -7,14 +7,26 @@ import useSidebare from '../../utils/hooks/useSidebare';
 
 const DetailsCommande = () => {
  
-  const {open} = useSidebare()
+
+  const { table1, commandes } = useCommandes([]);
+  const { open } = useSidebare();
+
+  // Utilisez la fonction map pour extraire les valeurs correctes des commandes
+  const tbodyData = commandes.map((commande) => [
+    commande['Référence'],
+    commande['Produit'],
+    commande['Etat de la commande'],
+    commande['Quantité'],
+    commande['Prix Produit'],
+    commande['Prix total'],
+  ]);
 
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt tempore incidunt modi non velit assumenda laudantium est delectus explicabo qui, ut adipisci eveniet reprehenderit dolorum, impedit unde, nemo molestiae debitis?
-      </p>
+    
+      <HeaderTable title="Détails Commandes"  />
+      <Table thead={table1} tbody={tbodyData}  />
     </div>
   )
 }
