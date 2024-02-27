@@ -47,7 +47,6 @@ const CommandeAdmin = () => {
   const [editingCommandeId, setEditingCommandeId] = useState(null);
 
   const inputs = [                                                                                                              
-<<<<<<< HEAD
     // {
     //   label: 'Email',
     //   type: 'text',
@@ -191,28 +190,28 @@ const CommandeAdmin = () => {
   //   hanldleUpdate(commandeId, newData);
   //   setShowModal(false);
 
-  const [editData, setEditData] = useState({});
+  // const [editData, setEditData] = useState({});
 
-  const hanldleUpdate = async (commandeId, newData) => {
-    try {
-      const response = await axios.put(
-        `https://kay-solu-api.onrender.com/api/commande/${commandeId}`,
-        newData
-      );
-      console.log("commande modifiée avec succès:", response.data);
+  // const hanldleUpdate = async (commandeId, newData) => {
+  //   try {
+  //     const response = await axios.put(
+  //       `https://kay-solu-api.onrender.com/api/commande/${commandeId}`,
+  //       newData
+  //     );
+  //     console.log("commande modifiée avec succès:", response.data);
 
-      fetchCommandes();
-    } catch (error) {
-      console.error("Erreur lors de la modification de la commande:", error);
-    }
-  };
+  //     fetchCommandes();
+  //   } catch (error) {
+  //     console.error("Erreur lors de la modification de la commande:", error);
+  //   }
+  // };
 
   
-  const handleEditCommande = (commandeId, newData) => {
-    setEditData(newData);
-    hanldleUpdate(commandeId, newData);
-    setShowModal(false);
-  };
+  // const handleEditCommande = (commandeId, newData) => {
+  //   setEditData(newData);
+  //   hanldleUpdate(commandeId, newData);
+  //   setShowModal(false);
+  // };
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
