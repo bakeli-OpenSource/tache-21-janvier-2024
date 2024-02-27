@@ -7,28 +7,31 @@ import useGlobal from '../../utils/hooks/useGlobal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const Dropdown = () => {
-	const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
-		useGlobal();
-	let connecter;
-	let commander;
-	let favoris;
-	const navigate = useNavigate();
 
-	useEffect(() => {
-		profileUser();
-	}, []);
+  const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
+    useGlobal();
+  let connecter;
+  let commander;
+  let favoris;
+  const navigate = useNavigate();
 
-	const tokenClient = localStorage.getItem('tokenclient');
-	const deconnexion = () => {
-		handleToggle();
+  useEffect(() => {
+    profileUser();
+  }, []);
 
-		if (tokenClient === null) {
-			navigate('/connexion');
-		} else {
-			handleLogoutUser();
-		}
-	};
+  const tokenClient = localStorage.getItem("tokenclient");
+  const deconnexion = () => {
+    handleToggle();
+
+    if (tokenClient === null) {
+      navigate("/connexion");
+    } else {
+      handleLogoutUser();
+    }
+  };
+
 
 	if (tokenClient === null) {
 		toast.error("Merci de vous connecter");
