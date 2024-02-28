@@ -18,7 +18,6 @@ const CommandeAdmin = () => {
     handleDelete,
     setEtat,
     setShowModal,
-    // setIsEditing,
     setEditingCommandeId
   } = useCommandes();
 
@@ -67,7 +66,6 @@ const CommandeAdmin = () => {
     <div className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>
       <HeaderTable
         title="Commandes"
-        // nomAjout="Ajouter des Commandes"
         body={
           <form onSubmit={handleSubmit} >
             <select onChange={(e) => setSelectsValue(e.target.value)}>
