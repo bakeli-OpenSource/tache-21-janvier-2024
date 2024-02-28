@@ -6,8 +6,6 @@ import useGlobal from '../hooks/useGlobal';
 import axios from "axios";
 import useProduits from '../hooks/useProduits';
 
-
-
 const CategorieContext = createContext();
 
 export { CategorieContext };

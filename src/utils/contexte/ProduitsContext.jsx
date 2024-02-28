@@ -53,6 +53,7 @@ const ProduitContextProvider = ({ children }) => {
       setProduits(updatedProd);
       toast.error('Produit supprimée avec succès!');
     } catch (error) {
+      navigate("/error")
       console.error("Erreur lors de la suppression du produit:", error);
       toast.error('Erreur lors de la suppression du produit!');
     }
@@ -94,6 +95,7 @@ const ProduitContextProvider = ({ children }) => {
             throw new Error('Erreur lors de l\'ajout du produit');
         }
     } catch (error) {
+      navigate("/error")
         console.error('Erreur lors de l\'ajout du produit:', error);
         toast.error("Erreur lors de l'ajout du produit");
     }

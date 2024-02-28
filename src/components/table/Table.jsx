@@ -13,7 +13,7 @@ export const Thead = ({thead}) => {
     )
 }
 
-const Tbody = ({tbody, actions}) => {
+export const Tbody = ({tbody, actions}) => {
     return (
         <tbody className='bg-white '>
                 {tbody.length !== 0 ?
@@ -105,16 +105,16 @@ const Tbody = ({tbody, actions}) => {
                         {td.statut}
                     </td> : null
                     }
-                    {td.prenomCli ?
+                    {/* {td.prenomCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.prenomCli}
                     </td> : null
-                    }
-                    {td.nomCli ?
+                    } */}
+                    {/* {td.nomCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.nomCli}
                     </td> : null
-                    }
+                    } */}
                     {td.adresseCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.adresseCli}
