@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaRegCircleXmark, FaSquareEnvelope } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
 import { MdDelete } from 'react-icons/md';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 
 const Message = ({nouveauMessage}) => {
     const {message, handleMessage} = useSidebare()
+    const [border, setBorder] = useState("border-s-4 border-blue-900")
+    const navigate = useNavigate()
 
     const messageLu = async (id) => {
       try {
@@ -40,7 +43,7 @@ const Message = ({nouveauMessage}) => {
             <div className='px-4 py-3 text-sm flex flex-col overflow-auto max-h-[250px]'>
                 {nouveauMessage.length ?
                   nouveauMessage.map((message, index) => (
-                    <button  key={index} className="mb-2 bg-white border-s-4 border-blue-900 text-black py-2 rounded-lg col-span-3 shadow-xl">
+                    <button onClick={() => navigate("messages/" + message._id) }  key={index} className={`mb-2 bg-white  text-black py-2 rounded-lg col-span-3 shadow-xl ${border}`}>
                       <div className="flex justify-between px-3">
                           <div className=''>
                             <p className="text-lg text-start font-semibold pb-1">Nouveau Message</p>
