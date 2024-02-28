@@ -18,6 +18,7 @@ import FilterCommandeEnCours from "../../components/cards-et-filtre/filtreDesCom
 import FilterCommandeTraite from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommandeTraite";
 import FilterCommendeEnLivraison from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommendeEnLivraison";
 import Message from "../../components/messages/Message";
+import DetailsMessages from "../../components/messages/DetailsMessages";
 // import Navigate from "navigate";
 
 function IsLogin() {
@@ -153,7 +154,7 @@ function IsLogin() {
             {isLoggedIn() ? (
               <Route
                 path="/messages/:id"
-                element={ <Message/> }
+                element={ <DetailsMessages/> }
               />
             ) : (
               navigate("/admin")
