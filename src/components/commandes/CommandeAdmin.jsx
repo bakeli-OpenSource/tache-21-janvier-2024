@@ -33,10 +33,10 @@ const CommandeAdmin = () => {
 		{
 			icon: <TbEyeShare />,
 			color: 'bg-green-500',
-			handleClick: (commandeId) => {
-				localStorage.setItem("commandeIdCli", commandeId)
-				navigate('/admin/commandes/DetailsCommande');
-				handleDetail(commandeId)
+			handleClick: (id) => {
+				localStorage.setItem("commandeIdCli", id)
+				navigate('/admin/commandes/' + id);
+				handleDetail(id)
 			},
 		},
 		{

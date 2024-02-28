@@ -122,13 +122,13 @@ function IsLogin() {
               navigate("/admin")
             )}
             {isLoggedIn() ? (
-              <Route path="/commandes" element={<Commandes />} />
+              <Route path="/commandes/*" element={<Commandes />} />
             ) : (
               navigate("/admin")
             )}
             {isLoggedIn() ? (
               <Route
-                path="/commandes/DetailsCommande"
+                path="/commandes/:id"
                 element={<DetailsCommandeProvide />}
               />
             ) : (
