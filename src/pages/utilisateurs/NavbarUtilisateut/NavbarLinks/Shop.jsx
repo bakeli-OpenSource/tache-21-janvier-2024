@@ -6,12 +6,15 @@ import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 import useGlobal from "../../../../utils/hooks/useGlobal";
 import { Link } from 'react-router-dom';
+import CardProduit from "../../../../usersComponents/cards/CardProduit";
+import Loader from "../../../../components/loader/loader";
 
 
 const Shop = () => {
 
   const [heartColors, setHeartColors] = useState(Array(10).fill('black'));
   const { produits, _id } = useContext(ProduitsContext);
+  console.log(produits, "produit");
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -51,10 +54,11 @@ const Shop = () => {
     <>
       <div
         onClick={() => setDropdown(false)}
-        className="px-9  mt-[50px] mx-auto z-0 flex flex-col  "
+        data-aos="zoom-in"
+        className="px-  mt-[50px] mx-auto z-0 flex flex-col  "
       >
         <div className="flex mt-10">
-          <h1 className=" text-2xl mr-5">Shop</h1>
+          <h1 className=" text-2xl mr-5 px-9">Shop</h1>
           {categories.map((categorie, index) => (
             <div className="flex" key={index}>
               <ComponentButton
@@ -65,8 +69,8 @@ const Shop = () => {
             </div>
           ))}
         </div>
-        <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
-          {filteredProducts.map((produit, index) => (
+        {/* <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center"> */}
+          {/* {filteredProducts.map((produit, index) => (
             <div
               key={index}
               className="items-center justify-center w-full h-full static border"
@@ -106,8 +110,9 @@ const Shop = () => {
                 <div className="font-semi-bold">{produit.prix} FCFA</div>
               </div>
             </div>
-          ))}
-        </div>
+          ))} */}
+          {produits.length > 0 ? <CardProduit /> : <Loader />}
+        {/* </div> */}
       </div>
     </>
   );

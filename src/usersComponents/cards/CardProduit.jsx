@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ProduitsContext } from "../../utils/contexte/ProduitsContext";
 import { usePanier } from "../../utils/contexte/PanierContext";
 
-const CardList = () => {
+const CardProduit = () => {
   const { produits } = useContext(ProduitsContext);
   const { addToCart } = usePanier();
   const [produitAimer, setProduitAimer] = useState(() => {
@@ -87,7 +87,6 @@ const CardList = () => {
             </div>
           </div>
           <div className="p-2 flex flex-col justify-between">
-       
             <Link to={`/details/${produit._id}`}>
               <h2 className="font-semibold mb-1">{produit.nom}</h2>
             </Link>
@@ -97,15 +96,16 @@ const CardList = () => {
               </span>
             </div>
             <div className="p- mt-2 text-">
-                  {/* star rating */}
-                  <div className="w-full flex items-center justify- gap-1">
-                    <FaStar className="text-yellow-500 cursor-pointer" /> 
-                    <FaStar className="text-yellow-500 cursor-pointer" /> 
-                    <FaStar className="text-gray-300 cursor-pointer" /> 
-                    <FaStar className="text-gray-300 cursor-pointer" /> 
-                    <FaStar className="text-gray-300 cursor-pointer" /> <span className="text-gray-400">(65)</span>
-                  </div>
-                  </div>
+              {/* star rating */}
+              <div className="w-full flex items-center justify- gap-1">
+                <FaStar className="text-yellow-500 cursor-pointer" />
+                <FaStar className="text-yellow-500 cursor-pointer" />
+                <FaStar className="text-gray-300 cursor-pointer" />
+                <FaStar className="text-gray-300 cursor-pointer" />
+                <FaStar className="text-gray-300 cursor-pointer" />{" "}
+                <span className="text-gray-400">(65)</span>
+              </div>
+            </div>
           </div>
         </div>
       ))}
@@ -113,4 +113,4 @@ const CardList = () => {
   );
 };
 
-export default CardList;
+export default CardProduit;

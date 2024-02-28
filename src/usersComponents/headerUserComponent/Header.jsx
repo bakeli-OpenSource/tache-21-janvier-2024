@@ -78,7 +78,7 @@ const Header = () => {
                     data-aos-duration="500"
                     data-aos-delay="300"
                   > 
-                  <Link to={"/panier"} >
+                  <Link to={"/boutique"} >
                     <ComponentButton className='bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded' texte='Shop Now'/>
                   </Link>   
                   </div>
