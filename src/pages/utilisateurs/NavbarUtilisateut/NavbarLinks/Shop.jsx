@@ -5,17 +5,18 @@ import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 import useGlobal from "../../../../utils/hooks/useGlobal";
+
 import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 
 
 const Shop = () => {
 
-
   const [heartColors, setHeartColors] = useState(Array(10).fill('inherit'));
   const { produits, _id } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
+
 
 
   const handleClick = () => {
@@ -26,12 +27,12 @@ const Shop = () => {
 
   // // Logique de filtrage des produits
   const handleChange = (selectedCategorie) => {
-    if(selectedCategorie){
-      const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
-      setFilteredProducts(updatedProducts);
-    }else{
-      setFilteredProducts(produits)      
-    }
+
+
+    const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
+    setFilteredProducts(updatedProducts);
+    console.log(filteredProducts)
+
   }
 
   const fetchFilterCategories = async () => {
@@ -48,8 +49,8 @@ const Shop = () => {
   };
 
   useEffect(() => {
+
     fetchFilterCategories(produits);
-    setFilteredProducts(produits)
   }, []);
 
 
@@ -58,7 +59,6 @@ const Shop = () => {
   // Fonction pour changer la couleur du bouton "j'aime" au clic
   const changeHeartColor = (index) => {
     const newHeartColors = [...heartColors];
-
     newHeartColors[index] = newHeartColors[index] === 'inehrit' ? 'red' : 'inherit';
     setHeartColors(newHeartColors);
   };
@@ -89,6 +89,7 @@ const Shop = () => {
 
 
 
+
         <div className='shadow-lg rounded'>
           <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-[20px] mt-8">
             {filteredProducts.map((produit, index) => (
@@ -98,6 +99,7 @@ const Shop = () => {
         group max-w-full flex flex-col justify-between"
               >
                 {/* section image */}
+
                 <Link to={`/details/${_id}`} className="h-[200px] max-w-full flex items-center justify-center">
                   <img
                     src={produit.imageUrl}
@@ -119,6 +121,7 @@ const Shop = () => {
                     {produit.titre}
                   </p>
                   <div className="mt-auto">
+
                     <span className='border border-black rounded-full px-3 py-1 text-sm text-black'>
                       {produit.prix} FCFA
                     </span>
@@ -136,8 +139,8 @@ const Shop = () => {
 
                 {/* 
                 <button className="absolute top-3 right-2 ">
-                  <div className="flex items-center justify-center text- w-7 h-7">
-                    <BsSuitHeartFill className={`text-3xl ${heartColors[index]} cursor-pointer`} style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
+                  <div className="flex items-center justify-center text-black w-7 h-7">
+                    <BsSuitHeartFill className='text-3xl cursor-pointer' style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
                   </div>
                 </button>
                

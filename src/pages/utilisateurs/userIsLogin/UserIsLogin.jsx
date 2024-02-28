@@ -1,4 +1,3 @@
-
 import React from "react";
 import SidebareContextProvider from "../../../utils/contexte/SidebareContext";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -16,20 +15,24 @@ import ComptePage from "../comptePage/ComptePage";
 import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
-import DetailShopCards from "../NavbarUtilisateut/DetailShop/DetailShopCards"
+
+import DetailShopCards from "../NavbarUtilisateut/DetailShop/DetailShopCards";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
+import ErreurPage from "../erreurPage/ErreurPage";
+import CardProduit from "../../../usersComponents/cards/CardProduit";
 
 const UserIsLogin = () => {
   const location = useLocation();
   const urlPageActuel = location.pathname;
 
-  return ( 
+  return (
     <SidebareContextProvider>
       <ProduitProvider>
         <PanierProvider>
           <Navbar
-            className={`bg-white z-50 fixed top-0 w-full ${urlPageActuel === "/boutique" ? "border-b-2 border-gray-400" : ""
-              }`}
+            className={`bg-white z-50 fixed top-0 w-full ${
+              urlPageActuel === "/boutique" ? "border-b-2 border-gray-400" : ""
+            }`}
           />
           <Routes>
             <Route path="/" element={<Accueil />} />
@@ -37,7 +40,6 @@ const UserIsLogin = () => {
             <Route path="/boutique" element={<Shop />} />
             <Route path="/Arrivals" element={<Arrivals />} />
             <Route path="/contacts" element={<ContactsPage />} />
-
             <Route path="/apropos" element={<Aprops />} />
             <Route path="/Panier" element={<Panier />} />
             <Route path="/inscription" element={<Inscription />} />
@@ -45,6 +47,7 @@ const UserIsLogin = () => {
             <Route path="/compte/*" element={<ComptePage />} />
             <Route path="/details/:_id" element={<DetailsCard />} />
             <Route path="/detailShop/:id" element={<DetailShopCards />} />
+            <Route path="*" element={<ErreurPage />} />
           </Routes>
           <Footer />
         </PanierProvider>
