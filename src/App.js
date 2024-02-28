@@ -11,11 +11,7 @@ import Jornals from './pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Journal'
 import { Route, Routes } from 'react-router';
 import UserIsLogin from './pages/utilisateurs/userIsLogin/UserIsLogin';
 import { PanierProvider } from './utils/contexte/PanierContext';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import '@fontsource/montserrat';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 	return (
