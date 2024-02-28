@@ -2,8 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import axios from "axios";
 import { BsPlus } from "react-icons/bs";
+import { Rating } from 'react-simple-star-rating'
 
+  
 const Arrivals = () => {
+  const { rating, setRating } = useState(0);
   const { produits } = useContext(ProduitsContext);
   const [newArrivals, setNewArrivals] = useState([]);
 
@@ -37,48 +40,22 @@ const Arrivals = () => {
     <div>
       <h1>New Arrivals</h1>
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
-          {produits.map((produit, index) => (
-            <div
-              key={index}
-              className="items-center justify-center w-full h-full static border"
-            >
-              <div className="relative">
-                <img
-                  className="h-[17rem] w-[50rem]"
-                  src={produit.imageUrl}
-                  alt={produit.nom}
-                />
-                
-                <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
-
-                  <div className='flex justify-center items-center text-black font-bold w-7 h-7'>
-                    <BsPlus className='text-3xl' />
-                  </div>
-                </div>
-                <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
-
-                  <div className='flex justify-center items-center text-black font-bold w-7 h-7'>
-                    <BsPlus className='text-3xl' />
-                  </div>
-
-                </div>
-              </div>
-
-                <div className="p-3">
-                  <div className="mb-1 text-gray-500 capitalize text-md">
-                    {produit.categorie}
-                  </div>
-                  <div className="mb-1 text-gray-500 capitalize text-md">
+        {produits.map((produit, index) => (
+          <div
+            key={index}
+            className="items-center justify-center w-full h-full static border"
+          >
+            <div className="mb-1 text-gray-500 capitalize text-md">
                     {produit.nom}
                   </div>
-                  <div className="font-semi-bold">{produit.prix} FCFA</div>
-                </div>
-
-            </div>
-          ))}
-        </div>
+            <div className="font-semi-bold">{produit.prix} FCFA</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
+
+   
 };
 
 export default Arrivals;

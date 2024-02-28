@@ -7,26 +7,31 @@ import ComponentButton from "../../../../usersComponents/button/ComponentButton"
 import useGlobal from "../../../../utils/hooks/useGlobal";
 import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
+import { usePanier } from "../../../../utils/contexte/PanierContext";
+import { Rating } from 'react-simple-star-rating'
+
 
 
 const Shop = () => {
 
-
-  const [heartColors, setHeartColors] = useState(Array(10).fill('inherit'));
-  const { produits, _id } = useContext(ProduitsContext);
+  const { produits } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
-
+  const { addToCart } = usePanier();
+  const [hoverArray, setHoverArray] = useState(null);
+  const [rating, setRating] = useState(null);
+  const [produitAimer, setProduitAimer] = useState(() => {
+    const listesEnvies = localStorage.getItem("produitAimer");
+    return listesEnvies ? JSON.parse(listesEnvies) : [];
+  });
 
   const handleClick = () => {
-
     // Afficher tous les produits si aucune catégorie sélectionnée
     setFilteredProducts(produits);
   }
 
   // // Logique de filtrage des produits
   const handleChange = (selectedCategorie) => {
-
 
     const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
     setFilteredProducts(updatedProducts);
@@ -44,7 +49,6 @@ const Shop = () => {
       console.error("Erreur lors de la récupération des catégories:", error);
     }
 
-
   };
 
   useEffect(() => {
@@ -56,12 +60,39 @@ const Shop = () => {
   const { setDropdown } = useGlobal()
 
   // Fonction pour changer la couleur du bouton "j'aime" au clic
-  const changeHeartColor = (index) => {
-    const newHeartColors = [...heartColors];
+  const handleLikeToggle = (id, produit) => {
+    const isLiked = produitAimer.some(
+      (produit) => produit && produit._id === id
+    );
 
-    newHeartColors[index] = newHeartColors[index] === 'inehrit' ? 'red' : 'inherit';
-    setHeartColors(newHeartColors);
+    if (isLiked) {
+      const updaterProduits = produitAimer.filter(
+        (produit) => produit && produit._id !== id
+      );
+      setProduitAimer(updaterProduits);
+    } else {
+      const updaterProduits = [...produitAimer, produit];
+      setProduitAimer(updaterProduits);
+    }
   };
+
+  const handleAddToCart = () => {
+    addToCart(produits);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("produitAimer", JSON.stringify(produitAimer));
+  }, [produitAimer]);
+
+
+
+  // // Fonction pour mettre à jour l'état de survol pour un produit spécifique
+  // const handleHoverEtoils = (index, etoils) => {
+  //   let newHoverArray = [...hoverArray]; // Copie de l'array d'états actuel
+  //   newHoverArray[index] = etoils; // Met à jour l'état de survol pour le produit à l'index spécifié
+  //   setHoverArray(newHoverArray); // Met à jour l'état du composant
+  // };
+
   return (
     <>
       <div
@@ -78,7 +109,7 @@ const Shop = () => {
           {categories.map((categorie, index) => (
             <div className="flex" key={index}>
               <ComponentButton
-                className=" hover:bg-gray-200 active:bg-gray-200 text-black ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
+                className=" focus:bg-gray-200 active:bg-gray-200 hover:bg-gray-200  text-black ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
                 texte={categorie.nom}
                 onClick={() => handleChange(categorie.nom)}
               />
@@ -90,15 +121,15 @@ const Shop = () => {
 
 
         <div className='shadow-lg rounded'>
-          <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-[20px] mt-8">
-            {filteredProducts.map((produit, index) => (
-              <div key={index}
+          <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
+            {filteredProducts.map((produit) => (
+              <div key={produit && produit._id}
                 data-aos="zoom-in"
                 className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 
-        group max-w-full flex flex-col justify-between"
+                group max-w-full flex flex-col justify-between"
               >
                 {/* section image */}
-                <Link to={`/details/${_id}`} className="h-[200px] max-w-full flex items-center justify-center">
+                <Link to={`/details/${produit._id}`} className="h-[200px] max-w-full flex items-center justify-center">
                   <img
                     src={produit.imageUrl}
                     alt="tofs"
@@ -106,13 +137,29 @@ const Shop = () => {
                   />
                 </Link>
                 {/* section details */}
-                <div className="p-4 text-center">
+                <div className="p-4">
                   {/* star rating */}
-                  <div className="w-full flex items-center justify-center gap-1">
-                    <FaStar className="text-yellow-500" />
-                    <FaStar className="text-yellow-500" />
-                    <FaStar className="text-yellow-500" />
-                    <FaStar className="text-yellow-500" />
+                  <div className="w-full items-center gap-1 flex justify-center"> {/* Ajoutez la classe flex justify-center */}
+                    {[...Array(5)].map((start, index) => {
+                      const etoils = index + 1;
+                      return (
+                        <label key={index}>
+                          <input type="radio"
+                            name={`rating-${index}`}
+                            value={etoils}
+                            className="hidden"
+                            onClick={() => setRating(etoils)}
+                          />
+                          <FaStar
+                            classNeme=""
+                            size={20}
+                            color={etoils <= (hoverArray || rating) ? "#ffc107" : "#e4e5e9"}
+                            onMouseEnter={() => setHoverArray ( etoils)}
+                            onMouseLeave={() => setHoverArray ( null)}
+                          />
+                        </label>
+                      )
+                    })}
                   </div>
                   <h1 className="text-xl font-bold">{produit.categorie}</h1>
                   <p className="text-gray-500 group-hover:text-white mb-2 duration-300 text-sm line-clamp-2">
@@ -123,25 +170,32 @@ const Shop = () => {
                       {produit.prix} FCFA
                     </span>
                   </div>
+                  <div>
+                    <hr />
+                    dff
+                  </div>
                 </div>
                 {/* Bouton ajout panier */}
-                <div className='absolute top-1 -right-1 p-2 flex flex-col justify-center items-center'>
-
-                  <div className='flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10'>
-                    <BsPlus className='text-3xl' />
-                  </div>
-
+                <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
+                  <button onClick={handleAddToCart}>
+                    <div className='flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10'>
+                      <BsPlus className='text-3xl' />
+                    </div>
+                  </button>
                 </div>
+                <BsSuitHeartFill
+                  onClick={() =>
+                    handleLikeToggle(produit && produit._id, produit)
+                  }
+                  className={`text-2xl absolute top-3 right-2  ${produitAimer.some(
+                    (likedProduit) =>
+                      likedProduit && likedProduit._id === produit._id
+                  )
+                    ? "text-red-500 "
+                    : "text-gray-200"
+                    } `}
+                />
 
-
-                {/* 
-                <button className="absolute top-3 right-2 ">
-                  <div className="flex items-center justify-center text- w-7 h-7">
-                    <BsSuitHeartFill className={`text-3xl ${heartColors[index]} cursor-pointer`} style={{ color: heartColors[index] }} onClick={() => changeHeartColor(index)} />
-                  </div>
-                </button>
-               
-         */}
               </div>
             ))}
           </div>
