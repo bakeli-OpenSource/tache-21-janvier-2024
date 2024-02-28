@@ -32,38 +32,6 @@ const CommandeContextProvider = ({ children }) => {
     const [modif, setModifModal]= useState("")
     const [commandes, setCommandes] = useState([])
 
-    // const actions = [
-    //   {
-    //     icon: <TbEyeShare />,
-    //     color: 'bg-green-500',
-    //     handleClick: (commandeId) => {
-    //       localStorage.setItem("commandeIdCli", commandeId)
-    //       navigate('/admin/commandes/DetailsCommande');
-    //       handleDetail(commandeId)
-    //     },
-    //   },
-    //   {
-    //     icon: <MdEdit />,
-    //     color: 'bg-orange-500',
-    //     handleClick: (commandeId) => {
-    //       commandes.map((commande) => {
-    //         if (commande._id === commandeId) {
-    //           setEtat(commande.etat);
-    //         }
-    //       });
-    //       setIsEditing(true);
-    //       setShowModal(true);
-    //       setEditingCommandeId(commandeId);
-    //     },
-    //   },
-    //   {
-    //     icon: <MdOutlineDelete />,
-    //     color: 'bg-red-600',
-    //     handleClick: (commandeId) => {
-    //       handleDelete(commandeId);
-    //     },
-    //   },
-    // ];
 
 
 
