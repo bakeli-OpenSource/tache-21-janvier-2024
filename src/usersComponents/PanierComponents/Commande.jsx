@@ -62,10 +62,7 @@ const Commande = () => {
 			quantite: orderItems.map((item) => item.quantity),
 			date: new Date().toISOString().split('T')[0],
 			etat: 'en attente',
-			prixProduit: orderItems.reduce(
-				(total, item) => total + item.prixTotal,
-				0,
-			),
+			prixProduit: orderItems.map((item) => item.prix),
 			prixLivraison: prixLivraison,
 			prixTotal: orderItems.reduce(
 				(total, item) => total + item.prixTotal,
