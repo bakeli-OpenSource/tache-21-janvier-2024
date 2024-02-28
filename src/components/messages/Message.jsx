@@ -43,12 +43,14 @@ const Message = () => {
                 const response = await axios.get("https://kay-solu-api.onrender.com/api/messages");
                 const modifiedData = response.data.map(obj => {
                     return {
+                      _id: obj._id,
                       nomCli: obj.prenomNom,
                       emailCli: obj.email,
                       telCli: obj.telephone,
                     };
                 });
                 setMessage(modifiedData);
+                
             } catch (error) {
                 console.error("Erreur lors de la récupération des clients:", error);
             }

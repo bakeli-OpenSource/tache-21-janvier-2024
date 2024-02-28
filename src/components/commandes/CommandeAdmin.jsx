@@ -18,7 +18,6 @@ const CommandeAdmin = () => {
     handleDelete,
     setEtat,
     setShowModal,
-    // setIsEditing,
     setEditingCommandeId
   } = useCommandes();
 
@@ -33,10 +32,10 @@ const CommandeAdmin = () => {
 		{
 			icon: <TbEyeShare />,
 			color: 'bg-green-500',
-			handleClick: (commandeId) => {
-				localStorage.setItem("commandeIdCli", commandeId)
-				navigate('/admin/commandes/DetailsCommande');
-				handleDetail(commandeId)
+			handleClick: (id) => {
+				localStorage.setItem("commandeIdCli", id)
+				navigate('/admin/commandes/' + id);
+				handleDetail(id)
 			},
 		},
 		{
@@ -67,7 +66,6 @@ const CommandeAdmin = () => {
     <div className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>
       <HeaderTable
         title="Commandes"
-        // nomAjout="Ajouter des Commandes"
         body={
           <form onSubmit={handleSubmit} >
             <select onChange={(e) => setSelectsValue(e.target.value)}>

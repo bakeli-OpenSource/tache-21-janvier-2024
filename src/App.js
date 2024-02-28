@@ -12,6 +12,7 @@ import { Route, Routes } from 'react-router';
 import UserIsLogin from './pages/utilisateurs/userIsLogin/UserIsLogin';
 import { PanierProvider } from './utils/contexte/PanierContext';
 import '@fontsource/montserrat';
+import ErreurPage from "./pages/utilisateurs/erreurPage/ErreurPage";
 
 function App() {
 	return (
@@ -22,6 +23,8 @@ function App() {
 						<Route path="/*" element={<UserIsLogin />} />
 						<Route path="/admin" element={<AdminConnexion />} />
 						<Route path="/admin/*" element={<IsLogin />} />
+						<Route path="/error" element={<ErreurPage />} />
+						<Route path="*" element={<ErreurPage />} />
 					</Routes>
 				</PanierProvider>
 			</GlobalContextProvider>
@@ -30,3 +33,5 @@ function App() {
 }
 
 export default App;
+
+
