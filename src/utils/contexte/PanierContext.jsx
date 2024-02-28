@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const PanierContext = createContext();
 
@@ -93,6 +95,7 @@ export const PanierProvider = ({ children }) => {
 			}
 		});
 		setNotificationCount((prevCount) => prevCount + 1);
+		toast.success('Article ajouté avec succès');
 	};
 
 	const viderPanier = () => {
