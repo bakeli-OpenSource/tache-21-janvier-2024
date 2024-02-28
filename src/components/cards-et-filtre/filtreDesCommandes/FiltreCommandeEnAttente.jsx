@@ -207,12 +207,14 @@ const FiltreCommandeEnAttente = () => {
 	const fetchCommandes = async () => {
 		try {
 			const response = await axios.get(
-				'https://kay-solu-api.onrender.com/api/commandes',
+				'https://kay-solu-api.onrender.com/api/commandes'
 			);
-			setCommandes(response.data);
-			console.log('Commandes récupérées avec succès');
+			// Filtrer localement les commandes en attente
+			const commandesEnAttente = response.data.filter(commande => commande.etat === 'en attente');
+			setCommandes(commandesEnAttente);
+			console.log('Commandes en attente récupérées avec succès');
 		} catch (error) {
-			console.error('Erreur lors de la récupération des commandes:', error);
+			console.error('Erreur lors de la récupération des commandes en attente:', error);
 		}
 	};
 

@@ -6,36 +6,41 @@ export const CommandeContext = createContext();
 
 const CommandeContextProvider = ({ children }) => {
   // const navigate = useNavigate()
-  
-  
-      const table = [
-        'Nom','E-mail', 'Produit', ' Quantite', 'Telephone', 'Etat de la commande', 'Prix Produit', 'Prix Livraison', 'Prix total', 'Actions'
-    ]
-    
-    const [idProduit, setIdProduit] = useState("")
-    const [email, setEmail] = useState("")
-    const [quantite, setQuantite] = useState(0)
-    const [produit, setProduit] = useState("")
-    const [date, setDate] = useState('')
-    const [etat, setEtat] = useState('')
-    const [prixTotal, setPrixTotal] = useState("")
-    const [telephone, setTelephone] = useState("")
-    const [adresse, setAdresse] = useState("")
-    const [prixLivraison, setPrixLivraison] = useState("")
-    const [prixProduit, setPrixProduit] = useState("")
-    const [modif, setModifModal]= useState("")
-    const [commandes, setCommandes] = useState([])
 
-    
+  const table = [
+    "Nom",
+    "E-mail",
+    "Produit",
+    " Quantite",
+    "Telephone",
+    "Etat de la commande",
+    "Prix Produit",
+    "Prix Livraison",
+    "Prix total",
+    "Actions",
+  ];
 
-    
+  const [idProduit, setIdProduit] = useState("");
+  const [email, setEmail] = useState("");
+  const [quantite, setQuantite] = useState(0);
+  const [produit, setProduit] = useState("");
+  const [date, setDate] = useState("");
+  const [etat, setEtat] = useState("");
+  const [prixTotal, setPrixTotal] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [adresse, setAdresse] = useState("");
+  const [prixLivraison, setPrixLivraison] = useState("");
+  const [prixProduit, setPrixProduit] = useState("");
+  const [modif, setModifModal] = useState("");
+  const [commandes, setCommandes] = useState([]);
+
   const value = {
-    table, 
+    table,
     commandes,
     // actions,
-    produit, 
-    setProduit, 
-    idProduit, 
+    produit,
+    setProduit,
+    idProduit,
     setIdProduit,
     telephone,
     setTelephone,
@@ -44,7 +49,7 @@ const CommandeContextProvider = ({ children }) => {
     prixLivraison,
     setPrixLivraison,
     prixProduit,
-    setPrixProduit, 
+    setPrixProduit,
     email,
     quantite,
     prixTotal,
@@ -55,12 +60,16 @@ const CommandeContextProvider = ({ children }) => {
     setEtat,
     setDate,
     setQuantite,
-    modif, 
+    modif,
     setModifModal,
-    setCommandes
+    setCommandes,
   };
 
-  return <CommandeContext.Provider value={value}>{children}</CommandeContext.Provider>;
+  return (
+    <CommandeContext.Provider value={value}>
+      {children}
+    </CommandeContext.Provider>
+  );
 };
 
 export default CommandeContextProvider;
