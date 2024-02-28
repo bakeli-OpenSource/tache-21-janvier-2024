@@ -59,11 +59,11 @@ const Tbody = ({tbody, actions}) => {
                         {td.date}
                     </td> : null
                     } */}
-                    {td.telephone ?
+                    {/* {td.telephone ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.telephone}
                     </td> : null
-                    }
+                    } */}
                     {td.etat ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.etat}
@@ -74,11 +74,11 @@ const Tbody = ({tbody, actions}) => {
                         {td.prixProduit}
                     </td> : null
                     }
-                    {td.prixLivraison ?
+                    {/* {td.prixLivraison ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prixLivraison}
                     </td> : null
-                    }
+                    } */}
                     {td.prix ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prix.toLocaleString('de-DE')}
@@ -128,6 +128,11 @@ const Tbody = ({tbody, actions}) => {
                     {td.telCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.telCli}
+                    </td> : null
+                    }
+                    {td.dateMes ?
+                    <td className="px-4 py-5 text-center text-xxl border">
+                        {td.dateMes}
                     </td> : null
                     }
 

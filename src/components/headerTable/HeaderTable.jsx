@@ -80,7 +80,7 @@ export function BouttonComponent({onClick, nomAjout}) {
     <button 
       type="button"
       onClick={onClick}
-      className='text-white bg-gray-800 mt-1 py-4 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:focus:ring-gray-850 shadow-lg shadow-gray-500/50 dark:shadow-sm font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2'
+      className='text-white bg-gray-800 mt-1 focus:ring-4 focus:outline-none focus:ring-gray-500 dark:focus:ring-gray-850 shadow-lg shadow-gray-500/50 dark:shadow-sm font-medium rounded-lg text-sm px-5 py-4 text-center me-2 mb-2'
     >
       {nomAjout}
     </button>

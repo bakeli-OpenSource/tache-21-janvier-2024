@@ -5,53 +5,61 @@ import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 import useGlobal from "../../../../utils/hooks/useGlobal";
-import { Link } from "react-router-dom";
+
+import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 
+
 const Shop = () => {
-  const [heartColors, setHeartColors] = useState(Array(10).fill("inherit"));
+
+  const [heartColors, setHeartColors] = useState(Array(10).fill('inherit'));
   const { produits, _id } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+
+
   const handleClick = () => {
+
     // Afficher tous les produits si aucune catégorie sélectionnée
     setFilteredProducts(produits);
-  };
+  }
 
   // // Logique de filtrage des produits
   const handleChange = (selectedCategorie) => {
-    const updatedProducts = produits.filter(
-      (produit) => produit.categorie === selectedCategorie
-    );
+
+
+    const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
     setFilteredProducts(updatedProducts);
-    console.log(filteredProducts);
-  };
+    console.log(filteredProducts)
+
+  }
 
   const fetchFilterCategories = async () => {
     try {
-      const response = await axios.get(
-        "https://kay-solu-api.onrender.com/api/categories"
-      );
+      const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
       setCategories(response.data);
       console.log("Catégories récupérées avec succès");
-      setFilteredProducts(produits);
+      setFilteredProducts(produits)
     } catch (error) {
       console.error("Erreur lors de la récupération des catégories:", error);
     }
+
+
   };
 
   useEffect(() => {
+
     fetchFilterCategories(produits);
   }, []);
 
-  const { setDropdown } = useGlobal();
+
+  const { setDropdown } = useGlobal()
 
   // Fonction pour changer la couleur du bouton "j'aime" au clic
   const changeHeartColor = (index) => {
     const newHeartColors = [...heartColors];
-    newHeartColors[index] =
-      newHeartColors[index] === "inehrit" ? "red" : "inherit";
+    newHeartColors[index] = newHeartColors[index] === 'inehrit' ? 'red' : 'inherit';
     setHeartColors(newHeartColors);
   };
   return (
@@ -74,24 +82,25 @@ const Shop = () => {
                 texte={categorie.nom}
                 onClick={() => handleChange(categorie.nom)}
               />
+
             </div>
           ))}
         </div>
 
-        <div className="shadow-lg rounded">
+
+
+
+        <div className='shadow-lg rounded'>
           <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-[20px] mt-8">
             {filteredProducts.map((produit, index) => (
-              <div
-                key={index}
+              <div key={index}
                 data-aos="zoom-in"
                 className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 
         group max-w-full flex flex-col justify-between"
               >
                 {/* section image */}
-                <Link
-                  to={`/details/${_id}`}
-                  className="h-[200px] max-w-full flex items-center justify-center"
-                >
+
+                <Link to={`/details/${_id}`} className="h-[200px] max-w-full flex items-center justify-center">
                   <img
                     src={produit.imageUrl}
                     alt="tofs"
@@ -112,17 +121,21 @@ const Shop = () => {
                     {produit.titre}
                   </p>
                   <div className="mt-auto">
-                    <span className="border border-black rounded-full px-3 py-1 text-sm text-black">
+
+                    <span className='border border-black rounded-full px-3 py-1 text-sm text-black'>
                       {produit.prix} FCFA
                     </span>
                   </div>
                 </div>
                 {/* Bouton ajout panier */}
-                <div className="absolute top-1 -right-1 p-2 flex flex-col justify-center items-center">
-                  <div className="flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10">
-                    <BsPlus className="text-3xl" />
+                <div className='absolute top-1 -right-1 p-2 flex flex-col justify-center items-center'>
+
+                  <div className='flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10'>
+                    <BsPlus className='text-3xl' />
                   </div>
+
                 </div>
+
 
                 {/* 
                 <button className="absolute top-3 right-2 ">
@@ -135,6 +148,7 @@ const Shop = () => {
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </>
