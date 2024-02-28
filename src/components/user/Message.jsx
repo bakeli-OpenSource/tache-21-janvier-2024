@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaRegCircleXmark, FaSquareEnvelope } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
-import { MdDelete } from 'react-icons/md';
+// import { MdDelete } from 'react-icons/md';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,8 +18,9 @@ const Message = ({nouveauMessage}) => {
         const response = await axios.put('https://kay-solu-api.onrender.com/api/messages/' + id, { lu: true });
         
         if (response.status === 200) { 
-          console.log('Message supprimé:', response.data);
-          toast.success('Message supprimé!');
+          console.log('Message lu:', response.data);
+          toast.success('Affichage du message!');
+          navigate("messages/" + id)
         } else {
           throw new Error('Erreur lors de la suppression du message');
         }
@@ -43,13 +44,13 @@ const Message = ({nouveauMessage}) => {
             <div className='px-4 py-3 text-sm flex flex-col overflow-auto max-h-[250px]'>
                 {nouveauMessage.length ?
                   nouveauMessage.map((message, index) => (
-                    <button onClick={() => navigate("messages/" + message._id) }  key={index} className={`mb-2 bg-white  text-black py-2 rounded-lg col-span-3 shadow-xl ${border}`}>
+                    <button onClick={() => messageLu(message._id)}  key={index} className={`mb-2 bg-white  text-black py-2 rounded-lg col-span-3 shadow-xl ${border}`}>
                       <div className="flex justify-between px-3">
                           <div className=''>
                             <p className="text-lg text-start font-semibold pb-1">Nouveau Message</p>
                             <p className='text-start text-slate-600'>Vous avez recu un message de <span className='font-semibold'>{message.prenomNom}</span></p>
                           </div>
-                          <MdDelete className='cursor-pointer text-lg text-red-700 shadow-sm' onClick={() => messageLu(message._id)} />
+                          {/* <MdDelete className='cursor-pointer text-lg text-red-700 shadow-sm' onClick={() => messageLu(message._id)} /> */}
                       </div>
                     </button>
                   )) : <div className='px-4 py-3 text-sm flex flex-col text-black'>

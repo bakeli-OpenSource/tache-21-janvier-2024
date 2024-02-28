@@ -3,12 +3,13 @@ import { FaRegCircleXmark } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
 import axios from 'axios';
 import { MdDelete } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 
 const Notification = ({nouveauCommande}) => {
 
     const {notification, handleNotification} = useSidebare()
-
+    const navigate = useNavigate()
 
     const messageLu = async (id) => {
       try {
@@ -40,7 +41,7 @@ const Notification = ({nouveauCommande}) => {
               <div className='px-4 py-3 text-sm flex flex-col overflow-auto h-[250px]'>
                 {nouveauCommande.length ?
                   nouveauCommande.map((commande, index) => (
-                    <button  key={index} className="mb-2 bg-white border-s-4 border-sky-500 text-black py-2 rounded-lg col-span-3 shadow-xl">
+                    <button onClick={() => navigate("commandes/" + commande._id) }   key={index} className="mb-2 bg-white border-s-4 border-sky-500 text-black py-2 rounded-lg col-span-3 shadow-xl">
                       <div className="flex justify-between px-3">
                           <div className=''>
                             <p className="text-lg text-start font-semibold pb-1">Nouvelle Commande</p>
