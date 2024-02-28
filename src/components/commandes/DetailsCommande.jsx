@@ -50,19 +50,34 @@ const DetailsCommande = () => {
     {commandeCli.map(item => (
       <div key={item.id} className="flex items-center gap-7">
         <div className="">
-          {/* <img
+          <img
             src={item.image}
             alt={item.produit}
             className="w-32 h-auto"
-          /> */}
+          />
         </div>
         <div>
           <p>{item.produit}</p>
-          <p className="mt-3 bg">{item.idProduit}</p>
-          <button className="px-2 my-3 py-1 rounded text-white bg-slate-800">
-            {item.etat}
-          </button>
-          <p className="font-medium">{item.date}</p>
+          {/* <p className="mt-3 bg">{item.idProduit}</p> */}
+          <div className="flex items-center gap-2">
+                  <span
+                    className={`h-4 w-4 rounded-full ${
+                      item.etat === "en cours" ? "bg-blue-500" : "bg-yellow-500"
+                    }`}
+                  ></span>
+                  <button
+                    className={`px-2 my-3 py-1 rounded text-white ${
+                      item.etat === "en cours" ? "bg-blue-500" : "bg-yellow-500"
+                    }`}
+                  >
+                    {item.etat}
+                  </button>
+                </div>
+          <p className="font-medium">Date : {item.date}</p>
+          <p className="font-medium">Telephoe : {item.telephone}</p>
+          <p className="font-medium">Prix total : {item.prixTotal}cfa</p>
+          <p className="font-medium">Prix livraison : {item.prixLivraison}cfa</p>
+          <p className="font-medium">Adress :{item.adress}</p>
         </div>
       </div>
     ))}
