@@ -5,6 +5,7 @@ import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 import useGlobal from "../../../../utils/hooks/useGlobal";
+
 import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 
@@ -15,6 +16,7 @@ const Shop = () => {
   const { produits, _id } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
+
 
 
   const handleClick = () => {
@@ -87,6 +89,7 @@ const Shop = () => {
 
 
 
+
         <div className='shadow-lg rounded'>
           <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-[20px] mt-8">
             {filteredProducts.map((produit, index) => (
@@ -96,6 +99,7 @@ const Shop = () => {
         group max-w-full flex flex-col justify-between"
               >
                 {/* section image */}
+
                 <Link to={`/details/${_id}`} className="h-[200px] max-w-full flex items-center justify-center">
                   <img
                     src={produit.imageUrl}
@@ -117,6 +121,7 @@ const Shop = () => {
                     {produit.titre}
                   </p>
                   <div className="mt-auto">
+
                     <span className='border border-black rounded-full px-3 py-1 text-sm text-black'>
                       {produit.prix} FCFA
                     </span>

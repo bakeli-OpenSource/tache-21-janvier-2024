@@ -25,7 +25,7 @@ const Navbar = ({ className }) => {
         <div className="flex items-center justify-between w-full gap-3 md:w-auto ">
           <div className="z-50 flex flex-row-reverse justify-between items-center w-full md:w-auto">
             <div className="md:hidden flex  gap-4 items-center justify-center">
-              <Dropdown />
+              <Dropdown onClick={() => setOpen(false)} />
               <Link to="/Panier" className="relative flex items-center group">
                 <span className="mr-2">
                   <ShoppingCartIcon className="w-6 h-6" />
@@ -36,7 +36,7 @@ const Navbar = ({ className }) => {
               </Link>
             </div>
             <Link to={"/"} className="cursor-pointer w-[60px] h-[60px]">
-              <img src={icone} className="w-full h-full" />.
+              <img src={icone} className="w-full h-full" onClick={() => setOpen(false)}/>.
             </Link>
             <div className="text-3xl md:hidden flex  gap-5 items-center justify-center">
               {open ? (
