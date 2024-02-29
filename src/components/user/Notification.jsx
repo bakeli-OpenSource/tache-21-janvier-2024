@@ -16,8 +16,7 @@ const Notification = ({nouveauCommande}) => {
         const response = await axios.put('https://kay-solu-api.onrender.com/api/commande/' + id, { lu: true });
         
         if (response.status === 200) { 
-          console.log('Message effacé:', response.data);
-          alert('Message supprimé');
+          navigate("commandes/" + id)
         } else {
           throw new Error('Erreur lors de la suppression du message');
         }
@@ -41,13 +40,13 @@ const Notification = ({nouveauCommande}) => {
               <div className='px-4 py-3 text-sm flex flex-col overflow-auto h-[250px]'>
                 {nouveauCommande.length ?
                   nouveauCommande.map((commande, index) => (
-                    <button onClick={() => navigate("commandes/" + commande._id) }   key={index} className="mb-2 bg-white border-s-4 border-sky-500 text-black py-2 rounded-lg col-span-3 shadow-xl">
+                    <button onClick={ () => messageLu(commande._id) }   key={index} className="mb-2 bg-white border-s-4 border-sky-500 text-black py-2 rounded-lg col-span-3 shadow-xl">
                       <div className="flex justify-between px-3">
                           <div className=''>
                             <p className="text-lg text-start font-semibold pb-1">Nouvelle Commande</p>
                             <p className='text-start text-slate-600'><span className='font-semibold'>{commande.prenom} {commande.nom}</span> vient d'effectuer une commande</p>
                           </div>
-                          <MdDelete className='cursor-pointer text-lg text-red-700 shadow-sm' onClick={() => messageLu(commande._id)} />
+                          {/* <MdDelete className='cursor-pointer text-lg text-red-700 shadow-sm' onClick={() => messageLu(commande._id)} /> */}
                       </div>
                     </button>
                   )) : <div className='px-4 py-3 text-sm flex flex-col text-black'>

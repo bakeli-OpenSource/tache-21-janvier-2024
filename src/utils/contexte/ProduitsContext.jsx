@@ -30,7 +30,7 @@ const ProduitContextProvider = ({ children }) => {
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
   const [promo, setPromo] = useState(0)
-  const [titreModal, setTitreModal] = useState('')
+  const [titreModal, setTitreModal] = useState('Ajouter un produits')
   const [corpModal, setCorpModal] = useState('')
   const [soumettre, setSoumettre] = useState('Ajouter')
   const [idAModifie, setIdAModifie] = useState('')
@@ -250,6 +250,7 @@ const ProduitContextProvider = ({ children }) => {
         console.log('Produit modifié avec succès:', response.data);
         toast.warning ('Produit modifié avec succès!');
         setShowModal(false);
+        setTitreModal("Ajouter un produits")
         setSoumettre('Ajouter')
       } else {
         throw new Error('Erreur lors de la modification du produit');
@@ -282,6 +283,7 @@ const ProduitContextProvider = ({ children }) => {
         console.error("Erreur lors de la récupération des produits:", error);
       }
   }
+
 
 
   useEffect(() => {
@@ -339,6 +341,7 @@ const ProduitContextProvider = ({ children }) => {
     setTaille('')
     setFournisseur('')
     setPromo('')
+    console.log(soumettre);
   }    
   
   const fetchProduitsCategorie = async (idCategory) => {

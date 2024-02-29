@@ -5,15 +5,19 @@ import HeaderTable from '../headerTable/HeaderTable';
 import useSidebare from '../../utils/hooks/useSidebare';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 
 const DetailsCommande = () => {
-  const commandeId = localStorage.getItem("commandeIdCli")
-  // const {commandeId} = useParams()
-	const [data, setData] = useState([]);
-	useEffect(() => {
 
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
+  const commandeId = pathnames.pop();
+
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+    
     const fetchCommande = async (commandeId) => {
         try {
             const response = await axios.get(
@@ -25,13 +29,9 @@ const DetailsCommande = () => {
         }
     };
     fetchCommande(commandeId);
-  }, [data]);
+  }, [commandeId]);
 
   const {open} = useSidebare()
-  // const commandeCli = data.filter(
-  //   (commande) => commande._id === localStorage.getItem("commandeIdCli")
-  // )
-
 
   return (
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>

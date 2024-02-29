@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import { FaRegCircleXmark, FaSquareEnvelope } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
-// import { MdDelete } from 'react-icons/md';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -18,15 +15,12 @@ const Message = ({nouveauMessage}) => {
         const response = await axios.put('https://kay-solu-api.onrender.com/api/messages/' + id, { lu: true });
         
         if (response.status === 200) { 
-          console.log('Message lu:', response.data);
-          toast.success('Affichage du message!');
           navigate("messages/" + id)
         } else {
           throw new Error('Erreur lors de la suppression du message');
         }
       } catch (error) {
         console.error('Erreur lors de la suppresion du message:', error);
-        toast.error('Erreur lors de la suppresion du message!');
       }
     }
   
@@ -60,7 +54,6 @@ const Message = ({nouveauMessage}) => {
               </div>
           </div>
         )}
-        <ToastContainer />
       </div>
     );
 }
