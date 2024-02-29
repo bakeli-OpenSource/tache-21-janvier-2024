@@ -26,39 +26,64 @@ const Shop = () => {
     return listesEnvies ? JSON.parse(listesEnvies) : [];
   });
 
+  const [categorieSelect, setCategorieSelect] = useState([]); 
+  const [categorieId, setCategorieId] = useState('')
+  const [listeProduitsCategories, setListeProduitsCategories] = useState([])
 
-  const handleClick = () => {
-    // Afficher tous les produits si aucune catégorie sélectionnée
-    setFilteredProducts(produits);
-  }
+  // const handleClick = () => {
+  //   // Afficher tous les produits si aucune catégorie sélectionnée
+  //   setFilteredProducts(produits);
+  // }
 
-  // // Logique de filtrage des produits
-  const handleChange = (selectedCategorie) => {
+  
 
-    const updatedProducts = produits.filter((produit) => produit.categorie === selectedCategorie);
-    setFilteredProducts(updatedProducts);
-    console.log(filteredProducts)
+  const fetchProduitsCategorie = async (idCategory) => {
+    try {
+      const response = await axios.get(`https://kay-solu-api.onrender.com/api/produits/categorie/${idCategory}`);      
+      setListeProduitsCategories(response.data)
+      console.log('Produits catégorie récupérées avec succès');
+    } catch (error) {
+      console.error('Erreur lors de la récupération des produits de la catégories :', error);
+    }
+  };
 
-  }
+  const filtreProdCategorie = () => {
+    const selectedCategory = categories.find((cat) => cat.nom === categorieSelect);
+    
+    if (selectedCategory) {
+      setCategorieId(selectedCategory._id);
+      fetchProduitsCategorie(categorieId)
+      setFilteredProducts(listeProduitsCategories);
 
+    } else {
+      setFilteredProducts(produits)
+    }
+}
   const fetchFilterCategories = async () => {
     try {
       const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
       setCategories(response.data);
       console.log("Catégories récupérées avec succès");
-      setFilteredProducts(produits)
     } catch (error) {
       console.error("Erreur lors de la récupération des catégories:", error);
     }
 
   };
 
-  useEffect(() => {
-    fetchFilterCategories(produits);
+   // // Logique de filtrage des produits
+   const handleChange = (selectedCategorie) => {
+    setCategorieSelect(selectedCategorie)
+    filtreProdCategorie()
+  } 
 
+  useEffect(() => {    
+    fetchFilterCategories();
+    filtreProdCategorie()
   }, []);
 
-
+  useEffect(() => {
+    setFilteredProducts(produits)
+	  }, [categories]);
 
   const { setDropdown } = useGlobal()
 
@@ -107,7 +132,7 @@ const Shop = () => {
           <ComponentButton
             className="hover:bg-gray-200 text-black ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
             texte={"Tous les Produits"}
-            onClick={() => handleClick()}
+            onClick={() => handleChange()}
           />
           {categories.map((categorie, index) => (
             <div className="flex" key={index}>
@@ -220,7 +245,6 @@ const Shop = () => {
           </div>
         </div>
             ))}
-          
 
         </div>
       </div>

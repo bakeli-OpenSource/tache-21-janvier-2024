@@ -9,10 +9,12 @@ import Formulaire from '../../components/formulaire/Formulaire';
 
 const DetailsCategorie = ({data}) => {
 
-  const {table, actions, inputs, textarea, selects, hanldleSubmit, titreModal, handleSelectChange, setTitreModal} = useProduits();
+  const { actions, inputs, textarea, selects, hanldleSubmit, titreModal, handleSelectChange, setTitreModal} = useProduits();
   const {open} = useSidebare()
 
-
+  const table = [
+    'Article', 'Quantité', 'Prix'
+  ]
   
   setTitreModal(
     'Ajouter un produits'
@@ -21,7 +23,6 @@ const DetailsCategorie = ({data}) => {
     <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4  my-3 `}>
       <HeaderTable
        title="Produits"
-       nomAjout={titreModal} 
        body={<Formulaire 
                 inputs={inputs} 
                 textarea={textarea} 
@@ -30,7 +31,7 @@ const DetailsCategorie = ({data}) => {
                 handleSelectChange = {handleSelectChange}
             />} 
        />
-      <Table thead={table} tbody={data} actions={actions} />
+      <Table thead={table} tbody={data} />
     </div>
   )
 }
