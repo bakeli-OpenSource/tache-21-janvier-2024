@@ -1,10 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-import { BsSuitHeartFill, BsPlus } from "react-icons/bs";
+import { BsSuitHeartFill} from "react-icons/bs";
 import axios from "axios";
 import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 import useGlobal from "../../../../utils/hooks/useGlobal";
+import { FaShoppingCart } from "react-icons/fa";
+import { IoEyeSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import { usePanier } from "../../../../utils/contexte/PanierContext";
@@ -13,7 +15,6 @@ import { Rating } from 'react-simple-star-rating'
 
 
 const Shop = () => {
-
   const { produits } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -24,6 +25,7 @@ const Shop = () => {
     const listesEnvies = localStorage.getItem("produitAimer");
     return listesEnvies ? JSON.parse(listesEnvies) : [];
   });
+
 
   const handleClick = () => {
     // Afficher tous les produits si aucune catégorie sélectionnée
@@ -52,7 +54,6 @@ const Shop = () => {
   };
 
   useEffect(() => {
-
     fetchFilterCategories(produits);
   }, []);
 
@@ -74,7 +75,7 @@ const Shop = () => {
       const updaterProduits = [...produitAimer, produit];
       setProduitAimer(updaterProduits);
     }
-  };
+  }
 
   const handleAddToCart = () => {
     addToCart(produits);
@@ -118,28 +119,50 @@ const Shop = () => {
           ))}
         </div>
 
+        <div className="grid px-3 md:ps-9 md:pe-9  grid-cols-1 mt-[80px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-[30px]  mx-auto md:max-w-none md:mx-0">
 
-
-        <div className='shadow-lg rounded'>
-          <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
             {filteredProducts.map((produit) => (
-              <div key={produit && produit._id}
-                data-aos="zoom-in"
-                className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 
-                group max-w-full flex flex-col justify-between"
+             
+              <div
+        key={produit && produit._id}
+        className="shadow-lg  rounded bg-white"
+      >
+        <div className="border border-[#e4e4e4] bg-[#dedddd] h-[300px] sm:h-[200px] relative overflow-hidden group transition">
+          <div className="w-full  h-auto flex ">
+            <Link
+                to={`/details/${produit._id}`}
+                className="w-full   flex justify-center items-center"
               >
-                {/* section image */}
-                <Link to={`/details/${produit._id}`} className="h-[200px] max-w-full flex items-center justify-center">
-                  <img
-                    src={produit.imageUrl}
-                    alt="tofs"
-                    className="max-h-full max-w-full mx-auto drop-shadow-md object-contain"
-                  />
-                </Link>
-                {/* section details */}
-                <div className="p-4">
-                  {/* star rating */}
-                  <div className="w-full items-center gap-1 flex justify-center"> {/* Ajoutez la classe flex justify-center */}
+                <img
+                  className="w-full h-auto group-hover:scale-110 transition duration-300"
+                  src={produit.imageUrl}
+                  alt="vetement"
+                />
+              </Link>
+             
+              <button
+                className={`px-2 py-1 bg-red-500 text-sm ${
+                  produit.promo > 0 ? "block" : "hidden"
+                } font-normal text-white rounded absolute top-3 left-2 `}
+              >
+                -{produit.promo}%
+              </button>
+              
+            </div>
+          </div>
+          <div className="p-2 flex flex-col justify-between">
+            <Link to={`/details/${produit._id}`}>
+              <h2 className="font-semibold text-sm mb-1">{produit.nom}</h2>
+            </Link>
+            <div className="font-semibold">
+              <span className="text-red-600  py-1 text-sm ">
+                {produit.prix} FCFA
+              </span>
+            </div>
+
+            <div className="p- mt-2 text-">
+              {/* star rating */}
+                   <div className="w-full items-center gap-1 flex justify-center"> {/* Ajoutez la classe flex justify-center */}
                     {[...Array(5)].map((start, index) => {
                       const etoils = index + 1;
                       return (
@@ -159,46 +182,43 @@ const Shop = () => {
                           />
                         </label>
                       )
-                    })}
-                  </div>
-                  <h1 className="text-xl font-bold">{produit.categorie}</h1>
-                  <p className="text-gray-500 group-hover:text-white mb-2 duration-300 text-sm line-clamp-2">
-                    {produit.titre}
-                  </p>
-                  <div className="mt-auto">
-                    <span className='border border-black rounded-full px-3 py-1 text-sm text-black'>
-                      {produit.prix} FCFA
-                    </span>
-                  </div>
-                  <div>
-                    <hr />
-                    dff
-                  </div>
+                    })} 
+                  </div> 
+              <div className="flex gap-2 mt-4 justify-">
+              
+                <div className="rounded  bg-gray-200 flex items-center justify-center px-2 py-1">
+                <FaShoppingCart
+                onClick={() => handleAddToCart(produit)}
+                className={`text-sm  text-gray-500 `}
+              />
                 </div>
-                {/* Bouton ajout panier */}
-                <div className='absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center'>
-                  <button onClick={handleAddToCart}>
-                    <div className='flex justify-center items-center text-black font-bold bg-gray-200 rounded-full w-10 h-10'>
-                      <BsPlus className='text-3xl' />
-                    </div>
-                  </button>
-                </div>
+                <div className="rounded bg-gray-200 flex items-center justify-center px-2 py-1">
                 <BsSuitHeartFill
-                  onClick={() =>
-                    handleLikeToggle(produit && produit._id, produit)
-                  }
-                  className={`text-2xl absolute top-3 right-2  ${produitAimer.some(
+                onClick={() =>
+                  handleLikeToggle(produit && produit._id, produit)
+                }
+                className={`text-sm   ${
+                  produitAimer.some(
                     (likedProduit) =>
                       likedProduit && likedProduit._id === produit._id
                   )
                     ? "text-red-500 "
-                    : "text-gray-200"
-                    } `}
-                />
-
+                    : "text-gray-500"
+                } `}
+              />
+                </div>
+                <Link to={`/details/${produit._id}`} className="rounded  bg-gray-200 flex items-center justify-center px-2 py-1">
+                <IoEyeSharp
+                
+                className={`text-sm  text-gray-500 `}
+              />
+                </Link>
               </div>
-            ))}
+            </div>
           </div>
+        </div>
+            ))}
+          
 
         </div>
       </div>

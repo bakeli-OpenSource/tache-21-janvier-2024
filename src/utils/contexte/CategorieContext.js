@@ -6,8 +6,6 @@ import useGlobal from '../hooks/useGlobal';
 import axios from "axios";
 import useProduits from '../hooks/useProduits';
 
-
-
 const CategorieContext = createContext();
 
 export { CategorieContext };
@@ -22,6 +20,7 @@ export default function CategorieContextProvider({children}) {
   const [editingCategoryId, setEditingCategoryId] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({});
+  const [quantiteParCategorie, setQuantiteParCategorie] = useState({});
   const navigate = useNavigate();
   const { setShowModal } = useGlobal();  
   const { produits } = useProduits();
@@ -144,37 +143,40 @@ export default function CategorieContextProvider({children}) {
   // };
 
  
-  const updateCategoryQuantities = async () => {
-    try {
-      const updatedCategories = await Promise.all(categories.map(async (category) => {
-        const filteredProduits = produits.filter((produit) => produit.categorieId === category._id);
-        const quantite = filteredProduits.length;
-        return { ...category, quantite };
-      }));  
-        console.log({updatedCategories});
-      
-      await Promise.all(updatedCategories.map(async (category) => {
-        await axios.put(`https://kay-solu-api.onrender.com/api/categorie/${category._id}`, { quantite: category.quantite });
-      }));
-  
-      console.log("Quantités de produits mises à jour avec succès dans la base de données");
-    } catch (error) {
-      console.error("Erreur lors de la mise à jour des quantités de produits:", error);
-    }
-  };
-
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
-      setCategories(response.data)
-      console.log("Catégories récupérées avec succès");
+      const response = await axios.get('https://kay-solu-api.onrender.com/api/categories');
+      setCategories(response.data);
+      console.log('Catégories récupérées avec succès');
     } catch (error) {
-      console.error("Erreur lors de la récupération des catégories:", error);
+      console.error('Erreur lors de la récupération des catégories :', error);
     }
   };
 
+  const updateCategoryQuantities = async () => {
+    try {
+      const updatedCategories = await Promise.all(
+        categories.map(async (category) => {
+          const filteredProduits = produits.filter((produit) => produit.categorieId === category._id);
+          const quantite = filteredProduits.length;
+
+          // Mettre à jour la quantité dans la base de données
+          await axios.put(`https://kay-solu-api.onrender.com/api/categorie/${category._id}`, { quantite });
+
+          return { ...category, quantite };
+        })
+      );
+
+      setCategories(updatedCategories);
+      console.log('Quantités de produits mises à jour avec succès dans la base de données');
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour des quantités de produits :', error);
+    }
+  };
   const valueContext = {
     test,
+    quantiteParCategorie,
+        produits,
         fetchCategories,
         updateCategoryQuantities,
         handleEditCategory,
@@ -198,7 +200,6 @@ export default function CategorieContextProvider({children}) {
         setNom,
         setQuantite,
         setCategories
-
   }
 
   return (
@@ -207,5 +208,3 @@ export default function CategorieContextProvider({children}) {
     </CategorieContext.Provider>
   );
 }
-
-

@@ -13,12 +13,12 @@ export const Thead = ({thead}) => {
     )
 }
 
-const Tbody = ({tbody, actions}) => {
+export const Tbody = ({tbody, actions}) => {
     return (
         <tbody className='bg-white '>
                 {tbody.length !== 0 ?
                 tbody.map((td, index) => (
-                <tr className="text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100" key={index}>
+                <tr className="text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-100" key={index}> 
                     {td.imageUrl && td.titre && td.nom ?
                         <td className="px-4 py-3 border">
                             <div className="flex items-center text-sm">
@@ -39,11 +39,6 @@ const Tbody = ({tbody, actions}) => {
                                         </div>
                                     </td> : null
                     }
-                    {/* {td.idProduit ?
-                    <td className="px-4 py-5 text-xl text-center border">
-                        {td.idProduit}
-                    </td> : null
-                    } */}
                     {td.email ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.email}
@@ -54,7 +49,7 @@ const Tbody = ({tbody, actions}) => {
                         {td.produit}
                     </td> : null
                     }
-                    {td.quantite !== 'undefined' ?
+                    {td.quantite ?
                     <td className="px-4 py-3 text-center border text-md">
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
                     </td> : null
@@ -64,11 +59,11 @@ const Tbody = ({tbody, actions}) => {
                         {td.date}
                     </td> : null
                     } */}
-                    {td.telephone ?
+                    {/* {td.telephone ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.telephone}
                     </td> : null
-                    }
+                    } */}
                     {td.etat ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.etat}
@@ -79,11 +74,11 @@ const Tbody = ({tbody, actions}) => {
                         {td.prixProduit}
                     </td> : null
                     }
-                    {td.prixLivraison ?
+                    {/* {td.prixLivraison ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prixLivraison}
                     </td> : null
-                    }
+                    } */}
                     {td.prix ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prix.toLocaleString('de-DE')}
@@ -110,16 +105,16 @@ const Tbody = ({tbody, actions}) => {
                         {td.statut}
                     </td> : null
                     }
-                    {td.prenomCli ?
+                    {/* {td.prenomCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.prenomCli}
                     </td> : null
-                    }
-                    {td.nomCli ?
+                    } */}
+                    {/* {td.nomCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.nomCli}
                     </td> : null
-                    }
+                    } */}
                     {td.adresseCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.adresseCli}
@@ -133,6 +128,11 @@ const Tbody = ({tbody, actions}) => {
                     {td.telCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.telCli}
+                    </td> : null
+                    }
+                    {td.dateMes ?
+                    <td className="px-4 py-5 text-center text-xxl border">
+                        {td.dateMes}
                     </td> : null
                     }
 

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FaEyeSlash } from "react-icons/fa";
+import {FaEye} from "react-icons/fa"
 import useGlobal from "../../../utils/hooks/useGlobal";
 
-const AdminConnexion = ({ label, placeholder, value, onChange }) => {
+const AdminConnexion = ({ label, placeholder, value}) => {
   const { email, setEmail, password, setPassword, handleLogin } = useGlobal();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -49,22 +50,22 @@ const AdminConnexion = ({ label, placeholder, value, onChange }) => {
   };
 
   return (
-    <div className="flex flex-col items-center  justify-center min-h-screen py-2 bg-gray-100">
+    <div className="flex flex-col items-center  justify-center min-h-screen h-[100px] py-2 bg-gray-100 ">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center z-10 justify-center flex-row-reverse w-full  px-20 text-center"
+        className="flex flex-col items-center  justify-center flex-row-reverse w-full  px-30 text-center"
       >
-        <div className="min-w-96 bg-white rounded-2xl shadow-2xl flex flex-col-reverse md:flex-row w-2/3 max-w-4xl">
+        <div className="min-w-96 bg-white rounded-2xl shadow-2xl flex flex-col-reverse flex-row md:flex-row w-2/3 max-w-4xl">
           <div className="md:w-3/5 py-5">
             <div className="py-10">
               <h2 className="text-2xl font-bold text-slate-800 md:text-center">
                 Connectez-vous au compte
               </h2>
               <div className="border-2 w-10 border-slate-800 inline-block mb-2"></div>
-              <div className="relative mt-5 mb-7 flex justify-around">
+              <div className="mt-5 mb-7 ">
                 <label
-                  className={`absolute left-2 py-1 transition-all duration-300 flex flex-col items-center text-center px-10 ${
-                    focused || value || email !== ""
+                  className={`absolute left-17 py-1 transition-all duration-300 flex  items-center text-center px-10 ${
+                    focused || value || email !== "" 
                       ? "text-sm text-black  transform -translate-y-5 border-none ml-1 text-center"
                       : ""
                   }`}
@@ -81,15 +82,15 @@ const AdminConnexion = ({ label, placeholder, value, onChange }) => {
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   required="@"
-                  className={`block md:w-96 min-w-80 px-3 ml-3 peer-focus:-translate-y-5 py-2 border text0 bg-gray-100 rounded-md shadow-sm focus:outline-none focus:border-blue-500  focus:-border-blue-500  ${
+                  className={`bg-gray-100  md:w-96 min-w-80  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 ml-3 py-3 focus:outline-none  ${
                     focused || value ? "border-transparent" : "border-gray-300"
                   }`}
                   placeholder={focused || value ? "" : placeholder}
                 />
               </div>
-              <div className="relative  flex justify-around ">
+              <div className=" mb-4 relative">
                 <label
-                  className={`absolute left-2 py-1 transition-all duration-300 peer-focus:-translate-y-5 flex flex-col items-center text-center px-10 ${
+                  className={`absolute left-15  text-end py-1 transition-all duration-300 peer-focus:-translate-y-5 flex flex-col items-center text-center px-10 ${
                     active || value || password !== ""
                       ? "text-sm text-black  transform -translate-y-5 border-none ml-1 "
                       : ""
@@ -106,15 +107,22 @@ const AdminConnexion = ({ label, placeholder, value, onChange }) => {
                   name="password"
                   onFocus={handleActive}
                   onBlur={handleRue}
-                  className={`block md:w-96 min-w-80 px-3 ml-3 py-2 border text0 bg-gray-100 rounded-md shadow-sm focus:outline-none focus:border-blue-500   focus:-border-blue-500   ${
+                  className={`bg-gray-100  md:w-96 min-w-80  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 ml-3 py-3 focus:outline-none   ${
                     focused || value ? "border-transparent" : "border-gray-300"
                   }`}
                   placeholder={active || value ? "" : placeholder}
                 />
-                <FaEyeSlash
-                  onClick={updateShowPassword}
-                  className="absolute right-10 bottom-3 flex flex-col justify-center items-center"
-                />
+                {showPassword ? (
+            <FaEye
+              onClick={updateShowPassword}
+              className="absolute right-7 bottom-3 flex flex-col justify-center items-center"
+            />
+          ) : (
+            <FaEyeSlash
+              onClick={updateShowPassword}
+              className="absolute right-7 bottom-3  flex flex-col justify-center items-center"
+            />
+          )}
               </div>
               <div className=" items-center text-center text-xs mt-3">
                 <label htmlFor="default-checkbox" className="text-center ">

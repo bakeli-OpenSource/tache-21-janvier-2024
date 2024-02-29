@@ -12,6 +12,7 @@ const DetailsCard = () => {
   const produit = produits.find((item) => {
     return item._id === _id;
   });
+  
   const { addToCart } = usePanier();
   const handleAddToCart = () => {
     addToCart(produit);
@@ -117,3 +118,5 @@ const DetailsCard = () => {
 };
 
 export default DetailsCard;
+
+
