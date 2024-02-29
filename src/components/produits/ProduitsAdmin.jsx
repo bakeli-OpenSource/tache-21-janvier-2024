@@ -15,118 +15,16 @@ const ProduitsAdmin = () => {
           carracteristique, setCarracteristique, categorie, setCategorie, categorieId, setCategorieId,
           prix, setPrix, couleur, setCouleur, taille, setTaille, fournisseur, setFournisseur, promo, setPromo,
           soumettre, updateProduit, filtreProduits, setFiltreProduits, handleSelectChange, categories,
-          categoryNames, setCategoryNames, handleSelectChangeCategorie
+          categoryNames, setCategoryNames, handleSelectChangeCategorie, inputs, textarea, selects, hanldleSubmit
         } = useProduits();
   
   const {open} = useSidebare()
 
-  const [selectsValue] = useState('');
   
-  const inputs = [
-    {
-      label: "Nom du Produit",
-      type: "text",
-      value: nom,
-      setValue: setNom
-    },
-    {
-      label: "Image du produit",
-      type: "file",
-      name: "imageUrl",
-      // value: imageUrl,
-      setValue: setImageUrl
-    },
-    {
-      label: "Titre du Produit",
-      type: "text",
-      value: titre,
-      setValue: setTitre
-    },
-    {
-      label: "Quantité",
-      type: "number",
-      value: quantite,
-      setValue: setQuantite
-    },
-    {
-      label: "Carractéristiques",
-      type: "text",
-      value: carracteristique,
-      setValue: setCarracteristique
-    },
-    {
-      label: "Prix",
-      type: "number",
-      value: prix,
-      setValue: setPrix
-    },
-    {
-      label: "Couleur",
-      type: "text",
-      value: couleur,
-      setValue: setCouleur
-    },
-    {
-      label: "Taille",
-      type: "text",
-      value: taille,
-      setValue: setTaille
-    },
-    {
-      label: "Fourniseur",
-      type: "text",
-      value: fournisseur,
-      setValue: setFournisseur
-    },
-    {
-      label: "Promo en %",
-      type: "number",
-      value: promo,
-      setValue: setPromo
-    }
-  ]
-
-  const textarea = {
-    value: description,
-    setValue: setDescription
-  }
 
 
-  const hanldleSubmit = (e) => {
-    e.preventDefault()
-    const recupInput = {
-      nom, imageUrl, titre, description, quantite,
-      categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
-    }
-    if (soumettre === 'Ajouter') {
-      console.log('Ajout de produit');
-      addProduit(recupInput)
-    }else{
-      console.log('modification de produit');
-      updateProduit(recupInput)
-    }
-    setNom('')
-    setImageUrl('')
-    setTitre('')
-    setDescription('')
-    setQuantite('')
-    setCategorie('')
-    setCarracteristique('')
-    setPrix('')
-    setCouleur('')
-    setTaille('')
-    setFournisseur('')
-    setPromo('')
-  }
 
-  const selects = [
-    {
-      label: 'Catégorie',
-      value: selectsValue,
-      options: categoryNames,
-      setValue: handleSelectChange
-    }
-  ]
+
   
  
   

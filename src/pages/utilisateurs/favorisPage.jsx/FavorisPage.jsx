@@ -25,11 +25,11 @@ const FavorisPage = () => {
       {listesEnvies.length > 0 ? (
         listesEnvies?.map((item) => (
           <div
-            className="flex shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap-"
+            className="flex flex-col md:flex-row shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap-"
             key={item?._id}
           >
             
-            <div className="flex items- gap-4">
+            <div className="flex flex-col sm:flex-row items- gap-4">
               <div className="h-24 w-24">
                 <img
                   src={item?.imageUrl}
@@ -37,7 +37,7 @@ const FavorisPage = () => {
                   className="w-full h-full"
                 />
               </div>
-              <div className="flex flex-col justify-between items-stretch h-full">
+              <div className="flex flex-col justify-between  items-stretch h-full">
                 <p>{item?.titre} </p>
                 <div>
                   <p className="mb-1 bg">{item?.prix} FCFA</p>
@@ -51,7 +51,7 @@ const FavorisPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-4 justify-between h-24">
+            <div className="flex flex-col-reverse md:flex-col  gap-4 justify-between h-24">
               <Link
                 to={`/panier`}
                 className="px-2 my- uppercase py-2 rounded text-white text-center bg-slate-800 "

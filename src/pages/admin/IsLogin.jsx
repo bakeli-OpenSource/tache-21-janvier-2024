@@ -18,6 +18,8 @@ import FilterCommandeEnCours from "../../components/cards-et-filtre/filtreDesCom
 import FilterCommandeTraite from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommandeTraite";
 import FilterCommendeEnLivraison from "../../components/cards-et-filtre/filtreDesCommandes/FilterCommendeEnLivraison";
 import Message from "../../components/messages/Message";
+import ErreurPage from "../utilisateurs/erreurPage/ErreurPage";
+import DetailsMessages from "../../components/messages/DetailsMessages";
 // import Navigate from "navigate";
 
 function IsLogin() {
@@ -101,7 +103,7 @@ function IsLogin() {
             )}
             {isLoggedIn() ? (
               <Route
-                path="/categories/DetailsCategorie"
+                path="/categories/:idCategory"
                 element={<DetailsCategorieUseProvider />}
               />
             ) : (
@@ -121,13 +123,13 @@ function IsLogin() {
               navigate("/admin")
             )}
             {isLoggedIn() ? (
-              <Route path="/commandes" element={<Commandes />} />
+              <Route path="/commandes/*" element={<Commandes />} />
             ) : (
               navigate("/admin")
             )}
             {isLoggedIn() ? (
               <Route
-                path="/commandes/DetailsCommande"
+                path="/commandes/:id"
                 element={<DetailsCommandeProvide />}
               />
             ) : (
@@ -153,8 +155,13 @@ function IsLogin() {
             {isLoggedIn() ? (
               <Route
                 path="/messages/:id"
-                element={ <Message/> }
+                element={ <DetailsMessages/> }
               />
+            ) : (
+              navigate("/admin")
+            )}
+            {isLoggedIn() ? (
+              <Route path="*" element={<ErreurPage />} />
             ) : (
               navigate("/admin")
             )}

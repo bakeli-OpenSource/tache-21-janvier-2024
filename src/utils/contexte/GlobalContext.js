@@ -14,6 +14,10 @@ const GlobalContextProvider = ({ children }) => {
   const [password, setPassword] = useState("");
   const [dropdown, setDropdown] = useState(false);
   const navigate = useNavigate();
+  const [produitAimer, setProduitAimer] = useState(() => {
+    const listesEnvies = localStorage.getItem("produitAimer");
+    return listesEnvies ? JSON.parse(listesEnvies) : [];
+  });
 
   const handleToggle = () => {
     setDropdown(!dropdown);
@@ -123,6 +127,22 @@ const GlobalContextProvider = ({ children }) => {
     }
   };
 
+  const handleLikeToggle = (id, produit) => {
+    const isLiked = produitAimer.some(
+      (produit) => produit && produit._id === id
+    );
+
+    if (isLiked) {
+      const updaterProduits = produitAimer.filter(
+        (produit) => produit && produit._id !== id
+      );
+      setProduitAimer(updaterProduits);
+    } else {
+      const updaterProduits = [...produitAimer, produit];
+      setProduitAimer(updaterProduits);
+    }
+  };
+
   useEffect(() => {
     profileUser();
     fetchCommandes()
@@ -141,6 +161,9 @@ const GlobalContextProvider = ({ children }) => {
     handleLogoutUser,
     profileUser,
     handleToggle,
+    produitAimer,
+    setProduitAimer,
+    handleLikeToggle,
     client,
     setClient,
     commandes,
