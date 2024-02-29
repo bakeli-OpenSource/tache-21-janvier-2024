@@ -15,7 +15,7 @@ const CommandeContextProvider = ({ children }) => {
   
   
       const table = [
-        'Nom','E-mail', 'Produit', ' Quantite', 'Etat de la commande', 'Prix Produit', 'Prix total', 'Actions'
+        'Nom','E-mail', 'Telephone', 'Etat de la commande', 'Actions'
     ]
     
     const [idProduit, setIdProduit] = useState("")
