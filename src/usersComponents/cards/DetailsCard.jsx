@@ -12,7 +12,6 @@ const DetailsCard = () => {
   const produit = produits.find((item) => {
     return item._id === _id;
   });
-  console.log(produit);
   
   const { addToCart } = usePanier();
   const handleAddToCart = () => {
