@@ -55,7 +55,9 @@ const Shop = () => {
 
   useEffect(() => {
     fetchFilterCategories(produits);
+
   }, []);
+
 
 
   const { setDropdown } = useGlobal()
