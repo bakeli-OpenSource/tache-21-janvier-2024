@@ -13,7 +13,7 @@ export const Thead = ({thead}) => {
     )
 }
 
-const Tbody = ({tbody, actions}) => {
+export const Tbody = ({tbody, actions}) => {
     return (
         <tbody className='bg-white '>
                 {tbody.length !== 0 ?
@@ -44,31 +44,77 @@ const Tbody = ({tbody, actions}) => {
                         {td.email}
                     </td> : null
                     }
-                    {td.telephone ?
+                    {td.produit ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.produit}
+                    </td> : null
+                    }
+                    {td.quantite ?
+                    <td className="px-4 py-3 text-center border text-md">
+                        <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
+                    </td> : null
+                    } 
+                    {/* {td.date ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.date}
+                    </td> : null
+                    } */}
+                    {/* {td.telephone ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.telephone}
                     </td> : null
-                    }
+                    } */}
                     {td.etat ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.etat}
                     </td> : null
                     }
+                    {td.prixProduit ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.prixProduit}
+                    </td> : null
+                    }
+                    {/* {td.prixLivraison ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.prixLivraison}
+                    </td> : null
+                    } */}
+                    {td.prix ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.prix.toLocaleString('de-DE')}
+                    </td> : null
+                    }
+                    {/* {td.PrixUnitaire ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.PrixUnitaire.toLocaleString('de-DE')}
+                    </td> : null
+                    }
+                    {td.prixTotal ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.prixTotal}
+                    </td> : null
+                    } */}
+                    {/* {td.adresse ?
+                    <td className="px-4 py-5 text-xl text-center border">
+                        {td.adresse}
+                    </td> : null
+                    } */}
+                    
                     {td.statut ?
                     <td className="px-4 py-5 text-center text-xl border">
                         {td.statut}
                     </td> : null
                     }
-                    {td.prenomCli ?
+                    {/* {td.prenomCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.prenomCli}
                     </td> : null
-                    }
-                    {td.nomCli ?
+                    } */}
+                    {/* {td.nomCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.nomCli}
                     </td> : null
-                    }
+                    } */}
                     {td.adresseCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.adresseCli}
