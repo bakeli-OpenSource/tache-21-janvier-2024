@@ -13,7 +13,7 @@ const Produit = ({ produit }) => {
     const {produits} = useProduits();
 
     const { _id, imageUrl, categorie, titre, prix, promo} = produit;  
-    
+
     const produitCourant = produits.find(item => item._id === _id);
     const reduction = produitCourant ? produitCourant.promo : promo ? promo : 0; 
     const prixAAjouter = Math.floor( prix - (prix * (reduction / 100)));
@@ -46,27 +46,27 @@ return (
           {/* section details */}
           <div className="p-4 text-center">
             {/* star rating */}
+            <h1 className="text-xl font-bold mb-3">{categorie}</h1>
+            <p className="text-gray-500  mb-2 duration-300 text-sm line-clamp-2">
+                {titre}
+            </p>
             <div className="flex items-center justify-center w-full gap-1">
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
             </div>
-
-            <h1 className="text-xl font-bold mb-3">{categorie}</h1>
-            <p className="text-gray-500  mb-2 duration-300 text-sm line-clamp-2">
-                {titre}
-            </p>
-            <div className="mt-auto mb-6">
+            <div className="mt-auto mb-6 flex ">
                       {reduction ? (
                         <div className='absolute left-2 bottom-2 '>
                           <span className=' rounded-full px-3 py-1 text-sm text-red-500'>{prixAAjouter} FCFA</span>
                           &nbsp;
-                          <span className='line-through text-gray-500'>{prix} FCFA</span>
+                          
+                          <span className='line-through text-gray-500 text-xs'>{prix} FCFA</span>
 
                         </div>
                       ) : (
-                        <span className='bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700'>{prix} FCFA</span>
+                        <span className=' rounded-full px-3 py-1 text-sm text-gray-700'>{prix} FCFA</span>
 
                       )}
           </div>
