@@ -96,7 +96,7 @@ const ContactsPage = () => {
                     <input
                       required
                       type="tel"
-                      id="nom"
+                      id="tel"
                       placeholder="Téléphone"
                       name="telephone"
                       className="w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
