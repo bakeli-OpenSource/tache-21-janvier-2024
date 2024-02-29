@@ -4,6 +4,8 @@ import { BsPlus } from 'react-icons/bs';
 import { FaStar } from 'react-icons/fa';
 import { usePanier } from '../../utils/contexte/PanierContext';
 import useProduits from '../../utils/hooks/useProduits';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Produit = ({ produit }) => {
 	const { addToCart } = usePanier();
@@ -18,6 +20,14 @@ const Produit = ({ produit }) => {
 	const handleAddToCart = () => {
 		const produitAAjouter = { ...produit, prix: prixAAjouter };
 		addToCart(produitAAjouter);
+		toast.success('Produit ajouté au panier', {
+			position: 'top-right',
+			autoClose: 3000, // Duration in milliseconds
+			hideProgressBar: true,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+		});
 	};
 
 	return (
@@ -49,29 +59,29 @@ const Produit = ({ produit }) => {
 							<FaStar className="text-yellow-500" />
 						</div>
 
-						<h1 className="text-xl font-bold mb-3">{categorie}</h1>
-						<p className="text-gray-500  mb-2 duration-300 text-sm line-clamp-2">
+						<h1 className="mb-3 text-xl font-bold">{categorie}</h1>
+						<p className="mb-2 text-sm text-gray-500 duration-300 line-clamp-2">
 							{titre}
 						</p>
 						<div className="mt-auto mb-6">
 							{reduction ? (
 								<div className="absolute left-2 bottom-2 ">
-									<span className=" rounded-full px-3 py-1 text-sm text-red-500">
+									<span className="px-3 py-1 text-sm text-red-500 rounded-full ">
 										{prixAAjouter} FCFA
 									</span>
 									&nbsp;
-									<span className="line-through text-gray-500">
+									<span className="text-gray-500 line-through">
 										{prix} FCFA
 									</span>
 								</div>
 							) : (
-								<span className="bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700">
+								<span className="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-full">
 									{prix} FCFA
 								</span>
 							)}
 						</div>
 						{reduction !== 0 && (
-							<div className="absolute text-orange-400 rounded-md  mt-3 text-sm px-1 bg-amber-100 top-0 left-2 bg-dark">
+							<div className="absolute top-0 px-1 mt-3 text-sm text-orange-400 rounded-md bg-amber-100 left-2 bg-dark">
 								-{promo}%
 							</div>
 						)}

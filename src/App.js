@@ -12,11 +12,14 @@ import { Route, Routes } from 'react-router';
 import UserIsLogin from './pages/utilisateurs/userIsLogin/UserIsLogin';
 import { PanierProvider } from './utils/contexte/PanierContext';
 import '@fontsource/montserrat';
-import ErreurPage from "./pages/utilisateurs/erreurPage/ErreurPage";
+import ErreurPage from './pages/utilisateurs/erreurPage/ErreurPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 	return (
 		<div className="min-h-screen App font-montserrat">
+			<ToastContainer />
 			<GlobalContextProvider>
 				<PanierProvider>
 					<Routes>
@@ -33,5 +36,3 @@ function App() {
 }
 
 export default App;
-
-
