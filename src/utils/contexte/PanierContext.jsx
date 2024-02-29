@@ -93,6 +93,7 @@ export const PanierProvider = ({ children }) => {
 			}
 		});
 		setNotificationCount((prevCount) => prevCount + 1);
+		alert('Article ajouté avec succès!');
 	};
 
 	const viderPanier = () => {

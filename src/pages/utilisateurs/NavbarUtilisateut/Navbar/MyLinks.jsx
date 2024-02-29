@@ -4,7 +4,7 @@ export const links = [
 		link: '/boutique',
 	},
 	{
-		name: 'Nouveau Arrivées',
+		name: 'Nouveaux Arrivés',
 		link: '/arrivals',
 	},
 	{
