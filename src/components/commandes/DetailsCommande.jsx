@@ -29,134 +29,75 @@
     }, [data]);
 
     const {open} = useSidebare()
-    // const commandeCli = data.filter(
-    //   (commande) => commande._id === localStorage.getItem("commandeIdCli")
-    // )
+
 
 
     return (
       <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       
         <HeaderTable title="Détails Commandes"  />
-
+        <div className="flex shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-">
+                <div className="mt-5">
+                <p className="font-medium">Nom & Prénom : {data.nom}{data.prenom}</p>
+                <p className="font-medium">Adresse : {data.adresse}</p>
+                <p className="font-medium">Telephone : {data.telephone}</p>
+                <p className="font-medium">Nom & Prénom : {data.nom}{data.prenom}</p>
+                <p className="font-medium">Date : {data.date}</p>
+                <p className="font-medium">Prix livraison : {data.prixLivraison}cfa</p>
+                <p className="font-medium">Prix total : {data.prixTotal}cfa</p>
+                </div>
+               
+         </div>
 
         {data?.produit?.map((produit, index) => (
-          <div className="flex justify-between border p-4 mt-5 gap-">
+          <div className="flex shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-">
             <div key={index} className="card flex items-center gap-7">
-              {/* <h2 className="text-xl font-bold">data #{data.numeroCommande}</h2> */}
               <div className="">
                   <img 
-              className="max-w-full h-auto" 
-              src={data.imageUrl[index]} 
-              alt={`Product ${index + 1}`} 
-              />
-                </div>
-                <div>
-
-  <p>{data.produit}</p>
-  <p className="font-medium">Nom & Prénom : {data.nom}{data.prenom}</p>
-  <p className="font-medium">Email : {data.email}</p>
-  <p className="font-medium">Quantité : {data.quantite}</p>
-  <p className="font-medium">Telephoe : {data.telephone}</p>
-  <p className="font-medium">Adress :{data.adresse}</p>
-  <p className="font-medium">Prix Produit : {data.prixProduit}</p>
-  <p className="font-medium">Prix livraison : {data.prixLivraison}cfa</p>
-  <p className="font-medium">Prix total : {data.prixTotal}cfa</p>
-
-  </div>
-  </div>
-
-  {/* <p className="mt-3 bg">{data.idProduit}</p> */}
-  <div className="flex flex-col gap-4 justify- datas-between">
-  <Link
-        // to={`/compte/commandes/DetailsCommande/${data._id}`}
-        className="px-2 my- py-1 rounded text-white text-center bg-slate-800 "
-      >
-        Détails
-      </Link>
-      <div className="flex gap-4">
-          <span
-            className={`h-4 w-4 rounded-full mt-5  ${
-              data.etat === "en cours" ? "bg-orange-500" :
-              data.etat === "en livraison" ? "bg-yellow-500" :
-              data.etat === "livrée" ? "bg-green-500" :
-              data.etat === "en attente" ? "bg-red-800" : ""
-            }`}
-          ></span>
-          <button
-            className={`px-2 my-3 py-1 rounded text-white ${
-              data.etat === "en cours" ? "bg-orange-500" :
-              data.etat === "en livraison" ? "bg-yellow-500" :
-              data.etat === "livrée" ? "bg-green-500" :
-              data.etat === "en attente" ? "bg-red-800" : ""
-            }`}
-          >
-            {data.etat}
-          </button>
-      </div>    
-        </div>
-            </div>
-          
-        ))}
-
-            {/* {data !== null ? (
-          <div className="flex justify-between border p-4 mt-5 gap-">
-              <div key={data.id} className="flex items-center gap-7">
-                <div className="">
-                  <img
-                    src={data.image}
-                    alt={data.produit}
-                    className="w-32 h-auto"
+                    className="max-w-full h-auto" 
+                    src={data.imageUrl[index]} 
+                    alt={`Product ${index + 1}`} 
                   />
                 </div>
-                <div className="flex items-center gap-7">
                 <div>
 
-                  <p>{data.produit}</p>
-                  <p className="font-medium">Nom & Prénom : {data.nom}{data.prenom}</p>
-                  <p className="font-medium">Email : {data.email}</p>
-                  <p className="font-medium">Quantité : {data.quantite}</p>
-                  <p className="font-medium">Telephoe : {data.telephone}</p>
-                  <p className="font-medium">Adress :{data.adresse}</p>
-                  <p className="font-medium">Prix Produit : {data.prixProduit}</p>
-                  <p className="font-medium">Prix livraison : {data.prixLivraison}cfa</p>
-                  <p className="font-medium">Prix total : {data.prixTotal}cfa</p>
-
+                <h1 className="text-4xl">{data.produit}</h1>
+                <hr className="min-w-0.5 bg-black mt-4" />
+                <div className="mt-5">
+                <p className="font-medium">Quantité : {data.quantite[index]}</p>
+                <p className="font-medium">Telephoe : {data.telephone}</p>
+                <p className="font-medium">Prix Produit : {data.prixProduit[index]}</p>
+                <p className="font-medium">Prix total produit : {data.prixProduit[index]}cfa</p>
+                </div>
                 </div>
                 </div>
 
-                  {/* <p className="mt-3 bg">{data.idProduit}</p>
-                  <div className="flex flex-col gap-4 justify- datas-between">
-                  <Link
-                        // to={`/compte/commandes/DetailsCommande/${data._id}`}
-                        className="px-2 my- py-1 rounded text-white text-center bg-slate-800 "
-                      >
-                        Détails
-                      </Link>
-                      <div className="flex gap-4">
-                          <span
-                            className={`h-4 w-4 rounded-full mt-5  ${
-                              data.etat === "en cours" ? "bg-orange-500" :
-                              data.etat === "en livraison" ? "bg-yellow-500" :
-                              data.etat === "livrée" ? "bg-green-500" :
-                              data.etat === "en attente" ? "bg-red-800" : ""
-                            }`}
-                          ></span>
-                          <button
-                            className={`px-2 my-3 py-1 rounded text-white ${
-                              data.etat === "en cours" ? "bg-orange-500" :
-                              data.etat === "en livraison" ? "bg-yellow-500" :
-                              data.etat === "livrée" ? "bg-green-500" :
-                              data.etat === "en attente" ? "bg-red-800" : ""
-                            }`}
-                          >
-                            {data.etat}
-                          </button>
-                      </div>    
-                        </div>
-                  
-              </div>
-          </div> ) : <div>Loader...</div>} */}
+                {/* <p className="mt-3 bg">{data.idProduit}</p> */}
+                <div className="flex flex-col gap-4 justify- datas-between">
+                    <div className="flex gap-4">
+                        <span
+                          className={`h-4 w-4 rounded-full mt-5  ${
+                            data.etat === "en cours" ? "bg-orange-500" :
+                            data.etat === "en livraison" ? "bg-yellow-500" :
+                            data.etat === "livrée" ? "bg-green-500" :
+                            data.etat === "en attente" ? "bg-red-800" : ""
+                          }`}
+                        ></span>
+                        <button
+                          className={`px-2 my-3 py-1 rounded text-white ${
+                            data.etat === "en cours" ? "bg-orange-500" :
+                            data.etat === "en livraison" ? "bg-yellow-500" :
+                            data.etat === "livrée" ? "bg-green-500" :
+                            data.etat === "en attente" ? "bg-red-800" : ""
+                          }`}
+                        >
+                          {data.etat}
+                        </button>
+                    </div>    
+                      </div>
+                          </div>
+                        
+                      ))}
 
       </div>
     )

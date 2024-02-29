@@ -12,16 +12,15 @@ export const CommandeContext = createContext();
 const CommandeContextProvider = ({ children }) => {
   // const navigate = useNavigate()
 
+
+  const table = [
     "Nom",
-    "E-mail",
     "Produit",
     " Quantite",
+    "Telephone",
     "Etat de la commande",
-    "Prix Produit",
-    "Prix total",
     "Actions",
   ];
-
 
   const [idProduit, setIdProduit] = useState("");
   const [email, setEmail] = useState("");
