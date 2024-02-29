@@ -44,18 +44,20 @@ const Arrivals = () => {
   useEffect(() => {
     const sortProductsByDate = () => {
       const sortedProducts = produits.sort((a, b) => {
-        // Triez les produits du plus récent au plus ancien en fonction de la date d'ajout
-        return new Date(b.dateAjout) - new Date(a.dateAjout);
+        return new Date(b.date) - new Date(a.date);
       });
-
-      // Sélectionnez les 10 premiers produits après le tri
-      const latestProducts = sortedProducts.slice(0, 10);
+  
+      const latestProducts = sortedProducts.slice(0, 10).reverse(); 
       setFilteredProducts(latestProducts);
     };
-
+  
     if (produits.length > 0) {
       sortProductsByDate();
+      
     }
+
+
+    console.log(sortProductsByDate);
   }, [produits]);
 
   // Fonction pour changer la couleur du bouton "j'aime" au clic
@@ -129,10 +131,7 @@ const Arrivals = () => {
                         {produit.prix} FCFA
                       </span>
                     </div>
-                    <div className="font-semibold">
-              <span className="text-red-600  py-1 text-sm ">
-                {produit.date} 
-              </span></div>
+                    
                     <div className="p- mt-2 text-">
                       {/* star rating */}
                       <div className="w-full items-center gap-1 flex justify-center"> {/* Ajoutez la classe flex justify-center */}
