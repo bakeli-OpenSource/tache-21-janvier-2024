@@ -3,9 +3,9 @@ import React, { createContext, useEffect, useState } from 'react';
 // import { TbEyeShare } from "react-icons/tb";
 // import { MdEdit } from "react-icons/md";
 // import { MdOutlineDelete } from "react-icons/md";
-import axios from 'axios';
 // import Formulaire from '../formulaire/Formulaire';
 import useGlobal from '../../utils/hooks/useGlobal';
+import axiosInstance from '../axiosInstance';
 
 export const CommandeContext = createContext();
 
@@ -46,10 +46,7 @@ const CommandeContextProvider = ({ children }) => {
 
   const handleEditCommande = async (id, newData) => {
     try {
-      const response = await axios.put(
-        'https://kay-solu-api.onrender.com/api/commande/' + id,
-        newData
-      );
+      const response = await axiosInstance.put('/commande/' + id, newData);
 
       if (response.status === 200) {
         console.log('Statut modifié avec succès:', response.data);
@@ -77,9 +74,7 @@ const CommandeContextProvider = ({ children }) => {
     try {
       console.log('Avant la requête DELETE');
       // Effectuez une requête DELETE vers votre API avec axios
-      await axios.delete(
-        `https://kay-solu-api.onrender.com/api/commande/${commandeId}`
-      );
+      await axiosInstance.delete(`/commande/${commandeId}`);
       console.log('Aprés la requête DELETE');
 
       // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
@@ -97,9 +92,7 @@ const CommandeContextProvider = ({ children }) => {
 
   const fetchCommandes = async () => {
     try {
-      const response = await axios.get(
-        'https://kay-solu-api.onrender.com/api/commandes'
-      );
+      const response = await axiosInstance.get('/commandes');
       setCommandes(response.data);
       console.log('Commandes récupérées avec succès');
     } catch (error) {

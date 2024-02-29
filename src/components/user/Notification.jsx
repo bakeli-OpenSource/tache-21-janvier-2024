@@ -1,9 +1,8 @@
 import { IoIosNotifications } from "react-icons/io";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
-import axios from 'axios';
-import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
 
 
 const Notification = ({nouveauCommande}) => {
@@ -13,7 +12,7 @@ const Notification = ({nouveauCommande}) => {
 
     const messageLu = async (id) => {
       try {
-        const response = await axios.put('https://kay-solu-api.onrender.com/api/commande/' + id, { lu: true });
+        const response = await axiosInstance.put('/commande/' + id, { lu: true });
         
         if (response.status === 200) { 
           navigate("commandes/" + id)

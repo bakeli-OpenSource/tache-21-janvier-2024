@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../utils/axiosInstance';
 
 const Form = () => {
 	const navigate = useNavigate();
@@ -22,8 +22,8 @@ const Form = () => {
 		e.preventDefault();
 		console.log(formData);
 		try {
-			const response = axios.post(
-				'https://kay-solu-api.onrender.com/api/authclient/signup',
+			const response = axiosInstance.post(
+				'/authclient/signup',
 				formData,
 			);
 			setFormData({

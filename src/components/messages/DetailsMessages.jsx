@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useSidebare from "../../utils/hooks/useSidebare";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Loader from "../loader/loader";
+import axiosInstance from "../../utils/axiosInstance";
 
 
 const DetailsMessages = () => {
@@ -13,8 +13,8 @@ const DetailsMessages = () => {
     useEffect(() => {
         const fetchMessage = async (id) => {
             try {
-                const response = await axios.get(
-                    'https://kay-solu-api.onrender.com/api/messages/' + id,
+                const response = await axiosInstance.get(
+                    '/messages/' + id,
                 );
                 setData(response.data);
                 // console.log(data.length);

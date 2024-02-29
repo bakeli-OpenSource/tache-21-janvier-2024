@@ -4,9 +4,9 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../hooks/useGlobal";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axiosInstance from "../axiosInstance";
 
 
 export const ProduitsContext = createContext();
@@ -166,7 +166,7 @@ const ProduitContextProvider = ({ children }) => {
   // Suppression Produit
   const deleteProduit = async (id) => {
     try {
-      await axios.delete(`https://kay-solu-api.onrender.com/api/produits/${id}`);
+      await axiosInstance.delete(`/produits/${id}`);
 
       const updatedProd = produits.filter(
         (prod) => prod._id !== id
@@ -198,7 +198,7 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('fournisseur', produit.fournisseur);
         formData.append('promo', produit.promo);
         
-        const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
+        const response = await axiosInstance.post('/produits', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -240,7 +240,7 @@ const ProduitContextProvider = ({ children }) => {
       formData.append('fournisseur', produit.fournisseur);
       formData.append('promo', produit.promo);
       
-      const response = await axios.put('https://kay-solu-api.onrender.com/api/produits/' + idAModifie, formData, {
+      const response = await axiosInstance.put('/produits/' + idAModifie, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -265,7 +265,7 @@ const ProduitContextProvider = ({ children }) => {
     setShowModal(true)
     setTitreModal('Modification du produit')
     try {
-      const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
+      const response = await axiosInstance.get("/produits/" + id);
       const datasUpdates = response.data
         setNom(datasUpdates.nom)
         setTitre(datasUpdates.titre)
@@ -289,7 +289,7 @@ const ProduitContextProvider = ({ children }) => {
   useEffect(() => {
         const fetchCategories = async () => {
           try {
-            const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
+            const response = await axiosInstance.get("/categories");
             setCategories(response.data);
             console.log("Catégories récupérées avec succès");
           } catch (error) {
@@ -309,7 +309,7 @@ const ProduitContextProvider = ({ children }) => {
   // Récupération de tous les produits
   const fetchProduit = async () => {
       try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits");
+        const response = await axiosInstance.get("/produits");
         setProduits(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
@@ -346,7 +346,7 @@ const ProduitContextProvider = ({ children }) => {
   
   const fetchProduitsCategorie = async (idCategory) => {
     try {
-      const response = await axios.get(`https://kay-solu-api.onrender.com/api/produits/categorie/${idCategory}`);      
+      const response = await axiosInstance.get(`/produits/categorie/${idCategory}`);      
       setListeProduitsCategories(response.data)
       console.log('Produits catégorie récupérées avec succès');
     } catch (error) {

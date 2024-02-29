@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { BsSuitHeartFill} from "react-icons/bs";
-import axios from "axios";
 import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
@@ -11,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 import { usePanier } from "../../../../utils/contexte/PanierContext";
 import { Rating } from 'react-simple-star-rating'
+import axiosInstance from "../../../../utils/axiosInstance";
 
 
 
@@ -39,7 +39,7 @@ const Shop = () => {
 
   const fetchProduitsCategorie = async (idCategory) => {
     try {
-      const response = await axios.get(`https://kay-solu-api.onrender.com/api/produits/categorie/${idCategory}`);      
+      const response = await axiosInstance.get(`/produits/categorie/${idCategory}`);      
       setListeProduitsCategories(response.data)
       console.log('Produits catégorie récupérées avec succès');
     } catch (error) {
@@ -61,7 +61,7 @@ const Shop = () => {
 }
   const fetchFilterCategories = async () => {
     try {
-      const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
+      const response = await axiosInstance.get("/categories");
       setCategories(response.data);
       console.log("Catégories récupérées avec succès");
     } catch (error) {
