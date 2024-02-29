@@ -4,7 +4,7 @@ import { BsPlus } from 'react-icons/bs';
 import { FaStar } from 'react-icons/fa';
 import { usePanier } from '../../utils/contexte/PanierContext';
 import useProduits from '../../utils/hooks/useProduits';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Produit = ({ produit }) => {
@@ -22,7 +22,7 @@ const Produit = ({ produit }) => {
 		addToCart(produitAAjouter);
 		toast.success('Produit ajouté au panier', {
 			position: 'top-right',
-			autoClose: 3000, // Duration in milliseconds
+			autoClose: 3000,
 			hideProgressBar: true,
 			closeOnClick: true,
 			pauseOnHover: true,
