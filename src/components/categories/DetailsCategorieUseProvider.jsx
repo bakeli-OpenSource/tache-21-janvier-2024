@@ -3,7 +3,6 @@ import ProduitContextProvider from '../../utils/contexte/ProduitsContext'
 import DetailsCategorie from '../../pages/admin/DetailsCategorie'
 import { useParams } from 'react-router-dom'
 import useProduits from '../../utils/hooks/useProduits'
-import axios from 'axios'
 
 const CategorContainer = ({idCategory}) =>{
   const { listeProduitsCategories, fetchProduitsCategorie} = useProduits();

@@ -4,7 +4,7 @@ import { BsTelephone } from "react-icons/bs";
 import { VscMail } from "react-icons/vsc";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "axios";
+import axiosInstance from "../../../utils/axiosInstance";
 
 
 const ContactsPage = () => {
@@ -20,7 +20,7 @@ const ContactsPage = () => {
       e.preventDefault();
       console.log({client});
       try {
-        const response = await axios.post('https://kay-solu-api.onrender.com/api/messages', client);
+        const response = await axiosInstance.post('/messages', client);
         if (response.status === 201) {
             console.log('Message envoyé avec succès!', response.data);
             toast.success('Message envoyé avec succès!');

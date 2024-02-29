@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import useGlobal from "../../utils/hooks/useGlobal";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -40,8 +40,8 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("https://kay-solu-api.onrender.com/api/authclient/login", formData)
+    axiosInstance
+      .post("/authclient/login", formData)
       .then((response) => {
         console.log(response.data); // Connexion réussie, vous pouvez gérer le token ici
         const token = response.data.token;

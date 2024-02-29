@@ -4,8 +4,8 @@ import HeaderTable from '../headerTable/HeaderTable';
 // import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import axiosInstance from '../../utils/axiosInstance';
 
 
 const DetailsCommande = () => {
@@ -16,8 +16,8 @@ const DetailsCommande = () => {
 
     const fetchCommande = async (commandeId) => {
         try {
-            const response = await axios.get(
-                'https://kay-solu-api.onrender.com/api/commandes/' + commandeId,
+            const response = await axiosInstance.get(
+                '/commandes/' + commandeId,
             );
             setData(response.data);
         } catch (error) {
