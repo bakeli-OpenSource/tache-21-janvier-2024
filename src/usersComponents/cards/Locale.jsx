@@ -1,7 +1,7 @@
 import React from 'react'
 import { GrSecure } from "react-icons/gr";
-import { IoFastFood } from "react-icons/io5";
-import { GiFoodTruck } from "react-icons/gi";
+import { RiEBike2Line } from "react-icons/ri";
+import { MdCurrencyExchange } from "react-icons/md";
 import women from '../../assets/images/women.png'
 
 const Locale = () => {
@@ -36,15 +36,15 @@ const Locale = () => {
                 <p>Produits De Qualité</p>
               </div>
               <div data-aos="fade-up" className="flex items-center gap-4">
-                <IoFastFood className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-orange-100" />
+                <RiEBike2Line className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-orange-100" />
                 <p>Livraison Rapide</p>
               </div>
               <div data-aos="fade-up" className="flex items-center gap-4">
-                <GiFoodTruck className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-green-100" />
+                <MdCurrencyExchange className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-green-100" />
                 <p>Mode De Paiement Facile</p>
               </div>
               <div data-aos="fade-up" className="flex items-center gap-4">
-                <GiFoodTruck className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-yellow-100" />
+                <MdCurrencyExchange className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-yellow-100" />
                 <p>Recevoir Des Offres</p>
               </div>
             </div>
@@ -56,3 +56,5 @@ const Locale = () => {
 }
 
 export default Locale
+
+

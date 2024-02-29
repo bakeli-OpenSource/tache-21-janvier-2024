@@ -4,29 +4,34 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 import { FaRegUser, FaRegHeart } from 'react-icons/fa';
 import { DiGhostSmall } from 'react-icons/di';
 import useGlobal from '../../utils/hooks/useGlobal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Dropdown = () => {
-	const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
-		useGlobal();
-	let connecter;
-	let commander;
-	let favoris;
-	const navigate = useNavigate();
 
-	useEffect(() => {
-		profileUser();
-	}, []);
+const Dropdown = ({onClick}) => {
 
-	const tokenClient = localStorage.getItem('tokenclient');
-	const deconnexion = () => {
-		handleToggle();
+  const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
+    useGlobal();
+  let connecter;
+  let commander;
+  let favoris;
+  const navigate = useNavigate();
 
-		if (tokenClient === null) {
-			navigate('/connexion');
-		} else {
-			handleLogoutUser();
-		}
-	};
+  useEffect(() => {
+    profileUser();
+  }, []);
+
+  const tokenClient = localStorage.getItem("tokenclient");
+  const deconnexion = () => {
+    handleToggle();
+
+    if (tokenClient === null) {
+      navigate("/connexion");
+    } else {
+      handleLogoutUser();
+    }
+  };
+
 
 	if (tokenClient === null) {
 		connecter = '/connexion';
@@ -39,7 +44,7 @@ const Dropdown = () => {
 	}
 
 	return (
-		<div className="relative">
+		<div className="relative" onClick={onClick}>
 			<div
 				className="font- cursor-pointer flex items-center gap-"
 				onClick={handleToggle}
@@ -103,7 +108,9 @@ const Dropdown = () => {
 							Votre Liste d'envies
 						</Link>
 					</div>
+					<ToastContainer />
 				</div>
+				
 			)}
 		</div>
 	);

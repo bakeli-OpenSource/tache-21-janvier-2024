@@ -1,26 +1,18 @@
 import React from "react";
-import { usePanier } from "../../../utils/contexte/PanierContext";
 import useGlobal from "../../../utils/hooks/useGlobal";
 import { HiShoppingCart } from "react-icons/hi2";
 import Choix from "../../compteComponent/Choix";
 import { Link } from "react-router-dom";
-import image from "../../../assets/images/image6.jpg";
 import Loader from "../../../components/loader/loader";
 
 const CommandeComponent = () => {
   const { commandes, client } = useGlobal();
-  console.log(client.email);
 
   const clientCommande = commandes.filter(
     (commande) => commande.email === client?.email
   );
-  // console.log(clientCommande !== undefined ? clientCommande : "");
 
   const commande = clientCommande.map((com) => com?.email);
-
-  console.log(clientCommande, "clientCommande");
-
-  // console.log(client.email, "client");
 
   return (
     <div>
@@ -32,13 +24,6 @@ const CommandeComponent = () => {
               key={item?._id}
             >
               <div className="flex items-center gap-7">
-                {/* <div className="">
-                  <img
-                    src={image}
-                    alt={item?.produit}
-                    className="w-32 h-auto"
-                  />
-                </div> */}
                 <div>
                   <p> Vous avez commandes {item?.produit.length > 1 ? `${item?.produit.length}  produits` : `${item?.produit.length}  produit`} </p>
                   <p className="my-2 bg">Prix total:  {item?.prixTotal} FCFA</p>
@@ -82,3 +67,34 @@ const CommandeComponent = () => {
 };
 
 export default CommandeComponent;
+
+// import React from 'react';
+
+// const CommandeDetails = ({ data }) => {
+//   return (
+//     <div className="flex flex-wrap">
+//       {data.produit.map((produit, index) => (
+//         <div key={index} className="card m-4 p-6 border border-gray-300">
+//           <h2 className="text-xl font-bold">Commande #{data.numeroCommande}</h2>
+//           <p>Nom: {data.nom} {data.prenom}</p>
+//           <p>Email: {data.email}</p>
+//           <p>Téléphone: {data.telephone}</p>
+//           <p>Produit:</p>
+//           <ul>
+//             <li>Nom: {produit}</li>
+//             <li>Quantité: {data.quantite[index]}</li>
+//             <li>Prix unitaire: {data.prixProduit}</li>
+//           </ul>
+//           <p>Image du produit:</p>
+//           <img className="max-w-full h-auto" src={data.imageUrl[index]} alt={`Product ${index + 1}`} />
+//           <p>Prix Livraison: {data.prixLivraison}</p>
+//           <p>Prix Total: {data.prixTotal}</p>
+//           <p>État: {data.etat}</p>
+//           <p>Date: {data.date}</p>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default CommandeDetails;

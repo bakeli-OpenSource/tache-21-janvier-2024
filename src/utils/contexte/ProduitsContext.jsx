@@ -45,18 +45,17 @@ const ProduitContextProvider = ({ children }) => {
   // Suppression Produit
   const deleteProduit = async (id) => {
     try {
-      // Effectuez une requête DELETE vers votre API avec axios
       await axios.delete(`https://kay-solu-api.onrender.com/api/produits/${id}`);
 
-      // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
       const updatedProd = produits.filter(
         (prod) => prod._id !== id
       );
       setProduits(updatedProd);
-
-      console.log("Produit supprimée avec succès");
+      toast.error('Produit supprimée avec succès!');
     } catch (error) {
+      navigate("/error")
       console.error("Erreur lors de la suppression du produit:", error);
+      toast.error('Erreur lors de la suppression du produit!');
     }
   };
 
@@ -97,6 +96,7 @@ const ProduitContextProvider = ({ children }) => {
             throw new Error('Erreur lors de l\'ajout du produit');
         }
     } catch (error) {
+      navigate("/error")
         console.error('Erreur lors de l\'ajout du produit:', error);
         toast.error("Erreur lors de l'ajout du produit");
     }
@@ -127,7 +127,7 @@ const ProduitContextProvider = ({ children }) => {
   
       if (response.status === 200) { // Corrected to check for status 200
         console.log('Produit modifié avec succès:', response.data);
-        toast.success('Produit modifié avec succès!');
+        toast.warning ('Produit modifié avec succès!');
         setShowModal(false);
         setSoumettre('Ajouter')
       } else {
