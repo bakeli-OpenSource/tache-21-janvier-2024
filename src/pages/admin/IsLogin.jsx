@@ -45,7 +45,7 @@ function IsLogin() {
             )}
             {isLoggedIn() ? (
               <Route
-                path="/categories/DetailsCategorie"
+                path="/categories/:idCategory"
                 element={<DetailsCategorieUseProvider />}
               />
             ) : (

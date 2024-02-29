@@ -87,6 +87,7 @@ const ProduitContextProvider = ({ children }) => {
 
         if (response.status === 201) {
             console.log('Produit ajouté avec succès:', response.data);
+            fetchProduitsCategorie(categorieId)
             // alert('Produit ajouté avec succès:');
             toast.success('Produit ajouté avec succès!');
             
@@ -222,17 +223,6 @@ const ProduitContextProvider = ({ children }) => {
 
       const [categorieSelect, setCategorieSelect] = useState([]); 
 
-      const filtreProdCategorie = () => {
-        const selectedCategory = categories.find((cat) => cat.nom === categorieSelect);
-        if (selectedCategory) {
-          setCategorie(categorieSelect);
-          setCategorieId(selectedCategory._id);
-          const filteredProducts = produits.filter((produit) => produit.categorieId === selectedCategory._id);
-          setFiltreProduits(filteredProducts);
-        } else {
-          setFiltreProduits(produits)
-        }
-      }
 
       const handleSelectChangeCategorie = (e) => {
         const selectedCategoryName = e.target.value;
@@ -250,6 +240,36 @@ const ProduitContextProvider = ({ children }) => {
         console.error("Erreur lors de la récupération des produits:", error);
       }
     };
+
+    const [listeProduitsCategories, setListeProduitsCategories] = useState([])
+    
+  
+  const fetchProduitsCategorie = async (idCategory) => {
+    try {
+      const response = await axios.get(`https://kay-solu-api.onrender.com/api/produits/categorie/${idCategory}`);      
+      setListeProduitsCategories(response.data)
+      console.log('Produits catégorie récupérées avec succès');
+    } catch (error) {
+      console.error('Erreur lors de la récupération des produits de la catégories :', error);
+    }
+  };
+
+  
+      const filtreProdCategorie = () => {
+        const selectedCategory = categories.find((cat) => cat.nom === categorieSelect);
+        
+        if (selectedCategory) {
+          setCategorie(categorieSelect);
+          setCategorieId(selectedCategory._id);
+          fetchProduitsCategorie(categorieId)
+          // const filteredProducts = produits.filter((produit) => produit.categorieId === selectedCategory._id);
+          setFiltreProduits(listeProduitsCategories);
+
+        } else {
+          setFiltreProduits(produits)
+        }
+      }
+    
   useEffect(() => {    
     filtreProdCategorie()
     fetchProduit();
@@ -261,6 +281,8 @@ const ProduitContextProvider = ({ children }) => {
 	  }, [categories]); 
 
   const value = {
+    fetchProduitsCategorie,
+    listeProduitsCategories,
     handleSelectChangeCategorie,
     categoryNames, 
     setCategoryNames,
