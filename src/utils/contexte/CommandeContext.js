@@ -14,12 +14,9 @@ const CommandeContextProvider = ({ children }) => {
 
   const table = [
     'Nom',
-    'E-mail',
-    'Produit',
     ' Quantite',
+    'Telephone',
     'Etat de la commande',
-    'Prix Produit',
-    'Prix total',
     'Actions',
   ];
 
