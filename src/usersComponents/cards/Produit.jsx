@@ -12,8 +12,6 @@ const Produit = ({ produit }) => {
 
 	const { _id, imageUrl, categorie, titre, prix, promo } = produit;
 
-<<<<<<< HEAD
-    const { _id, imageUrl, categorie, titre, prix, promo} = produit;  
     
     const produitCourant = produits.find(item => item._id === _id);
     const reduction = produitCourant ? produitCourant.promo : promo ? promo : 0; 
