@@ -12,7 +12,7 @@ const CategorContainer = ({idCategory}) =>{
   useEffect(() => {
     fetchProduitsCategorie(idCategory);
   }, []);
-  
+   
   return (
     <DetailsCategorie data={listeProduitsCategories} />
   )
