@@ -36,9 +36,9 @@ const Produit = ({ produit }) => {
 				<div
 					data-aos="zoom-in"
 					className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 
+
         group max-w-full flex flex-col justify-between"
 				>
-					{/* section image */}
 					<Link
 						to={`/details/${_id}`}
 						className="h-[200px] max-w-full flex items-center justify-center"
