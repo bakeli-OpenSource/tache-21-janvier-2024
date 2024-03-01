@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';
 
 export const SidebareContext = createContext();
 
@@ -46,8 +46,8 @@ const SidebareContextProvider = ({ children }) => {
   const profile = () => {
     const token = localStorage.getItem('token');
 
-    axios
-      .get('https://kay-solu-api.onrender.com/api/auth/profile', {
+    axiosInstance
+      .get('/auth/profile', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaEyeSlash } from "react-icons/fa";
-import {FaEye} from "react-icons/fa"
+import { FaEye } from "react-icons/fa";
 import useGlobal from "../../../utils/hooks/useGlobal";
 
-const AdminConnexion = ({ label, placeholder, value}) => {
-  const { email, setEmail, password, setPassword, handleLogin } = useGlobal();
+const AdminConnexion = ({ label, placeholder, value }) => {
+  const { email, setEmail, password, setPassword, handleLogin, isLoading } =
+    useGlobal();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -41,11 +42,13 @@ const AdminConnexion = ({ label, placeholder, value}) => {
                 Connectez-vous au compte
               </h2>
               <div className="border-2 w-10 border-slate-800 inline-block mb-2"></div>
+
           <div className="w-full mx-auto mt-5 ">
 
               <div className=" mb-4 mt- ">
                 <label htmlFor="email" className="block text-sm font-medium relative left-9 w-24 min-w-24">
                   Email
+
                 </label>
                 <input
                   required
@@ -108,6 +111,7 @@ const AdminConnexion = ({ label, placeholder, value}) => {
                   placeholder={active || value ? "" : placeholder}
                 />
                 {showPassword ? (
+
             <FaEye
               onClick={updateShowPassword}
               className="absolute right-8 bottom-3 flex flex-col justify-center items-center"
@@ -119,6 +123,7 @@ const AdminConnexion = ({ label, placeholder, value}) => {
             />
           )}
               </div> */}
+
               </div>
               <div className=" items-center text-center text-xs mt-3">
                 <label htmlFor="default-checkbox" className="text-center ">
@@ -127,16 +132,20 @@ const AdminConnexion = ({ label, placeholder, value}) => {
                 </label>
               </div>
               <div className="mt-4">
+               
                 <button
                   type="submit"
-                  disabled={isButtonDisabled}
-                  className={` bg-gray-100  md:w-96 min-w-80  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 ml-3 py-3 focus:outline-none ${
-                    isButtonDisabled
-                      ? "bg-gray-100 cursor-not-allowed text-disabled text-black"
+                  disabled={isButtonDisabled || isLoading}
+                  className={`bg-gray-100  md:w-96 min-w-80 flex gap-4 items-center  justify-center focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 mx-auto py-3 focus:outline-none ${
+                    isButtonDisabled || isLoading
+                      ? "bg-gray-100 cursor-not-allowed text-disabled text-black "
                       : "bg-slate-800 text-active text-white"
-                  }`}
+                  } `}
                 >
-                  Connexion
+                  connexion
+                  {isLoading && (
+                    <div className="border-4 border-solid border-gray-300 border-t-4 border-t-slate-800 rounded-full w-5 h-5  animate-spin mr-2"></div>
+                  )}
                 </button>
               </div>
             </div>
@@ -156,6 +165,7 @@ const AdminConnexion = ({ label, placeholder, value}) => {
 };
 
 export default AdminConnexion;
+
 
 
   {/* <div className="mt-5 mb-7 ">
@@ -184,3 +194,4 @@ export default AdminConnexion;
                   placeholder={focused || value ? "" : placeholder}
                 />
               </div> */}
+

@@ -3,14 +3,14 @@ import imagePropos from "../../../assets/images/bgImage.png";
 
 const Aprops = () => {
   return (
-    <div className="ps-9 md:ps-0 pe-9 py-4 mt-[40px] flex items-center gap-9 mb-9 px-9">
+    <div className="ps-5 md:ps-0 md:pe-5 pe-9 py-4 mt-[40px] flex items-center gap-9 mb-9 px-9">
       <div
         style={{
           backgroundImage: `url(${imagePropos})`,
         }}
         className="bg-gray-800 bg-bottom bg-no-repeat w-2/4 hidden md:block h-[503px]  rounded-e-[80px] rounded-t-0 p-6 text-center text-"
       ></div>
-      <div className="w-1/2 mt-6">
+      <div className="w-full md:w-1/2 mt-6">
         <h1 className="font-medium mb-3 underline">Un petit résumé de notre boutique</h1>
         <div className="mb-4">
           <p className="mb-3">

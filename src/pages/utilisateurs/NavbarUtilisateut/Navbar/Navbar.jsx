@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { MdMenu, MdClose } from "react-icons/md";
@@ -18,6 +18,19 @@ const Navbar = ({ className }) => {
    setOpen(false)
   }
 
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  useEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <nav className={className}>
 
@@ -36,6 +49,7 @@ const Navbar = ({ className }) => {
               </Link>
             </div>
             <Link to={"/"} className="cursor-pointer w-[60px] h-[60px]">
+              {/* <button onClick={toggleTheme} className="bg-white px-4 py-3">dark</button> */}
               <img src={icone} className="w-full h-full" onClick={() => setOpen(false)}/>.
             </Link>
             <div className="text-3xl md:hidden flex  gap-5 items-center justify-center">

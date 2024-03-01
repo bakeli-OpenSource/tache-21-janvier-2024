@@ -1,18 +1,27 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import useGlobal from "../../utils/hooks/useGlobal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Form = () => {
   const navigate = useNavigate();
-  const {profileUser} = useGlobal()
+  const { profileUser, client } = useGlobal();
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+
+  useEffect(() => {
+    profileUser();
+  });
+
 
   const updateShowPassword = () => {
     setShowPassword(!showPassword);
@@ -34,23 +43,31 @@ const Form = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post("https://kay-solu-api.onrender.com/api/authclient/login", formData)
-      .then((response) => {
-        console.log(response.data); // Connexion réussie, vous pouvez gérer le token ici
-        const token = response.data.token;
-        // Stocker le token dans le local storage
-        localStorage.setItem("tokenclient", token);
-        // Rediriger l'utilisateur vers une autre page par exemple
-        navigate("/Panier");
-      })
-      .catch((error) => {
-        console.error(error); // Gérer les erreurs ici
-        alert("Email ou mot de passe incorrect");
-      });
-      profileUser()
+    setIsLoading(true);
+
+    try {
+      const response = axiosInstance.post("/authclient/signup", formData);
+
+      const token = response.data.token;
+      localStorage.setItem("tokenclient", token);
+
+      navigate("/Panier");
+      profileUser();
+
+      if (client && client.prenom && client.nom) {
+        toast.success(`Bienvenue ${client.prenom} ${client.nom}!`);
+      } else {
+        toast.success("Bienvenue!");
+      }
+    } catch (error) {
+      console.error("Erreur lors de la requête :", error);
+      toast.error("Email ou mot de passe incorrect");
+    } finally {
+      setIsLoading(false);
+    }
+
   };
 
   return (
@@ -104,14 +121,17 @@ const Form = () => {
       <div className="flex items-center justify-center mt-5">
         <button
           type="submit"
-          disabled={isButtonDisabled}
-          className={`w-full px-4 py-2 text-white  rounded-md md:w-1/2  ${
-            isButtonDisabled
-              ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-black"
+          disabled={isButtonDisabled || isLoading}
+          className={`w-full px-4 py-2 text-white rounded-md md:w-1/2 flex gap-4 items-center justify-center ${
+            isButtonDisabled || isLoading
+              ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-black relative"
               : "bg-gray-900 text-active text-white hover:bg-gray-900"
-          }`}
+          } ${isLoading ? "relative" : ""}`}
         >
-          Se connexion
+          connexion
+          {isLoading && (
+            <div className="border-4 border-solid border-gray-300 border-t-4 border-t-slate-800 rounded-full w-5 h-5  animate-spin mr-2"></div>
+          )}
         </button>
       </div>
       <p className="py-2 text-center">
@@ -123,9 +143,9 @@ const Form = () => {
           S'inscrire
         </Link>{" "}
       </p>
+      <ToastContainer />
     </form>
   );
 };
 
 export default Form;
-

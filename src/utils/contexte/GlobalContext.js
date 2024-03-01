@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
 
 export let prenom;
 
@@ -13,6 +13,7 @@ const GlobalContextProvider = ({ children }) => {
   const [commandes, setCommandes] = useState([]);
   const [password, setPassword] = useState("");
   const [dropdown, setDropdown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [produitAimer, setProduitAimer] = useState(() => {
     const listesEnvies = localStorage.getItem("produitAimer");
@@ -25,8 +26,9 @@ const GlobalContextProvider = ({ children }) => {
 
   // Fonction de connexion
   const handleLogin = () => {
-    axios
-      .post("https://kay-solu-api.onrender.com/api/auth/login", {
+    setIsLoading(true)
+    axiosInstance
+      .post("/auth/login", {
         email,
         password,
       })
@@ -41,7 +43,10 @@ const GlobalContextProvider = ({ children }) => {
       .catch((error) => {
         console.error(error); // Gérer les erreurs ici
         alert("Email ou mot de passe incorrect");
+      }).finally(() => {
+        setIsLoading(false);
       });
+  
   };
 
   // Fonction pour supprimer le token du local storage après la déconnexion
@@ -66,8 +71,8 @@ const GlobalContextProvider = ({ children }) => {
   const profileUser = async () => {
     const token = localStorage.getItem("tokenclient");
     try {
-      const res = await axios.get(
-        "https://kay-solu-api.onrender.com/api/authclient/profile",
+      const res = await axiosInstance.get(
+        "/authclient/profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -115,8 +120,8 @@ const GlobalContextProvider = ({ children }) => {
 
   const fetchCommandes = async () => {
     try {
-      const response = await axios.get(
-        `https://kay-solu-api.onrender.com/api/commandes`,
+      const response = await axiosInstance.get(
+        `/commandes`,
         
       );
       setCommandes(response.data);
@@ -165,6 +170,7 @@ const GlobalContextProvider = ({ children }) => {
     setProduitAimer,
     handleLikeToggle,
     client,
+    isLoading,
     setClient,
     commandes,
     dropdown,
