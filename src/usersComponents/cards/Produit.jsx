@@ -10,9 +10,6 @@ const Produit = ({ produit }) => {
 
 	const { produits } = useProduits();
 
-	const { _id, imageUrl, categorie, titre, prix, promo } = produit;
-
-<<<<<<< HEAD
     const { _id, imageUrl, categorie, titre, prix, promo} = produit;  
     
     const produitCourant = produits.find(item => item._id === _id);
