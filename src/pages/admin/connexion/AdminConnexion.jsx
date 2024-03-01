@@ -44,7 +44,7 @@ const AdminConnexion = ({ label, placeholder, value}) => {
           <div className="w-full mx-auto mt-5 ">
 
               <div className=" mb-4 mt- ">
-                <label htmlFor="email" className="block text-sm font-medium relative left-9 w-24">
+                <label htmlFor="email" className="block text-sm font-medium relative left-9 w-24 min-w-24">
                   Email
                 </label>
                 <input
@@ -58,7 +58,7 @@ const AdminConnexion = ({ label, placeholder, value}) => {
                 />
             </div>
             <div className=" relative mb-5 mt- ">
-          <label htmlFor="password" className="block text-sm font-medium relative left-12 w-1/4">
+          <label htmlFor="password" className="block text-sm font-medium relative left-10 w-1/4 min-w-24">
             Mot de pass
           </label>
           <input
@@ -82,7 +82,7 @@ const AdminConnexion = ({ label, placeholder, value}) => {
             />
           )}
         </div>
-            
+
               {/* <div className=" mb-4 relative">
                 <label
                   className={`absolute left-15  text-end py-1 transition-all duration-300 peer-focus:-translate-y-5 flex flex-col items-center text-center px-10 ${
