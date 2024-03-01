@@ -104,8 +104,9 @@ const Shop = () => {
     }
   }
 
-  const handleAddToCart = () => {
-    addToCart(produits);
+ const handleAddToCart = (produit) => {
+    addToCart(produit, produit._id)
+    console.log(produits);
   };
 
   useEffect(() => {
@@ -127,8 +128,8 @@ const Shop = () => {
         onClick={() => setDropdown(false)}
         className="px-9  mt-[50px] mx-auto z-0 flex flex-col  "
       >
-        <div className="flex mt-10">
-          <h1 className=" text-2xl mr-5">Shop</h1>
+        <div className="flex flex-wrap mt-10">
+          <h1 className=" text-2xl mr-5">Boutique</h1>
           <ComponentButton
             className="hover:bg-gray-200 text-black ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
             texte={"Tous les Produits"}
@@ -189,7 +190,7 @@ const Shop = () => {
 
             <div className="p- mt-2 text-">
               {/* star rating */}
-                   <div className="w-full items-center gap-1 flex justify-center"> {/* Ajoutez la classe flex justify-center */}
+                   <div className="w-full  gap-1 flex "> {/* Ajoutez la classe flex justify-center */}
                     {[...Array(5)].map((start, index) => {
                       const etoils = index + 1;
                       return (

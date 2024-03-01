@@ -51,10 +51,10 @@ const Arrivals = () => {
       setFilteredProducts(latestProducts);
     };
   
-    if (produits.length > 0) {
+    // if (produits.length > 0) {
       sortProductsByDate();
       
-    }
+    // }
 
 
     console.log(sortProductsByDate);
@@ -90,12 +90,13 @@ const Arrivals = () => {
       onClick={() => setDropdown(false)}
       className="px-9  mt-[50px] mx-auto z-0 flex flex-col  "
     >
-      <div className="mt-[80px] px-9">
+      <div className="mt-[80px] px-9 container">
         {produits.length > 0 ? (
           <>
-            <h1>New Arrivals</h1>
-            <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
-              {filteredProducts.map((produit, index) => (
+            <h1 className=" text-2xl">Nouveuax Arrivés</h1>
+
+            <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-center mx-auto gap-[20px] max-w-sm md:max-w-none md:mx-auto pt-16 mb-7 justify-center content-center">
+              {filteredProducts.map((produit) => (
                 <div
                   key={produit && produit._id}
                   className="shadow-lg  rounded bg-white"
