@@ -1,50 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { BsTelephone } from "react-icons/bs";
 import { VscMail } from "react-icons/vsc";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "axios";
-
+import axiosInstance from "../../../utils/axiosInstance";
 
 const ContactsPage = () => {
-  const  [client, setClient ] = useState('');
-
+  const [client, setClient] = useState({
+    email: "",
+    prenomNom: "",
+    message: "",
+    telephone: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setClient({ ...client, [name]: value });
-    
   };
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      console.log({client});
-      try {
-        const response = await axios.post('https://kay-solu-api.onrender.com/api/messages', client);
-        if (response.status === 201) {
-            console.log('Message envoyé avec succès!', response.data);
-            toast.success('Message envoyé avec succès!');
-            setClient({
-              prenomNom: "",
-              telephone: "",
-              email: "",
-              message: "",
-            });
-        }
-        else {
-            throw new Error('Erreur lors de l\'ajout du produit');
-        }
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const response = await axiosInstance.post('/messages', client);
+      console.log(response);
+      if (response.status === 201) {
+        toast.success("Message envoyé avec succès!");
+        setClient({
+          prenomNom: "",
+          telephone: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        throw new Error("Erreur lors de l'ajout du produit");
+      }
+
     } catch (error) {
-        console.error('Erreur lors de l\'ajout du produit:', error);
-        toast.error("Erreur lors de l'envoie du message");
+      console.error("Erreur lors de l'ajout du produit:", error);
+      toast.error("Erreur lors de l'envoie du message");
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  
+  const updateButtonDisabled = () => {
+    if (
+      client.prenomNom.trim() !== "" &&
+      client.email.trim() !== "" &&
+      client.message.trim() !== "" &&
+      client.telephone.trim() !== ""
+    ) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  };
+  useEffect(() => {
+    updateButtonDisabled();
+  }, [client.email, client.prenomNom, client.message, client.telephone]);
+
   return (
-    <div className="mt-[70px] px-9">
-      <div className="container px-9 pb-3 mx-auto ">
-        <div className="flex flex-col  pt-9 md:flex-row gap-9">
+    <div className="mt-[60px] pt-0 md:pt-6 px- bg- w-full">
+      <div className=" px-4 md:px-2 pb-4 w-full">
+        <div className="flex flex-col w-full pt-4 md:px-9 md:flex-row gap-4 md:gap-9">
           <div
             className={` w-full md:w-1/4  shadow-sm    bg- px-  border border-gray-200 rounded-md  py-4`}
           >
@@ -73,14 +94,14 @@ const ContactsPage = () => {
               <p>Emails: kaysolu@gmail.com</p>
             </div>
           </div>
-          <div className="border px-9 shadow-sm py- w-full md:w-3/4">
+          <div className="border px-3 md:px-9 shadow-sm py- w-full md:w-3/4">
             <h1 className="border font-medium border-t-0 border-s-0 border-e-0 pb-2 pt-4 ">
               Contactez-nous
             </h1>
             <form className="w-full px- py-4 mx-auto" onSubmit={handleSubmit}>
               <div className="mt-">
                 <div className="flex flex-col justify-center w-full gap-5 mt-5 align-center md:flex-row">
-                  <div className="w-full mt- mb-5 md:w-1/3">
+                  <div className="w-full mb-0 md:mb-5 md:w-1/3">
                     <input
                       required
                       type="text"
@@ -92,7 +113,7 @@ const ContactsPage = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="w-full mt- mb-5 md:w-1/3">
+                  <div className="w-full mt- mb-0 md:mb-5 md:w-1/3">
                     <input
                       required
                       type="tel"
@@ -123,7 +144,7 @@ const ContactsPage = () => {
                     rows={8}
                     name="message"
                     placeholder="Votre message"
-                    className="w-full mb-5 bg-gray-200 border p-5 pt-3 rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+                    className="w-full mb-5 bg-gray-200 border px-2 p-5 pt-3 rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
                     value={client.message}
                     onChange={handleChange}
                   ></textarea>
@@ -131,11 +152,38 @@ const ContactsPage = () => {
               </div>
 
               <div className="flex items-center justify-end mt-2">
-                <button
+                {/* <button
                   type="submit"
                   className="px-4 py-2 text-white bg-gray-800 rounded-md hover:bg-gray-900"
                 >
+                  
+                </button> */}
+
+                {/* <button
+                  type="submit"
+                  disabled={isButtonDisabled}
+                  className={`px-4 py-2 text-white rounded-md ${
+                    isButtonDisabled
+                      ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-black"
+                      : "bg-gray-700 text-active text-white hover:bg-gray-900"
+                  }`}
+                >
                   Envoyer le message
+                </button> */}
+
+                <button
+                  type="submit"
+                  disabled={isButtonDisabled || isLoading}
+                  className={` px-4 py-2 text-white rounded-md  flex gap-4 items-center justify-center ${
+                    isButtonDisabled || isLoading
+                      ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-black relative"
+                      : "bg-gray-900 text-active text-white hover:bg-gray-900"
+                  } ${isLoading ? "relative" : ""}`}
+                >
+                  Envoyer le message
+                  {isLoading && (
+                    <div className="border-4 border-solid border-gray-300 border-t-4 border-t-slate-800 rounded-full w-5 h-5  animate-spin mr-2"></div>
+                  )}
                 </button>
               </div>
             </form>

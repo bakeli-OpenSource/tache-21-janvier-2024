@@ -21,6 +21,9 @@ const Categories = () => {
 
   useEffect(() => {
     fetchCategories();
+  }, []);
+  
+  useEffect(() => {
     updateCategoryQuantities();
   }, []);
 
