@@ -4,9 +4,10 @@ import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 import useGlobal from "../../../../utils/hooks/useGlobal";
-import { usePanier } from "../../../../utils/contexte/PanierContext";
 import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import Loader from "../../../../components/loader/loader";
+import axiosInstance from "../../../../utils/axiosInstance";
+
 
 
 const Shop = () => {
@@ -32,11 +33,10 @@ const Shop = () => {
 
   const fetchProduitsCategorie = async (idCategory) => {
     try {
-      const response = await axios.get(
-        `https://kay-solu-api.onrender.com/api/produits/categorie/${idCategory}`
-      );
-      setListeProduitsCategories(response.data);
-      console.log("Produits catégorie récupérées avec succès");
+
+      const response = await axiosInstance.get(`/produits/categorie/${idCategory}`);      
+      setListeProduitsCategories(response.data)
+      
     } catch (error) {
       console.error(
         "Erreur lors de la récupération des produits de la catégories :",
@@ -60,9 +60,8 @@ const Shop = () => {
   };
   const fetchFilterCategories = async () => {
     try {
-      const response = await axios.get(
-        "https://kay-solu-api.onrender.com/api/categories"
-      );
+
+      const response = await axiosInstance.get("/categories");
       setCategories(response.data);
       console.log("Catégories récupérées avec succès");
     } catch (error) {

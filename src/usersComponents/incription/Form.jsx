@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ const Form = () => {
     prenom: "",
     nom: "",
     telephone: "",
-    
     email: "",
     adresse: "",
     password: "",
@@ -51,10 +51,7 @@ const Form = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        "https://kay-solu-api.onrender.com/api/authclient/signup",
-        formData
-      );
+      const response = axiosInstance.post("/authclient/signup", formData);
       setFormData({
         prenom: "",
         nom: "",

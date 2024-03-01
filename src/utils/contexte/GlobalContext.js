@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
 
 export let prenom;
 
@@ -27,8 +27,8 @@ const GlobalContextProvider = ({ children }) => {
   // Fonction de connexion
   const handleLogin = () => {
     setIsLoading(true)
-    axios
-      .post("https://kay-solu-api.onrender.com/api/auth/login", {
+    axiosInstance
+      .post("/auth/login", {
         email,
         password,
       })
@@ -71,8 +71,8 @@ const GlobalContextProvider = ({ children }) => {
   const profileUser = async () => {
     const token = localStorage.getItem("tokenclient");
     try {
-      const res = await axios.get(
-        "https://kay-solu-api.onrender.com/api/authclient/profile",
+      const res = await axiosInstance.get(
+        "/authclient/profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -120,8 +120,8 @@ const GlobalContextProvider = ({ children }) => {
 
   const fetchCommandes = async () => {
     try {
-      const response = await axios.get(
-        `https://kay-solu-api.onrender.com/api/commandes`,
+      const response = await axiosInstance.get(
+        `/commandes`,
         
       );
       setCommandes(response.data);

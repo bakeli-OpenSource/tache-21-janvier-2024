@@ -14,7 +14,9 @@ import { PanierProvider } from './utils/contexte/PanierContext';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import '@fontsource/montserrat';
-import ErreurPage from "./pages/utilisateurs/erreurPage/ErreurPage";
+import ErreurPage from './pages/utilisateurs/erreurPage/ErreurPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -30,6 +32,7 @@ function App() {
 
 	return (
 		<div className="min-h-screen App font-montserrat">
+			<ToastContainer />
 			<GlobalContextProvider>
 				<PanierProvider>
 					<Routes>
@@ -46,5 +49,3 @@ function App() {
 }
 
 export default App;
-
-

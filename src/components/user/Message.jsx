@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { FaRegCircleXmark, FaSquareEnvelope } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
 import { MdDelete } from 'react-icons/md';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../utils/axiosInstance';
 
 
 const Message = ({nouveauMessage}) => {
@@ -15,7 +15,7 @@ const Message = ({nouveauMessage}) => {
 
     const messageLu = async (id) => {
       try {
-        const response = await axios.put('https://kay-solu-api.onrender.com/api/messages/' + id, { lu: true });
+        const response = await axiosInstance.put('/messages/' + id, { lu: true });
         
         if (response.status === 200) { 
           console.log('Message supprimé:', response.data);

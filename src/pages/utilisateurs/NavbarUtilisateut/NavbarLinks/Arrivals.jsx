@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
-import axios from "axios";
 import useGlobal from "../../../../utils/hooks/useGlobal";
 import Loader from "../../../../components/loader/loader";
 import { usePanier } from "../../../../utils/contexte/PanierContext";
 import CardProduit from "../../../../usersComponents/cards/CardProduit";
+import axiosInstance from "../../../../utils/axiosInstance";
+
 
 const Arrivals = () => {
   const { produits } = useContext(ProduitsContext);
@@ -18,8 +19,8 @@ const Arrivals = () => {
   useEffect(() => {
     const fetchNewArrivals = async () => {
       try {
-        const response = await axios.get(
-          "https://kay-solu-api.onrender.com/api/produits"
+        const response = await axiosInstance.get(
+          "/produits"
         );
         setFilteredProducts(response.data);
       } catch (error) {
@@ -48,7 +49,7 @@ const Arrivals = () => {
     if (produits.length > 0) {
       sortProductsByDate();
     }
-  }, [produits]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("produitAimer", JSON.stringify(produitAimer));

@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import useSidebare from '../../utils/hooks/useSidebare';
 import HeaderTable from '../headerTable/HeaderTable';
 import { useParams } from 'react-router';
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
 
 const DetailsProduits = () => {
 	const { id } = useParams();
 	const [data, setData] = useState([]);
 	const fetchProduit = async (id) => {
 		try {
-			const response = await axios.get(
-				'https://kay-solu-api.onrender.com/api/produits/' + id,
+			const response = await axiosInstance.get(
+				'/produits/' + id,
 			);
 			setData(response.data);
 		} catch (error) {

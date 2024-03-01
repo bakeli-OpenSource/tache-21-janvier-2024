@@ -5,7 +5,7 @@ import UserDropdown from "../user/UserDropdown";
 import Notification from "../user/Notification";
 import Message from "../user/Message";
 import { useLocation } from "react-router";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Header = () => {
   const { toggleSidebare } = useSidebare();
@@ -19,7 +19,7 @@ const Header = () => {
   useEffect(() => {
     const fetchCommandes = async () => {
       try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/commandes");
+        const response = await axiosInstance.get("/commandes");
         const produitsNonLuTrue = response.data.filter(produit => produit.lu === false);
         setNouveauCommande(produitsNonLuTrue);
         // console.log(response.data);
@@ -33,7 +33,7 @@ const Header = () => {
   useEffect(() => {
     const fetchMessage = async () => {
       try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/messages");
+        const response = await axiosInstance.get("/messages");
         const messagesNonLuTrue = response.data.filter(message => message.lu === false);
         setNouveauMessage(messagesNonLuTrue);
       } catch (error) {

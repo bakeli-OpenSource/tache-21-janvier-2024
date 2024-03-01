@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 // import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { BsTelephone } from "react-icons/bs";
 import { VscMail } from "react-icons/vsc";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axiosInstance from "../../../utils/axiosInstance";
 
 const ContactsPage = () => {
   const [client, setClient] = useState({
@@ -24,10 +24,7 @@ const ContactsPage = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        "https://kay-solu-api.onrender.com/api/messages",
-        client
-      );
+      const response = await axiosInstance.post('/messages', client);
       console.log(response);
       if (response.status === 201) {
         toast.success("Message envoyé avec succès!");
@@ -40,6 +37,7 @@ const ContactsPage = () => {
       } else {
         throw new Error("Erreur lors de l'ajout du produit");
       }
+
     } catch (error) {
       console.error("Erreur lors de l'ajout du produit:", error);
       toast.error("Erreur lors de l'envoie du message");
