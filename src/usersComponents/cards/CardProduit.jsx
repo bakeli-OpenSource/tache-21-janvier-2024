@@ -55,12 +55,12 @@ const CardProduit = ({ produit }) => {
             <h2 className="font-semibold text-xl md:text-sm mb-1">{nom}</h2>
           </Link>
           {reduction ? (
-            <div className="flex items-center justify-between md:justify-start ">
-              <span className="py-1 text-xl md:text-sm text-red-600">
+            <div className="flex items-end justify-between md:justify-start ">
+              <span className="py-1 text-xl md:text-[16px] text-red-600">
                 {prixAAjouter} FCFA
               </span>
               &nbsp;
-              <span className="line-through text-lg text-[12px] text-gray-500">
+              <span className="line-through text-lg md:text-[10px] text-gray-500">
                 {prix} FCFA
               </span>
             </div>
@@ -96,7 +96,7 @@ const CardProduit = ({ produit }) => {
                 );
               })}
             </div>
-            <div className="flex gap-4 md:gap-2 mt-4 mb-2 justify-">
+            <div className="flex gap-4 md:gap-2 mt-4 mb- md:mb-0 justify-">
               <div className="rounded  bg-gray-200 flex items-center justify-center px-2 py-1">
                 <FaShoppingCart
                   onClick={() => handleAddToCart(produit)}
