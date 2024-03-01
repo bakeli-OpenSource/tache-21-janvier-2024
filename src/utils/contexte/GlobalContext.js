@@ -13,6 +13,7 @@ const GlobalContextProvider = ({ children }) => {
   const [commandes, setCommandes] = useState([]);
   const [password, setPassword] = useState("");
   const [dropdown, setDropdown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [produitAimer, setProduitAimer] = useState(() => {
     const listesEnvies = localStorage.getItem("produitAimer");
@@ -25,6 +26,7 @@ const GlobalContextProvider = ({ children }) => {
 
   // Fonction de connexion
   const handleLogin = () => {
+    setIsLoading(true)
     axios
       .post("https://kay-solu-api.onrender.com/api/auth/login", {
         email,
@@ -41,7 +43,10 @@ const GlobalContextProvider = ({ children }) => {
       .catch((error) => {
         console.error(error); // Gérer les erreurs ici
         alert("Email ou mot de passe incorrect");
+      }).finally(() => {
+        setIsLoading(false);
       });
+  
   };
 
   // Fonction pour supprimer le token du local storage après la déconnexion
@@ -165,6 +170,7 @@ const GlobalContextProvider = ({ children }) => {
     setProduitAimer,
     handleLikeToggle,
     client,
+    isLoading,
     setClient,
     commandes,
     dropdown,

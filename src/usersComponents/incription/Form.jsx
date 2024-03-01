@@ -14,6 +14,7 @@ const Form = () => {
     prenom: "",
     nom: "",
     telephone: "",
+    
     email: "",
     adresse: "",
     password: "",
@@ -63,12 +64,12 @@ const Form = () => {
         password: "",
       });
       alert("Inscription réussi");
-	  toast.success("Inscription réussi!");
+      toast.success("Inscription réussi!");
       navigate("/connexion");
       console.log(response.data);
     } catch (error) {
       console.error(error);
-	  toast.error("Merci de remplir correctement le formulaire ");
+      toast.error("Merci de remplir correctement le formulaire ");
     } finally {
       setIsLoading(false);
     }
