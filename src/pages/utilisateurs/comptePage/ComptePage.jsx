@@ -21,8 +21,8 @@ const ComptePage = () => {
   };
 
   return (
-    <div className="mt-[100px]">
-      <div className="container px-9 pb-3 mx-auto ">
+    <div className="mt-[80px] md:[100px]">
+      <div className="w-full px-4 md:px-9 pb-3 mx-auto ">
       <h3 className={`mb-4 ${
                 location.pathname === "/compte" ? "block" : "hidden"
               }`}>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaEyeSlash } from "react-icons/fa";
-import {FaEye} from "react-icons/fa"
+import { FaEye } from "react-icons/fa";
 import useGlobal from "../../../utils/hooks/useGlobal";
 
-const AdminConnexion = ({ label, placeholder, value}) => {
-  const { email, setEmail, password, setPassword, handleLogin } = useGlobal();
+const AdminConnexion = ({ label, placeholder, value }) => {
+  const { email, setEmail, password, setPassword, handleLogin, isLoading } =
+    useGlobal();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -65,7 +66,7 @@ const AdminConnexion = ({ label, placeholder, value}) => {
               <div className="mt-5 mb-7 ">
                 <label
                   className={`absolute left-17 py-1 transition-all duration-300 flex  items-center text-center px-10 ${
-                    focused || value || email !== "" 
+                    focused || value || email !== ""
                       ? "text-sm text-black  transform -translate-y-5 border-none ml-1 text-center"
                       : ""
                   }`}
@@ -113,16 +114,16 @@ const AdminConnexion = ({ label, placeholder, value}) => {
                   placeholder={active || value ? "" : placeholder}
                 />
                 {showPassword ? (
-            <FaEye
-              onClick={updateShowPassword}
-              className="absolute right-7 bottom-3 flex flex-col justify-center items-center"
-            />
-          ) : (
-            <FaEyeSlash
-              onClick={updateShowPassword}
-              className="absolute right-7 bottom-3  flex flex-col justify-center items-center"
-            />
-          )}
+                  <FaEye
+                    onClick={updateShowPassword}
+                    className="absolute right-7 bottom-3 flex flex-col justify-center items-center"
+                  />
+                ) : (
+                  <FaEyeSlash
+                    onClick={updateShowPassword}
+                    className="absolute right-7 bottom-3  flex flex-col justify-center items-center"
+                  />
+                )}
               </div>
               <div className=" items-center text-center text-xs mt-3">
                 <label htmlFor="default-checkbox" className="text-center ">
@@ -131,16 +132,20 @@ const AdminConnexion = ({ label, placeholder, value}) => {
                 </label>
               </div>
               <div className="mt-4">
+               
                 <button
                   type="submit"
-                  disabled={isButtonDisabled}
-                  className={` bg-gray-100  md:w-96 min-w-80  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 ml-3 py-3 focus:outline-none ${
-                    isButtonDisabled
-                      ? "bg-gray-100 cursor-not-allowed text-disabled text-black"
+                  disabled={isButtonDisabled || isLoading}
+                  className={`bg-gray-100  md:w-96 min-w-80 flex gap-4 items-center  justify-center focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 mx-auto py-3 focus:outline-none ${
+                    isButtonDisabled || isLoading
+                      ? "bg-gray-100 cursor-not-allowed text-disabled text-black "
                       : "bg-slate-800 text-active text-white"
-                  }`}
+                  } `}
                 >
-                  Connexion
+                  connexion
+                  {isLoading && (
+                    <div className="border-4 border-solid border-gray-300 border-t-4 border-t-slate-800 rounded-full w-5 h-5  animate-spin mr-2"></div>
+                  )}
                 </button>
               </div>
             </div>
