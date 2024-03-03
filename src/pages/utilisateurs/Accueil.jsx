@@ -25,14 +25,15 @@ export default function Accueil() {
               <h2 className="text-2xl font-bold mb-4">{categorie}</h2>
               <div className="container mx-auto" data-aos="zoom-in">
                 {produits.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none md:mx-0">
+                  // <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none md:mx-0">
+                  < div className="grid px-0 md:ps-9 md:pe-9  grid-cols-1 mt-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-[30px]  mx-auto md:max-w-none md:mx-0">
                     {produits
                       .filter((produit) => produit.categorie === categorie)
                       .slice(0, 5)
                       .map((produit) => (
                         <CardProduit produit={produit} key={produit._id} />
                       ))}
-                  </div>
+                   </div>
                 ) : (
                   <Loader />
                 )}

@@ -31,14 +31,14 @@ const CardProduit = ({ produit }) => {
   return (
     <>
       <div key={produit && _id} className="shadow-lg  rounded bg-white">
-        <div className=" bg-white h-[300px] sm:h-[200px] relative overflow-hidden group transition">
-          <div className="w-full  h-full flex ">
+        <div className=" bg-white h-[300px] sm:h-[200px] relative overflow-hidden  transition">
+          <div className="   flex ">
             <Link
               to={`/details/${_id}`}
-              className="w-full   flex justify-center items-center"
+              className="w-full  flex justify-center items-center"
             >
               <img
-                className="w-full h- group-hover:scale-110 transition duration-300"
+                className="w-full h- object-contain group-hover:scale-110 transition duration-300"
                 src={imageUrl}
                 alt={produit.categorie}
               />
@@ -52,15 +52,15 @@ const CardProduit = ({ produit }) => {
         </div>
         <div className="p-2 flex flex-col justify-between">
           <Link to={`/details/${_id}`}>
-            <h2 className="font-semibold text-sm mb-1">{nom}</h2>
+            <h2 className="font-semibold text-xl md:text-sm mb-1">{nom}</h2>
           </Link>
           {reduction ? (
-            <div className=" ">
-              <span className="py-1 text-sm text-red-600">
+            <div className="flex items-end justify-between md:justify-start ">
+              <span className="py-1 text-xl md:text-[16px] text-red-600">
                 {prixAAjouter} FCFA
               </span>
               &nbsp;
-              <span className="line-through text-[12px] text-gray-500">
+              <span className="line-through text-lg md:text-[10px] text-gray-500">
                 {prix} FCFA
               </span>
             </div>
@@ -71,20 +71,20 @@ const CardProduit = ({ produit }) => {
           )}
           <div className="p- mt-2 text-">
             {/* star rating */}
-            <div className="w-full flex items-center justify- gap-1">
+            <div className="w-full  flex items-center justify- gap-1">
               {[...Array(5)].map((start, index) => {
                 const etoils = index + 1;
                 return (
-                  <label key={index}>
+                  <label key={index} className="cursor-pointer">
                     <input
                       type="radio"
                       name={`rating-${index}`}
                       value={etoils}
-                      className="hidden"
+                      className="hidden cursor-pointer"
                       onClick={() => setRating(etoils)}
                     />
                     <FaStar
-                      classNeme=""
+                      classNeme="cursor-pointer"
                       size={20}
                       color={
                         etoils <= (hoverArray || rating) ? "#ffc107" : "#e4e5e9"
@@ -96,17 +96,17 @@ const CardProduit = ({ produit }) => {
                 );
               })}
             </div>
-            <div className="flex gap-2 mt-4 justify-">
-              <div className="rounded  bg-gray-200 flex items-center justify-center px-2 py-1">
+            <div className="flex gap-4 md:gap-2 mt-4 mb- md:mb-0 justify-">
+              <div className="rounded cursor-pointer  bg-gray-200 flex items-center justify-center px-2 py-1">
                 <FaShoppingCart
                   onClick={() => handleAddToCart(produit)}
-                  className={`text-sm  text-gray-500 `}
+                  className={`text-lg md:text-sm  text-gray-500 `}
                 />
               </div>
               <div className="rounded bg-gray-200 flex items-center justify-center px-2 py-1">
                 <BsSuitHeartFill
                   onClick={() => handleLikeToggle(produit && _id, produit)}
-                  className={`text-sm   ${
+                  className={`text-lg cursor-pointer md:text-sm   ${
                     produitAimer.some(
                       (likedProduit) => likedProduit && likedProduit._id === _id
                     )
@@ -119,7 +119,7 @@ const CardProduit = ({ produit }) => {
                 to={`/details/${_id}`}
                 className="rounded  bg-gray-200 flex items-center justify-center px-2 py-1"
               >
-                <IoEyeSharp className={`text-sm  text-gray-500 `} />
+                <IoEyeSharp className={`text-lg md:text-sm  text-gray-500 `} />
               </Link>
             </div>
           </div>
