@@ -4,9 +4,9 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdDeliveryDining } from "react-icons/md";
 import { AiOutlineDeliveredProcedure } from "react-icons/ai";
-import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Cards = ({ commandes }) => {
   const [maCommande, setMaCommande] = useState([]);
@@ -33,8 +33,8 @@ const Cards = ({ commandes }) => {
   useEffect(() => {
     const afficheCommande = async () => {
       try {
-        const response = await axios.get(
-          "https://kay-solu-api.onrender.com/api/commandes"
+        const response = await axiosInstance.get(
+          "/commandes"
         );
         setMaCommande(response.data);
       } catch (error) {

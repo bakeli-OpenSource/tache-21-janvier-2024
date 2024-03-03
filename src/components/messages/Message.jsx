@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-import axios from 'axios'
 import Table from '../table/Table'
 import useSidebare from '../../utils/hooks/useSidebare'
 import HeaderTable from '../headerTable/HeaderTable'
 import { useNavigate } from 'react-router-dom'
 import { TbEyeShare } from 'react-icons/tb'
 import { MdOutlineDelete } from 'react-icons/md'
+import axiosInstance from '../../utils/axiosInstance'
 
 const Message = () => {
     const navigate = useNavigate()
@@ -40,7 +40,7 @@ const Message = () => {
       useEffect(() => {
         const fetchClients = async () => {
             try {
-                const response = await axios.get("https://kay-solu-api.onrender.com/api/messages");
+                const response = await axiosInstance.get("/messages");
                 const modifiedData = response.data.map(obj => {
                     return {
                       _id: obj._id,
