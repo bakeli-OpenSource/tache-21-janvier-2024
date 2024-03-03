@@ -1,3 +1,4 @@
+import image from "../../../../assets/images/image5.jpg"
 export const links = [
 	{
 		name: 'Boutique',
@@ -16,6 +17,44 @@ export const links = [
 		link: 'apropos',
 	},
 ];
+
+const data = [
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+  ]
 
 export const commandes = [
 	{
