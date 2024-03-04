@@ -101,7 +101,7 @@ const Shop = () => {
       className="px-9  mt-[50px] mx-auto z-0 flex flex-col  "
     >
       <div className="mt-[30px] ">
-        {produits.length > 0 ? (
+        
           <>
             <h1 className="mb-5">New Arrivals</h1>
 
@@ -111,9 +111,7 @@ const Shop = () => {
               ))}
             </div>
           </>
-        ) : (
-          <Loader />
-        )}
+        
       </div>
     </div>
     </>
