@@ -1,7 +1,5 @@
 
 import { Link, useParams } from "react-router-dom";
-// import ComponentButton from "../../../../usersComponents/button/ComponentButton";
-// import  {ProduitContext}  from "../../../../usersComponents/button/ComponentButton";
 import { useContext } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Loader from "../../../../components/loader/loader";
