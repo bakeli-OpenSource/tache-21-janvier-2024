@@ -1,6 +1,6 @@
-import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axiosInstance from "../axiosInstance";
+import React, { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../axiosInstance';
 
 export let prenom;
 
@@ -13,6 +13,7 @@ const GlobalContextProvider = ({ children }) => {
   const [commandes, setCommandes] = useState([]);
   const [password, setPassword] = useState('');
   const [dropdown, setDropdown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [produitAimer, setProduitAimer] = useState(() => {
     const listesEnvies = localStorage.getItem('produitAimer');
@@ -25,9 +26,9 @@ const GlobalContextProvider = ({ children }) => {
 
   // Fonction de connexion
   const handleLogin = () => {
-
+    setIsLoading(true);
     axiosInstance
-      .post("/auth/login", {
+      .post('/auth/login', {
         email,
         password,
       })
@@ -42,6 +43,9 @@ const GlobalContextProvider = ({ children }) => {
       .catch((error) => {
         console.error(error); // Gérer les erreurs ici
         alert('Email ou mot de passe incorrect');
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -67,14 +71,11 @@ const GlobalContextProvider = ({ children }) => {
   const profileUser = async () => {
     const token = localStorage.getItem('tokenclient');
     try {
-      const res = await axiosInstance.get(
-        "/authclient/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await axiosInstance.get('/authclient/profile', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       setClient(res.data);
       // console.log(res.data);
@@ -87,10 +88,7 @@ const GlobalContextProvider = ({ children }) => {
 
   const fetchCommandes = async () => {
     try {
-      const response = await axiosInstance.get(
-        `/commandes`,
-        
-      );
+      const response = await axiosInstance.get(`/commandes`);
       setCommandes(response.data);
       console.log('Commandes récupérées avec succès');
       console.log(response.data);
@@ -137,6 +135,7 @@ const GlobalContextProvider = ({ children }) => {
     setProduitAimer,
     handleLikeToggle,
     client,
+    isLoading,
     setClient,
     commandes,
     dropdown,

@@ -48,7 +48,7 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
   
 
   return (
-    <form className="w-full max-w-lg mx-3"  onSubmit={onSubmit}>
+    <form className="w-full max-w-lg mx-3 "  onSubmit={onSubmit}>
       <div className="flex flex-wrap mb-6">
         {
           inputs.map((input, index)=>(

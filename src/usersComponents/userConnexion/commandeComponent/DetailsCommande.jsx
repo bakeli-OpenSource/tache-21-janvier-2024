@@ -28,7 +28,27 @@ const OrderDetail = () => {
             <FaArrowLeft className=" text-black  " />
           </Link> Détails de la commandes
         </h1>
-        {commande ? (
+        {commande?.produit?.map((produit, index) => (
+        <div key={index} className="card m-4 p-6 border border-gray-300">
+          <h2 className="text-xl font-bold">Commande #{commande.numeroCommande}</h2>
+          <p>Nom: {commande.nom} {commande.prenom}</p>
+          <p>Email: {commande.email}</p>
+          <p>Téléphone: {commande.telephone}</p>
+          <p>Produit:</p>
+          <ul>
+            <li>Nom: {produit}</li>
+            <li>Quantité: {commande.quantite[index]}</li>
+            <li>Prix unitaire: {commande.prixProduit}</li>
+          </ul>
+          <p>Image du produit:</p>
+          <img className="max-w-full h-auto" src={commande.imageUrl[index]} alt={`Product ${index + 1}`} />
+          <p>Prix Livraison: {commande.prixLivraison}</p>
+          <p>Prix Total: {commande.prixTotal}</p>
+          <p>État: {commande.etat}</p>
+          <p>Date: {commande.date}</p>
+        </div>
+      ))}
+        {/* {commande ? (
           <div key={commande._id} className=" ">
             <div className="border-2 pb-4 border-t-0 border-s-0 border-e-0">
               <h2 className="text-s, font-meduim  mb-2">
@@ -70,10 +90,42 @@ const OrderDetail = () => {
           </div>
         ) : (
           <Loader />
-        )}
+        )} */}
       </div>
     </>
   );
 };
 
 export default OrderDetail;
+
+// import React from 'react';
+
+// const CommandeDetails = ({ data }) => {
+//   return (
+//     <div className="flex flex-wrap">
+//       {data.produit.map((produit, index) => (
+//         <div key={index} className="card m-4 p-6 border border-gray-300">
+//           <h2 className="text-xl font-bold">Commande #{data.numeroCommande}</h2>
+//           <p>Nom: {data.nom} {data.prenom}</p>
+//           <p>Email: {data.email}</p>
+//           <p>Téléphone: {data.telephone}</p>
+//           <p>Produit:</p>
+//           <ul>
+//             <li>Nom: {produit}</li>
+//             <li>Quantité: {data.quantite[index]}</li>
+//             <li>Prix unitaire: {data.prixProduit}</li>
+//           </ul>
+//           <p>Image du produit:</p>
+//           <img className="max-w-full h-auto" src={data.imageUrl[index]} alt={`Product ${index + 1}`} />
+//           <p>Prix Livraison: {data.prixLivraison}</p>
+//           <p>Prix Total: {data.prixTotal}</p>
+//           <p>État: {data.etat}</p>
+//           <p>Date: {data.date}</p>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default CommandeDetails;
+
