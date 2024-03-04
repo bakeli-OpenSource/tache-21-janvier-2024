@@ -41,7 +41,7 @@ import React from 'react';
       </div>
 
       {data?.produit?.map((produit, index) => (
-        <div className="flex shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-">
+        <div className="flex flex-col sm:row shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-">
           <div key={index} className="card flex items-center gap-7">
             <div className="">
               <img
