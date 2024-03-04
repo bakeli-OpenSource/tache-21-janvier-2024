@@ -18,18 +18,6 @@ const Navbar = ({ className }) => {
    setOpen(false)
   }
 
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
-
-  useEffect(() => {
-    document.body.className = theme;
-    localStorage.setItem("theme", theme);
-  }, [theme]);
 
   return (
     <nav className={className}>

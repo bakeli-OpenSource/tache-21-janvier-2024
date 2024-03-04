@@ -3,7 +3,7 @@ import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import useGlobal from "../../../../utils/hooks/useGlobal";
 import Loader from "../../../../components/loader/loader";
 import { usePanier } from "../../../../utils/contexte/PanierContext";
-import CardProduit from "../../../../usersComponents/Cards/CardProduit";
+import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import axiosInstance from "../../../../utils/axiosInstance";
 
 

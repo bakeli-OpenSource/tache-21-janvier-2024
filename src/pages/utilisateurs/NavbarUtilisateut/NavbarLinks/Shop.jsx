@@ -4,7 +4,7 @@ import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 import useGlobal from "../../../../utils/hooks/useGlobal";
-import CardProduit from "../../../../usersComponents/Cards/CardProduit";
+import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import Loader from "../../../../components/loader/loader";
 import axiosInstance from "../../../../utils/axiosInstance";
 

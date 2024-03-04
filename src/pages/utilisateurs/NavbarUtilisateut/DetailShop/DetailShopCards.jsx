@@ -1,11 +1,10 @@
-
 import { Link, useParams } from "react-router-dom";
 // import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 // import  {ProduitContext}  from "../../../../usersComponents/button/ComponentButton";
 import { useContext } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Loader from "../../../../components/loader/loader";
-import { ProduitContext } from "../../../../usersComponents/Cards/ProduitContext";
+import { ProduitContext } from "../../../../usersComponents/cards/ProduitContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
 
 const DetailShopCards = () => {
