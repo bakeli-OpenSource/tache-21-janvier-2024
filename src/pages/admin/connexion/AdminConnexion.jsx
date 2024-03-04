@@ -3,7 +3,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import useGlobal from "../../../utils/hooks/useGlobal";
 
-const AdminConnexion = ({ label, placeholder, value }) => {
+const AdminConnexion = () => {
   const { email, setEmail, password, setPassword, handleLogin, isLoading } =
     useGlobal();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -62,7 +62,7 @@ const AdminConnexion = ({ label, placeholder, value }) => {
             </div>
             <div className=" relative mb-5 mt- ">
           <label htmlFor="password" className="block text-sm font-medium relative left-10 w-1/4 min-w-24">
-            Mot de pass
+            Mot de passe
           </label>
           <input
             required
