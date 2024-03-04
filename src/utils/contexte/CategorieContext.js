@@ -179,9 +179,7 @@ export default function CategorieContextProvider({children}) {
     } catch (error) {
       console.error('Erreur lors de la mise à jour des quantités de produits :', error);
     }
-  };
-  
-  
+  };  
   
   const valueContext = {
     test,
