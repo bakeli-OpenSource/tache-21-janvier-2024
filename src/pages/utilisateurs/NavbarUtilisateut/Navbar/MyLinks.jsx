@@ -1,4 +1,5 @@
 import image from "../../../../assets/images/image5.jpg"
+
 export const links = [
 	{
 		name: 'Boutique',
@@ -111,26 +112,4 @@ export const commandes = [
 		promo: '40',
 		prix: ' FCFA',
 	},
-	// {
-	//   name: "Boutique",
-	//   id: Math.random(),
-	//   idProduit: Math.random(),
-	//   produit: "Nouveau Arrivées",
-	//   etat: "en cour"
-	// },
-	// {
-	//   name: "Boutique",
-	//   id: Math.random(),
-	//   idProduit: Math.random(),
-	//   produit: "Nouveau Arrivées",
-	//   etat: "en cour"
-	// },
-
-	// {
-	//   name: "Boutique",
-	//   id: Math.random(),
-	//   idProduit: Math.random(),
-	//   produit: "Nouveau3 Arrivées",
-	//   etat: "en cour"
-	// },
 ];

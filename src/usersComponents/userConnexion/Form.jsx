@@ -46,12 +46,10 @@ const Form = () => {
     setIsLoading(true);
 
     try {
-      const response = axiosInstance.post("/authclient/signup", formData);
-
+      const response = await axiosInstance.post("/authclient/login", formData);
       const token = response.data.token;
       localStorage.setItem("tokenclient", token);
-
-      navigate("/Panier");
+      navigate(-1);
       profileUser();
 
       if (client && client.prenom && client.nom) {
@@ -60,12 +58,11 @@ const Form = () => {
         toast.success("Bienvenue!");
       }
     } catch (error) {
-      console.error("Erreur lors de la requête :", error);
-      toast.error("Email ou mot de passe incorrect");
+      console.error(error);
+      alert("Email ou mot de passe incorrect");
     } finally {
       setIsLoading(false);
     }
-
   };
 
   return (

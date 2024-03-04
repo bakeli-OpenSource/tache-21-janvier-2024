@@ -10,12 +10,12 @@ import useProduits from "../../utils/hooks/useProduits";
 
 
 const Dashboard = () => {
-  const { open } = useSidebare();
+  const { open, closedrop } = useSidebare();
 
   const {filtreProduits, handleSelectChangeCategorie} = useProduits();
 
   return (
-    <div className={`${open ? "md:ml-[230px] " : "md:ml-[85px] m-3 mb-0"} m-5 mb-0`}>
+    <div onClick={closedrop} className={`${open ? "md:ml-[230px] " : "md:ml-[85px] m-3 mb-0"} m-5 mb-0`}>
       <div className="container text-xl font-bold ">
         <div className="flex justify-end">
           <ProduitContextProvider>

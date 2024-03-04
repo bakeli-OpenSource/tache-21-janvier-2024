@@ -8,27 +8,6 @@ const AdminConnexion = ({ label, placeholder, value }) => {
     useGlobal();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  const [focused, setFocused] = useState(false);
-  const [active, setActive] = useState(false);
-
-  const handleFocus = () => {
-    setFocused(true);
-  };
-
-  const handleBlur = () => {
-    if (!value) {
-      setFocused(false);
-    }
-  };
-  const handleActive = () => {
-    setActive(true);
-  };
-
-  const handleRue = () => {
-    if (!value) {
-      setActive(false);
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,10 +30,10 @@ const AdminConnexion = ({ label, placeholder, value }) => {
   };
 
   return (
-    <div className="flex flex-col items-center  justify-center min-h-screen h-[100px] py-2 bg-gray-100 ">
+    <div className="flex flex-col items-center  justify-center min-h-screen  py-2 bg-gray-100 ">
       <form
+        className="w-full flex flex-col items-center  justify-center flex-row-reverse w-full  px-30 text-center"
         onSubmit={handleSubmit}
-        className="flex flex-col items-center  justify-center flex-row-reverse w-full  px-30 text-center"
       >
         <div className="min-w-96 bg-white rounded-2xl shadow-2xl flex flex-col-reverse flex-row md:flex-row w-2/3 max-w-4xl">
           <div className="md:w-3/5 py-5">
@@ -63,33 +42,51 @@ const AdminConnexion = ({ label, placeholder, value }) => {
                 Connectez-vous au compte
               </h2>
               <div className="border-2 w-10 border-slate-800 inline-block mb-2"></div>
-              <div className="mt-5 mb-7 ">
-                <label
-                  className={`absolute left-17 py-1 transition-all duration-300 flex  items-center text-center px-10 ${
-                    focused || value || email !== ""
-                      ? "text-sm text-black  transform -translate-y-5 border-none ml-1 text-center"
-                      : ""
-                  }`}
-                  htmlFor="text"
-                >
-                  E-mail
+
+          <div className="w-full mx-auto mt-5 ">
+
+              <div className=" mb-4 mt- ">
+                <label htmlFor="email" className="block text-sm font-medium relative left-9 w-24 min-w-24">
+                  Email
+
                 </label>
                 <input
-                  id={label}
+                  required
                   type="email"
+                  id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  name="email"
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  required="@"
-                  className={`bg-gray-100  md:w-96 min-w-80  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 ml-3 py-3 focus:outline-none  ${
-                    focused || value ? "border-transparent" : "border-gray-300"
-                  }`}
-                  placeholder={focused || value ? "" : placeholder}
+                  className="bg-gray-100  md:w-96 min-w-80 p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+                  
                 />
-              </div>
-              <div className=" mb-4 relative">
+            </div>
+            <div className=" relative mb-5 mt- ">
+          <label htmlFor="password" className="block text-sm font-medium relative left-10 w-1/4 min-w-24">
+            Mot de pass
+          </label>
+          <input
+            required
+            type={showPassword ? "text" : "password"}
+            id="password"
+            name="password"
+            className="bg-gray-100 md:w-96 min-w-80 p-2 mt-1 px-2 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {showPassword ? (
+            <FaEye
+              onClick={updateShowPassword}
+              className="absolute right-16 bottom-3 flex flex-col justify-center items-center"
+            />
+          ) : (
+            <FaEyeSlash
+              onClick={updateShowPassword}
+              className="absolute right-16 bottom-3 flex flex-col justify-center items-center"
+            />
+          )}
+        </div>
+
+              {/* <div className=" mb-4 relative">
                 <label
                   className={`absolute left-15  text-end py-1 transition-all duration-300 peer-focus:-translate-y-5 flex flex-col items-center text-center px-10 ${
                     active || value || password !== ""
@@ -114,16 +111,19 @@ const AdminConnexion = ({ label, placeholder, value }) => {
                   placeholder={active || value ? "" : placeholder}
                 />
                 {showPassword ? (
-                  <FaEye
-                    onClick={updateShowPassword}
-                    className="absolute right-7 bottom-3 flex flex-col justify-center items-center"
-                  />
-                ) : (
-                  <FaEyeSlash
-                    onClick={updateShowPassword}
-                    className="absolute right-7 bottom-3  flex flex-col justify-center items-center"
-                  />
-                )}
+
+            <FaEye
+              onClick={updateShowPassword}
+              className="absolute right-8 bottom-3 flex flex-col justify-center items-center"
+            />
+          ) : (
+            <FaEyeSlash
+              onClick={updateShowPassword}
+              className="absolute right-7 bottom-3  flex flex-col justify-center items-center"
+            />
+          )}
+              </div> */}
+
               </div>
               <div className=" items-center text-center text-xs mt-3">
                 <label htmlFor="default-checkbox" className="text-center ">
@@ -165,3 +165,33 @@ const AdminConnexion = ({ label, placeholder, value }) => {
 };
 
 export default AdminConnexion;
+
+
+
+  {/* <div className="mt-5 mb-7 ">
+                <label
+                  className={`absolute left-17 py-1 transition-all duration-300 flex  items-center text-center px-10 ${
+                    focused || value || email !== "" 
+                      ? "text-sm text-black  transform -translate-y-5 border-none ml-1 text-center"
+                      : ""
+                  }`}
+                  htmlFor="text"
+                >
+                  E-mail
+                </label>
+                <input
+                  id={label}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  required="@"
+                  className={`bg-gray-100  md:w-96 min-w-80  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 ml-3 py-3 focus:outline-none  ${
+                    focused || value ? "border-transparent" : "border-gray-300"
+                  }`}
+                  placeholder={focused || value ? "" : placeholder}
+                />
+              </div> */}
+

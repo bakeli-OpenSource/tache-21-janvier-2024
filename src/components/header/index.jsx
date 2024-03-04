@@ -50,7 +50,7 @@ const Header = () => {
   }, [nouveauMessage]);
 
   return (
-    <header className="z-[10] bg-gray-800 fixed w-full m-0 flex justify-between text-gray-100 w-100 px-5 py-3">
+    <header  className="z-[10] bg-gray-800 fixed w-full m-0 flex justify-between text-gray-100 w-100 px-5 py-3">
       <div className="flex gap-4 items-center">
         <FaBars
           className="cursor-pointer mt-0.75"

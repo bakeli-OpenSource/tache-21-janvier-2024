@@ -29,12 +29,21 @@ const SidebareContextProvider = ({ children }) => {
     setNotification(false);
   };
 
+  const closedrop = () => {
+    setMessage(false);
+    setDropdown(false);
+    setNotification(false);
+  }
+
   const updateUserProfile = (updatedUser) => {
     setUser(updatedUser);
   };
 
   const toggleSidebare = () => {
     setOpen(!open);
+    setMessage(false);
+    setDropdown(false);
+    setNotification(false);
   };
 
   const screenSize = () => {
@@ -70,6 +79,7 @@ const SidebareContextProvider = ({ children }) => {
     handleMessage,
     handleNotification,
     toggleSidebare,
+    closedrop,
     screenSize,
     setSmallScreen,
     setOpen,
