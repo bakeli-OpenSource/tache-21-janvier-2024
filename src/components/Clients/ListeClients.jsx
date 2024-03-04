@@ -6,7 +6,7 @@ import axiosInstance from '../../utils/axiosInstance'
 // import Toast from '../toast/Toast'
 
 const ListeClients = () => {
-    const {open} = useSidebare()
+    const {open, closedrop} = useSidebare()
     const [client, setClient] = useState([])
 
     const table = [
@@ -38,7 +38,7 @@ const ListeClients = () => {
 
       // console.log(client);
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
+    <div onClick={closedrop} className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <div className='my-7 mb-9'>
         <HeaderTable />
       </div>

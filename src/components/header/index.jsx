@@ -8,7 +8,7 @@ import { useLocation } from "react-router";
 import axiosInstance from "../../utils/axiosInstance";
 
 const Header = () => {
-  const { toggleSidebare } = useSidebare();
+  const { toggleSidebare, closedrop } = useSidebare();
   const location = useLocation();
   const urlPageActuel = location.pathname.split("/");
   const pageActuel = urlPageActuel[urlPageActuel.length - 1];
@@ -44,7 +44,7 @@ const Header = () => {
   }, [nouveauMessage]);
 
   return (
-    <header className="z-[10] bg-gray-800 fixed w-full m-0 flex justify-between text-gray-100 w-100 px-5 py-3">
+    <header  className="z-[10] bg-gray-800 fixed w-full m-0 flex justify-between text-gray-100 w-100 px-5 py-3">
       <div className="flex gap-4 items-center">
         <FaBars
           className="cursor-pointer mt-0.75"
