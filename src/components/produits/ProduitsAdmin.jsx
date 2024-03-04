@@ -18,6 +18,9 @@ const ProduitsAdmin = () => {
   const {open, closedrop} = useSidebare()
 
   
+  setTitreModal(
+    'Ajouter un produits'
+  )
   return (
     <div onClick={closedrop} className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable

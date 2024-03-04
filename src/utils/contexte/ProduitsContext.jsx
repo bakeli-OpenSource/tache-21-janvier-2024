@@ -16,7 +16,7 @@ const ProduitContextProvider = ({ children }) => {
   const [produits, setProduits] = useState([])
   const [categoryNames, setCategoryNames] = useState([]);
   // Création des contexts pour formulaire
-  // const [url, setUrl] = useState('')
+  
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [titre, setTitre] = useState('')
@@ -37,6 +37,9 @@ const ProduitContextProvider = ({ children }) => {
   const [filtreProduits, setFiltreProduits] = useState([])
   const [categorieSelect, setCategorieSelect] = useState([]); 
   const [listeProduitsCategories, setListeProduitsCategories] = useState([])
+  const [valueInput, setValueInput] = useState('');
+
+  
   const table = [
     'Article', 'Quantité', 'Prix', 'Actions'
   ]
@@ -361,7 +364,6 @@ const ProduitContextProvider = ({ children }) => {
           setCategorie(categorieSelect);
           setCategorieId(selectedCategory._id);
           fetchProduitsCategorie(categorieId)
-          // const filteredProducts = produits.filter((produit) => produit.categorieId === selectedCategory._id);
           setFiltreProduits(listeProduitsCategories);
 
         } else {
@@ -380,6 +382,7 @@ const ProduitContextProvider = ({ children }) => {
 	  }, [categories]); 
 
   const value = {
+    valueInput, setValueInput,
     hanldleSubmit,
     selects,
     textarea,
