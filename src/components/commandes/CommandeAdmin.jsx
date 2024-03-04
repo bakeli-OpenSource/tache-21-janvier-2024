@@ -61,6 +61,7 @@ const CommandeAdmin = () => {
 		},
 	];
 
+  const commandeRenverse = commandes.reverse()
 
   return (
     <div className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>
@@ -85,7 +86,7 @@ const CommandeAdmin = () => {
         }
        
       />
-      <Table thead={table} tbody={commandes} actions={actions} />
+      <Table thead={table} tbody={commandes.reverse()} actions={actions} />
     </div>
   );
 

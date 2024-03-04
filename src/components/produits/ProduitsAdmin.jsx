@@ -21,13 +21,6 @@ const ProduitsAdmin = () => {
   const {open} = useSidebare()
 
   
-
-
-
-
-  
- 
-  
   setTitreModal(
     'Ajouter un produits'
   )
