@@ -34,7 +34,7 @@ const Notification = ({nouveauCommande}) => {
           <div className="absolute right-0 mt-5 w-[350px] bg-white border border-gray-200 rounded-md shadow-lg py-1">
               <div className='flex justify-end px-4 py-2'>
 
-              <FaRegCircleXmark className='cursor-pointer' onClick={handleNotification} />
+              <FaRegCircleXmark className='cursor-pointer text-black' onClick={handleNotification} />
               </div>
               <div className='px-4 py-3 text-sm flex flex-col overflow-auto h-[250px]'>
                 {nouveauCommande.length ?

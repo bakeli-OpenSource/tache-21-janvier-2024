@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-// import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { BsTelephone } from "react-icons/bs";
 import { VscMail } from "react-icons/vsc";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "../../../utils/axiosInstance";
+import useGlobal from "../../../utils/hooks/useGlobal";
 
 const ContactsPage = () => {
   const [client, setClient] = useState({
@@ -14,6 +14,7 @@ const ContactsPage = () => {
     telephone: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const { closeDropdown } = useGlobal();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +25,7 @@ const ContactsPage = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axiosInstance.post('/messages', client);
+      const response = await axiosInstance.post("/messages", client);
       console.log(response);
       if (response.status === 201) {
         toast.success("Message envoyé avec succès!");
@@ -37,7 +38,6 @@ const ContactsPage = () => {
       } else {
         throw new Error("Erreur lors de l'ajout du produit");
       }
-
     } catch (error) {
       console.error("Erreur lors de l'ajout du produit:", error);
       toast.error("Erreur lors de l'envoie du message");
@@ -63,7 +63,10 @@ const ContactsPage = () => {
   }, [client.email, client.prenomNom, client.message, client.telephone]);
 
   return (
-    <div className="mt-[60px] pt-0 md:pt-6 px- bg- w-full">
+    <div
+      onClick={closeDropdown}
+      className="mt-[60px] pt-0 md:pt-6 px- bg- w-full"
+    >
       <div className=" px-4 md:px-2 pb-4 w-full">
         <div className="flex flex-col w-full pt-4 md:px-9 md:flex-row gap-4 md:gap-9">
           <div
@@ -152,25 +155,6 @@ const ContactsPage = () => {
               </div>
 
               <div className="flex items-center justify-end mt-2">
-                {/* <button
-                  type="submit"
-                  className="px-4 py-2 text-white bg-gray-800 rounded-md hover:bg-gray-900"
-                >
-                  
-                </button> */}
-
-                {/* <button
-                  type="submit"
-                  disabled={isButtonDisabled}
-                  className={`px-4 py-2 text-white rounded-md ${
-                    isButtonDisabled
-                      ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-black"
-                      : "bg-gray-700 text-active text-white hover:bg-gray-900"
-                  }`}
-                >
-                  Envoyer le message
-                </button> */}
-
                 <button
                   type="submit"
                   disabled={isButtonDisabled || isLoading}

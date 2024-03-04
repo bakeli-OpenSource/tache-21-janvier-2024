@@ -32,13 +32,13 @@ const CardProduit = ({ produit }) => {
     <>
       <div key={produit && _id} className="shadow-lg  rounded bg-white">
         <div className=" bg-white h-[300px] sm:h-[200px] relative overflow-hidden  transition">
-          <div className="   flex ">
+          <div className=" h-full  flex ">
             <Link
               to={`/details/${_id}`}
               className="w-full  flex justify-center items-center"
             >
               <img
-                className="w-full h- object-contain group-hover:scale-110 transition duration-300"
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
                 src={imageUrl}
                 alt={produit.categorie}
               />
@@ -84,7 +84,7 @@ const CardProduit = ({ produit }) => {
                       onClick={() => setRating(etoils)}
                     />
                     <FaStar
-                      classNeme="cursor-pointer"
+                      className="cursor-pointer"
                       size={20}
                       color={
                         etoils <= (hoverArray || rating) ? "#ffc107" : "#e4e5e9"
@@ -97,29 +97,29 @@ const CardProduit = ({ produit }) => {
               })}
             </div>
             <div className="flex gap-4 md:gap-2 mt-4 mb- md:mb-0 justify-">
-              <div className="rounded cursor-pointer  bg-gray-200 flex items-center justify-center px-2 py-1">
+              <div onClick={() => handleAddToCart(produit)} className="rounded   cursor-pointer  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1">
                 <FaShoppingCart
-                  onClick={() => handleAddToCart(produit)}
-                  className={`text-lg md:text-sm  text-gray-500 `}
+                  
+                  className={`text-lg md:text-sm  `}
                 />
               </div>
-              <div className="rounded bg-gray-200 flex items-center justify-center px-2 py-1">
-                <BsSuitHeartFill
-                  onClick={() => handleLikeToggle(produit && _id, produit)}
-                  className={`text-lg cursor-pointer md:text-sm   ${
+              <div className={`rounded bg-gray-200 ${
                     produitAimer.some(
                       (likedProduit) => likedProduit && likedProduit._id === _id
                     )
                       ? "text-red-500 "
-                      : "text-gray-500"
-                  } `}
+                      : "text-gray-500 hover:text-gray-200"
+                  }  hover:bg-gray-400  flex items-center justify-center px-2 py-1`}>
+                <BsSuitHeartFill
+                  onClick={() => handleLikeToggle(produit && _id, produit)}
+                  className={`text-lg cursor-pointer md:text-sm    `}
                 />
               </div>
               <Link
                 to={`/details/${_id}`}
-                className="rounded  bg-gray-200 flex items-center justify-center px-2 py-1"
+                className="rounded  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1"
               >
-                <IoEyeSharp className={`text-lg md:text-sm  text-gray-500 `} />
+                <IoEyeSharp className={`text-lg md:text-sm  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 `} />
               </Link>
             </div>
           </div>

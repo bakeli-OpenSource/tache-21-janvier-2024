@@ -1,23 +1,25 @@
-import React, { createContext, useEffect, useState } from 'react';
-// import {  useNavigate } from "react-router-dom";
-// import { TbEyeShare } from "react-icons/tb";
-// import { MdEdit } from "react-icons/md";
-// import { MdOutlineDelete } from "react-icons/md";
-// import Formulaire from '../formulaire/Formulaire';
-import useGlobal from '../../utils/hooks/useGlobal';
-import axiosInstance from '../axiosInstance';
+import React, { createContext, useEffect, useState } from "react";
+import { toast } from 'react-toastify';
+import useGlobal from "../../utils/hooks/useGlobal";
+import axiosInstance from "../axiosInstance";
+import { useLocation } from "react-router-dom";
+
 
 export const CommandeContext = createContext();
 
 const CommandeContextProvider = ({ children }) => {
-  // const navigate = useNavigate()
+
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
+  const commandeId = pathnames.pop();
 
   const table = [
-    'Nom',
-    ' Quantite',
-    'Telephone',
-    'Etat de la commande',
-    'Actions',
+    "Nom",
+    "Produit",
+    "Quantite",
+    "Telephone",
+    "Etat de la commande",
+    "Actions",
   ];
 
   const [idProduit, setIdProduit] = useState('');
@@ -40,22 +42,48 @@ const CommandeContextProvider = ({ children }) => {
 
   const [selectsValue, setSelectsValue] = useState('');
 
+ 
+  const [data, setData] = useState([]);
+  useEffect(() => {
+
+  const fetchCommande = async (commandeId) => {
+      try {
+          const response = await axiosInstance.get(
+              '/commandes/' + commandeId,
+          );
+          setData(response.data);
+      } catch (error) {
+          console.error('Erreur lors de la récupération des commandes:', error);
+      }
+  };
+  fetchCommande(commandeId);
+}, [data]);
+
   const handleDetail = (commandeId) => {
     const commandeIdCli = localStorage.getItem('commandeIdCli');
   };
 
   const handleEditCommande = async (id, newData) => {
     try {
-      const response = await axiosInstance.put('/commande/' + id, newData);
 
-      if (response.status === 200) {
-        console.log('Statut modifié avec succès:', response.data);
-        alert('Statut modifié avec succès');
+      const response = await axiosInstance.put(
+        "/commande/" + id,
+        newData
+        );
+        
+        if (response.status === 200) {
+          console.log("Statut modifié avec succès:", response.data);
+          toast.success('Statut modifié avec succès!');
+          fetchCommandes();
+          setModifModal(false)
+
       } else {
         throw new Error('Erreur lors de la modification');
       }
     } catch (error) {
-      console.error('Erreur lors de la modification:', error);
+
+      console.error("Erreur lors de la modification:", error);
+      toast.success('Erreur lors de la modification!');
     }
   };
 
@@ -105,6 +133,7 @@ const CommandeContextProvider = ({ children }) => {
   }, []);
 
   const value = {
+    commandeId,
     setShowModal,
     setEditingCommandeId,
     handleEditCommande,
@@ -137,10 +166,12 @@ const CommandeContextProvider = ({ children }) => {
     etat,
     setEtat,
     setDate,
-    setQuantite,
+    setQuantite, 
     modif,
     setModifModal,
     setCommandes,
+    data, 
+    setData
   };
 
   return (

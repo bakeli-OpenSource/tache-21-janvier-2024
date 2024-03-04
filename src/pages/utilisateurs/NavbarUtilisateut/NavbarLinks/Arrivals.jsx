@@ -5,6 +5,7 @@ import Loader from "../../../../components/loader/loader";
 import { usePanier } from "../../../../utils/contexte/PanierContext";
 import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import axiosInstance from "../../../../utils/axiosInstance";
+import LoaderCard from "../../../../usersComponents/loaderCard/LoaderCard";
 
 
 const Arrivals = () => {
@@ -75,7 +76,7 @@ const Arrivals = () => {
             </div>
           </>
         ) : (
-          <Loader />
+          <LoaderCard />
         )}
       </div>
     </div>
