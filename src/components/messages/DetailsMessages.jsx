@@ -23,7 +23,7 @@ const DetailsMessages = () => {
             }
         };
         fetchMessage(id);
-      }, [data]);
+      }, [id]);
 
 	
     const { open } = useSidebare();
@@ -57,7 +57,7 @@ const DetailsMessages = () => {
                             {data.prenomNom}
                         </h1>
                         <a
-                            href={data.telephone}
+                            href={`tel:${data.telephone}`}
                             className="text-gray-500 rounded-lg py-1 px-3 hover:bg-blue-700 hover:text-white"
                             alt="Votre Téléphone"
                         >

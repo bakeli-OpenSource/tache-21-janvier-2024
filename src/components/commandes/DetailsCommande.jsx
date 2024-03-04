@@ -4,16 +4,19 @@ import HeaderTable from '../headerTable/HeaderTable';
 // import Table from '../table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance';
 
 
-  const DetailsCommande = () => {
-    const commandeId = localStorage.getItem("commandeIdCli")
-    // const {commandeId} = useParams()
-    const [data, setData] = useState([]);
-    useEffect(() => {
 
+const DetailsCommande = () => {
+
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
+  const commandeId = pathnames.pop();
+  const [data, setData] = useState([]);
+	useEffect(() => {
+    
     const fetchCommande = async (commandeId) => {
         try {
             const response = await axiosInstance.get(
@@ -25,9 +28,9 @@ import axiosInstance from '../../utils/axiosInstance';
         }
     };
     fetchCommande(commandeId);
-  }, [data]);
+  }, [commandeId]);
 
-    const {open} = useSidebare()
+  const {open} = useSidebare()
 
 
 
