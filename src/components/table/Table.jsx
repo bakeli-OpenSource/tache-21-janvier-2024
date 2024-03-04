@@ -13,7 +13,7 @@ export const Thead = ({thead}) => {
     )
 }
 
-const Tbody = ({tbody, actions}) => {
+export const Tbody = ({tbody, actions}) => {
     return (
         <tbody className='bg-white '>
                 {tbody.length !== 0 ?
@@ -35,20 +35,20 @@ const Tbody = ({tbody, actions}) => {
                         </td> : td.nom ? 
                                     <td className="px-4 py-3 border">
                                         <div className="text-center text-sm">
-                                            <p className="font-semibold text-black">{td.nom}</p>
+                                            <p className="font-semibold text-black">{td.nom} {td.prenom}</p>
                                         </div>
                                     </td> : null
                     }
-                    {td.email ?
+                    {/* {td.email ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.email}
                     </td> : null
-                    }
-                    {td.produit ?
+                    } */}
+                    {/* {td.produit ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.produit}
                     </td> : null
-                    }
+                    } */}
                     {td.quantite ?
                     <td className="px-4 py-3 text-center border text-md">
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
@@ -69,22 +69,22 @@ const Tbody = ({tbody, actions}) => {
                         {td.etat}
                     </td> : null
                     }
-                    {td.prixProduit ?
+                    {/* {td.prixProduit ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prixProduit}
                     </td> : null
-                    }
-                    {td.prixLivraison ?
+                    } */}
+                    {/* {td.prixLivraison ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prixLivraison}
                     </td> : null
-                    }
+                    } */}
                     {td.prix ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prix.toLocaleString('de-DE')}
                     </td> : null
                     }
-                    {td.PrixUnitaire ?
+                    {/* {td.PrixUnitaire ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.PrixUnitaire.toLocaleString('de-DE')}
                     </td> : null
@@ -93,7 +93,7 @@ const Tbody = ({tbody, actions}) => {
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.prixTotal}
                     </td> : null
-                    }
+                    } */}
                     {/* {td.adresse ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.adresse}
@@ -128,6 +128,11 @@ const Tbody = ({tbody, actions}) => {
                     {td.telCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.telCli}
+                    </td> : null
+                    }
+                    {td.dateMes ?
+                    <td className="px-4 py-5 text-center text-xxl border">
+                        {td.dateMes}
                     </td> : null
                     }
 

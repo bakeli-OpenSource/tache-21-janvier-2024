@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const Dropdown = () => {
+const Dropdown = ({onClick}) => {
 
   const { handleLogoutUser, profileUser, dropdown, handleToggle, client } =
     useGlobal();
@@ -34,7 +34,6 @@ const Dropdown = () => {
 
 
 	if (tokenClient === null) {
-		toast.error("Merci de vous connecter");
 		connecter = '/connexion';
 		commander = '/connexion';
 		favoris = '/connexion';
@@ -45,7 +44,7 @@ const Dropdown = () => {
 	}
 
 	return (
-		<div className="relative">
+		<div className="relative" onClick={onClick}>
 			<div
 				className="font- cursor-pointer flex items-center gap-"
 				onClick={handleToggle}

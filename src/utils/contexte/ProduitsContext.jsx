@@ -4,9 +4,9 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../hooks/useGlobal";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axiosInstance from "../axiosInstance";
 
 
 export const ProduitsContext = createContext();
@@ -16,7 +16,7 @@ const ProduitContextProvider = ({ children }) => {
   const [produits, setProduits] = useState([])
   const [categoryNames, setCategoryNames] = useState([]);
   // Création des contexts pour formulaire
-  // const [url, setUrl] = useState('')
+  
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [titre, setTitre] = useState('')
@@ -30,33 +30,156 @@ const ProduitContextProvider = ({ children }) => {
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
   const [promo, setPromo] = useState(0)
-  const [titreModal, setTitreModal] = useState('')
+  const [titreModal, setTitreModal] = useState('Ajouter un produits')
   const [corpModal, setCorpModal] = useState('')
   const [soumettre, setSoumettre] = useState('Ajouter')
   const [idAModifie, setIdAModifie] = useState('')
   const [filtreProduits, setFiltreProduits] = useState([])
+  const [categorieSelect, setCategorieSelect] = useState([]); 
+  const [listeProduitsCategories, setListeProduitsCategories] = useState([])
+  const [valueInput, setValueInput] = useState('');
+
   
+  const table = [
+    'Article', 'Quantité', 'Prix', 'Actions'
+  ]
   
-  // 
-  const { setShowModal } = useGlobal()
+  const actions = [
+    {
+      // Voire Détails
+      icon: <TbEyeShare/>,
+      color: 'bg-green-500',
+      handleClick: (id) => {
+        navigate(id);
+      }
+    },
+      {
+        // Modification
+        icon: <MdEdit />,
+        color: 'bg-orange-500',
+        handleClick: (id) => {
+          setSoumettre('Modifier')
+          setIdAModifie(id)
+          hanldleUpdate(id)
+        }
+      },
+      {
+        // Suppression
+        icon: <MdOutlineDelete />,
+        color: 'bg-red-600',
+        handleClick: (id) => {
+          deleteProduit(id)
+        }
+      }
+  ]
   
+  const [categories, setCategories] = useState([]);  
   
+  const inputs = [
+    {
+      label: "Nom du Produit",
+      type: "text",
+      value: nom,
+      setValue: setNom
+    },
+    {
+      label: "Image du produit",
+      type: "file",
+      name: "imageUrl",
+      // value: imageUrl,
+      setValue: setImageUrl
+    },
+    {
+      label: "Titre du Produit",
+      type: "text",
+      value: titre,
+      setValue: setTitre
+    },
+    {
+      label: "Quantité",
+      type: "number",
+      value: quantite,
+      setValue: setQuantite
+    },
+    {
+      label: "Carractéristiques",
+      type: "text",
+      value: carracteristique,
+      setValue: setCarracteristique
+    },
+    {
+      label: "Prix",
+      type: "number",
+      value: prix,
+      setValue: setPrix
+    },
+    {
+      label: "Couleur",
+      type: "text",
+      value: couleur,
+      setValue: setCouleur
+    },
+    {
+      label: "Taille",
+      type: "text",
+      value: taille,
+      setValue: setTaille
+    },
+    {
+      label: "Fourniseur",
+      type: "text",
+      value: fournisseur,
+      setValue: setFournisseur
+    },
+    {
+      label: "Promo en %",
+      type: "number",
+      value: promo,
+      setValue: setPromo
+    }
+  ]
+
+  const textarea = {
+    value: description,
+    setValue: setDescription
+  }
+  
+  const handleSelectChange = (e) => {
+    const selectedCategoryName = e.target.value;
+    const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
+    if (selectedCategory) {
+      setCategorie(selectedCategoryName);
+      setCategorieId(selectedCategory._id);
+    } 
+  };
+
+  const [selectsValue] = useState('');
+  
+  const selects = [
+    {
+      label: 'Catégorie',
+      value: selectsValue,
+      options: categoryNames,
+      setValue: handleSelectChange
+    }
+  ]
+  
+  const { setShowModal } = useGlobal()  
 
   // Suppression Produit
   const deleteProduit = async (id) => {
     try {
-      // Effectuez une requête DELETE vers votre API avec axios
-      await axios.delete(`https://kay-solu-api.onrender.com/api/produits/${id}`);
+      await axiosInstance.delete(`/produits/${id}`);
 
-      // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
       const updatedProd = produits.filter(
         (prod) => prod._id !== id
       );
       setProduits(updatedProd);
-
-      console.log("Produit supprimée avec succès");
+      toast.error('Produit supprimée avec succès!');
     } catch (error) {
+      navigate("/error")
       console.error("Erreur lors de la suppression du produit:", error);
+      toast.error('Erreur lors de la suppression du produit!');
     }
   };
 
@@ -78,7 +201,7 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('fournisseur', produit.fournisseur);
         formData.append('promo', produit.promo);
         
-        const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
+        const response = await axiosInstance.post('/produits', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -87,6 +210,7 @@ const ProduitContextProvider = ({ children }) => {
 
         if (response.status === 201) {
             console.log('Produit ajouté avec succès:', response.data);
+            fetchProduitsCategorie(categorieId)
             // alert('Produit ajouté avec succès:');
             toast.success('Produit ajouté avec succès!');
             
@@ -96,6 +220,7 @@ const ProduitContextProvider = ({ children }) => {
             throw new Error('Erreur lors de l\'ajout du produit');
         }
     } catch (error) {
+      navigate("/error")
         console.error('Erreur lors de l\'ajout du produit:', error);
         toast.error("Erreur lors de l'ajout du produit");
     }
@@ -118,7 +243,7 @@ const ProduitContextProvider = ({ children }) => {
       formData.append('fournisseur', produit.fournisseur);
       formData.append('promo', produit.promo);
       
-      const response = await axios.put('https://kay-solu-api.onrender.com/api/produits/' + idAModifie, formData, {
+      const response = await axiosInstance.put('/produits/' + idAModifie, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -126,8 +251,9 @@ const ProduitContextProvider = ({ children }) => {
   
       if (response.status === 200) { // Corrected to check for status 200
         console.log('Produit modifié avec succès:', response.data);
-        toast.success('Produit modifié avec succès!');
+        toast.warning ('Produit modifié avec succès!');
         setShowModal(false);
+        setTitreModal("Ajouter un produits")
         setSoumettre('Ajouter')
       } else {
         throw new Error('Erreur lors de la modification du produit');
@@ -136,14 +262,13 @@ const ProduitContextProvider = ({ children }) => {
       console.error('Erreur lors de la modification du produit:', error);
       toast.error('Erreur lors de la modification du produit!');
     }
-  }
-  
+  }  
 
   const hanldleUpdate = async (id) => {
     setShowModal(true)
     setTitreModal('Modification du produit')
     try {
-      const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
+      const response = await axiosInstance.get("/produits/" + id);
       const datasUpdates = response.data
         setNom(datasUpdates.nom)
         setTitre(datasUpdates.titre)
@@ -162,45 +287,12 @@ const ProduitContextProvider = ({ children }) => {
       }
   }
 
-    const table = [
-      'Article', 'Quantité', 'Prix', 'Actions'
-    ]
 
-    
-    const actions = [
-      {
-        // Voire Détails
-        icon: <TbEyeShare/>,
-        color: 'bg-green-500',
-        handleClick: (id) => {
-          navigate(id);
-        }
-      },
-        {
-          // Modification
-          icon: <MdEdit />,
-          color: 'bg-orange-500',
-          handleClick: (id) => {
-            setSoumettre('Modifier')
-            setIdAModifie(id)
-            hanldleUpdate(id)
-          }
-        },
-        {
-          // Suppression
-          icon: <MdOutlineDelete />,
-          color: 'bg-red-600',
-          handleClick: (id) => {
-            deleteProduit(id)
-          }
-        }
-      ]
-      const [categories, setCategories] = useState([]); 
 
-      useEffect(() => {
+  useEffect(() => {
         const fetchCategories = async () => {
           try {
-            const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
+            const response = await axiosInstance.get("/categories");
             setCategories(response.data);
             console.log("Catégories récupérées avec succès");
           } catch (error) {
@@ -209,47 +301,76 @@ const ProduitContextProvider = ({ children }) => {
         };
     
         fetchCategories();
-      }, []);
+  }, []);
 
-      const handleSelectChange = (e) => {
-        const selectedCategoryName = e.target.value;
-        const selectedCategory = categories.find(cat => cat.nom === selectedCategoryName);
-        if (selectedCategory) {
-          setCategorie(selectedCategoryName);
-          setCategorieId(selectedCategory._id);
-        } 
-      };
-
-      const [categorieSelect, setCategorieSelect] = useState([]); 
-
-      const filtreProdCategorie = () => {
-        const selectedCategory = categories.find((cat) => cat.nom === categorieSelect);
-        if (selectedCategory) {
-          setCategorie(categorieSelect);
-          setCategorieId(selectedCategory._id);
-          const filteredProducts = produits.filter((produit) => produit.categorieId === selectedCategory._id);
-          setFiltreProduits(filteredProducts);
-        } else {
-          setFiltreProduits(produits)
-        }
-      }
-
-      const handleSelectChangeCategorie = (e) => {
-        const selectedCategoryName = e.target.value;
-        setCategorieSelect(selectedCategoryName)
-        filtreProdCategorie()
-      };
-      
+  const handleSelectChangeCategorie = (e) => {
+    const selectedCategoryName = e.target.value;
+    setCategorieSelect(selectedCategoryName)
+    filtreProdCategorie()
+  }; 
 
   // Récupération de tous les produits
-    const fetchProduit = async () => {
+  const fetchProduit = async () => {
       try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits");
+        const response = await axiosInstance.get("/produits");
         setProduits(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
-    };
+  };
+    
+  const hanldleSubmit = (e) => {
+    e.preventDefault()
+    const recupInput = {
+      nom, imageUrl, titre, description, quantite,
+      categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
+    }
+    if (soumettre === 'Ajouter') {
+      console.log('Ajout de produit');
+      addProduit(recupInput)
+    }else{
+      console.log('modification de produit');
+      updateProduit(recupInput)
+    }
+    setNom('')
+    setImageUrl('')
+    setTitre('')
+    setDescription('')
+    setQuantite('')
+    setCategorie('')
+    setCarracteristique('')
+    setPrix('')
+    setCouleur('')
+    setTaille('')
+    setFournisseur('')
+    setPromo('')
+    console.log(soumettre);
+  }    
+  
+  const fetchProduitsCategorie = async (idCategory) => {
+    try {
+      const response = await axiosInstance.get(`/produits/categorie/${idCategory}`);      
+      setListeProduitsCategories(response.data)
+      console.log('Produits catégorie récupérées avec succès');
+    } catch (error) {
+      console.error('Erreur lors de la récupération des produits de la catégories :', error);
+    }
+  };
+  
+  const filtreProdCategorie = () => {
+        const selectedCategory = categories.find((cat) => cat.nom === categorieSelect);
+        
+        if (selectedCategory) {
+          setCategorie(categorieSelect);
+          setCategorieId(selectedCategory._id);
+          fetchProduitsCategorie(categorieId)
+          setFiltreProduits(listeProduitsCategories);
+
+        } else {
+          setFiltreProduits(produits)
+        }
+   }
+    
   useEffect(() => {    
     filtreProdCategorie()
     fetchProduit();
@@ -261,6 +382,13 @@ const ProduitContextProvider = ({ children }) => {
 	  }, [categories]); 
 
   const value = {
+    valueInput, setValueInput,
+    hanldleSubmit,
+    selects,
+    textarea,
+    inputs,
+    fetchProduitsCategorie,
+    listeProduitsCategories,
     handleSelectChangeCategorie,
     categoryNames, 
     setCategoryNames,

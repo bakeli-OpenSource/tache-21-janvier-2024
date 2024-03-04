@@ -1,10 +1,12 @@
+import image from "../../../../assets/images/image5.jpg"
+
 export const links = [
 	{
 		name: 'Boutique',
 		link: '/boutique',
 	},
 	{
-		name: 'Nouveau Arrivées',
+		name: 'Nouveaux Arrivés',
 		link: '/arrivals',
 	},
 	{
@@ -16,6 +18,44 @@ export const links = [
 		link: 'apropos',
 	},
 ];
+
+const data = [
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+    {
+      _id: Math.random(),
+      imageUrl: image,
+      promo: 40,
+      prix: 1000,
+      nom: "lunette"
+    },
+  ]
 
 export const commandes = [
 	{
@@ -72,26 +112,4 @@ export const commandes = [
 		promo: '40',
 		prix: ' FCFA',
 	},
-	// {
-	//   name: "Boutique",
-	//   id: Math.random(),
-	//   idProduit: Math.random(),
-	//   produit: "Nouveau Arrivées",
-	//   etat: "en cour"
-	// },
-	// {
-	//   name: "Boutique",
-	//   id: Math.random(),
-	//   idProduit: Math.random(),
-	//   produit: "Nouveau Arrivées",
-	//   etat: "en cour"
-	// },
-
-	// {
-	//   name: "Boutique",
-	//   id: Math.random(),
-	//   idProduit: Math.random(),
-	//   produit: "Nouveau3 Arrivées",
-	//   etat: "en cour"
-	// },
 ];

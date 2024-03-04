@@ -1,36 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BsSuitHeartFill, BsPlus } from "react-icons/bs";
+import { BsSuitHeartFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { ProduitsContext } from "../../utils/contexte/ProduitsContext";
 import { usePanier } from "../../utils/contexte/PanierContext";
+import useGlobal from "../../utils/hooks/useGlobal";
+import { IoEyeSharp } from "react-icons/io5";
 
-const CardList = () => {
+const CardProduit = ({ produit }) => {
   const { produits } = useContext(ProduitsContext);
   const { addToCart } = usePanier();
-  const [produitAimer, setProduitAimer] = useState(() => {
-    const listesEnvies = localStorage.getItem("produitAimer");
-    return listesEnvies ? JSON.parse(listesEnvies) : [];
-  });
+  const { produitAimer, handleLikeToggle } = useGlobal();
+  const [hoverArray, setHoverArray] = useState(null);
+  const [rating, setRating] = useState(null);
+  const { _id, imageUrl, prix, promo, nom } = produit;
 
-  const handleLikeToggle = (id, produit) => {
-    const isLiked = produitAimer.some(
-      (produit) => produit && produit._id === id
-    );
-
-    if (isLiked) {
-      const updaterProduits = produitAimer.filter(
-        (produit) => produit && produit._id !== id
-      );
-      setProduitAimer(updaterProduits);
-    } else {
-      const updaterProduits = [...produitAimer, produit];
-      setProduitAimer(updaterProduits);
-    }
-  };
-
+  const produitCourant = produits.find((item) => item._id === _id);
+  const reduction = produitCourant ? produitCourant.promo : promo ? promo : 0;
+  const prixAAjouter = Math.floor(prix - prix * (reduction / 100));
   const handleAddToCart = () => {
-    addToCart(produits);
+    const produitAAjouter = { ...produit, prix: prixAAjouter };
+    addToCart(produitAAjouter);
   };
 
   useEffect(() => {
@@ -38,79 +29,104 @@ const CardList = () => {
   }, [produitAimer]);
 
   return (
-    <div className="grid px-3 md:px-9  grid-cols-1 mt-[80px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-[30px]  mx-auto md:max-w-none md:mx-0">
-      {produits.map((produit) => (
-        <div
-          key={produit && produit._id}
-          className="shadow-lg  rounded bg-white"
-        >
-          <div className="border border-[#e4e4e4] bg-[#dedddd] h-[300px] sm:h-[200px] relative overflow-hidden group transition">
-            <div className="w-full  h-auto flex ">
-              <Link
-                to={`/details/${produit._id}`}
-                className="w-full   flex justify-center items-center"
-              >
-                <img
-                  className="w-full h-auto group-hover:scale-110 transition duration-300"
-                  src={produit.imageUrl}
-                  alt="vetement"
-                />
-              </Link>
-              <BsSuitHeartFill
-                onClick={() =>
-                  handleLikeToggle(produit && produit._id, produit)
-                }
-                className={`text-2xl absolute top-3 right-2  ${
-                  produitAimer.some(
-                    (likedProduit) =>
-                      likedProduit && likedProduit._id === produit._id
-                  )
-                    ? "text-red-500 "
-                    : "text-white"
-                } `}
+    <>
+      <div key={produit && _id} className="shadow-lg  rounded bg-white">
+        <div className=" bg-white h-[300px] sm:h-[200px] relative overflow-hidden  transition">
+          <div className=" h-full  flex ">
+            <Link
+              to={`/details/${_id}`}
+              className="w-full  flex justify-center items-center"
+            >
+              <img
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                src={imageUrl}
+                alt={produit.categorie}
               />
-
-              <button
-                className={`px-2 py-1 bg-red-500 text-sm ${
-                  produit.promo > 0 ? "block" : "hidden"
-                } font-normal text-white rounded absolute top-3 left-2 `}
-              >
-                -{produit.promo}%
-              </button>
-              <div className="absolute bottom-1 -right-1 p-2 flex flex-col justify-center items-center">
-                <button onClick={handleAddToCart}>
-                  <div className="flex justify-center items-center text-black font-bold w-7 h-7">
-                    <BsPlus className="text-3xl" />
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="p-2 flex flex-col justify-between">
-       
-            <Link to={`/details/${produit._id}`}>
-              <h2 className="font-semibold mb-1">{produit.nom}</h2>
             </Link>
-            <div className="font-semibold">
-              <span className="text-red-600  py-1 text-sm ">
-                {produit.prix} FCFA
-              </span>
-            </div>
-            <div className="p- mt-2 text-">
-                  {/* star rating */}
-                  <div className="w-full flex items-center justify- gap-1">
-                    <FaStar className="text-yellow-500 cursor-pointer" /> 
-                    <FaStar className="text-yellow-500 cursor-pointer" /> 
-                    <FaStar className="text-gray-300 cursor-pointer" /> 
-                    <FaStar className="text-gray-300 cursor-pointer" /> 
-                    <FaStar className="text-gray-300 cursor-pointer" /> <span className="text-gray-400">(65)</span>
-                  </div>
-                  </div>
+            {reduction !== 0 && (
+              <div className="absolute text-orange-400 rounded-full  mt-3 text-sm px-1 bg-amber-100 top-0 left-2 bg-dark">
+                -{promo}%
+              </div>
+            )}
           </div>
         </div>
-      ))}
-    </div>
+        <div className="p-2 flex flex-col justify-between">
+          <Link to={`/details/${_id}`}>
+            <h2 className="font-semibold text-xl md:text-sm mb-1">{nom}</h2>
+          </Link>
+          {reduction ? (
+            <div className="flex items-end justify-between md:justify-start ">
+              <span className="py-1 text-xl md:text-[16px] text-red-600">
+                {prixAAjouter} FCFA
+              </span>
+              &nbsp;
+              <span className="line-through text-lg md:text-[10px] text-gray-500">
+                {prix} FCFA
+              </span>
+            </div>
+          ) : (
+            <span className=" py-1 font-medium text-sm text-gray-900">
+              {prix} FCFA
+            </span>
+          )}
+          <div className="p- mt-2 text-">
+            {/* star rating */}
+            <div className="w-full  flex items-center justify- gap-1">
+              {[...Array(5)].map((start, index) => {
+                const etoils = index + 1;
+                return (
+                  <label key={index} className="cursor-pointer">
+                    <input
+                      type="radio"
+                      name={`rating-${index}`}
+                      value={etoils}
+                      className="hidden cursor-pointer"
+                      onClick={() => setRating(etoils)}
+                    />
+                    <FaStar
+                      className="cursor-pointer"
+                      size={20}
+                      color={
+                        etoils <= (hoverArray || rating) ? "#ffc107" : "#e4e5e9"
+                      }
+                      onMouseEnter={() => setHoverArray(etoils)}
+                      onMouseLeave={() => setHoverArray(null)}
+                    />
+                  </label>
+                );
+              })}
+            </div>
+            <div className="flex gap-4 md:gap-2 mt-4 mb- md:mb-0 justify-">
+              <div onClick={() => handleAddToCart(produit)} className="rounded   cursor-pointer  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1">
+                <FaShoppingCart
+                  
+                  className={`text-lg md:text-sm  `}
+                />
+              </div>
+              <div className={`rounded bg-gray-200 ${
+                    produitAimer.some(
+                      (likedProduit) => likedProduit && likedProduit._id === _id
+                    )
+                      ? "text-red-500 "
+                      : "text-gray-500 hover:text-gray-200"
+                  }  hover:bg-gray-400  flex items-center justify-center px-2 py-1`}>
+                <BsSuitHeartFill
+                  onClick={() => handleLikeToggle(produit && _id, produit)}
+                  className={`text-lg cursor-pointer md:text-sm    `}
+                />
+              </div>
+              <Link
+                to={`/details/${_id}`}
+                className="rounded  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1"
+              >
+                <IoEyeSharp className={`text-lg md:text-sm  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 `} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
-export default CardList;
+export default CardProduit;
