@@ -9,9 +9,11 @@ import FavorisPage from "../favorisPage.jsx/FavorisPage";
 import OrderDetail from "../../../usersComponents/userConnexion/commandeComponent/DetailsCommande";
 
 const ComptePage = () => {
-  const { client, handleLogoutUser } = useGlobal();
+  const { client, handleLogoutUser, closeDropdown } = useGlobal();
   const location = useLocation();
+  const urlPageActuel = location.pathname.split("/");
   const tokenClient = localStorage.getItem("tokenclient");
+
   const deconnexion = () => {
     if (tokenClient === null) {
       Navigate("/connexion");
@@ -21,70 +23,72 @@ const ComptePage = () => {
   };
 
   return (
-    <div className="mt-[80px] md:[100px]">
+    <div onClick={closeDropdown} className="mt-[80px] md:[100px]">
       <div className="w-full px-4 md:px-9 pb-3 mx-auto ">
-      <h3 className={`mb-4 ${
-                location.pathname === "/compte" ? "block" : "hidden"
-              }`}>
-        Bienvenue sur votre compte{" "}
-        {client.prenom === undefined ? "" : client.prenom} !
-      </h3>
-      <div className="flex flex-col md:flex-row gap-9">
-        <div
-          className={` w-full md:w-1/4      bg- px-  border border-gray-200 rounded-md  py-`}
+        <h3
+          className={`mb-4 ${
+            location.pathname === "/compte" ? "block" : "hidden"
+          }`}
         >
-          <div className="">
-            <Link
-              to="/compte"
-              className= {`px-4 my-0  mb-3 ${
-                location.pathname === "/compte" ? "bg-gray-200" : ""
-              }  py-2 flex items-center gap-3   text-upercase text-sm hover:bg-gray-200 `}
-            >
-              <FaRegUser size={16} />
-              Votre compte
-            </Link>
-            <Link
-              to="/compte/commandes"
-              // className="flex gap-4 active:bg-gray-200 focus:bg-gray-200 items-center px-4 my-0 mb-2 mt- py-2   text-upercase text-sm hover:bg-gray-200"
-              className= {`px-4 my-0 mb-2 ${
-                location.pathname === "/compte/commandes" ? "bg-gray-200" : ""
-              }  py-2 flex items-center gap-3   text-upercase text-sm hover:bg-gray-200 `}
-            >
-              <DiGhostSmall size={20} />
-              Vos commandes
-            </Link>
-            <Link
-              to="/compte/favoris"
-              // className="flex items-center gap-3 px-4 my-0  mt- py-2 mb-6   text-upercase text-sm hover:bg-gray-200"
-              className= {`px-4 my-0 mb-2 ${
-                location.pathname === "/compte/favoris" ? "bg-gray-200" : ""
-              }  py-2 flex items-center gap-3   text-upercase text-sm hover:bg-gray-200 mb-6`}
-            >
-              <FaRegHeart size={16} />
-              Votre Liste d'envies
-            </Link>
-          </div>
-          <button
-            onClick={deconnexion}
-            className={`mx-5 w-3/4 px-4 mb-1  py-2  text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
+          Bienvenue sur votre compte{" "}
+          {client.prenom === undefined ? "" : client.prenom} !
+        </h3>
+        <div className="flex flex-col md:flex-row gap-9">
+          <div
+            className={` w-full md:w-1/4      bg- px-  border border-gray-200 rounded-md  py-`}
           >
-            Déconnexion
-          </button>
-        </div>
-        <div className="border px-2 md:px-9  py-5 w-full md:w-3/4">
-          <Routes>
-            <Route path="/" element={<CompteComponent />}></Route>
-            <Route path="/commandes" element={<CommandePage />}></Route>
-            <Route path="/favoris" element={<FavorisPage />}></Route>
-            <Route
-              path="/commandes/DetailsCommande/:_id"
-              element={<OrderDetail />}
-            />
-          </Routes>
-          
+            <div className="">
+              <Link
+                to="/compte"
+                className={`px-4 my-0  mb-3 ${
+                  location.pathname === "/compte" ? "bg-gray-200" : ""
+                }  py-2 flex items-center gap-3   text-upercase text-sm hover:bg-gray-200 `}
+              >
+                <FaRegUser size={16} />
+                Votre compte
+              </Link>
+              <Link
+                to="/compte/commandes"
+                className={`px-4 my-0 mb-2 ${
+                  location.pathname === "/compte/commandes" ||
+                  urlPageActuel[3] === "DetailsCommande"
+                    ? "bg-gray-200"
+                    : ""
+                }  py-2 flex items-center gap-3   text-upercase text-sm hover:bg-gray-200 `}
+              >
+                <DiGhostSmall size={20} />
+                Vos commandes
+              </Link>
+              <Link
+                to="/compte/favoris"
+                className={`px-4 my-0 mb-2 ${
+                  location.pathname === "/compte/favoris" ? "bg-gray-200" : ""
+                }  py-2 flex items-center gap-3   text-upercase text-sm hover:bg-gray-200 mb-6`}
+              >
+                <FaRegHeart size={16} />
+                Votre Liste d'envies
+              </Link>
+            </div>
+            <button
+              onClick={deconnexion}
+              className={`mx-5 w-3/4 px-4 mb-1  py-2  text-center text-upercase text-sm bg-gray-800 text-white rounded hover:bg-gray-900`}
+            >
+              Déconnexion
+            </button>
+          </div>
+          <div className="border px-2 md:px-9  py-5 w-full md:w-3/4">
+            <Routes>
+              <Route path="/" element={<CompteComponent />}></Route>
+              <Route path="/commandes" element={<CommandePage />}></Route>
+              <Route path="/favoris" element={<FavorisPage />}></Route>
+              <Route
+                path="/commandes/DetailsCommande/:_id"
+                element={<OrderDetail />}
+              />
+            </Routes>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

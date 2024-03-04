@@ -24,9 +24,13 @@ const GlobalContextProvider = ({ children }) => {
     setDropdown(!dropdown);
   };
 
+  const closeDropdown = () => {
+    setDropdown(false);
+  };
+
   // Fonction de connexion
   const handleLogin = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     axiosInstance
       .post("/auth/login", {
         email,
@@ -43,10 +47,10 @@ const GlobalContextProvider = ({ children }) => {
       .catch((error) => {
         console.error(error); // Gérer les erreurs ici
         alert("Email ou mot de passe incorrect");
-      }).finally(() => {
+      })
+      .finally(() => {
         setIsLoading(false);
       });
-  
   };
 
   // Fonction pour supprimer le token du local storage après la déconnexion
@@ -68,17 +72,56 @@ const GlobalContextProvider = ({ children }) => {
     return !!token;
   };
 
+  // const profileUser = async () => {
+  //   const token = localStorage.getItem("tokenclient");
+  //   try {
+  //     const res = await axiosInstance.get(
+  //       "/authclient/profile",
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+
+  //     setClient(res.data);
+  //     // console.log(res.data);
+  //     prenom = res.data.prenom;
+  //     // console.log(client, 'client');
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+
+  //   // axios
+  //   //   .get("https://kay-solu-api.onrender.com/api/authclient/profile", {
+  //   //     headers: {
+  //   //       Authorization: `Bearer ${token}`,
+  //   //     },
+  //   //   })
+  //   //   .then((res) => {
+  //   //     setClient(res.data);
+  //   //     console.log(client);
+  //   //     prenom = res.data.prenom;
+  //   //     console.log(prenom);
+  //   //   })
+  //   //   .catch((error) => {
+  //   //     console.error(error);
+  //   //   });
+  // };
+
   const profileUser = async () => {
     const token = localStorage.getItem("tokenclient");
+
+    if (!token) {
+      return;
+    }
+
     try {
-      const res = await axiosInstance.get(
-        "/authclient/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await axiosInstance.get("/authclient/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       setClient(res.data);
       // console.log(res.data);
@@ -87,22 +130,6 @@ const GlobalContextProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-
-    // axios
-    //   .get("https://kay-solu-api.onrender.com/api/authclient/profile", {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     setClient(res.data);
-    //     console.log(client);
-    //     prenom = res.data.prenom;
-    //     console.log(prenom);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
   };
 
   //   const fetchProduits = async () => {
@@ -116,17 +143,10 @@ const GlobalContextProvider = ({ children }) => {
   //   fetchProduits();
   // }, [])
 
-
-
   const fetchCommandes = async () => {
     try {
-      const response = await axiosInstance.get(
-        `/commandes`,
-        
-      );
+      const response = await axiosInstance.get(`/commandes`);
       setCommandes(response.data);
-      console.log("Commandes récupérées avec succès");
-      console.log(response.data);
     } catch (error) {
       console.error("Erreur lors de la récupération des commandes:", error);
     }
@@ -150,7 +170,7 @@ const GlobalContextProvider = ({ children }) => {
 
   useEffect(() => {
     profileUser();
-    fetchCommandes()
+    fetchCommandes();
   }, []);
 
   const value = {
@@ -175,6 +195,7 @@ const GlobalContextProvider = ({ children }) => {
     commandes,
     dropdown,
     setDropdown,
+    closeDropdown,
   };
 
   return (
