@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import Navbar from "./NavbarUtilisateut/Navbar/Navbar";
 import Header from "../../usersComponents/headerUserComponent/Header";
 import ScrollingText from "../../usersComponents/cards/ScrollingText";
-import Produit from "../../usersComponents/cards/Produit";
 import useGlobal from "../../utils/hooks/useGlobal";
 import Locale from "../../usersComponents/cards/Locale";
 import { ProduitsContext } from "../../utils/contexte/ProduitsContext";
@@ -19,7 +18,7 @@ export default function Accueil() {
       <Navbar className="fixed top-0 z-50 w-full bg-white" />
       <div className="mt-[50px] md:mt-0" onClick={() => setDropdown(false)}>
         <Header />
-        <div className="flex flex-col px-[25px] md:px-[10px] sm:px-0">
+        <div className="flex flex-col px-[35px] md:px-[10px] sm:px-0">
           {categories.map((categorie) => (
             <section key={categorie} className="py-10">
               <h2 className="text-2xl font-bold mb-4">{categorie}</h2>
@@ -32,7 +31,7 @@ export default function Accueil() {
                       .map((produit) => (
                         <CardProduit produit={produit} key={produit._id} />
                       ))}
-                   </div>
+                  </div>
                 ) : (
                   <Loader />
                 )}

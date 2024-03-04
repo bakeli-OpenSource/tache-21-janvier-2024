@@ -1,28 +1,11 @@
- 
- *{
-    padding: 0;
-    margin: 0;
- }
-
- @tailwind base;
- @tailwind components;
- @tailwind utilities;
-
- body.light {
-  background: #fafafae3;
-  color: hsl(200, 15%, 8%);
-  transition: all .3s ease-out;
+*{
+  padding: 0;
+  margin: 0;
 }
 
-body.dark {
-  background: hsl(207, 26%, 17%) !important;
-  color: hsl(0, 0%, 100%) !important;
-  transition: all .3s ease;
-}
- 
-
- 
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 
