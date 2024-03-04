@@ -17,10 +17,13 @@ const Categories = () => {
         produits} = useContext(CategorieContext);
   
 
-  const { open } = useSidebare();
+  const { open, closedrop } = useSidebare();
 
   useEffect(() => {
     fetchCategories();
+  }, []);
+  
+  useEffect(() => {
     updateCategoryQuantities();
   }, []);
 
@@ -29,7 +32,7 @@ const Categories = () => {
 
 
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
+    <div onClick={closedrop} className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <HeaderTable
         title="Liste categories"
         nomAjout="Ajouter un nouveau categorie"
