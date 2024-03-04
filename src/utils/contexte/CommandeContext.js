@@ -1,16 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-// import {  useNavigate } from "react-router-dom";
-// import { TbEyeShare } from "react-icons/tb";
-// import { MdEdit } from "react-icons/md";
-// import { MdOutlineDelete } from "react-icons/md";
-// import Formulaire from '../formulaire/Formulaire';
 import useGlobal from "../../utils/hooks/useGlobal";
 import axiosInstance from "../axiosInstance";
 
 export const CommandeContext = createContext();
 
 const CommandeContextProvider = ({ children }) => {
-  // const navigate = useNavigate()
 
 
   const table = [

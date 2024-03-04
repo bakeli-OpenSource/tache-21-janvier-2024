@@ -21,7 +21,7 @@ const CommandeAdmin = () => {
     setEditingCommandeId
   } = useCommandes();
 
-  const { open } = useSidebare();
+  const { open, closedrop } = useSidebare();
 
   const navigate = useNavigate();
 
@@ -63,7 +63,7 @@ const CommandeAdmin = () => {
 
 
   return (
-    <div className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>
+    <div onClick={closedrop} className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>
       <HeaderTable
         title="Commandes"
         nomAjout="Modification Etat commande"

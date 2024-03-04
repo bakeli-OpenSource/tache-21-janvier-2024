@@ -18,9 +18,9 @@ const DetailsProduits = () => {
 		}
 	};
 	fetchProduit(id);
-	const { open } = useSidebare();
+	const { open, closedrop } = useSidebare();
 	return (
-		<div className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4`}>
+		<div onClick={closedrop} className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4`}>
 			<HeaderTable title="Détail du produit" />
 			{data !== null ? (
 				<section className="overflow-hidden py-11 font-poppins ">

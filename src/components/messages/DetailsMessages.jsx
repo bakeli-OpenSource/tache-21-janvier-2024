@@ -26,10 +26,10 @@ const DetailsMessages = () => {
       }, [data]);
 
 	
-    const { open } = useSidebare();
+    const { open , closedrop} = useSidebare();
 
   return (
-    <div className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4`}>        
+    <div onClick={closedrop} className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4`}>        
         {data.length !== 0 ? (
             <div className="flex items-center justify-center flex-col mt-5 ">
                 <section className="w-[100%] mx-auto bg-white rounded-lg">

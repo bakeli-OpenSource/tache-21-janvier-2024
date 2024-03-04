@@ -27,12 +27,10 @@ import axiosInstance from '../../utils/axiosInstance';
     fetchCommande(commandeId);
   }, [data]);
 
-    const {open} = useSidebare()
-
-
+    const {open, closedrop} = useSidebare()
 
     return (
-      <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
+      <div onClick={closedrop} className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       
         <HeaderTable title="Détails Commandes"  />
         <div className="flex shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-">

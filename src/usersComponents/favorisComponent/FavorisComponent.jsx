@@ -4,8 +4,8 @@ import { MdOutlineDelete } from "react-icons/md";
 import { usePanier } from "../../utils/contexte/PanierContext";
 
 const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
-    const { addToCart } = usePanier();
-    const { _id, imageUrl, prix, promo, nom } = item;
+  const { addToCart } = usePanier();
+  const { _id, imageUrl, prix, promo, nom } = item;
   const handleDelete = (id) => {
     const deleteFavoris = listesEnvies.filter(
       (listeEnvie) => listeEnvie._id !== id
@@ -33,41 +33,7 @@ const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
         <div className="flex flex-col justify-between  items-stretch h-full">
           <p>{item?.titre} </p>
           <div>
-            {/* <p className="mb-1 bg">{item?.prix} FCFA</p> */}
-            <p className=" mb-1 bg">
-              {item?.prix} FCFA{" "}
-              <span
-                className={`font-medium bg-red-200 rounded   ${
-                  item?.promo === 0 ? "hidden" : "inline"
-                } px-1 py- text-red-500`}
-              >
-                -{item?.promo}%
-              </span>
-            </p>
-            {reduction ? (
-            <div className="flex items-end justify-between md:justify-start ">
-              <span className="py-1 text-xl md:text-[16px] text-red-600">
-                {prixAAjouter} FCFA
-              </span>
-              &nbsp;
-              <span className="line-through text-lg md:text-[10px] text-gray-500">
-                {prix} FCFA
-              </span>
-               {/* <span
-                className={`font-medium bg-red-200 rounded   ${
-                  item?.promo === 0 ? "hidden" : "inline"
-                } px-1 py-0 text-lg md:text-[10px] text-red-500`}
-              >
-                -{item?.promo}%
-              </span> */}
-            </div>
-          ) : (
-            <span className=" py-1 font-medium text-sm text-gray-900">
-              {prix} FCFA
-            </span>
-          )}
-
-            {/* <p className="text-gray-300">
+            {/* <p className=" mb-1 bg">
               {item?.prix} FCFA{" "}
               <span
                 className={`font-medium bg-red-200 rounded   ${
@@ -77,6 +43,21 @@ const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
                 -{item?.promo}%
               </span>
             </p> */}
+            {reduction ? (
+              <div className="flex items-end justify-between md:justify-start ">
+                <span className="py-1 text-xl md:text-[16px] text-red-600">
+                  {prixAAjouter} FCFA
+                </span>
+                &nbsp;
+                <span className="line-through text-lg md:text-[10px] text-gray-500">
+                  {prix} FCFA
+                </span>
+              </div>
+            ) : (
+              <span className=" py-1 font-medium text-sm text-gray-900">
+                {prix} FCFA
+              </span>
+            )}
           </div>
         </div>
       </div>
