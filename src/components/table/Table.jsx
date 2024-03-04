@@ -44,11 +44,11 @@ export const Tbody = ({tbody, actions}) => {
                         {td.email}
                     </td> : null
                     } */}
-                    {td.produit ?
+                    {/* {td.produit ?
                     <td className="px-4 py-5 text-xl text-center border">
                         {td.produit}
                     </td> : null
-                    }
+                    } */}
                     {td.quantite ?
                     <td className="px-4 py-3 text-center border text-md">
                         <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
@@ -105,16 +105,16 @@ export const Tbody = ({tbody, actions}) => {
                         {td.statut}
                     </td> : null
                     }
-                    {/* {td.prenomCli ?
+                    {td.prenomCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.prenomCli}
                     </td> : null
-                    } */}
-                    {/* {td.nomCli ?
+                    }
+                    {td.nomCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.nomCli}
                     </td> : null
-                    } */}
+                    }
                     {td.adresseCli ?
                     <td className="px-4 py-5 text-center text-xxl border">
                         {td.adresseCli}

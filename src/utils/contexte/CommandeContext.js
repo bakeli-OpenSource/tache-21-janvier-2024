@@ -1,66 +1,61 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from 'react';
 // import {  useNavigate } from "react-router-dom";
 // import { TbEyeShare } from "react-icons/tb";
 // import { MdEdit } from "react-icons/md";
 // import { MdOutlineDelete } from "react-icons/md";
 // import Formulaire from '../formulaire/Formulaire';
-import useGlobal from "../../utils/hooks/useGlobal";
-import axiosInstance from "../axiosInstance";
+import useGlobal from '../../utils/hooks/useGlobal';
+import axiosInstance from '../axiosInstance';
 
 export const CommandeContext = createContext();
 
 const CommandeContextProvider = ({ children }) => {
   // const navigate = useNavigate()
 
-
   const table = [
-    "Nom",
-    "Produit",
-    " Quantite",
-    "Telephone",
-    "Etat de la commande",
-    "Actions",
+    'Nom',
+    ' Quantite',
+    'Telephone',
+    'Etat de la commande',
+    'Actions',
   ];
 
-  const [idProduit, setIdProduit] = useState("");
-  const [email, setEmail] = useState("");
+  const [idProduit, setIdProduit] = useState('');
+  const [email, setEmail] = useState('');
   const [quantite, setQuantite] = useState(0);
-  const [produit, setProduit] = useState("");
-  const [date, setDate] = useState("");
-  const [etat, setEtat] = useState("");
-  const [prixTotal, setPrixTotal] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [adresse, setAdresse] = useState("");
-  const [prixLivraison, setPrixLivraison] = useState("");
-  const [prixProduit, setPrixProduit] = useState("");
-  const [modif, setModifModal] = useState("");
+  const [produit, setProduit] = useState('');
+  const [date, setDate] = useState('');
+  const [etat, setEtat] = useState('');
+  const [prixTotal, setPrixTotal] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [adresse, setAdresse] = useState('');
+  const [prixLivraison, setPrixLivraison] = useState('');
+  const [prixProduit, setPrixProduit] = useState('');
+  const [modif, setModifModal] = useState('');
   const [commandes, setCommandes] = useState([]);
 
   const { setShowModal } = useGlobal();
 
   const [editingCommandeId, setEditingCommandeId] = useState(null);
 
-  const [selectsValue, setSelectsValue] = useState("");
+  const [selectsValue, setSelectsValue] = useState('');
 
   const handleDetail = (commandeId) => {
-    const commandeIdCli = localStorage.getItem("commandeIdCli");
+    const commandeIdCli = localStorage.getItem('commandeIdCli');
   };
 
   const handleEditCommande = async (id, newData) => {
     try {
-      const response = await axiosInstance.put(
-        "/commande/" + id,
-        newData
-      );
+      const response = await axiosInstance.put('/commande/' + id, newData);
 
       if (response.status === 200) {
-        console.log("Statut modifié avec succès:", response.data);
-        alert("Statut modifié avec succès");
+        console.log('Statut modifié avec succès:', response.data);
+        alert('Statut modifié avec succès');
       } else {
-        throw new Error("Erreur lors de la modification");
+        throw new Error('Erreur lors de la modification');
       }
     } catch (error) {
-      console.error("Erreur lors de la modification:", error);
+      console.error('Erreur lors de la modification:', error);
     }
   };
 
@@ -77,12 +72,10 @@ const CommandeContextProvider = ({ children }) => {
 
   const handleDelete = async (commandeId) => {
     try {
-      console.log("Avant la requête DELETE");
+      console.log('Avant la requête DELETE');
       // Effectuez une requête DELETE vers votre API avec axios
-      await axiosInstance.delete(
-        `/commande/${commandeId}`
-      );
-      console.log("Aprés la requête DELETE");
+      await axiosInstance.delete(`/commande/${commandeId}`);
+      console.log('Aprés la requête DELETE');
 
       // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
       const updatedCommande = commandes.filter(
@@ -90,22 +83,20 @@ const CommandeContextProvider = ({ children }) => {
       );
       setCommandes(updatedCommande);
 
-      console.log("Commande supprimée avec succès");
+      console.log('Commande supprimée avec succès');
       fetchCommandes();
     } catch (error) {
-      console.error("Erreur lors de la suppression de la commande:", error);
+      console.error('Erreur lors de la suppression de la commande:', error);
     }
   };
 
   const fetchCommandes = async () => {
     try {
-      const response = await axiosInstance.get(
-        "/commandes"
-      );
+      const response = await axiosInstance.get('/commandes');
       setCommandes(response.data);
-      console.log("Commandes récupérées avec succès");
+      console.log('Commandes récupérées avec succès');
     } catch (error) {
-      console.error("Erreur lors de la récupération des commandes:", error);
+      console.error('Erreur lors de la récupération des commandes:', error);
     }
   };
 
