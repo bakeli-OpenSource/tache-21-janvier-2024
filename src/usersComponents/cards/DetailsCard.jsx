@@ -39,7 +39,6 @@ const DetailsCard = () => {
                     <div className="relative mb-6 lg:mb-10 lg:h-full ">
                       <img
                         src={produit.imageUrl}
-                        alt=""
                         className="object-cover w-full lg:h-full "
                       />
                     </div>
@@ -67,18 +66,7 @@ const DetailsCard = () => {
                           Couleur du produit
                         </h3>
                         <div className="flex gap-7 my-3">
-                          <button
-                            type="button"
-                            className="bg-gray-600 w-8 h-8 rounded-full"
-                          />
-                          <button
-                            type="button"
-                            className="bg-gray-600 w-8 h-8 rounded-full"
-                          />
-                          <button
-                            type="button"
-                            className="bg-gray-600 w-8 h-8 rounded-full"
-                          />
+                          {produit.couleur}
                         </div>
                       </div>
                       <div>
@@ -86,21 +74,7 @@ const DetailsCard = () => {
                           Taille du produit
                         </h3>
                         <div className="flex gap-7 mt-3">
-                          <button type="button" className=" w-8 h-8">
-                            XS
-                          </button>
-                          <button type="button" className=" w-8 h-8">
-                            S
-                          </button>
-                          <button type="button" className=" w-8 h-8">
-                            M
-                          </button>
-                          <button type="button" className=" w-8 h-8">
-                            L
-                          </button>
-                          <button type="button" className=" w-8 h-8">
-                            XL
-                          </button>
+                          {produit.taille}
                         </div>
                       </div>
                       <ComponentButton
