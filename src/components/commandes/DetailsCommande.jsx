@@ -1,30 +1,18 @@
-// import React  from 'react'
-// import useCommandes from '../../utils/hooks/useCommandes';
-import HeaderTable from "../headerTable/HeaderTable";
-// import Table from '../table/Table';
-import useSidebare from "../../utils/hooks/useSidebare";
-import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import axiosInstance from "../../utils/axiosInstance";
+import HeaderTable from '../headerTable/HeaderTable';
+import useSidebare from '../../utils/hooks/useSidebare';
+import useCommandes from '../../utils/hooks/useCommandes';
+import React from 'react';
 
-const DetailsCommande = () => {
-  const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
-  const commandeId = pathnames.pop();
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchCommande = async (commandeId) => {
-      try {
-        const response = await axiosInstance.get("/commandes/" + commandeId);
-        setData(response.data);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des commandes:", error);
-      }
-    };
-    fetchCommande(commandeId);
-  }, [commandeId]);
+
+  const DetailsCommande = () => {
+
+    const {
+      data
+    } = useCommandes();
+
 
   const { open, closedrop } = useSidebare();
+
 
   return (
     <div
@@ -66,6 +54,7 @@ const DetailsCommande = () => {
               <h1 className="text-4xl">{data.produit}</h1>
               <hr className="min-w-0.5 bg-black mt-4" />
               <div className="mt-5">
+
                 <p className="font-medium">Quantité : {data.quantite[index]}</p>
                 <p className="font-medium">Telephoe : {data.telephone}</p>
                 <p className="font-medium">
@@ -78,7 +67,6 @@ const DetailsCommande = () => {
             </div>
           </div>
 
-          {/* <p className="mt-3 bg">{data.idProduit}</p> */}
           <div className="flex flex-col gap-4 justify- datas-between">
             <div className="flex gap-4">
               <span
