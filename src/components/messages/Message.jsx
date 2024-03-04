@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
-import axios from 'axios'
 import Table from '../table/Table'
 import useSidebare from '../../utils/hooks/useSidebare'
 import HeaderTable from '../headerTable/HeaderTable'
 import { useNavigate } from 'react-router-dom'
 import { TbEyeShare } from 'react-icons/tb'
 import { MdOutlineDelete } from 'react-icons/md'
+import axiosInstance from '../../utils/axiosInstance'
 
 const Message = () => {
     const navigate = useNavigate()
-    const {open} = useSidebare()
+    const {open, closedrop} = useSidebare()
     const [message, setMessage] = useState([])
 
     const table = [
@@ -40,7 +40,7 @@ const Message = () => {
       useEffect(() => {
         const fetchClients = async () => {
             try {
-                const response = await axios.get("https://kay-solu-api.onrender.com/api/messages");
+                const response = await axiosInstance.get("/messages");
                 const modifiedData = response.data.map(obj => {
                     return {
                       _id: obj._id,
@@ -62,7 +62,7 @@ const Message = () => {
 
       // console.log(client);
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
+    <div onClick={closedrop} className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <div className='my-7 mb-9'>
         <HeaderTable />
       </div>

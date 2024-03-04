@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { MdMenu, MdClose } from "react-icons/md";
@@ -8,27 +8,34 @@ import NavInput from "../NavInput";
 import Dropdown from "../../../../usersComponents/userConnexion/Dropdown";
 import { usePanier } from "../../../../utils/contexte/PanierContext";
 import icone from "../../../../assets/images/icone.jpg";
+import useGlobal from "../../../../utils/hooks/useGlobal";
 
 const Navbar = ({ className }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState(false);
   const { notificationCount } = usePanier();
+  const { setDropdown } = useGlobal();
 
   const handleOpen = () => {
-   setOpen(false)
+    setOpen(false);
+  };
+  const fermer = () => {
+    setOpen(false);
+    setDropdown(false);
   }
+
+ 
 
   return (
     <nav className={className}>
-
       <div className="flex items-center h-full justify-between px-8 py-">
         <div className="flex items-center justify-between w-full gap-3 md:w-auto ">
           <div className="z-50 flex flex-row-reverse justify-between items-center w-full md:w-auto">
             <div className="md:hidden flex  gap-4 items-center justify-center">
               <Dropdown onClick={() => setOpen(false)} />
-              <Link to="/Panier" className="relative flex items-center group">
-                <span className="mr-2">
-                  <ShoppingCartIcon className="w-6 h-6" />
+              <Link to="/Panier"  className="relative flex items-center group">
+                <span className="mr-2" onClick={fermer} >
+                  <ShoppingCartIcon className="w-6 h-6"  />
                 </span>
                 <span className="absolute px-2 py-1 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
                   {notificationCount}
@@ -36,9 +43,15 @@ const Navbar = ({ className }) => {
               </Link>
             </div>
             <Link to={"/"} className="cursor-pointer w-[60px] h-[60px]">
-              <img src={icone} className="w-full h-full" onClick={() => setOpen(false)}/>.
+              {/* <button onClick={toggleTheme} className="bg-white px-4 py-3">dark</button> */}
+              <img
+                src={icone}
+                className="w-full h-full"
+                onClick={fermer}
+              />
+              
             </Link>
-            <div className="text-3xl md:hidden flex  gap-5 items-center justify-center">
+            <div onClick={() => setDropdown(false)} className="text-3xl md:hidden flex   gap-5 items-center justify-center">
               {open ? (
                 <MdClose onClick={() => setOpen(!open)} />
               ) : (
@@ -47,7 +60,7 @@ const Navbar = ({ className }) => {
             </div>
           </div>
           <ul className="items-center hidden md:flex">
-            <NavLinks/>
+            <NavLinks handleOpen={() => setDropdown(false)} />
           </ul>
         </div>
 
@@ -70,7 +83,7 @@ const Navbar = ({ className }) => {
               <NavInput type="text" search={search} />
             </div>
             <Dropdown />
-            <Link to="/Panier" className="relative flex items-center group">
+            <Link to="/Panier" onClick={fermer} className="relative flex items-center group">
               <span className="mr-2">
                 <ShoppingCartIcon className="w-6 h-6" />
               </span>
@@ -89,7 +102,7 @@ const Navbar = ({ className }) => {
         duration-500 ${open ? "left-0" : "left-[-100%]"}
         `}
         >
-          <NavLinks handleOpen={handleOpen}/>
+          <NavLinks handleOpen={fermer} />
           <div className="py-5 w-full ">
             <div
               className={` text-gray-800  w-full flex items-center gap-4 justify-around `}

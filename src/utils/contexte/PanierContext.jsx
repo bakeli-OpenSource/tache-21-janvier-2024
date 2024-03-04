@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const PanierContext = createContext();
 
@@ -13,7 +15,7 @@ export const PanierProvider = ({ children }) => {
 	const storedCartQuantities =
 		JSON.parse(localStorage.getItem('cartQuantities')) || {};
 	const [cartQuantities, setCartQuantities] = useState(storedCartQuantities);
-	const [items, setItems] = useState(validatedItems); // Utilisation des articles validés
+	const [items, setItems] = useState(validatedItems);
 	const [notificationCount, setNotificationCount] = useState(
 		storedNotificationCount,
 	);
@@ -26,7 +28,7 @@ export const PanierProvider = ({ children }) => {
 			JSON.stringify(notificationCount),
 		);
 		localStorage.setItem('cartQuantities', JSON.stringify(cartQuantities));
-	});
+	}, [items, notificationCount, cartQuantities]);
 
 	const [deliveryOption, setDeliveryOption] = useState('');
 	const deliveryCosts = {
@@ -93,7 +95,14 @@ export const PanierProvider = ({ children }) => {
 			}
 		});
 		setNotificationCount((prevCount) => prevCount + 1);
-		alert('Article ajouté avec succès!');
+		toast.success('Produit ajouté au panier', {
+			position: 'top-right',
+			autoClose: 3000,
+			hideProgressBar: true,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+		});
 	};
 
 	const viderPanier = () => {
@@ -127,6 +136,8 @@ export const PanierProvider = ({ children }) => {
 		setNotificationCount,
 		cartQuantities,
 		viderPanier,
+		toast,
+		ToastContainer,
 	};
 
 	return (

@@ -10,7 +10,7 @@ import Formulaire from '../../components/formulaire/Formulaire';
 const DetailsCategorie = ({data}) => {
 
   const { actions, inputs, textarea, selects, hanldleSubmit, titreModal, handleSelectChange, setTitreModal} = useProduits();
-  const {open} = useSidebare()
+  const {open, closedrop} = useSidebare()
 
   const table = [
     'Article', 'Quantité', 'Prix'
@@ -20,7 +20,7 @@ const DetailsCategorie = ({data}) => {
     'Ajouter un produits'
   )
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4  my-3 `}>
+    <div onClick={closedrop} className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4  my-3 `}>
       <HeaderTable
        title="Produits"
        body={<Formulaire 

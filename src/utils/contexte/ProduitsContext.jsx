@@ -4,9 +4,9 @@ import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import useGlobal from "../hooks/useGlobal";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axiosInstance from "../axiosInstance";
 
 
 export const ProduitsContext = createContext();
@@ -16,7 +16,7 @@ const ProduitContextProvider = ({ children }) => {
   const [produits, setProduits] = useState([])
   const [categoryNames, setCategoryNames] = useState([]);
   // Création des contexts pour formulaire
-  // const [url, setUrl] = useState('')
+  
   const [nom, setNom] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [titre, setTitre] = useState('')
@@ -30,13 +30,16 @@ const ProduitContextProvider = ({ children }) => {
   const [taille, setTaille] = useState('')
   const [fournisseur, setFournisseur] = useState('')
   const [promo, setPromo] = useState(0)
-  const [titreModal, setTitreModal] = useState('')
+  const [titreModal, setTitreModal] = useState('Ajouter un produits')
   const [corpModal, setCorpModal] = useState('')
   const [soumettre, setSoumettre] = useState('Ajouter')
   const [idAModifie, setIdAModifie] = useState('')
   const [filtreProduits, setFiltreProduits] = useState([])
   const [categorieSelect, setCategorieSelect] = useState([]); 
   const [listeProduitsCategories, setListeProduitsCategories] = useState([])
+  const [valueInput, setValueInput] = useState('');
+
+  
   const table = [
     'Article', 'Quantité', 'Prix', 'Actions'
   ]
@@ -166,7 +169,7 @@ const ProduitContextProvider = ({ children }) => {
   // Suppression Produit
   const deleteProduit = async (id) => {
     try {
-      await axios.delete(`https://kay-solu-api.onrender.com/api/produits/${id}`);
+      await axiosInstance.delete(`/produits/${id}`);
 
       const updatedProd = produits.filter(
         (prod) => prod._id !== id
@@ -198,7 +201,7 @@ const ProduitContextProvider = ({ children }) => {
         formData.append('fournisseur', produit.fournisseur);
         formData.append('promo', produit.promo);
         
-        const response = await axios.post('https://kay-solu-api.onrender.com/api/produits', formData, {
+        const response = await axiosInstance.post('/produits', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -240,7 +243,7 @@ const ProduitContextProvider = ({ children }) => {
       formData.append('fournisseur', produit.fournisseur);
       formData.append('promo', produit.promo);
       
-      const response = await axios.put('https://kay-solu-api.onrender.com/api/produits/' + idAModifie, formData, {
+      const response = await axiosInstance.put('/produits/' + idAModifie, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -250,6 +253,7 @@ const ProduitContextProvider = ({ children }) => {
         console.log('Produit modifié avec succès:', response.data);
         toast.warning ('Produit modifié avec succès!');
         setShowModal(false);
+        setTitreModal("Ajouter un produits")
         setSoumettre('Ajouter')
       } else {
         throw new Error('Erreur lors de la modification du produit');
@@ -264,7 +268,7 @@ const ProduitContextProvider = ({ children }) => {
     setShowModal(true)
     setTitreModal('Modification du produit')
     try {
-      const response = await axios.get("https://kay-solu-api.onrender.com/api/produits/" + id);
+      const response = await axiosInstance.get("/produits/" + id);
       const datasUpdates = response.data
         setNom(datasUpdates.nom)
         setTitre(datasUpdates.titre)
@@ -284,10 +288,11 @@ const ProduitContextProvider = ({ children }) => {
   }
 
 
+
   useEffect(() => {
         const fetchCategories = async () => {
           try {
-            const response = await axios.get("https://kay-solu-api.onrender.com/api/categories");
+            const response = await axiosInstance.get("/categories");
             setCategories(response.data);
             console.log("Catégories récupérées avec succès");
           } catch (error) {
@@ -307,7 +312,7 @@ const ProduitContextProvider = ({ children }) => {
   // Récupération de tous les produits
   const fetchProduit = async () => {
       try {
-        const response = await axios.get("https://kay-solu-api.onrender.com/api/produits");
+        const response = await axiosInstance.get("/produits");
         setProduits(response.data);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
@@ -339,11 +344,12 @@ const ProduitContextProvider = ({ children }) => {
     setTaille('')
     setFournisseur('')
     setPromo('')
+    console.log(soumettre);
   }    
   
   const fetchProduitsCategorie = async (idCategory) => {
     try {
-      const response = await axios.get(`https://kay-solu-api.onrender.com/api/produits/categorie/${idCategory}`);      
+      const response = await axiosInstance.get(`/produits/categorie/${idCategory}`);      
       setListeProduitsCategories(response.data)
       console.log('Produits catégorie récupérées avec succès');
     } catch (error) {
@@ -358,7 +364,6 @@ const ProduitContextProvider = ({ children }) => {
           setCategorie(categorieSelect);
           setCategorieId(selectedCategory._id);
           fetchProduitsCategorie(categorieId)
-          // const filteredProducts = produits.filter((produit) => produit.categorieId === selectedCategory._id);
           setFiltreProduits(listeProduitsCategories);
 
         } else {
@@ -377,6 +382,7 @@ const ProduitContextProvider = ({ children }) => {
 	  }, [categories]); 
 
   const value = {
+    valueInput, setValueInput,
     hanldleSubmit,
     selects,
     textarea,

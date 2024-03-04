@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useSidebare from "../../utils/hooks/useSidebare";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import Loader from "../loader/loader";
+import axiosInstance from "../../utils/axiosInstance";
 
 
 const DetailsMessages = () => {
@@ -13,8 +13,8 @@ const DetailsMessages = () => {
     useEffect(() => {
         const fetchMessage = async (id) => {
             try {
-                const response = await axios.get(
-                    'https://kay-solu-api.onrender.com/api/messages/' + id,
+                const response = await axiosInstance.get(
+                    '/messages/' + id,
                 );
                 setData(response.data);
                 // console.log(data.length);
@@ -23,13 +23,13 @@ const DetailsMessages = () => {
             }
         };
         fetchMessage(id);
-      }, [data]);
+      }, [id]);
 
 	
-    const { open } = useSidebare();
+    const { open , closedrop} = useSidebare();
 
   return (
-    <div className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4`}>        
+    <div onClick={closedrop} className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4`}>        
         {data.length !== 0 ? (
             <div className="flex items-center justify-center flex-col mt-5 ">
                 <section className="w-[100%] mx-auto bg-white rounded-lg">
@@ -57,7 +57,7 @@ const DetailsMessages = () => {
                             {data.prenomNom}
                         </h1>
                         <a
-                            href={data.telephone}
+                            href={`tel:${data.telephone}`}
                             className="text-gray-500 rounded-lg py-1 px-3 hover:bg-blue-700 hover:text-white"
                             alt="Votre Téléphone"
                         >
