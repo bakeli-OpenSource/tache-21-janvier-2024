@@ -11,7 +11,7 @@ const Produit = ({ produit }) => {
   const { addToCart } = usePanier();
 
   const { produits } = useProduits();
-
+ 
     const { _id, imageUrl, categorie, titre, prix, promo} = produit;  
     
     const produitCourant = produits.find(item => item._id === _id);
