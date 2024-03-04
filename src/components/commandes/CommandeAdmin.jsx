@@ -24,7 +24,7 @@ const CommandeAdmin = () => {
 
   const navigate = useNavigate();
 
-  const [ setIsEditing] = useState(false);
+  const [setIsEditing] = useState(false);
 
 
 	const actions = [
@@ -59,6 +59,7 @@ const CommandeAdmin = () => {
 		},
 	];
 
+  const commandeRenverse = commandes.reverse()
 
   return (
     <div onClick={closedrop} className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>
@@ -83,7 +84,7 @@ const CommandeAdmin = () => {
         }
        
       />
-      <Table thead={table} tbody={commandes} actions={actions} />
+      <Table thead={table} tbody={commandes.reverse()} actions={actions} />
     </div>
   );
 
