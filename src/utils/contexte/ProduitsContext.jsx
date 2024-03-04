@@ -39,6 +39,10 @@ const ProduitContextProvider = ({ children }) => {
   const [listeProduitsCategories, setListeProduitsCategories] = useState([])
   const [valueInput, setValueInput] = useState('');
 
+  // Filtre produit par letter saisi
+  const filteredByLetter = produits.filter((produit) =>
+    produit.nom.toLowerCase().includes(valueInput.toLowerCase())
+  );
   
   const table = [
     'Article', 'Quantité', 'Prix', 'Actions'
