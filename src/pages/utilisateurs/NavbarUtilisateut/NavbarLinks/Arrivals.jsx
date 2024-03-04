@@ -46,10 +46,10 @@ const Arrivals = () => {
 
   useEffect(() => {
     
-      sortProductsByDate();
+      
     
     console.log(sortProductsByDate);
-  }, []);
+  }, [sortProductsByDate]);
 
   
 
