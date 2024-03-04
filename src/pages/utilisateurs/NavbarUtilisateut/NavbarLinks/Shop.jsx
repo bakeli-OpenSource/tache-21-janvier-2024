@@ -15,13 +15,6 @@ const Shop = () => {
   const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
 
   const [filteredProducts, setFilteredProducts] = useState([]);
-  // const [produitAimer, setProduitAimer] = useState(() => {
-  //   const listesEnvies = localStorage.getItem("produitAimer");
-  //   return listesEnvies ? JSON.parse(listesEnvies) : [];
-  // });
-
-  
-
   const [categorieSelect, setCategorieSelect] = useState([]);
   const [categorieId, setCategorieId] = useState("");
   const [listeProduitsCategories, setListeProduitsCategories] = useState([]);
