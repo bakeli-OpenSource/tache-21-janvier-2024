@@ -3,36 +3,35 @@ import HeaderTable from '../../components/headerTable/HeaderTable';
 import Table from '../../components/table/Table';
 import useSidebare from '../../utils/hooks/useSidebare';
 import useProduits from '../../utils/hooks/useProduits';
+import Formulaire from '../../components/formulaire/Formulaire';
 
 
 
-const DetailsCategorie = () => {
+const DetailsCategorie = ({data}) => {
 
-  const {table, produits, actions} = useProduits();
-  const {open} = useSidebare()
+  const { actions, inputs, textarea, selects, hanldleSubmit, titreModal, handleSelectChange, setTitreModal} = useProduits();
+  const {open, closedrop} = useSidebare()
 
-
-  useEffect(() => {
-    // Récupérer l'ID de la catégorie depuis le stockage local
-    const categorieIdCli = localStorage.getItem("categorieIdCli");
-  }, []);
-
-  const CategoriesProduits = produits.filter(
-    (produit) => produit.categorieId === localStorage.getItem("categorieIdCli")
+  const table = [
+    'Article', 'Quantité', 'Prix'
+  ]
+  
+  setTitreModal(
+    'Ajouter un produits'
   )
-
-
-  
-   useEffect(() => {
-
-   }, [CategoriesProduits]);
-
-  
-
   return (
-    <div className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4  my-3 `}>
-      <HeaderTable title="Produits" nomAjout="Ajouter des tables"  />
-      <Table thead={table} tbody={CategoriesProduits} actions={actions} />
+    <div onClick={closedrop} className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"  } m-4  my-3 `}>
+      <HeaderTable
+       title="Produits"
+       body={<Formulaire 
+                inputs={inputs} 
+                textarea={textarea} 
+                selects={selects}
+                onSubmit={hanldleSubmit} 
+                handleSelectChange = {handleSelectChange}
+            />} 
+       />
+      <Table thead={table} tbody={data} />
     </div>
   )
 }

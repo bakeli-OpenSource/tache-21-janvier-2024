@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect} from 'react';
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
 // import Produit from './Produit';
 
 export const ProduitContext = createContext();
@@ -12,7 +12,7 @@ const ProduitProvider = ({ children }) => {
   useEffect(() => {
     const fetchProduits = async () => {
       try {
-        const response = await axios.get('https://kay-solu-api.onrender.com/api/produits');
+        const response = await axiosInstance.get('/produits');
         setProduits(response.data);
       } catch (error) {
         console.error('Erreur de fetching des produits:', error);

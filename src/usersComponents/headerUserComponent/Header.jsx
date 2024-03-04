@@ -48,9 +48,9 @@ const Header = () => {
   return (
     <div className="relative shadow-lg sm:pt-8 overflow-hidden min-h-[550px] sm:min-h-[650px] flex justify-center items-center pl-[25px] duration-200">
       {/* background */}
-      <div className="h-[700px] w-[700px] bg-slate-800 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
+      <div className="h-[700px] w-[700px] bg-gray-300 md:bg-slate-800 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
       {/* section bannière */}
-      <div className="container pb-8 sm:pb-0 sm:pt-4 sm:mt-6">
+      <div className="container pb-8 sm:pb-0 sm:pt-4 ">
         <Slider {...settings}>
           {ImageList.map((data) => (
             <div>
@@ -78,13 +78,13 @@ const Header = () => {
                     data-aos-duration="500"
                     data-aos-delay="300"
                   > 
-                  <Link to={"/panier"} >
-                    <ComponentButton className='bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded' texte='Shop Now'/>
+                  <Link to={"/boutique"} >
+                    <ComponentButton className='bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded' texte='Voir Boutique '/>
                   </Link>   
                   </div>
                 </div>
                 {/* section image */}
-                <div className="order-1 sm:order-2 sm:mt-6">
+                <div className="order-1 sm:order-2">
                   <div
                     data-aos="zoom-in"
                     data-aos-once="true"

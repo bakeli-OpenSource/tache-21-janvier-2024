@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const NavInput = ({ type, value, onChange, search }) => {
+  const [searchText, setSearchText] = useState('');
+
   return (
     <>
       {search && (

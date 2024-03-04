@@ -2,11 +2,11 @@ import React from 'react';
 import { usePanier } from '../../utils/contexte/PanierContext';
 import ComponentButton from '../button/ComponentButton';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import useGlobal from '../../utils/hooks/useGlobal';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axiosInstance from '../../utils/axiosInstance';
 
 const Commande = () => {
 	const navigate = useNavigate();
@@ -62,10 +62,7 @@ const Commande = () => {
 			quantite: orderItems.map((item) => item.quantity),
 			date: new Date().toISOString().split('T')[0],
 			etat: 'en attente',
-			prixProduit: orderItems.reduce(
-				(total, item) => total + item.prixTotal,
-				0,
-			),
+			prixProduit: orderItems.map((item) => item.prix),
 			prixLivraison: prixLivraison,
 			prixTotal: orderItems.reduce(
 				(total, item) => total + item.prixTotal,
@@ -76,10 +73,10 @@ const Commande = () => {
 
 		console.log('orderData', orderData);
 
-		const urlApiAdmin = 'https://kay-solu-api.onrender.com/api/commande';
+		const urlApiAdmin = '/commande';
 
 		try {
-			const response = await axios.post(urlApiAdmin, orderData, {
+			const response = await axiosInstance.post(urlApiAdmin, orderData, {
 				headers: {
 					'Content-Type': 'application/json',
 				},

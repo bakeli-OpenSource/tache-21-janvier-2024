@@ -18,6 +18,7 @@ import Aprops from "../apropos/Aprops";
 
 import DetailShopCards from "../NavbarUtilisateut/DetailShop/DetailShopCards";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
+import ErreurPage from "../erreurPage/ErreurPage";
 
 const UserIsLogin = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const UserIsLogin = () => {
             <Route path="/compte/*" element={<ComptePage />} />
             <Route path="/details/:_id" element={<DetailsCard />} />
             <Route path="/detailShop/:id" element={<DetailShopCards />} />
+            <Route path="*" element={<ErreurPage />} />
           </Routes>
           <Footer />
         </PanierProvider>
