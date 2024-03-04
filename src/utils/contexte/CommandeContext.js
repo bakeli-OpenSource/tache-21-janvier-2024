@@ -1,9 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-// import {  useNavigate } from "react-router-dom";
-// import { TbEyeShare } from "react-icons/tb";
-// import { MdEdit } from "react-icons/md";
-// import { MdOutlineDelete } from "react-icons/md";
-// import Formulaire from '../formulaire/Formulaire';
+import { toast } from 'react-toastify';
 import useGlobal from "../../utils/hooks/useGlobal";
 import axiosInstance from "../axiosInstance";
 
@@ -16,7 +12,7 @@ const CommandeContextProvider = ({ children }) => {
   const table = [
     "Nom",
     "Produit",
-    " Quantite",
+    "Quantite",
     "Telephone",
     "Etat de la commande",
     "Actions",
@@ -42,6 +38,23 @@ const CommandeContextProvider = ({ children }) => {
 
   const [selectsValue, setSelectsValue] = useState("");
 
+  const commandeId = localStorage.getItem("commandeIdCli")
+  const [data, setData] = useState([]);
+  useEffect(() => {
+
+  const fetchCommande = async (commandeId) => {
+      try {
+          const response = await axiosInstance.get(
+              '/commandes/' + commandeId,
+          );
+          setData(response.data);
+      } catch (error) {
+          console.error('Erreur lors de la récupération des commandes:', error);
+      }
+  };
+  fetchCommande(commandeId);
+}, [data]);
+
   const handleDetail = (commandeId) => {
     const commandeIdCli = localStorage.getItem("commandeIdCli");
   };
@@ -51,16 +64,20 @@ const CommandeContextProvider = ({ children }) => {
       const response = await axiosInstance.put(
         "/commande/" + id,
         newData
-      );
-
-      if (response.status === 200) {
-        console.log("Statut modifié avec succès:", response.data);
-        alert("Statut modifié avec succès");
+        );
+        
+        if (response.status === 200) {
+          console.log("Statut modifié avec succès:", response.data);
+          toast.success('Statut modifié avec succès!');
+          fetchCommandes();
+          setModifModal(false)
       } else {
         throw new Error("Erreur lors de la modification");
       }
     } catch (error) {
       console.error("Erreur lors de la modification:", error);
+      toast.success('Erreur lors de la modification!');
+
     }
   };
 
@@ -114,6 +131,7 @@ const CommandeContextProvider = ({ children }) => {
   }, []);
 
   const value = {
+    commandeId,
     setShowModal,
     setEditingCommandeId,
     handleEditCommande,
@@ -146,10 +164,12 @@ const CommandeContextProvider = ({ children }) => {
     etat,
     setEtat,
     setDate,
-    setQuantite,
+    setQuantite, 
     modif,
     setModifModal,
     setCommandes,
+    data, 
+    setData
   };
 
   return (

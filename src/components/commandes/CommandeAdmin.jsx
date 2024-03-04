@@ -25,7 +25,7 @@ const CommandeAdmin = () => {
 
   const navigate = useNavigate();
 
-  const [ setIsEditing] = useState(false);
+  const [setIsEditing] = useState(false);
 
 
 	const actions = [
