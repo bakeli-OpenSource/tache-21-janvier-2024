@@ -113,7 +113,6 @@ const GlobalContextProvider = ({ children }) => {
     const token = localStorage.getItem("tokenclient");
 
     if (!token) {
-      // Gérer l'absence du jeton (par exemple, rediriger vers la page de connexion)
       return;
     }
 

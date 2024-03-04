@@ -14,7 +14,6 @@ const CommandeAdmin = () => {
     commandes,
     handleSubmit,
     setSelectsValue,
-    handleDetail,
     handleDelete,
     setEtat,
     setShowModal,
@@ -35,7 +34,6 @@ const CommandeAdmin = () => {
 			handleClick: (id) => {
 				localStorage.setItem("commandeIdCli", id)
 				navigate('/admin/commandes/' + id);
-				handleDetail(id)
 			},
 		},
 		{

@@ -12,32 +12,29 @@ const Produit = ({ produit }) => {
 
   const { produits } = useProduits();
 
-  const { _id, imageUrl, categorie, titre, prix, promo } = produit;
-
-  const produitCourant = produits.find((item) => item._id === _id);
-  const reduction = produitCourant ? produitCourant.promo : promo ? promo : 0;
-  const prixAAjouter = Math.floor(prix - prix * (reduction / 100));
-  const handleAddToCart = () => {
-    const produitAAjouter = { ...produit, prix: prixAAjouter };
-    addToCart(produitAAjouter);
-    toast.success("Produit ajouté au panier", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
-  };
-
-  return (
-    <div className="rounded shadow-lg">
-      <div className="container">
-        <div
-          data-aos="zoom-in"
-          className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 
-
-        group max-w-full flex flex-col justify-between"
+    const { _id, imageUrl, categorie, titre, prix, promo} = produit;  
+    
+    const produitCourant = produits.find(item => item._id === _id);
+    const reduction = produitCourant ? produitCourant.promo : promo ? promo : 0; 
+    const prixAAjouter = Math.floor( prix - (prix * (reduction / 100)));
+    const handleAddToCart = () => {
+		const produitAAjouter = { ...produit, prix: prixAAjouter };
+		addToCart(produitAAjouter);
+		toast.success('Produit ajouté au panier', {
+			position: 'top-right',
+			autoClose: 3000,
+			hideProgressBar: true,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+		});
+	};
+    
+return (
+  <div className='rounded shadow-lg'>
+    <div className="container">    
+      <div
+        className="h-[350px] rounded-2xl border border-black bg-white relative shadow-xl duration-300 group max-w-full flex flex-col justify-between"
         >
           <Link
             to={`/details/${_id}`}

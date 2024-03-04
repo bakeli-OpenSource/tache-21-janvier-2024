@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { FaRegCircleXmark, FaSquareEnvelope } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
-import { MdDelete } from 'react-icons/md';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance';
 
@@ -18,14 +15,12 @@ const Message = ({nouveauMessage}) => {
         const response = await axiosInstance.put('/messages/' + id, { lu: true });
         
         if (response.status === 200) { 
-          console.log('Message supprimé:', response.data);
-          toast.success('Message supprimé!');
+          navigate("messages/" + id)
         } else {
           throw new Error('Erreur lors de la suppression du message');
         }
       } catch (error) {
         console.error('Erreur lors de la suppresion du message:', error);
-        toast.error('Erreur lors de la suppresion du message!');
       }
     }
   
@@ -43,13 +38,13 @@ const Message = ({nouveauMessage}) => {
             <div className='px-4 py-3 text-sm flex flex-col overflow-auto max-h-[250px]'>
                 {nouveauMessage.length ?
                   nouveauMessage.map((message, index) => (
-                    <button onClick={() => navigate("messages/" + message._id) }  key={index} className={`mb-2 bg-white  text-black py-2 rounded-lg col-span-3 shadow-xl ${border}`}>
+                    <button onClick={() => messageLu(message._id)}  key={index} className={`mb-2 bg-white  text-black py-2 rounded-lg col-span-3 shadow-xl ${border}`}>
                       <div className="flex justify-between px-3">
                           <div className=''>
                             <p className="text-lg text-start font-semibold pb-1">Nouveau Message</p>
                             <p className='text-start text-slate-600'>Vous avez recu un message de <span className='font-semibold'>{message.prenomNom}</span></p>
                           </div>
-                          <MdDelete className='cursor-pointer text-lg text-red-700 shadow-sm' onClick={() => messageLu(message._id)} />
+                          {/* <MdDelete className='cursor-pointer text-lg text-red-700 shadow-sm' onClick={() => messageLu(message._id)} /> */}
                       </div>
                     </button>
                   )) : <div className='px-4 py-3 text-sm flex flex-col text-black'>
@@ -59,7 +54,6 @@ const Message = ({nouveauMessage}) => {
               </div>
           </div>
         )}
-        <ToastContainer />
       </div>
     );
 }

@@ -22,7 +22,7 @@ const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
     addToCart(produitAAjouter);
   };
   return (
-    <div
+    <Link to={`/details/${_id}`}
       className="flex flex-col md:flex-row shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap-"
       key={item?._id}
     >
@@ -76,7 +76,7 @@ const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
           <MdOutlineDelete size={20} /> supprimer
         </button>
       </div>
-    </div>
+    </Link>
   );
 };
 
