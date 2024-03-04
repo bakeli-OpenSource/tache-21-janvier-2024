@@ -33,6 +33,7 @@ const Select = ({label, options, handleSelectChange }) => {
     </div>
   )
 }
+
 const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) => {
 
   const handleChangeFile = (e, setter) => {
