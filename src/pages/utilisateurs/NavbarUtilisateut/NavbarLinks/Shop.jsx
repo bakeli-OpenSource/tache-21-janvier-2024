@@ -8,35 +8,22 @@ import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import Loader from "../../../../components/loader/loader";
 import axiosInstance from "../../../../utils/axiosInstance";
 
-
-
 const Shop = () => {
   const { produits } = useContext(ProduitsContext);
-  const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
+  const { categories, setCategories } = useContext(CategorieContext);
 
   const [filteredProducts, setFilteredProducts] = useState([]);
-  // const [produitAimer, setProduitAimer] = useState(() => {
-  //   const listesEnvies = localStorage.getItem("produitAimer");
-  //   return listesEnvies ? JSON.parse(listesEnvies) : [];
-  // });
-
-  
 
   const [categorieSelect, setCategorieSelect] = useState([]);
   const [categorieId, setCategorieId] = useState("");
   const [listeProduitsCategories, setListeProduitsCategories] = useState([]);
 
-  // const handleClick = () => {
-  //   // Afficher tous les produits si aucune catégorie sélectionnée
-  //   setFilteredProducts(produits);
-  // }
-
   const fetchProduitsCategorie = async (idCategory) => {
     try {
-
-      const response = await axiosInstance.get(`/produits/categorie/${idCategory}`);      
-      setListeProduitsCategories(response.data)
-      
+      const response = await axiosInstance.get(
+        `/produits/categorie/${idCategory}`
+      );
+      setListeProduitsCategories(response.data);
     } catch (error) {
       console.error(
         "Erreur lors de la récupération des produits de la catégories :",
@@ -60,7 +47,6 @@ const Shop = () => {
   };
   const fetchFilterCategories = async () => {
     try {
-
       const response = await axiosInstance.get("/categories");
       setCategories(response.data);
       console.log("Catégories récupérées avec succès");
@@ -85,13 +71,6 @@ const Shop = () => {
   }, [categories]);
 
   const { setDropdown } = useGlobal();
-
-  // // Fonction pour mettre à jour l'état de survol pour un produit spécifique
-  // const handleHoverEtoils = (index, etoils) => {
-  //   let newHoverArray = [...hoverArray]; // Copie de l'array d'états actuel
-  //   newHoverArray[index] = etoils; // Met à jour l'état de survol pour le produit à l'index spécifié
-  //   setHoverArray(newHoverArray); // Met à jour l'état du composant
-  // };
 
   return (
     <>
