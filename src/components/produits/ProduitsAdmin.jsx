@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
@@ -23,10 +23,6 @@ const ProduitsAdmin = () => {
 
 
   const {open, closedrop} = useSidebare()
-
-  
-
-
 
   setTitreModal(
     'Ajouter un produits'

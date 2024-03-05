@@ -40,15 +40,15 @@ const Arrivals = () => {
       return new Date(b.date) - new Date(a.date);
     });
 
-    const latestProducts = sortedProducts.slice(0, 10).reverse(); 
+    const latestProducts = sortedProducts.slice(0, 10); 
     setFilteredProducts(latestProducts);
   };
 
   useEffect(() => {
     
-      
+    sortProductsByDate()
     
-    console.log(sortProductsByDate);
+    // console.log(sortProductsByDate);
   }, [sortProductsByDate]);
 
   
