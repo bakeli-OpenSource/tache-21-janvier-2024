@@ -1,21 +1,25 @@
 import React, { useEffect } from 'react'
 
 const Input = ({label, type, value, name, onChange}) => {
-  let classInput
+  let classInput;
+  let isRequired = type !== "file"; // Si le type n'est pas "file", alors l'input est requis
+
   if (type === "radio") {
-    classInput = "bg-gray-200"
-  }else{
-    classInput = "mt-1 p-2 bg-gray-200 border focus:border text-gray-700 text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full"
+    classInput = "bg-gray-200";
+  } else {
+    classInput = "mt-1 p-2 bg-gray-200 border focus:border text-gray-700 text-gray-400 focus:border-double focus:border-sky-600 outline-none rounded-md w-full";
   }
-  return(
+
+  return (
     <div className="w-full md:w-1/2 px-3 my-6 md:mb-0">
       <label className="block text-sm font-semibold  text-gray-900">
         { label }
       </label>
-      <input className={classInput} name={name} value={value} type={type} onChange={onChange} required />
+      <input className={classInput} name={name} value={value} type={type} onChange={onChange} required={isRequired ? "required" : undefined} />
     </div>
-  )
+  );
 }
+
 const Select = ({label, options, handleSelectChange }) => {
   return(
     <div className="w-full md:w-1/2 px-3 my-6 md:mb-0">
@@ -29,6 +33,7 @@ const Select = ({label, options, handleSelectChange }) => {
     </div>
   )
 }
+
 const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) => {
 
   const handleChangeFile = (e, setter) => {
@@ -85,7 +90,7 @@ const Formulaire = ({inputs, selects, textarea, onSubmit, handleSelectChange }) 
         {textarea ?
           <div className="w-full md:w-2/2 px-3 my-6 md:mb-0">
             <label className='block text-sm font-semibold  text-gray-900'>Description</label>
-            <textarea className="mt-1 p-2 bg-gray-200 border focus:border text-gray-700 focus:border-double focus:border-sky-600 outline-none rounded-md w-full" onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
+            <textarea className="mt-1 p-2 bg-gray-200 border focus:border text-gray-700 focus:border-double focus:border-sky-600 outline-none rounded-md w-full" value={textarea.value} onChange={(e) => handleChange(e, textarea.setValue)} >{textarea.value}</textarea>
           </div>
               : null
         }

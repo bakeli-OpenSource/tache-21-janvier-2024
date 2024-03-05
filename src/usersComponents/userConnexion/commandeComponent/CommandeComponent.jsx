@@ -14,33 +14,42 @@ const CommandeComponent = () => {
 
   const commande = clientCommande.map((com) => com?.email);
 
+  const comman = commandes;
+
   return (
     <div>
       {commandes.length > 0 ? (
         client?.email === commande[0] ? (
           clientCommande?.map((item) => (
             <div
-              className="flex shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-"
+              className="flex text-sm sm:text-[16px] shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-"
               key={item?._id}
             >
               <div className="flex items-center gap-7">
                 <div>
-                  <p> Vous avez commandes {item?.produit.length > 1 ? `${item?.produit.length}  produits` : `${item?.produit.length}  produit`} </p>
-                  <p className="my-2 bg">Prix total:  {item?.prixTotal} FCFA</p>
-
-                  <p className="font-medium">Le {item?.date}</p>
+                  <p>
+                    {" "}
+                    Vous avez commandé{" "}
+                    {item?.produit.length > 1
+                      ? `${item?.produit.length}  produits`
+                      : `${item?.produit.length}  produit`}{" "}
+                  </p>
+                  <p className="font- my-2">
+                    Le {new Date(item?.date).toLocaleDateString("fr")}
+                  </p>
+                  <p className=" bg">N° de commande: {item?.numeroCommande} </p>
                 </div>
               </div>
               <div className="flex flex-col gap-4 justify- items-between">
-              <Link
-                to={`/compte/commandes/DetailsCommande/${item._id}`}
-                className="px-2 my- py-1 rounded text-white text-center bg-slate-800 "
-              >
-                Détails
-              </Link>
-              <button className="px-2 my- py-1 rounded border border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800">
-                {item?.etat}
-              </button>
+                <Link
+                  to={`/compte/commandes/DetailsCommande/${item._id}`}
+                  className="px-2 my- py-1 rounded text-white text-center bg-slate-800 "
+                >
+                  Détails
+                </Link>
+                <button className="px-2 my- py-1 rounded border border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800">
+                  {item?.etat}
+                </button>
               </div>
             </div>
           ))

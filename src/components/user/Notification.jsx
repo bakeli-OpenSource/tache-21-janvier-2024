@@ -1,22 +1,21 @@
 import { IoIosNotifications } from "react-icons/io";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import useSidebare from '../../utils/hooks/useSidebare';
-import { MdDelete } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 
 
 const Notification = ({nouveauCommande}) => {
 
     const {notification, handleNotification} = useSidebare()
-
+    const navigate = useNavigate()
 
     const messageLu = async (id) => {
       try {
         const response = await axiosInstance.put('/commande/' + id, { lu: true });
         
         if (response.status === 200) { 
-          console.log('Message effacé:', response.data);
-          alert('Message supprimé');
+          navigate("commandes/" + id)
         } else {
           throw new Error('Erreur lors de la suppression du message');
         }
@@ -35,18 +34,18 @@ const Notification = ({nouveauCommande}) => {
           <div className="absolute right-0 mt-5 w-[350px] bg-white border border-gray-200 rounded-md shadow-lg py-1">
               <div className='flex justify-end px-4 py-2'>
 
-              <FaRegCircleXmark className='cursor-pointer' onClick={handleNotification} />
+              <FaRegCircleXmark className='cursor-pointer text-black' onClick={handleNotification} />
               </div>
               <div className='px-4 py-3 text-sm flex flex-col overflow-auto h-[250px]'>
                 {nouveauCommande.length ?
                   nouveauCommande.map((commande, index) => (
-                    <button  key={index} className="mb-2 bg-white border-s-4 border-sky-500 text-black py-2 rounded-lg col-span-3 shadow-xl">
+                    <button onClick={ () => messageLu(commande._id) }   key={index} className="mb-2 bg-white border-s-4 border-sky-500 text-black py-2 rounded-lg col-span-3 shadow-xl">
                       <div className="flex justify-between px-3">
                           <div className=''>
                             <p className="text-lg text-start font-semibold pb-1">Nouvelle Commande</p>
                             <p className='text-start text-slate-600'><span className='font-semibold'>{commande.prenom} {commande.nom}</span> vient d'effectuer une commande</p>
                           </div>
-                          <MdDelete className='cursor-pointer text-lg text-red-700 shadow-sm' onClick={() => messageLu(commande._id)} />
+                          {/* <MdDelete className='cursor-pointer text-lg text-red-700 shadow-sm' onClick={() => messageLu(commande._id)} /> */}
                       </div>
                     </button>
                   )) : <div className='px-4 py-3 text-sm flex flex-col text-black'>

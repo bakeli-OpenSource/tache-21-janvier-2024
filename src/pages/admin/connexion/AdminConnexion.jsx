@@ -156,7 +156,7 @@ const AdminConnexion = () => {
             <h2 className="text-3xl font-bold mb-2">Bienvenue</h2>
             <div className="border-2 w-10 border-white inline-block mb-2"></div>
             <p className="mb-2">
-              Remplissez vos informations personnelles et connecter sur votre
+              Remplissez vos informations personnelles et connectez vous sur votre
               appli
             </p>
           </div>
