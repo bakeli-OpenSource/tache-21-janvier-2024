@@ -45,8 +45,8 @@ const AdminConnexion = () => {
 
           <div className="w-full mx-auto mt-5 ">
 
-              <div className=" mb-4 mt- ">
-                <label htmlFor="email" className="block text-sm font-medium relative left-9 w-24 min-w-24">
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-sm font-medium relative left-9 w-24 min-w-24 ">
                   Email
 
                 </label>
@@ -60,8 +60,9 @@ const AdminConnexion = () => {
                   
                 />
             </div>
-            <div className=" relative mb-5 mt- ">
-          <label htmlFor="password" className="block text-sm font-medium relative left-10 w-1/4 min-w-24">
+            <div className=" relative mb-5  ">
+              <div>
+          <label htmlFor="password" className="block text-sm z-3 font-medium relative left-11 w-1/4 max-w-13 min-w-24">
             Mot de passe
           </label>
           <input
@@ -76,14 +77,15 @@ const AdminConnexion = () => {
           {showPassword ? (
             <FaEye
               onClick={updateShowPassword}
-              className="absolute right-16 bottom-3 flex flex-col justify-center items-center"
+              className="absolute right-16 pr-3 text-3xl bottom-1 md:pl-0 flex flex-col justify-center items-center"
             />
           ) : (
             <FaEyeSlash
               onClick={updateShowPassword}
-              className="absolute right-16 bottom-3 flex flex-col justify-center items-center"
+              className="absolute right-16 pr-3 text-3xl bottom-1 md:pl-0 flex flex-col justify-center items-center"
             />
           )}
+        </div>
         </div>
 
               {/* <div className=" mb-4 relative">
@@ -138,8 +140,8 @@ const AdminConnexion = () => {
                   disabled={isButtonDisabled || isLoading}
                   className={`bg-gray-100  md:w-96 min-w-80 flex gap-4 items-center  justify-center focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 mx-auto py-3 focus:outline-none ${
                     isButtonDisabled || isLoading
-                      ? "bg-gray-100 cursor-not-allowed text-disabled text-black "
-                      : "bg-slate-800 text-active text-white"
+                      ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-white relative "
+                      : "bg-gray-900 text-active text-white hover:bg-gray-900"
                   } `}
                 >
                   connexion
