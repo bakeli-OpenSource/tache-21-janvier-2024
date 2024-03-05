@@ -24,6 +24,7 @@ export default function CategorieContextProvider({children}) {
   const navigate = useNavigate();
   const { setShowModal } = useGlobal();  
   const { produits, filtreProduits } = useProduits();
+  const { produitsCategorie, setProduitsCategorie } = useProduits();
 
 
   const table = [
@@ -159,7 +160,9 @@ export default function CategorieContextProvider({children}) {
         categories.map(async (category) => {
           try {
             const response = await axiosInstance.get(`/produits/categorie/${category._id}`);
-            const produitsCategorie = response.data;
+            setProduitsCategorie(response.data)
+            // const quantite = produitsCategorie.length;
+            // setQuantite(produitsCategorie.length)
             const quantite = produitsCategorie.length;
   
             // Mettre à jour la quantité dans la base de données
@@ -183,6 +186,7 @@ export default function CategorieContextProvider({children}) {
   
   const valueContext = {
     test,
+        produitsCategorie,
         produits,
         filtreProduits,
         fetchCategories,

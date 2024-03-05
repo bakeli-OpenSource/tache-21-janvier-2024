@@ -17,7 +17,7 @@ export default function Accueil() {
     <div>
       <Navbar className="fixed top-0 z-50 w-full bg-white" />
       <div className="mt-[50px] md:mt-0" onClick={() => setDropdown(false)}>
-        <Header />
+        <Header />z
         <div className="flex flex-col px-[35px] md:px-[10px] sm:px-0">
           {categories.map((categorie) => (
             <section key={categorie} className="py-10">

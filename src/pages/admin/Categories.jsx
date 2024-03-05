@@ -14,18 +14,20 @@ const Categories = () => {
           handleSubmit,
           updateCategoryQuantities,
           fetchCategories,
+          produitsCategorie,
         produits} = useContext(CategorieContext);
   
 
   const { open, closedrop } = useSidebare();
 
+
   useEffect(() => {
+    fetchCategories();
   }, []);
   
   useEffect(() => {
-    fetchCategories();
     updateCategoryQuantities();
-  }, [Categories]);
+  }, []);
 
 
   const handleSelectChange = (e) => {};
