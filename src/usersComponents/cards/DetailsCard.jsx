@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 import ComponentButton from "../button/ComponentButton";
 import { ProduitContext } from "./ProduitContext";
 import { useContext } from "react";
@@ -38,6 +38,7 @@ const DetailsCard = () => {
                   <div className=" top-0 z-50 overflow-hidden ">
                     <div className="relative mb-6 lg:mb-10 lg:h-full ">
                       <img
+                        alt="Mon produit"
                         src={produit.imageUrl}
                         className="object-cover w-full lg:h-full "
                       />
@@ -59,7 +60,7 @@ const DetailsCard = () => {
                       </p>
                       <div className="mb-8 text-4xl font-bold text-gray-700 flex ">
                         <h2 className="w-16 text-xl font-bold my-2">Prix:</h2>
-                        <span>{produit.prix} Fcfa</span>
+                        <span>{produit.prix.toLocaleString("DE-de")} Fcfa</span>
                       </div>
                       <div>
                         <h3 className="text-sm font-bold ">
