@@ -8,27 +8,23 @@ import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import Loader from "../../../../components/loader/loader";
 import axiosInstance from "../../../../utils/axiosInstance";
 
-
-
 const Shop = () => {
   const { produits } = useContext(ProduitsContext);
-  const { categories, setCategories } = useContext(CategorieContext); // Accédez au contexte des catégories
+  const { categories, setCategories } = useContext(CategorieContext);
 
   const [filteredProducts, setFilteredProducts] = useState([]);
+
   const [categorieSelect, setCategorieSelect] = useState([]);
   const [categorieId, setCategorieId] = useState("");
   const [listeProduitsCategories, setListeProduitsCategories] = useState([]);
 
-  // const handleClick = () => {
-  //   // Afficher tous les produits si aucune catégorie sélectionnée
-  //   setFilteredProducts(produits);
-  // }
-
   const fetchProduitsCategorie = async (idCategory) => {
     try {
 
-      const response = await axiosInstance.get(`/produits/categorie/${idCategory}`);
-      setListeProduitsCategories(response.data)
+      const response = await axiosInstance.get(
+        `/produits/categorie/${idCategory}`
+      );
+      setListeProduitsCategories(response.data);
 
     } catch (error) {
       console.error(
@@ -53,7 +49,6 @@ const Shop = () => {
   };
   const fetchFilterCategories = async () => {
     try {
-
       const response = await axiosInstance.get("/categories");
       setCategories(response.data);
       console.log("Catégories récupérées avec succès");
