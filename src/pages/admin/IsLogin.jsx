@@ -20,6 +20,7 @@ import FilterCommendeEnLivraison from "../../components/cards-et-filtre/filtreDe
 import Message from "../../components/messages/Message";
 import ErreurPage from "../utilisateurs/erreurPage/ErreurPage";
 import DetailsMessages from "../../components/messages/DetailsMessages";
+import ProduitContextProvider from "../../utils/contexte/ProduitsContext";
 
 function IsLogin() {
   const { isLoggedIn } = useGlobal();
@@ -29,6 +30,7 @@ function IsLogin() {
   return (
     <div className="App min-h-screen">
       <SidebareContextProvider>
+        <ProduitContextProvider>
         {isLoggedIn() ? <Header /> : navigate("/admin")}
         <div className="App pt-[56px] h-screen  gap-6 ">
           {isLoggedIn() ? <Sidebare /> : navigate("/admin")}
@@ -162,6 +164,7 @@ function IsLogin() {
             )} */}
           </Routes>
         </div>
+        </ProduitContextProvider>
       </SidebareContextProvider>
     </div>
   );

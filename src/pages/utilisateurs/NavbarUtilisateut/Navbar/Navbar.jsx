@@ -28,7 +28,7 @@ const Navbar = ({ className }) => {
 
   return (
     <nav className={className}>
-      <div className="flex items-center h-full justify-between px-3 pe-5 md:pe-8 md:px-8 py-">
+      <div className="flex items-center h-full justify-between px-3 pe-5 md:pe-8 md:px-8 py-2">
         <div className="flex items-center justify-between w-full gap-3 md:w-auto ">
           <div className="z-30 flex flex-row-reverse justify-between items-center w-full md:w-auto">
             <div className="md:hidden flex  gap-4 items-center justify-center">
@@ -46,7 +46,7 @@ const Navbar = ({ className }) => {
                 </span>
               </Link>
             </div>
-            <Link to={"/"} className="cursor-pointer w-[60px] h-[60px]">
+            <Link to={"/"} className="cursor-pointer w-[30px] h-[30px]">
               <img src={icone} className="w-full h-full" onClick={fermer} />
             </Link>
             <div
