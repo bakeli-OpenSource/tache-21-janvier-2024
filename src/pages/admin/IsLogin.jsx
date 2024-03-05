@@ -20,7 +20,6 @@ import FilterCommendeEnLivraison from "../../components/cards-et-filtre/filtreDe
 import Message from "../../components/messages/Message";
 import ErreurPage from "../utilisateurs/erreurPage/ErreurPage";
 import DetailsMessages from "../../components/messages/DetailsMessages";
-// import Navigate from "navigate";
 
 function IsLogin() {
   const { isLoggedIn } = useGlobal();
@@ -31,7 +30,7 @@ function IsLogin() {
     <div className="App min-h-screen">
       <SidebareContextProvider>
         {isLoggedIn() ? <Header /> : navigate("/admin")}
-        <div className="App pt-[56px] h-screen  gap-6 bg-gray-100">
+        <div className="App pt-[56px] h-screen  gap-6 ">
           {isLoggedIn() ? <Sidebare /> : navigate("/admin")}
           <Routes>
             {isLoggedIn() ? (
@@ -41,12 +40,12 @@ function IsLogin() {
             )}
             {isLoggedIn() ? (
               <Route
-              path="/dashboard/EnAttente"
-              element={
-                        <CommandeContextProvider>
-                          <FiltreCommandeEnAttente />                          
-                        </CommandeContextProvider>
-                        } 
+                path="/dashboard/EnAttente"
+                element={
+                  <CommandeContextProvider>
+                    <FiltreCommandeEnAttente />
+                  </CommandeContextProvider>
+                }
               />
             ) : (
               navigate("/admin")
@@ -54,12 +53,12 @@ function IsLogin() {
 
             {isLoggedIn() ? (
               <Route
-              path="/dashboard/EnCours"
-              element={
-                        <CommandeContextProvider>
-                          <FilterCommandeEnCours />                          
-                        </CommandeContextProvider>
-                        } 
+                path="/dashboard/EnCours"
+                element={
+                  <CommandeContextProvider>
+                    <FilterCommandeEnCours />
+                  </CommandeContextProvider>
+                }
               />
             ) : (
               navigate("/admin")
@@ -67,12 +66,12 @@ function IsLogin() {
 
             {isLoggedIn() ? (
               <Route
-              path="/dashboard/Traite"
-              element={
-                        <CommandeContextProvider>
-                          <FilterCommandeTraite />                          
-                        </CommandeContextProvider>
-                        } 
+                path="/dashboard/Traite"
+                element={
+                  <CommandeContextProvider>
+                    <FilterCommandeTraite />
+                  </CommandeContextProvider>
+                }
               />
             ) : (
               navigate("/admin")
@@ -80,12 +79,12 @@ function IsLogin() {
 
             {isLoggedIn() ? (
               <Route
-              path="/dashboard/EnLivraison"
-              element={
-                        <CommandeContextProvider>
-                          <FilterCommendeEnLivraison />                          
-                        </CommandeContextProvider>
-                        } 
+                path="/dashboard/EnLivraison"
+                element={
+                  <CommandeContextProvider>
+                    <FilterCommendeEnLivraison />
+                  </CommandeContextProvider>
+                }
               />
             ) : (
               navigate("/admin")
@@ -115,10 +114,7 @@ function IsLogin() {
               navigate("/admin")
             )}
             {isLoggedIn() ? (
-              <Route
-                path="/produits/:id"
-                element={<DetailsProduits />}
-              />
+              <Route path="/produits/:id" element={<DetailsProduits />} />
             ) : (
               navigate("/admin")
             )}
@@ -136,27 +132,18 @@ function IsLogin() {
               navigate("/admin")
             )}
             {isLoggedIn() ? (
-              <Route
-                path="/clients"
-                element={<ListeClients />}
-              />
+              <Route path="/clients" element={<ListeClients />} />
             ) : (
               navigate("/admin")
             )}
 
             {isLoggedIn() ? (
-              <Route
-                path="/messages/*"
-                element={ <Message/> }
-              />
+              <Route path="/messages/*" element={<Message />} />
             ) : (
               navigate("/admin")
             )}
             {isLoggedIn() ? (
-              <Route
-                path="/messages/:id"
-                element={ <DetailsMessages/> }
-              />
+              <Route path="/messages/:id" element={<DetailsMessages />} />
             ) : (
               navigate("/admin")
             )}

@@ -1,100 +1,88 @@
 import React, { useState, useEffect } from "react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
 
 const datas = [
   {
-    mois: 'Jan',
+    mois: "Jan",
     uv: 4000,
     pv: 2400,
   },
   {
-    mois: 'Fev',
+    mois: "Fev",
     uv: 3000,
     pv: 1398,
   },
   {
-    mois: 'Mars',
+    mois: "Mars",
     uv: 2000,
     pv: 9800,
   },
   {
-    mois: 'Avr',
+    mois: "Avr",
     uv: 2780,
     pv: 3908,
   },
   {
-    mois: 'Mai',
+    mois: "Mai",
     uv: 1890,
     pv: 4800,
   },
   {
-    mois: 'Juin',
+    mois: "Juin",
     uv: 2390,
     pv: 3800,
   },
   {
-    mois: 'Juil',
+    mois: "Juil",
     uv: 3490,
     pv: 4300,
   },
   {
-    mois: 'Août',
+    mois: "Août",
     uv: 5000,
     pv: 6000,
   },
   {
-    mois: 'Sept',
+    mois: "Sept",
     uv: 3000,
     pv: 2200,
   },
   {
-    mois: 'Oct',
+    mois: "Oct",
     uv: 1900,
     pv: 3000,
   },
   {
-    mois: 'Nov',
+    mois: "Nov",
     uv: 2750,
     pv: 6000,
   },
   {
-    mois: 'Dec',
+    mois: "Dec",
     uv: 7000,
     pv: 9000,
   },
 ];
 
 function Revenue() {
+  // Position par défaut
 
-  const [chartWidth, setChartWidth] = useState(window.innerWidth > 768 ? 370 : 320);
-  const [chartPosition, setChartPosition] = useState("center"); // Position par défaut
-
-
-  useEffect(() => {
-    const handleResize = () => {
-      setChartWidth(window.innerWidth > 1025 ? 370 : 320);
-
-      // Déterminez la position en fonction de la largeur de la fenêtre
-      setChartPosition(window.innerWidth > 768 ? "center" : "left");
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
-
-
-    <div className='border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-[100%]'>
-
+    <div className="border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-[100%]">
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
       </div>
-
+      <div className="overflow-scroll">
         <LineChart
-          width={chartWidth}
+          width={500}
           height={450}
           data={datas}
           margin={{
@@ -109,11 +97,16 @@ function Revenue() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line
+            type="monotone"
+            dataKey="pv"
+            stroke="#8884d8"
+            activeDot={{ r: 8 }}
+          />
           <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
         </LineChart>
-
       </div>
+    </div>
   );
 }
 
