@@ -14,7 +14,7 @@ export default function CategorieContextProvider({children}) {
 
   const [test, setTest] = useState("Awa");
   const [nom, setNom] = useState("");
-  const [quantite, setQuantite] = useState("0");
+  const [quantite, setQuantite] = useState(0);
   const [categories, setCategories] = useState([])
   const [categoriesProd, setCategoriesProd] = useState([])
   const [editingCategoryId, setEditingCategoryId] = useState(null);
