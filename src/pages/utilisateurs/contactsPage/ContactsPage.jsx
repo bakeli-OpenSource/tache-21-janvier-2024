@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "../../../utils/axiosInstance";
 import useGlobal from "../../../utils/hooks/useGlobal";
+import ScrollingText from "../../../usersComponents/cards/ScrollingText";
 
 const ContactsPage = () => {
   const [client, setClient] = useState({
@@ -67,10 +68,10 @@ const ContactsPage = () => {
       onClick={closeDropdown}
       className="mt-[60px] pt-0 md:pt-6 px- bg- w-full"
     >
-      <div className=" px-4 md:px-2 pb-4 w-full">
+      <div className=" px-4 md:px-2 w-full">
         <div className="flex flex-col w-full pt-4 md:px-9 md:flex-row gap-4 md:gap-9">
           <div
-            className={` w-full md:w-1/4  shadow-sm    bg- px-  border border-gray-200 rounded-md  py-4`}
+            className={`w-full md:w-1/4 shadow-sm border border-gray-200 rounded-md py-4`}
           >
             <div className="px-5 ">
               <h1 className="font-medium flex items-center gap-3">
@@ -80,10 +81,10 @@ const ContactsPage = () => {
                 Appelez-nous
               </h1>
               <p className="text-sm my-5">
-                Nous sommes disponibles 24h/24 et 7j/7
+                Nous sommes disponibles 6j/7 de 9h à 19h
               </p>
               <p className="text-sm pb-9 border-b-2 border-slate-800">
-                Téléphone: 33 870 48 76{" "}
+                Téléphone: +221 77 982 54 32{" "}
               </p>
               <h1 className="font-medium mt-7 flex items-center gap-3">
                 <div className=" bg-slate-800 text-white p-3 rounded-full">
@@ -172,6 +173,9 @@ const ContactsPage = () => {
               </div>
             </form>
           </div>
+        </div>
+        <div className="px-9">
+          <ScrollingText />
         </div>
       </div>
       <ToastContainer />
