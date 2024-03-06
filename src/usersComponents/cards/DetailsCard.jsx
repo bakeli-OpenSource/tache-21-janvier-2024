@@ -14,21 +14,35 @@ const DetailsCard = () => {
     return item._id === _id;
   });
 
+  // const {promo, prix} = produit
+
+  // console.log(promo);
+
   const pagePrecedente = () => {
     navigate(-1);
   };
   
   const { addToCart } = usePanier();
+  // const handleAddToCart = () => {
+  //   addToCart(produit);
+  // };
+
+  // const produitCourant = produits.find((item) => item._id === _id);
+  const reduction = produit ? produit?.promo : produit?.promo ? produit?.promo : 0;
+  const prixAAjouter = Math.floor(produit?.prix - produit?.prix * (reduction / 100));
   const handleAddToCart = () => {
-    addToCart(produit);
+    const produitAAjouter = { ...produit, prix: prixAAjouter };
+    addToCart(produitAAjouter);
   };
+
+
 
   return (
     <div className="">
       {produit !== undefined ? (
         <section className="overflow-hidden py-4 mx-auto">
           <div  className="w-10 h-10">
-            <IoMdArrowRoundBack onClick={pagePrecedente} className="mt-20 ml-10 text-black bg-gray-300 shadow-xl text-xl w-6 h-6" />
+            <IoMdArrowRoundBack onClick={pagePrecedente} className="mt-20 ml-10 text-black  shadow-xl text-xl w-6 h-6" />
           </div>
 
           <div key={_id}>
@@ -59,8 +73,26 @@ const DetailsCard = () => {
                         {produit.description}
                       </p>
                       <div className="mb-8 text-4xl font-bold text-gray-700 flex ">
-                        <h2 className="w-16 text-xl font-bold my-2">Prix:</h2>
-                        <span>{produit.prix.toLocaleString("DE-de")} Fcfa</span>
+                            {/* <h2 className="w-14 text-xl font-bold my-2">Prix:</h2>
+                            <span>{prixAAjouter.toLocaleString("DE-de")} Fcfa</span> */}
+                        <h2 className="w-14 text-xl font-bold my-2">Prix:</h2>
+                            {reduction ? (
+                          <div className="flex items-end justify-between md:justify-start ">
+                                <span className="py-1 text-xl md:text-[18px] text-red-600 my-2">
+                                  {prixAAjouter.toLocaleString("DE-de")} FCFA
+                                </span>
+                                {/* &nbsp; */}
+                                <span className="line-through text-lg md:text-[10px] text-gray-500">
+                                  {produit.prix.toLocaleString("DE-de")} FCFA
+                                </span>
+                          </div>
+                          
+                              ) : (
+                          <div className="flex items-end justify-between md:justify-start ">
+                              <span className="py-1 text-xl md:text-[18px] py-1 font-medium text-sm text-gray-900 my-2">
+                                {produit.prix.toLocaleString("DE-de")} FCFA
+                              </span>
+                          </div>)}
                       </div>
                       <div>
                         <h3 className="text-sm font-bold ">
