@@ -161,7 +161,7 @@ const Commande = () => {
 					<ComponentButton
 						type="submit"
 						disabled={items.length === 0}
-						className={`flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white rounded ${
+						className={`flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white rounded mt-10 ${
 							items.length === 0
 								? 'bg-gray-400 cursor-not-allowed'
 								: 'bg-slate-800 hover:bg-slate-900'
