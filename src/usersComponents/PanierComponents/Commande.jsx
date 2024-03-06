@@ -32,9 +32,6 @@ const Commande = () => {
 		e.preventDefault();
 
 		if (!loggedInUserToken) {
-			window.alert(
-				'Veuillez vous connecter avant de passer votre commande svp.',
-			);
 			navigate('/connexion');
 			return;
 		}
@@ -161,15 +158,10 @@ const Commande = () => {
 							)}
 						</div>
 					)}
-					{items.length === 0 && (
-						<div className="mb-3 text-sm text-red-500">
-							Veuillez ajouter au moins une commande avant de valider.
-						</div>
-					)}
 					<ComponentButton
 						type="submit"
 						disabled={items.length === 0}
-						className={`flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white rounded ${
+						className={`flex justify-center px-3 py-2 mx-auto my-5 text-sm tracking-widest text-white rounded mt-10 ${
 							items.length === 0
 								? 'bg-gray-400 cursor-not-allowed'
 								: 'bg-slate-800 hover:bg-slate-900'
