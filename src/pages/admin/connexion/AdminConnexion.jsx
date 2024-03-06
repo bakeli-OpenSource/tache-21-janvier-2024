@@ -31,12 +31,12 @@ const AdminConnexion = () => {
   };
 
   return (
-    <div className="flex flex-col items-center  justify-center min-h-screen  py-2 bg-gray-100 ">
+    <div className="flex  items-center  justify-center min-h-screen  bg-gray-100 ">
       <form
-        className="w-full flex flex-col items-center  justify-center flex-row-reverse w-full  px-30 text-center"
+        className="w-full flex  items-center  justify-center text-center w-full  "
         onSubmit={handleSubmit}
       >
-        <div className="min-w-96 bg-white rounded-2xl shadow-2xl flex flex-col-reverse flex-row md:flex-row w-2/3 max-w-4xl">
+        <div className="min-w-96 bg-white px-4 md:px-0 rounded-2xl shadow-2xl flex flex-col-reverse flex-row md:flex-row w-2/3 max-w-4xl">
           <div className="md:w-3/5 py-5">
             <div className="py-10">
               <h2 className="text-2xl font-bold text-slate-800 md:text-center">
@@ -46,8 +46,8 @@ const AdminConnexion = () => {
 
           <div className="w-full mx-auto mt-5 ">
 
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium relative left-9 w-24 min-w-24 ">
+              <div className="mb-4 md:px-6 mx-auto">
+                <label htmlFor="email" className="block text-sm font-medium  left-6 w-1/6  ">
                   Email
 
                 </label>
@@ -57,13 +57,12 @@ const AdminConnexion = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-gray-100  md:w-96 min-w-80 p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+                  className="bg-gray-100   w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
                   
                 />
             </div>
-            <div className="  mb-5  ">
-              <div className="relative">
-          <label htmlFor="password" className="block text-sm font-medium relative left-11 w-1/4 max-w-13 min-w-24">
+              <div className="relative md:px-6 mx-auto">
+          <label htmlFor="password" className="block text-sm font-medium  left-5 w-1/5  min-w-24 ">
             Mot de passe
           </label>
           <input
@@ -71,25 +70,22 @@ const AdminConnexion = () => {
             type={showPassword ? "text" : "password"}
             id="password"
             name="password"
-            className="bg-gray-100 md:w-96 min-w-80 p-2 mt-1 px-2 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+            className="bg-gray-100 w-full p-2 mt-1 px-2 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           {showPassword ? (
             <FaEye
               onClick={updateShowPassword}
-              className="absolute right-16 pr-3 text-3xl bottom-1 md:pl-0 flex flex-col justify-center items-center"
+              className="absolute right-7 pr-3 text-3xl bottom-1 md:pl-0 flex flex-col justify-center items-center"
             />
           ) : (
             <FaEyeSlash
               onClick={updateShowPassword}
-              className="absolute right-16 pr-3 text-3xl bottom-1 md:pl-0 flex flex-col justify-center items-center"
+              className="absolute right-7 pr-3 text-3xl bottom-1 md:pl-0 flex flex-col justify-center items-center"
             />
           )}
         </div>
-        </div>
-
-             
 
               </div>
               <div className=" items-center text-center text-xs mt-3">
@@ -98,15 +94,15 @@ const AdminConnexion = () => {
                   Mot de passe oublié ?
                 </label>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 md:px-4">
                
                 <button
                   type="submit"
                   disabled={isButtonDisabled || isLoading}
-                  className={`bg-gray-100 md:w-96 min-w-80 flex gap-4 items-center  justify-center focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-2 mx-auto py-3 focus:outline-none ${
+                  className={`bg-gray-100 w-full flex gap-4 items-center  justify-center focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-6 mx-auto py-3 focus:outline-none${
                     isButtonDisabled || isLoading
-                      ? "bg-gray-100 opacity-85 cursor-not-allowed text-disabled text-black relative "
-                      : "bg-gray-800 text-active text-white hover:bg-gray-900"
+                      ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-black relative "
+                      : "bg-gray-900 text-active text-white bg-gray-900"
                   } `}
                 >
                   connexion
@@ -117,7 +113,7 @@ const AdminConnexion = () => {
               </div>
             </div>
           </div>
-          <div className="md:w-2/5 min-w-65 min-h-80 min-w-[220px] bg-slate-800 text-white hidden md:block rounded-tr-2xl rounded-br-2xl py-[50px] px-5  opacity-75 ">
+          <div className="md:w-2/5 min-w-65 min-h-80 min-w-[220px] bg-slate-800 text-white hidden md:block rounded-tr-2xl rounded-br-2xl py-[50px] px-5">
             {/* <p className="mb-2">
               Remplissez vos informations personnelles et connectez vous sur votre
               appli
