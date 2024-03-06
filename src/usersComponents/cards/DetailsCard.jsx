@@ -5,11 +5,13 @@ import { useContext } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Loader from "../../components/loader/loader";
 import { usePanier } from "../../utils/contexte/PanierContext";
+import useGlobal from "../../utils/hooks/useGlobal";
 
 const DetailsCard = () => {
   const { _id } = useParams();
   const navigate = useNavigate()
   const { produits } = useContext(ProduitContext);
+  const { setDropdown } = useGlobal();
   const produit = produits.find((item) => {
     return item._id === _id;
   });
@@ -24,7 +26,7 @@ const DetailsCard = () => {
   };
 
   return (
-    <div className="">
+    <div onClick={() => setDropdown(false)} className="">
       {produit !== undefined ? (
         <section className="overflow-hidden py-4 mx-auto">
           <div  className="w-10 h-10">

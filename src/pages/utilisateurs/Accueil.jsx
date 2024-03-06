@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Navbar from "./NavbarUtilisateut/Navbar/Navbar";
+// import Navbar from "./NavbarUtilisateut/Navbar/Navbar";
 import Header from "../../usersComponents/headerUserComponent/Header";
 import ScrollingText from "../../usersComponents/cards/ScrollingText";
 import useGlobal from "../../utils/hooks/useGlobal";
@@ -15,7 +15,6 @@ export default function Accueil() {
 
   return (
     <div>
-      {/* <Navbar className="fixed top-0 z-50 w-full bg-white" /> */}
       <div className="mt-[50px] md:mt-0" onClick={() => setDropdown(false)}>
         <Header />
         <div className="flex flex-col  px- pt-5 md:px-[10px] sm:px-0">

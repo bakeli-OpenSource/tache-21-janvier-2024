@@ -47,7 +47,7 @@ const Navbar = ({ className }) => {
               </Link>
             </div>
             <Link to={"/"} className="cursor-pointer w-[30px] h-[30px]">
-              <img src={icone} className="w-full h-full" onClick={fermer} />
+              <img src={icone} alt="logo" className="w-full h-full" onClick={fermer} />
             </Link>
             <div
               onClick={() => setDropdown(false)}

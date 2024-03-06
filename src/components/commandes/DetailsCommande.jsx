@@ -23,7 +23,7 @@ import React from 'react';
       <div className="flex shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-">
         <div className="mt-5">
           <p className="font-medium">
-            Nom & Prénom : {data.nom}
+            Nom & Prénom : {data.nom} {''}
             {data.prenom}
           </p>
           <p className="font-medium">Adresse : {data.adresse}</p>
@@ -78,7 +78,7 @@ import React from 'react';
                     : data.etat === "livrée"
                     ? "bg-green-500"
                     : data.etat === "en attente"
-                    ? "bg-red-800"
+                    ? "bg-red-600"
                     : ""
                 }`}
               ></span>
@@ -91,7 +91,7 @@ import React from 'react';
                     : data.etat === "livrée"
                     ? "bg-green-500"
                     : data.etat === "en attente"
-                    ? "bg-red-800"
+                    ? "bg-red-600"
                     : ""
                 }`}
               >

@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
 import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import { CategorieContext } from "../../../../utils/contexte/CategorieContext";
 import ComponentButton from "../../../../usersComponents/button/ComponentButton";
@@ -11,7 +10,6 @@ import axiosInstance from "../../../../utils/axiosInstance";
 const Shop = () => {
   const { produits } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext);
-
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   const [categorieSelect, setCategorieSelect] = useState([]);
@@ -20,12 +18,10 @@ const Shop = () => {
 
   const fetchProduitsCategorie = async (idCategory) => {
     try {
-
       const response = await axiosInstance.get(
         `/produits/categorie/${idCategory}`
       );
       setListeProduitsCategories(response.data);
-
     } catch (error) {
       console.error(
         "Erreur lors de la récupération des produits de la catégories :",
@@ -47,6 +43,18 @@ const Shop = () => {
       setFilteredProducts(produits);
     }
   };
+
+  const afficherTousLesProduits = () => {
+    setFilteredProducts(produits);
+  };
+
+  const filtrerParCategorie = (category) => {
+    const filteredProduit = produits.filter((produit) =>
+      produit.categorie.toLowerCase().includes(category.toLowerCase())
+    );
+    setFilteredProducts(filteredProduit);
+  };
+
   const fetchFilterCategories = async () => {
     try {
       const response = await axiosInstance.get("/categories");
@@ -83,25 +91,25 @@ const Shop = () => {
       >
         <div className="flex px-9 mt-10">
           <h1 className=" text-2xl mr-5">Shop</h1>
-          <div className="flex flex-wrap" >
+          <div className="flex flex-wrap">
             <ComponentButton
               className="bg-gray-200 focus:bg-blue-950 active:bg-blue-950 hover:bg-blue-950 
-              text-black hover:text-white mt-2 ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
-              texte={"All Produits"}
-              onClick={() => handleChange()}
+              text-black hover:text-white focus:text-white active:text-white mt-2 ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
+              texte={" Tous les produits"}
+              onClick={() => afficherTousLesProduits()}
             />
+
             {categories.map((categorie, index) => (
-              <div key={index}>
-                <ComponentButton
-                  className=" bg-gray-200 focus:bg-blue-950 active:bg-blue-950 hover:bg-blue-950 
-                 text-black hover:text-white focus:text-white active:text-white mt-2 ml-6 w-auto px-3 py-2 text-md tracking-widest rounded
+              <ComponentButton
+                className=" bg-gray-200 focus:bg-blue-950 active:bg-blue-950 hover:bg-blue-950 
+                 text-black hover:text-white focus:text-white active:text-white mt-2 ml-6 w-auto px-3 py-2 text-md tracking-windexest rounded
                  "
-                  texte={categorie.nom}
-                  onClick={() => handleChange(categorie.nom)}
-                />
-              </div>
-              ))}
-            </div>
+                onClick={() => filtrerParCategorie(categorie.nom)}
+                key={index}
+                texte={categorie.nom}
+              />
+            ))}
+          </div>
         </div>
 
         <div>
