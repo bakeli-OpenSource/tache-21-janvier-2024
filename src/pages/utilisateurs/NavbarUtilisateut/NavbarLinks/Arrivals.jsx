@@ -35,22 +35,23 @@ const Arrivals = () => {
     fetchNewArrivals();
   }, []);
 
+  const sortProductsByDate = () => {
+    const sortedProducts = produits.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    const latestProducts = sortedProducts.slice(0, 10); 
+    setFilteredProducts(latestProducts);
+  };
+
   useEffect(() => {
-    const sortProductsByDate = () => {
-      const sortedProducts = produits.sort((a, b) => {
-        // Triez les produits du plus récent au plus ancien en fonction de la date d'ajout
-        return new Date(b.dateAjout) - new Date(a.dateAjout);
-      });
+    
+    sortProductsByDate()
+    
+    // console.log(sortProductsByDate);
+  }, [sortProductsByDate]);
 
-      // Sélectionnez les 10 premiers produits après le tri
-      const latestProducts = sortedProducts.slice(0, 10);
-      setFilteredProducts(latestProducts);
-    };
-
-    if (produits.length > 0) {
-      sortProductsByDate();
-    }
-  }, []);
+  
 
   useEffect(() => {
     localStorage.setItem("produitAimer", JSON.stringify(produitAimer));
@@ -62,6 +63,7 @@ const Arrivals = () => {
       onClick={() => setDropdown(false)}
       className="px-9  mt-[50px] mx-auto z-0 flex flex-col  "
     >
+
       <div className="mt-[30px] ">
         {produits.length > 0 ? (
           <>
