@@ -32,9 +32,6 @@ const Commande = () => {
 		e.preventDefault();
 
 		if (!loggedInUserToken) {
-			window.alert(
-				'Veuillez vous connecter avant de passer votre commande svp.',
-			);
 			navigate('/connexion');
 			return;
 		}
@@ -159,11 +156,6 @@ const Commande = () => {
 									</h4>
 								</div>
 							)}
-						</div>
-					)}
-					{items.length === 0 && (
-						<div className="mb-3 text-sm text-red-500">
-							Veuillez ajouter au moins une commande avant de valider.
 						</div>
 					)}
 					<ComponentButton
