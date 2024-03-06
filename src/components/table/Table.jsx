@@ -105,14 +105,14 @@ export const Tbody = ({tbody, actions}) => {
                         {td.statut}
                     </td> : null
                     }
-                    {td.prenomCli ?
-                    <td className="px-4 py-5 text-center text-xxl border">
-                        {td.prenomCli}
+                    {td.prenomCli && td.nomCli ?
+                    <td className="px-4 py-5 text-center text-sm font-semibold border">
+                        {td.prenomCli} {td.nomCli}
                     </td> : null
                     }
-                    {td.nomCli ?
-                    <td className="px-4 py-5 text-center text-xxl border">
-                        {td.nomCli}
+                    {td.nomMes ?
+                    <td className="px-4 py-5 text-center text-sm font-semibold border">
+                        {td.nomMes}
                     </td> : null
                     }
                     {td.adresseCli ?
