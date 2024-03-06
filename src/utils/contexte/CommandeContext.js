@@ -33,7 +33,10 @@ const CommandeContextProvider = ({ children }) => {
   const [modif, setModifModal] = useState('');
   const [commandes, setCommandes] = useState([]);
   const [produitVente, setProduitVente] = useState([]);
+  const [listProd, setListProd] = useState([]);
   const [quantitesVente, setQuantitesVente] = useState([]);
+  const [nouveauQuantite, setNouveauQuantite] = useState([]);
+  const [nouveauVente, setNouveauVente] = useState([]);
 
   const { setShowModal } = useGlobal();
 
@@ -81,28 +84,60 @@ const CommandeContextProvider = ({ children }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validationCommande = {
-      etat: selectsValue,
-    };
-    // handleEditCommande(editingCommandeId, validationCommande);
-    const fetchCommande = async (commandeId) => {
-      try {
-        const response = await axiosInstance.get('/commandes/' + commandeId);
-        // const produitsVente = response.data
-        setProduitVente(response.data);
-        setQuantitesVente(produitVente.quantite);
-        produitVente.idProduit.map((id) => {
-          console.log(id);
-        });
-        // console.log({ quantitesVente });
-      } catch (error) {
-        console.error('Erreur lors de la récupération des commandes:', error);
-      }
-    };
-    await fetchCommande(editingCommandeId);
+    try {
+      const validationCommande = {
+        etat: selectsValue,
+      };
 
-    // console.log('id' + editingCommandeId);
-    // console.log(validationCommande);
+      // Récupérer la commande en cours d'édition
+      const commandeResponse = await axiosInstance.get(
+        '/commandes/' + editingCommandeId
+      );
+      const produitVente = commandeResponse.data;
+
+      if (validationCommande.etat === 'livrée') {
+        // Récupérer les produits associés à la commande
+        const produitsPromises = produitVente.idProduit.map(async (id) => {
+          const produitResponse = await axiosInstance.get('/produits/' + id);
+          return produitResponse.data;
+        });
+        const produits = await Promise.all(produitsPromises);
+
+        // Calculer les nouvelles quantités et ventes
+        const updatedProduits = produits.map((prod, index) => {
+          const nouvelleQuantite = prod.quantite - produitVente.quantite[index];
+          const nouvelleVente = prod.vente + produitVente.quantite[index];
+          return { ...prod, quantite: nouvelleQuantite, vente: nouvelleVente };
+        });
+
+        // Mettre à jour les produits dans la base de données
+        const updateProduitsPromises = updatedProduits.map(async (prod) => {
+          const updateProduitResponse = await axiosInstance.put(
+            '/produits/' + prod._id,
+            prod
+          );
+          return updateProduitResponse.data;
+        });
+        await Promise.all(updateProduitsPromises);
+      }
+
+      // Mettre à jour l'état de la commande
+      const updateCommandeResponse = await axiosInstance.put(
+        '/commande/' + editingCommandeId,
+        validationCommande
+      );
+      if (updateCommandeResponse.status === 200) {
+        console.log('Statut modifié avec succès:', updateCommandeResponse.data);
+        toast.success('Statut modifié avec succès!');
+        fetchCommandes();
+        setModifModal(false);
+      } else {
+        throw new Error('Erreur lors de la modification');
+      }
+    } catch (error) {
+      console.error('Erreur lors de la modification:', error);
+      toast.error('Erreur lors de la modification!');
+    }
   };
 
   const handleDelete = async (commandeId) => {
