@@ -10,7 +10,7 @@ const ListeClients = () => {
     const [client, setClient] = useState([])
 
     const table = [
-        'Prénom', 'Nom', 'Email',  'Adresse', 'Téléphone'
+        'Nom', 'Email',  'Adresse', 'Téléphone'
       ]
 
       useEffect(() => {
