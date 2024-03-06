@@ -5,25 +5,20 @@ import FavorisComponent from "../../../usersComponents/favorisComponent/FavorisC
 import useGlobal from "../../../utils/hooks/useGlobal";
 
 const FavorisPage = () => {
-  const [listesEnvies, setListesEnvies] = useState(
-    JSON.parse(localStorage.getItem("produitAimer")) || []
-  );
-
+  const { produitAimer, setProduitAimer } = useGlobal();
   const { closeDropdown } = useGlobal();
-
-  const list = listesEnvies?.map((item) => item);
 
   return (
     <div onClick={closeDropdown}>
       <h1 className="pb-2 font-medium border border-t-0 border-s-0 border-e-0 ">
-        Votre liste d'envies ({listesEnvies.length})
+        Votre liste d'envies ({produitAimer.length})
       </h1>
-      {listesEnvies.length > 0 ? (
-        listesEnvies?.map((item) => (
+      {produitAimer.length > 0 ? (
+        produitAimer?.map((item) => (
           <FavorisComponent
             item={item}
-            listesEnvies={listesEnvies}
-            setListesEnvies={setListesEnvies}
+            listesEnvies={produitAimer}
+            setListesEnvies={setProduitAimer}
             key={item._id}
           />
         ))
