@@ -119,39 +119,21 @@ const datas = [
   {
     mois: 'Dec',
     total: 7000,
+
   },
 ];
 
 function Revenue() {
+  // Position par défaut
 
-  const [chartWidth, setChartWidth] = useState(window.innerWidth > 768 ? 370 : 320);
-  const [chartPosition, setChartPosition] = useState("center"); // Position par défaut
-
-
-  useEffect(() => {
-    const handleResize = () => {
-      setChartWidth(window.innerWidth > 1025 ? 370 : 320);
-
-      // Déterminez la position en fonction de la largeur de la fenêtre
-      setChartPosition(window.innerWidth > 768 ? "center" : "left");
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
-
-
-    <div className='border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-[100%]'>
-
+    <div className="border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-[100%]">
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
       </div>
 
         <AreaChart
+
           width={500}
           height={450}
           data={datas}
@@ -169,6 +151,7 @@ function Revenue() {
           <Legend />
           <Area type="monotone" dataKey="total" stroke="black" fill="#8884d8" activeDot={{ r: 8 }} />
         </AreaChart>
+
 
       </div>
   );

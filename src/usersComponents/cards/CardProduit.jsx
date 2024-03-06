@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
@@ -8,17 +8,15 @@ import { usePanier } from "../../utils/contexte/PanierContext";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { IoEyeSharp } from "react-icons/io5";
 
-const CardProduit = ({ produit }) => {
+const CardProduit = ({ produit, onClick }) => {
   const { produits } = useContext(ProduitsContext);
   const { addToCart } = usePanier();
   const { produitAimer, handleLikeToggle } = useGlobal();
-  const [hoverArray, setHoverArray] = useState(null);
-  const [rating, setRating] = useState(null);
   const { _id, imageUrl, prix, promo, nom } = produit;
-
   const produitCourant = produits.find((item) => item._id === _id);
   const reduction = produitCourant ? produitCourant.promo : promo ? promo : 0;
   const prixAAjouter = Math.floor(prix - prix * (reduction / 100));
+
   const handleAddToCart = () => {
     const produitAAjouter = { ...produit, prix: prixAAjouter };
     addToCart(produitAAjouter);
@@ -30,7 +28,11 @@ const CardProduit = ({ produit }) => {
 
   return (
     <>
-      <div key={produit && _id} className="shadow-lg  rounded bg-white">
+      <div
+        onClick={onClick}
+        key={produit && _id}
+        className="shadow-lg  rounded bg-white"
+      >
         <div className=" bg-white h-[300px] sm:h-[200px] relative overflow-hidden  transition">
           <div className=" h-full  flex ">
             <Link
@@ -57,59 +59,68 @@ const CardProduit = ({ produit }) => {
           {reduction ? (
             <div className="flex items-end justify-between md:justify-start ">
               <span className="py-1 text-xl md:text-[16px] text-red-600">
-                {prixAAjouter} FCFA
+                {prixAAjouter.toLocaleString("fr-FR")} FCFA
               </span>
               &nbsp;
               <span className="line-through text-lg md:text-[10px] text-gray-500">
-                {prix} FCFA
+                {prix.toLocaleString("fr-FR")} FCFA
               </span>
             </div>
           ) : (
             <span className=" py-1 font-medium text-sm text-gray-900">
-              {prix} FCFA
+              {prix.toLocaleString("fr-FR")} FCFA
             </span>
           )}
           <div className="p- mt-2 text-">
             {/* star rating */}
             <div className="w-full  flex items-center justify- gap-1">
-              {[...Array(5)].map((start, index) => {
-                const etoils = index + 1;
-                return (
-                  <label key={index} className="cursor-pointer">
-                    <input
-                      type="radio"
-                      name={`rating-${index}`}
-                      value={etoils}
-                      className="hidden cursor-pointer"
-                      onClick={() => setRating(etoils)}
-                    />
-                    <FaStar
-                      className="cursor-pointer"
-                      size={20}
-                      color={
-                        etoils <= (hoverArray || rating) ? "#ffc107" : "#e4e5e9"
-                      }
-                      onMouseEnter={() => setHoverArray(etoils)}
-                      onMouseLeave={() => setHoverArray(null)}
-                    />
-                  </label>
-                );
-              })}
+              <FaStar
+                className={`cursor-pointer ${
+                  produit.vente >= 5 ? "text-yellow-300" : "text-gray-200"
+                }`}
+                size={20}
+              />
+              <FaStar
+                className={`cursor-pointer ${
+                  produit.vente >= 10 ? "text-yellow-300" : "text-gray-200"
+                }`}
+                size={20}
+              />
+              <FaStar
+                className={`cursor-pointer ${
+                  produit.vente >= 15 ? "text-yellow-300" : "text-gray-200"
+                }`}
+                size={20}
+              />
+              <FaStar
+                className={`cursor-pointer ${
+                  produit.vente >= 20 ? "text-yellow-300" : "text-gray-200"
+                }`}
+                size={20}
+              />
+              <FaStar
+                className={`cursor-pointer ${
+                  produit.vente >= 25 ? "text-yellow-300" : "text-gray-200"
+                }`}
+                size={20}
+              />
             </div>
             <div className="flex gap-4 md:gap-2 mt-4 mb- md:mb-0 justify-">
-              <div onClick={() => handleAddToCart(produit)} className="rounded   cursor-pointer  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1">
-                <FaShoppingCart
-                  
-                  className={`text-lg md:text-sm  `}
-                />
+              <div
+                onClick={() => handleAddToCart(produit)}
+                className="rounded   cursor-pointer  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1"
+              >
+                <FaShoppingCart className={`text-lg md:text-sm  `} />
               </div>
-              <div className={`rounded bg-gray-200 ${
-                    produitAimer.some(
-                      (likedProduit) => likedProduit && likedProduit._id === _id
-                    )
-                      ? "text-red-500 "
-                      : "text-gray-500 hover:text-gray-200"
-                  }  hover:bg-gray-400  flex items-center justify-center px-2 py-1`}>
+              <div
+                className={`rounded bg-gray-200 ${
+                  produitAimer.some(
+                    (likedProduit) => likedProduit && likedProduit._id === _id
+                  )
+                    ? "text-red-500 "
+                    : "text-gray-500 hover:text-gray-200"
+                }  hover:bg-gray-400  flex items-center justify-center px-2 py-1`}
+              >
                 <BsSuitHeartFill
                   onClick={() => handleLikeToggle(produit && _id, produit)}
                   className={`text-lg cursor-pointer md:text-sm    `}
@@ -119,7 +130,9 @@ const CardProduit = ({ produit }) => {
                 to={`/details/${_id}`}
                 className="rounded  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1"
               >
-                <IoEyeSharp className={`text-lg md:text-sm  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 `} />
+                <IoEyeSharp
+                  className={`text-lg md:text-sm  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 `}
+                />
               </Link>
             </div>
           </div>
