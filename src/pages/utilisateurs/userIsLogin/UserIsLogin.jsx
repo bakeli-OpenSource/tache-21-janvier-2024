@@ -15,8 +15,6 @@ import ComptePage from "../comptePage/ComptePage";
 import Footer from "../../../usersComponents/footer/Footer";
 import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
-
-import DetailShopCards from "../NavbarUtilisateut/DetailShop/DetailShopCards";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
 import ErreurPage from "../erreurPage/ErreurPage";
 
@@ -45,7 +43,6 @@ const UserIsLogin = () => {
             <Route path="/connexion" element={<UserConnexion />} />
             <Route path="/compte/*" element={<ComptePage />} />
             <Route path="/details/:_id" element={<DetailsCard />} />
-            <Route path="/detailShop/:id" element={<DetailShopCards />} />
             <Route path="*" element={<ErreurPage />} />
           </Routes>
           <Footer />

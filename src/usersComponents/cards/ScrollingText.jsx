@@ -17,7 +17,7 @@ const ScrollingText = () => {
             </div>
           </div>
        
-          <div data-aos="fade-left" className='rounded pb-2 bg-gray-200'>
+          <div data-aos="zoom-in" className='rounded pb-2 bg-gray-200'>
             <img
               src={Client}
               alt="public"

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useGlobal from '../../utils/hooks/useGlobal';
 import axiosInstance from '../axiosInstance';
 import { useLocation } from 'react-router-dom';
@@ -11,13 +12,7 @@ const CommandeContextProvider = ({ children }) => {
   const pathnames = location.pathname.split('/').filter((x) => x);
   const commandeId = pathnames.pop();
 
-  const table = [
-    'Nom',
-    'Quantite',
-    'Telephone',
-    'Etat de la commande',
-    'Actions',
-  ];
+  const table = ['Nom', 'Telephone', 'Etat de la commande', 'Actions'];
 
   const [idProduit, setIdProduit] = useState('');
   const [email, setEmail] = useState('');
@@ -32,11 +27,6 @@ const CommandeContextProvider = ({ children }) => {
   const [prixProduit, setPrixProduit] = useState('');
   const [modif, setModifModal] = useState('');
   const [commandes, setCommandes] = useState([]);
-  const [produitVente, setProduitVente] = useState([]);
-  const [listProd, setListProd] = useState([]);
-  const [quantitesVente, setQuantitesVente] = useState([]);
-  const [nouveauQuantite, setNouveauQuantite] = useState([]);
-  const [nouveauVente, setNouveauVente] = useState([]);
 
   const { setShowModal } = useGlobal();
 
