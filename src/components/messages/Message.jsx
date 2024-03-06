@@ -44,7 +44,7 @@ const Message = () => {
                 const modifiedData = response.data.map(obj => {
                     return {
                       _id: obj._id,
-                      nomCli: obj.prenomNom,
+                      nomMes: obj.prenomNom,
                       emailCli: obj.email,
                       telCli: obj.telephone,
                     };
