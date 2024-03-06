@@ -7,6 +7,7 @@ import CompteComponent from "../../../usersComponents/compteComponent/CompteComp
 import CommandePage from "../commandesPage/CommandePage";
 import FavorisPage from "../favorisPage.jsx/FavorisPage";
 import OrderDetail from "../../../usersComponents/userConnexion/commandeComponent/DetailsCommande";
+import ProduitIndisponiblePage from "../produitIndisponiblePage/ProduitIndisponiblePage";
 
 const ComptePage = () => {
   const { client, handleLogoutUser, closeDropdown } = useGlobal();
@@ -81,6 +82,7 @@ const ComptePage = () => {
               <Route path="/" element={<CompteComponent />}></Route>
               <Route path="/commandes" element={<CommandePage />}></Route>
               <Route path="/favoris" element={<FavorisPage />}></Route>
+              <Route path="/produitIndisponible" element={<ProduitIndisponiblePage />} />
               <Route
                 path="/commandes/DetailsCommande/:_id"
                 element={<OrderDetail />}
