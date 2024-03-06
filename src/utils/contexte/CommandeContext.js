@@ -56,8 +56,8 @@ const CommandeContextProvider = ({ children }) => {
       const response = await axiosInstance.put('/commande/' + id, newData);
 
       if (response.status === 200) {
-        console.log('Statut modifié avec succès:', response.data);
         toast.success('Statut modifié avec succès!');
+
         fetchCommandes();
         setModifModal(false);
       } else {
@@ -132,10 +132,8 @@ const CommandeContextProvider = ({ children }) => {
 
   const handleDelete = async (commandeId) => {
     try {
-      console.log('Avant la requête DELETE');
       // Effectuez une requête DELETE vers votre API avec axios
       await axiosInstance.delete(`/commande/${commandeId}`);
-      console.log('Aprés la requête DELETE');
 
       // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
       const updatedCommande = commandes.filter(
@@ -143,7 +141,6 @@ const CommandeContextProvider = ({ children }) => {
       );
       setCommandes(updatedCommande);
 
-      console.log('Commande supprimée avec succès');
       fetchCommandes();
     } catch (error) {
       console.error('Erreur lors de la suppression de la commande:', error);
@@ -168,7 +165,7 @@ const CommandeContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchCommandes();
-  }, []);
+  }, [commandes]);
 
   const value = {
     commandeId,
@@ -182,7 +179,6 @@ const CommandeContextProvider = ({ children }) => {
     setIsEditing,
     table,
     commandes,
-    // actions,
     produit,
     setProduit,
     idProduit,
