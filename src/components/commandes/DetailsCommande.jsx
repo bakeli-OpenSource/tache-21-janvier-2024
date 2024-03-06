@@ -55,7 +55,9 @@ const DetailsCommande = () => {
                 <p>
                   Prix total produit : {data.prixProduit[index]}cfa
                 </p>
+
                 <button
+
                 className={`px-2 my-3 py-1 rounded text-white ${
                   data.etat === "en cours"
                     ? "bg-orange-500"
@@ -64,7 +66,7 @@ const DetailsCommande = () => {
                     : data.etat === "livrée"
                     ? "bg-green-500"
                     : data.etat === "en attente"
-                    ? "bg-red-800"
+                    ? "bg-red-600"
                     : ""
                 }`}
               >
@@ -73,7 +75,6 @@ const DetailsCommande = () => {
               </div>
             </div>
           </div>
-          {/* </div> */}
         </div>
       ))}
       </div>

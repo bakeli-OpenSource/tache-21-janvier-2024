@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { HiShoppingCart } from "react-icons/hi2";
 import Choix from "../../../usersComponents/compteComponent/Choix";
 import FavorisComponent from "../../../usersComponents/favorisComponent/FavorisComponent";

@@ -59,7 +59,6 @@ const CommandeAdmin = () => {
 		},
 	];
 
-  const commandeRenverse = commandes.reverse()
 
   return (
     <div onClick={closedrop} className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>
