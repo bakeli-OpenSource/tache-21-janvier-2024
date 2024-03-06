@@ -8,63 +8,63 @@ import { useLocation } from 'react-router-dom';
 export const CommandeContext = createContext();
 
 const CommandeContextProvider = ({ children }) => {
-  const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
-  const commandeId = pathnames.pop();
+	const location = useLocation();
+	const pathnames = location.pathname.split('/').filter((x) => x);
+	const commandeId = pathnames.pop();
 
-  const table = [
-    'Nom',
-    'Quantite',
-    'Telephone',
-    'Etat de la commande',
-    'Actions',
-  ];
+	const table = [
+		'Nom',
+		'Quantite',
+		'Telephone',
+		'Etat de la commande',
+		'Actions',
+	];
 
-  const [idProduit, setIdProduit] = useState('');
-  const [email, setEmail] = useState('');
-  const [quantite, setQuantite] = useState(0);
-  const [produit, setProduit] = useState('');
-  const [date, setDate] = useState('');
-  const [etat, setEtat] = useState('');
-  const [prixTotal, setPrixTotal] = useState('');
-  const [telephone, setTelephone] = useState('');
-  const [adresse, setAdresse] = useState('');
-  const [prixLivraison, setPrixLivraison] = useState('');
-  const [prixProduit, setPrixProduit] = useState('');
-  const [modif, setModifModal] = useState('');
-  const [commandes, setCommandes] = useState([]);
-  const [produitVente, setProduitVente] = useState([]);
-  const [listProd, setListProd] = useState([]);
-  const [quantitesVente, setQuantitesVente] = useState([]);
-  const [nouveauQuantite, setNouveauQuantite] = useState([]);
-  const [nouveauVente, setNouveauVente] = useState([]);
+	const [idProduit, setIdProduit] = useState('');
+	const [email, setEmail] = useState('');
+	const [quantite, setQuantite] = useState(0);
+	const [produit, setProduit] = useState('');
+	const [date, setDate] = useState('');
+	const [etat, setEtat] = useState('');
+	const [prixTotal, setPrixTotal] = useState('');
+	const [telephone, setTelephone] = useState('');
+	const [adresse, setAdresse] = useState('');
+	const [prixLivraison, setPrixLivraison] = useState('');
+	const [prixProduit, setPrixProduit] = useState('');
+	const [modif, setModifModal] = useState('');
+	const [commandes, setCommandes] = useState([]);
+	const [produitVente, setProduitVente] = useState([]);
+	const [listProd, setListProd] = useState([]);
+	const [quantitesVente, setQuantitesVente] = useState([]);
+	const [nouveauQuantite, setNouveauQuantite] = useState([]);
+	const [nouveauVente, setNouveauVente] = useState([]);
 
-  const { setShowModal } = useGlobal();
+	const { setShowModal } = useGlobal();
 
-  const [editingCommandeId, setEditingCommandeId] = useState(null);
+	const [editingCommandeId, setEditingCommandeId] = useState(null);
 
-  const [selectsValue, setSelectsValue] = useState('');
+	const [selectsValue, setSelectsValue] = useState('');
 
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchCommande = async (commandeId) => {
-      try {
-        const response = await axiosInstance.get('/commandes/' + commandeId);
-        setData(response.data);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des commandes:', error);
-      }
-    };
-    fetchCommande(commandeId);
-  }, [commandeId]);
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		const fetchCommande = async (commandeId) => {
+			try {
+				const response = await axiosInstance.get('/commandes/' + commandeId);
+				setData(response.data);
+			} catch (error) {
+				console.error('Erreur lors de la récupération des commandes:', error);
+			}
+		};
+		fetchCommande(commandeId);
+	}, [commandeId]);
 
-  const handleDetail = (commandeId) => {
-    const commandeIdCli = localStorage.getItem('commandeIdCli');
-  };
+	const handleDetail = (commandeId) => {
+		const commandeIdCli = localStorage.getItem('commandeIdCli');
+	};
 
-  const handleEditCommande = async (id, newData) => {
-    try {
-      const response = await axiosInstance.put('/commande/' + id, newData);
+	const handleEditCommande = async (id, newData) => {
+		try {
+			const response = await axiosInstance.put('/commande/' + id, newData);
 
       if (response.status === 200) {
         toast.success('Statut modifié avec succès!');
@@ -78,47 +78,48 @@ const CommandeContextProvider = ({ children }) => {
     }
   };
 
-  const [setIsEditing] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+	const [setIsEditing] = useState(false);
 
-    try {
-      const validationCommande = {
-        etat: selectsValue,
-      };
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
-      // Récupérer la commande en cours d'édition
-      const commandeResponse = await axiosInstance.get(
-        '/commandes/' + editingCommandeId
-      );
-      const produitVente = commandeResponse.data;
+		try {
+			const validationCommande = {
+				etat: selectsValue,
+			};
 
-      if (validationCommande.etat === 'livrée') {
-        // Récupérer les produits associés à la commande
-        const produitsPromises = produitVente.idProduit.map(async (id) => {
-          const produitResponse = await axiosInstance.get('/produits/' + id);
-          return produitResponse.data;
-        });
-        const produits = await Promise.all(produitsPromises);
+			// Récupérer la commande en cours d'édition
+			const commandeResponse = await axiosInstance.get(
+				'/commandes/' + editingCommandeId,
+			);
+			const produitVente = commandeResponse.data;
 
-        // Calculer les nouvelles quantités et ventes
-        const updatedProduits = produits.map((prod, index) => {
-          const nouvelleQuantite = prod.quantite - produitVente.quantite[index];
-          const nouvelleVente = prod.vente + produitVente.quantite[index];
-          return { ...prod, quantite: nouvelleQuantite, vente: nouvelleVente };
-        });
+			if (validationCommande.etat === 'livrée') {
+				// Récupérer les produits associés à la commande
+				const produitsPromises = produitVente.idProduit.map(async (id) => {
+					const produitResponse = await axiosInstance.get('/produits/' + id);
+					return produitResponse.data;
+				});
+				const produits = await Promise.all(produitsPromises);
 
-        // Mettre à jour les produits dans la base de données
-        const updateProduitsPromises = updatedProduits.map(async (prod) => {
-          const updateProduitResponse = await axiosInstance.put(
-            '/produits/' + prod._id,
-            prod
-          );
-          return updateProduitResponse.data;
-        });
-        await Promise.all(updateProduitsPromises);
-      }
+				// Calculer les nouvelles quantités et ventes
+				const updatedProduits = produits.map((prod, index) => {
+					const nouvelleQuantite = prod.quantite - produitVente.quantite[index];
+					const nouvelleVente = prod.vente + produitVente.quantite[index];
+					return { ...prod, quantite: nouvelleQuantite, vente: nouvelleVente };
+				});
+
+				// Mettre à jour les produits dans la base de données
+				const updateProduitsPromises = updatedProduits.map(async (prod) => {
+					const updateProduitResponse = await axiosInstance.put(
+						'/produits/' + prod._id,
+						prod,
+					);
+					return updateProduitResponse.data;
+				});
+				await Promise.all(updateProduitsPromises);
+			}
 
       // Mettre à jour l'état de la commande
       const updateCommandeResponse = await axiosInstance.put(
@@ -162,57 +163,58 @@ const CommandeContextProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    fetchCommandes();
-  }, []);
 
-  const value = {
-    commandeId,
-    setShowModal,
-    setEditingCommandeId,
-    handleEditCommande,
-    handleSubmit,
-    handleDetail,
-    handleDelete,
-    setSelectsValue,
-    setIsEditing,
-    table,
-    commandes,
-    // actions,
-    produit,
-    setProduit,
-    idProduit,
-    setIdProduit,
-    telephone,
-    setTelephone,
-    adresse,
-    setAdresse,
-    prixLivraison,
-    setPrixLivraison,
-    prixProduit,
-    setPrixProduit,
-    email,
-    quantite,
-    prixTotal,
-    setPrixTotal,
-    setEmail,
-    date,
-    etat,
-    setEtat,
-    setDate,
-    setQuantite,
-    modif,
-    setModifModal,
-    setCommandes,
-    data,
-    setData,
-  };
+	useEffect(() => {
+		fetchCommandes();
+	}, []);
 
-  return (
-    <CommandeContext.Provider value={value}>
-      {children}
-    </CommandeContext.Provider>
-  );
+	const value = {
+		commandeId,
+		setShowModal,
+		setEditingCommandeId,
+		handleEditCommande,
+		handleSubmit,
+		handleDetail,
+		handleDelete,
+		setSelectsValue,
+		setIsEditing,
+		table,
+		commandes,
+		// actions,
+		produit,
+		setProduit,
+		idProduit,
+		setIdProduit,
+		telephone,
+		setTelephone,
+		adresse,
+		setAdresse,
+		prixLivraison,
+		setPrixLivraison,
+		prixProduit,
+		setPrixProduit,
+		email,
+		quantite,
+		prixTotal,
+		setPrixTotal,
+		setEmail,
+		date,
+		etat,
+		setEtat,
+		setDate,
+		setQuantite,
+		modif,
+		setModifModal,
+		setCommandes,
+		data,
+		setData,
+	};
+
+	return (
+		<CommandeContext.Provider value={value}>
+			{children}
+		</CommandeContext.Provider>
+	);
 };
 
 export default CommandeContextProvider;
