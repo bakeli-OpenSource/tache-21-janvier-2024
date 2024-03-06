@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import Navbar from "./NavbarUtilisateut/Navbar/Navbar";
 import Header from "../../usersComponents/headerUserComponent/Header";
-import ScrollingText from "../../usersComponents/cards/ScrollingText";
 import useGlobal from "../../utils/hooks/useGlobal";
 import Locale from "../../usersComponents/cards/Locale";
 import { ProduitsContext } from "../../utils/contexte/ProduitsContext";
 import CardProduit from "../../usersComponents/cards/CardProduit";
 import Loader from "../../components/loader/loader";
+import Commentaire from "../../usersComponents/cards/Commentaire";
 
 export default function Accueil() {
   const { produits } = useContext(ProduitsContext);
@@ -15,7 +14,6 @@ export default function Accueil() {
 
   return (
     <div>
-      {/* <Navbar className="fixed top-0 z-50 w-full bg-white" /> */}
       <div className="mt-[50px] md:mt-0" onClick={() => setDropdown(false)}>
         <Header />
         <div className="flex flex-col  px- pt-5 md:px-[10px] sm:px-0">
@@ -39,11 +37,11 @@ export default function Accueil() {
             </section>
           ))}
 
-          <div className="px:4 md:px-9">
-            <ScrollingText />
-          </div>
-          <div className="px:4 md:px-9">
+          <div className="px-4 md:px-9"> 
             <Locale />
+          </div>
+          <div>
+            <Commentaire />
           </div>
         </div>
       </div>

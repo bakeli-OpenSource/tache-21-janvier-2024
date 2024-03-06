@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProduitsContext } from "../../../../utils/contexte/ProduitsContext";
 import useGlobal from "../../../../utils/hooks/useGlobal";
-import Loader from "../../../../components/loader/loader";
 import { usePanier } from "../../../../utils/contexte/PanierContext";
 import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import axiosInstance from "../../../../utils/axiosInstance";
@@ -11,7 +10,6 @@ import LoaderCard from "../../../../usersComponents/loaderCard/LoaderCard";
 const Arrivals = () => {
   const { produits } = useContext(ProduitsContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const { addToCart } = usePanier();
   const [produitAimer, setProduitAimer] = useState(() => {
     const listesEnvies = localStorage.getItem("produitAimer");
     return listesEnvies ? JSON.parse(listesEnvies) : [];
