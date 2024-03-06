@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, { useEffect } from "react";
 import useProduits from '../../utils/hooks/useProduits';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
@@ -11,11 +11,28 @@ const ProduitsAdmin = () => {
 
 
   const {table, actions, titreModal, setTitreModal, 
-          filtreProduits, handleSelectChange,
-          categoryNames, handleSelectChangeCategorie, inputs, textarea, selects, hanldleSubmit
+          filtreProduits, handleSelectChange,produits,    
+          filtreProdCategorie,
+          fetchProduit, setCategoryNames, setFiltreProduits, categories,
+          categoryNames, handleSelectChangeCategorie, inputs, 
+          textarea, selects, hanldleSubmit, fetchCategories
         } = useProduits();
   
 
+        useEffect(() => {    
+          filtreProdCategorie()
+          fetchProduit();
+        }, [produits]);
+
+        
+  useEffect(() => {
+		setCategoryNames(categories.map((categorie) => categorie.nom));
+		setFiltreProduits(produits)
+	  }, [categories]); 
+
+    useEffect(() => {    
+      fetchCategories();
+}, []);
   
   setTitreModal(
     'Ajouter un produits'

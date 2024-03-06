@@ -8,6 +8,14 @@ import GlobalContextProvider from './utils/contexte/GlobalContext';
 import CategorieContextProvider from './utils/contexte/CategorieContext';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+import {
+  QueryClient,
+  QueryClientProvider
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -15,7 +23,9 @@ root.render(
       <GlobalContextProvider>
         <ProduitContextProvider>
           <CategorieContextProvider>
-            <App />
+            <QueryClientProvider client={queryClient}>
+              <App />
+            </QueryClientProvider>
           </CategorieContextProvider>
         </ProduitContextProvider>
       </GlobalContextProvider>

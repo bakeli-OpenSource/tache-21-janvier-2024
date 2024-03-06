@@ -4,6 +4,7 @@ import Formulaire from "../../components/formulaire/Formulaire";
 import Table from "../../components/table/Table";
 import HeaderTable from "../../components/headerTable/HeaderTable";
 import { CategorieContext } from "../../utils/contexte/CategorieContext";
+import useCategories from "../../utils/hooks/fetchCategorie";
 
 
 const Categories = () => {
@@ -16,18 +17,22 @@ const Categories = () => {
           fetchCategories,
           produitsCategorie,
         produits} = useContext(CategorieContext);
+
+        const {data} = useCategories()
+
+        console.log(data);
   
 
   const { open, closedrop } = useSidebare();
 
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  // useEffect(() => {
+  //   fetchCategories();
+  // }, []);
   
-  useEffect(() => {
-    updateCategoryQuantities();
-  }, []);
+  // useEffect(() => {
+  //   updateCategoryQuantities();
+  // }, []);
 
 
   const handleSelectChange = (e) => {};
