@@ -26,9 +26,9 @@ const Categories = () => {
   const { open, closedrop } = useSidebare();
 
 
-  // useEffect(() => {
-  //   fetchCategories();
-  // }, []);
+  useEffect(() => {
+    fetchCategories();
+  }, []);
   
   // useEffect(() => {
   //   updateCategoryQuantities();
