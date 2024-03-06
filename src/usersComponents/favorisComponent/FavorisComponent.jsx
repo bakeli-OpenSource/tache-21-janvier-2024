@@ -1,61 +1,72 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineDelete } from "react-icons/md";
 import { usePanier } from "../../utils/contexte/PanierContext";
+import useProduits from "../../utils/hooks/useProduits";
+import imageStock from "../../assets/images/rupture.jpeg";
 
 const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
   const { addToCart } = usePanier();
   const { _id, imageUrl, prix, promo, nom } = item;
+  const navigate = useNavigate();
+  const { produits } = useProduits();
+
   const handleDelete = (id) => {
     const deleteFavoris = listesEnvies.filter(
       (listeEnvie) => listeEnvie._id !== id
     );
-    setListesEnvies(deleteFavoris);
     localStorage.setItem("produitAimer", JSON.stringify(deleteFavoris));
+    setListesEnvies(deleteFavoris);
   };
 
   const produitCourant = listesEnvies.find((item) => item._id === _id);
   const reduction = produitCourant ? produitCourant.promo : promo ? promo : 0;
   const prixAAjouter = Math.floor(prix - prix * (reduction / 100));
+
+  let produitDisponible = produits.find((produit) => produit._id === _id);
+
   const handleAddToCart = () => {
-    const produitAAjouter = { ...item, prix: prixAAjouter };
-    addToCart(produitAAjouter);
+    if (produitDisponible) {
+      const prixAAjouter = Math.floor(prix - prix * (reduction / 100));
+      const produitAAjouter = { ...item, prix: prixAAjouter };
+      addToCart(produitAAjouter);
+    } else {
+      navigate("/compte/produitIndisponible");
+    }
   };
+
   return (
-    <Link to={`/details/${_id}`}
-      className="flex flex-col md:flex-row shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap-"
-      key={item?._id}
+    <Link
+      to={`${
+        !produitDisponible ? "/compte/produitIndisponible" : `/details/${_id} `
+      }`}
+      className="flex flex-col md:flex-row shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap"
+      key={_id}
     >
       <div className="flex flex-col sm:flex-row items- gap-4">
         <div className="h-24 w-24">
-          <img src={item?.imageUrl} alt={item?.nom} className="w-full h-full" />
+          <img
+            src={produitDisponible ? imageUrl : imageStock}
+            alt={nom}
+            className="w-full h-full"
+          />
         </div>
         <div className="flex flex-col justify-between  items-stretch h-full">
-          <p>{item?.titre} </p>
+          <p>{nom} </p>
           <div>
-            {/* <p className=" mb-1 bg">
-              {item?.prix} FCFA{" "}
-              <span
-                className={`font-medium bg-red-200 rounded   ${
-                  item?.promo === 0 ? "hidden" : "inline"
-                } px-1 py- text-red-500`}
-              >
-                -{item?.promo}%
-              </span>
-            </p> */}
             {reduction ? (
               <div className="flex items-end justify-between md:justify-start ">
                 <span className="py-1 text-xl md:text-[16px] text-red-600">
-                  {prixAAjouter} FCFA
+                  {prixAAjouter.toLocaleString("fr-FR")} FCFA
                 </span>
                 &nbsp;
                 <span className="line-through text-lg md:text-[10px] text-gray-500">
-                  {prix} FCFA
+                  {prix.toLocaleString("fr-FR")} FCFA
                 </span>
               </div>
             ) : (
               <span className=" py-1 font-medium text-sm text-gray-900">
-                {prix} FCFA
+                {prix.toLocaleString("fr-FR")} FCFA
               </span>
             )}
           </div>
@@ -70,7 +81,7 @@ const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
           Acheter
         </Link>
         <button
-          onClick={() => handleDelete(item?._id)}
+          onClick={() => handleDelete(_id)}
           className="px-2 my- flex gap-2 items-center py-1 uppercase rounded   text-red-500 hover:bg-red-100"
         >
           <MdOutlineDelete size={20} /> supprimer
