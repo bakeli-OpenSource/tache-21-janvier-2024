@@ -6,6 +6,8 @@ import HeaderTable from '../headerTable/HeaderTable'
 import { useNavigate } from 'react-router-dom'
 import { TbEyeShare } from 'react-icons/tb'
 import { MdOutlineDelete } from 'react-icons/md'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axiosInstance from '../../utils/axiosInstance'
 
 const Message = () => {
@@ -32,10 +34,28 @@ const Message = () => {
           icon: <MdOutlineDelete />,
           color: 'bg-red-600',
           handleClick: (id) => {
-            console.log(id);
+            deleteMessage(id)
           }
         }
       ]
+
+      // Suppression Produit
+      const deleteMessage = async (id) => {
+        try {
+          await axiosInstance.delete(`/messages/${id}`);
+
+          const updatedMessgage = message.filter(
+            (mes) => mes._id !== id
+          );
+          setMessage(updatedMessgage);
+          toast.error('Message supprimée avec succès!');
+        } catch (error) {
+          navigate("/error")
+          console.error("Erreur lors de la suppression du Message:", error);
+          toast.error('Erreur lors de la suppression du message!');
+        }
+      };
+
 
       useEffect(() => {
         const fetchClients = async () => {

@@ -311,13 +311,21 @@ const ProduitContextProvider = ({ children }) => {
 
   // Récupération de tous les produits
   const fetchProduit = async () => {
-      try {
+    try {
         const response = await axiosInstance.get("/produits");
-        setProduits(response.data);
-      } catch (error) {
+        const produitsAvecQuantiteProd = response.data.map(produit => ({
+            ...produit,
+            quantiteProd: produit.quantite,
+            // Supprimer la clé "quantite" de l'objet
+            quantite: undefined
+        }));
+        setProduits(produitsAvecQuantiteProd);
+    } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
-      }
+    }
   };
+
+
     
   const hanldleSubmit = (e) => {
     e.preventDefault()
