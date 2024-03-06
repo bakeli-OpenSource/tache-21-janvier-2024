@@ -153,7 +153,13 @@ const CommandeContextProvider = ({ children }) => {
   const fetchCommandes = async () => {
     try {
       const response = await axiosInstance.get('/commandes');
-      setCommandes(response.data);
+      const commandeAvecQuantiteProd = response.data.map((commande) => ({
+        ...commande,
+        quantiteCom: commande.quantite,
+        // Supprimer la clé "quantite" de l'objet
+        quantite: undefined,
+      }));
+      setCommandes(commandeAvecQuantiteProd);
       console.log('Commandes récupérées avec succès');
     } catch (error) {
       console.error('Erreur lors de la récupération des commandes:', error);
