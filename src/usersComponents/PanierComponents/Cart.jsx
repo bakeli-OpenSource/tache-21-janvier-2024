@@ -17,8 +17,6 @@ const Cart = () => {
 		updateQuantity,
 	} = usePanier();
 
-	console.log(quantity);
-
 	return (
 		<div>
 			<div className="p-5">
