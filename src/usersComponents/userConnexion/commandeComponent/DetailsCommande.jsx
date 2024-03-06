@@ -1,12 +1,10 @@
-import useGlobal from "../../../utils/hooks/useGlobal";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { usePanier } from "../../../utils/contexte/PanierContext";
+import useCommandes from "../../../utils/hooks/useCommandes";
 
 const OrderDetail = () => {
   const { _id } = useParams();
-  const { addToCart } = usePanier();
-  const { commandes } = useGlobal();
+  const { commandes } = useCommandes();
   const commande = commandes.find((item) => item._id === _id);
 
   return (

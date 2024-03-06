@@ -171,7 +171,7 @@ const GlobalContextProvider = ({ children }) => {
   useEffect(() => {
     profileUser();
     fetchCommandes();
-  }, []);
+  }, [commandes]);
 
   const value = {
     showModal,
