@@ -3,7 +3,7 @@ import { PieChart, Legend, Pie, Cell } from "recharts";
 
 
 const Graphique2 = () => {
-  const [chartWidth, setChartWidth] = useState(window.innerWidth > 768 ? 500 : 300);
+  // const [chartWidth, setChartWidth] = useState(window.innerWidth > 768 ? 500 : 500);
   const [chartPosition, setChartPosition] = useState("center"); // Position par défaut
 
   const data = [
@@ -17,7 +17,7 @@ const Graphique2 = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setChartWidth(window.innerWidth > 768 ? 500 : 300);
+      // setChartWidth(window.innerWidth > 768 ? 500 : 300);
 
       // Déterminez la position en fonction de la largeur de la fenêtre
       setChartPosition(window.innerWidth > 768 ? "center" : "right");
@@ -36,7 +36,7 @@ const Graphique2 = () => {
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>Produit</h2>
       </div>
-      <PieChart width={chartWidth} height={450}>
+      <PieChart width={350} height={450}>
         <Legend
           verticalAlign="top"
         />

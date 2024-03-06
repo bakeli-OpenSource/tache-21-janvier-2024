@@ -29,11 +29,11 @@ const Dashboard = () => {
 
 
 
-      <div className=" md:grid md:grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-        <div className="">
+      <div className="flex  flex-wrap">
+        <div className={`md:w-full lg:w-3/5 sm:w-full`}>
           <Revenue />
         </div>
-        <div className="pie-chart-container md:w-full lg:w-auto">
+        <div className="md:w-full lg:w-2/5 sm:w-full">
           <Graphique2 />
         </div>
       </div>
