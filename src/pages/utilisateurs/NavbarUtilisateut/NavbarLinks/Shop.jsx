@@ -6,46 +6,32 @@ import useGlobal from "../../../../utils/hooks/useGlobal";
 import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import Loader from "../../../../components/loader/loader";
 import axiosInstance from "../../../../utils/axiosInstance";
+import { NavLink } from "react-router-dom";
 
 const Shop = () => {
-  const { produits } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [produits, setProduits] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(null);
 
-  const [categorieSelect, setCategorieSelect] = useState([]);
-  const [categorieId, setCategorieId] = useState("");
-  const [listeProduitsCategories, setListeProduitsCategories] = useState([]);
-
-  const fetchProduitsCategorie = async (idCategory) => {
+  const fetchProduit = async () => {
     try {
-      const response = await axiosInstance.get(
-        `/produits/categorie/${idCategory}`
-      );
-      setListeProduitsCategories(response.data);
+      const response = await axiosInstance.get("/produits");
+      const produitsAvecQuantiteProd = response.data.map((produit) => ({
+        ...produit,
+        quantiteProd: produit.quantite,
+        // Supprimer la clé "quantite" de l'objet
+        quantite: undefined,
+      }));
+      setProduits(produitsAvecQuantiteProd);
     } catch (error) {
-      console.error(
-        "Erreur lors de la récupération des produits de la catégories :",
-        error
-      );
-    }
-  };
-
-  const filtreProdCategorie = () => {
-    const selectedCategory = categories.find(
-      (cat) => cat.nom === categorieSelect
-    );
-
-    if (selectedCategory) {
-      setCategorieId(selectedCategory._id);
-      fetchProduitsCategorie(categorieId);
-      setFilteredProducts(listeProduitsCategories);
-    } else {
-      setFilteredProducts(produits);
+      console.error("Erreur lors de la récupération des produits:", error);
     }
   };
 
   const afficherTousLesProduits = () => {
     setFilteredProducts(produits);
+    setActiveCategory(null);
   };
 
   const filtrerParCategorie = (category) => {
@@ -53,32 +39,33 @@ const Shop = () => {
       produit.categorie.toLowerCase().includes(category.toLowerCase())
     );
     setFilteredProducts(filteredProduit);
+    setActiveCategory(category);
   };
 
   const fetchFilterCategories = async () => {
     try {
       const response = await axiosInstance.get("/categories");
       setCategories(response.data);
-      console.log("Catégories récupérées avec succès");
     } catch (error) {
       console.error("Erreur lors de la récupération des catégories:", error);
     }
   };
 
-  // // Logique de filtrage des produits
-  const handleChange = (selectedCategorie) => {
-    setCategorieSelect(selectedCategorie);
-    filtreProdCategorie();
-  };
+  window.onload = () => {
+    afficherTousLesProduits()
+  }
 
   useEffect(() => {
     fetchFilterCategories();
-    filtreProdCategorie();
+  }, []);
+
+  useEffect(() => {
+    fetchProduit();
   }, []);
 
   useEffect(() => {
     setFilteredProducts(produits);
-  }, [categories]);
+  }, [produits]);
 
   const { setDropdown } = useGlobal();
 
@@ -89,32 +76,37 @@ const Shop = () => {
         onClick={() => setDropdown(false)}
         className="  mt-[50px] mx-auto z-0 flex flex-col  "
       >
-        <div className="flex px-9 mt-10">
-          <h1 className=" text-2xl mr-5">Shop</h1>
+        <div className="flex items-center px-3 my-10">
           <div className="flex flex-wrap">
             <ComponentButton
-              className="bg-gray-200 focus:bg-blue-950 active:bg-blue-950 hover:bg-blue-950 
-              text-black hover:text-white focus:text-white active:text-white mt-2 ml-6 w-auto px-3 py-2 text-md tracking-widest rounded"
+              className={`mt-2 ml-6 w-auto px-3 py-2  tracking-widest click-event rounded ${
+                activeCategory === null
+                  ? "bg-slate-800 out-click text-white"
+                  : "bg-gray-200"
+              }`}
               texte={" Tous les produits"}
               onClick={() => afficherTousLesProduits()}
             />
 
             {categories.map((categorie, index) => (
-              <ComponentButton
-                className=" bg-gray-200 focus:bg-blue-950 active:bg-blue-950 hover:bg-blue-950 
-                 text-black hover:text-white focus:text-white active:text-white mt-2 ml-6 w-auto px-3 py-2 text-md tracking-windexest rounded
-                 "
+              <NavLink
+                className={`mt-2 ml-6 w-auto px-3 py-2  tracking-windexest click-event rounded ${
+                  activeCategory === categorie.nom
+                    ? " text-white out-click"
+                    : "bg-gray-200  "
+                }`}
                 onClick={() => filtrerParCategorie(categorie.nom)}
                 key={index}
-                texte={categorie.nom}
-              />
+              >
+                {categorie.nom}
+              </NavLink>
             ))}
           </div>
         </div>
 
         <div>
           {filteredProducts.length > 0 ? (
-            <div className="grid px-6 md:ps-9 md:pe-9  grid-cols-1 mt-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-[30px]  mx-auto md:max-w-none md:mx-0">
+            <div className="grid px-6 md:ps-9 md:pe-9  grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-[30px]  mx-auto md:max-w-none md:mx-0">
               {filteredProducts.map((produit) => (
                 <CardProduit produit={produit} key={produit._id} />
               ))}
