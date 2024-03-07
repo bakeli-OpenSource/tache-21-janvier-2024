@@ -1,18 +1,9 @@
 import React from 'react';
 import ProductCard from '../productCard/ProductCard';
-
+import Loader from '../loader/loader';
 export default function ListeProdDashboard({ produits }) {
 	const table = ['Article', 'Quantité', 'Prix'];
 
-	if (!produits || produits.length === 0) {
-		return (
-			<p className="text-center text-gray-600">
-				Aucun produit avec des ventes disponibles.
-			</p>
-		);
-	}
-
-	// Filtrer les produits qui ont des ventes
 	const produitsAvecVentes =
 		produits && produits.filter((product) => product.vente > 0);
 
@@ -31,7 +22,7 @@ export default function ListeProdDashboard({ produits }) {
 				</div>
 			) : (
 				<p className="text-center text-gray-600">
-					Aucun produit avec des ventes disponibles.
+					<Loader />
 				</p>
 			)}
 		</div>

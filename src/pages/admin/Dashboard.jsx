@@ -22,11 +22,6 @@ const Dashboard = () => {
 			} m-5 mb-0`}
 		>
 			<div className="container text-xl font-bold ">
-				<div className="flex justify-end">
-					<ProduitContextProvider>
-						<Filtre handleSelectChange={handleSelectChangeCategorie} />
-					</ProduitContextProvider>
-				</div>
 				<div>
 					<Cards />
 				</div>
@@ -35,7 +30,7 @@ const Dashboard = () => {
 			
 
 
-      <div className="flex  flex-wrap">
+      <div className="flex flex-wrap mb-5">
         <div className={`md:w-full lg:w-3/5 sm:w-full`}>
           <Revenue />
         </div>
@@ -43,6 +38,12 @@ const Dashboard = () => {
           <Graphique2 />
         </div>
       </div>
+	  
+	   <div className="flex justify-end mt-5">
+			<ProduitContextProvider>
+				<Filtre handleSelectChange={handleSelectChangeCategorie} />
+			</ProduitContextProvider>
+		</div>
 
       <div className="mt-5">
         <ListeProduit tbody= {filtreProduits} />

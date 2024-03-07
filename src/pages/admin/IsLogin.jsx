@@ -154,14 +154,7 @@ function IsLogin() {
             ) : (
               navigate("/admin")
             )}
-            {/* {isLoggedIn() ? (
-              <Route
-              path="/filtrageCommande"
-              element={<FiltreCommande />} 
-              />
-            ) : (
-              navigate("/admin")
-            )} */}
+            
           </Routes>
         </div>
         </ProduitContextProvider>
