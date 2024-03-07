@@ -15,6 +15,7 @@ const Shop = () => {
   const [activeCategory, setActiveCategory] = useState(null);
 
   const fetchProduit = async () => {
+
     try {
       const response = await axiosInstance.get("/produits");
       const produitsAvecQuantiteProd = response.data.map((produit) => ({
