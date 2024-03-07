@@ -31,9 +31,9 @@ const AdminConnexion = () => {
   };
 
   return (
-    <div className="flex  items-center  justify-center min-h-screen  bg-gray-100 ">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 ">
       <form
-        className="w-full flex  items-center  justify-center text-center w-full  "
+        className="w-full flex items-center justify-center text-center"
         onSubmit={handleSubmit}
       >
         <div className="min-w-96 bg-white px-4 md:px-0 rounded-2xl shadow-2xl flex flex-col-reverse flex-row md:flex-row w-2/3 max-w-4xl">
@@ -46,8 +46,8 @@ const AdminConnexion = () => {
 
           <div className="w-full mx-auto mt-5 ">
 
-              <div className="mb-4 md:px-6 mx-auto">
-                <label htmlFor="email" className="block text-sm font-medium  left-6 w-1/6  ">
+              <div className="mb-4 md:px-6 ">
+                <label htmlFor="email" className="block text-sm font-medium max-w-10 ">
                   Email
 
                 </label>
@@ -57,12 +57,12 @@ const AdminConnexion = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-gray-100   w-full p-2 mt-1  bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+                  className="bg-gray-100 w-full p-2 mt-1 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
                   
                 />
             </div>
               <div className="relative md:px-6 mx-auto">
-          <label htmlFor="password" className="block text-sm font-medium  left-5 w-1/5  min-w-24 ">
+          <label htmlFor="password" className="block text-sm font-medium   w-1/5  min-w-24 ">
             Mot de passe
           </label>
           <input
@@ -107,22 +107,17 @@ const AdminConnexion = () => {
                 >
                   connexion
                   {isLoading && (
-                    <div className="border-4 border-solid border-gray-300 border-t-4 border-t-slate-800 rounded-full w-5 h-5  animate-spin mr-2"></div>
+                    <div className="border-4 border-solid border-gray-300 border-t-4 border-t-slate-800 rounded-full w-5 h-5 animate-spin mr-2"></div>
                   )}
                 </button>
               </div>
             </div>
           </div>
-          <div className="md:w-2/5 min-w-65 min-h-80 min-w-[220px] bg-slate-800 text-white hidden md:block rounded-tr-2xl rounded-br-2xl py-[50px] px-5">
-            {/* <p className="mb-2">
-              Remplissez vos informations personnelles et connectez vous sur votre
-              appli
-            </p> */}
-            <img src={icone} alt="icone page "
-            
+          <div className="md:w-2/5  bg-slate-800 text-white hidden md:block  shadow-md rounded-tr-2xl rounded-br-2xl py-[50px] px-5">
+            <img src={icone}  
+            alt="icone page "
+            className=" md:mt-[4rem] lg:mt-0"
             />
-            {/* <h2 className="text-3xl font-bold mb-2">Bienvenue</h2>
-            <div className="border-2 w-10 border-white inline-block mb-2"></div> */}
           </div>
         </div>
       </form>
