@@ -4,17 +4,24 @@ import { HiShoppingCart } from "react-icons/hi2";
 import Choix from "../../compteComponent/Choix";
 import { Link } from "react-router-dom";
 import Loader from "../../../components/loader/loader";
+import useCommandes from "../../../utils/hooks/useCommandes";
 
 const CommandeComponent = () => {
-  const { commandes, client } = useGlobal();
 
+  const { commandes } = useCommandes();
+
+ 
+
+  const { client } = useGlobal();
+
+  
+  
   const clientCommande = commandes.filter(
     (commande) => commande.email === client?.email
-  );
+    );
 
   const commande = clientCommande.map((com) => com?.email);
 
-  const comman = commandes;
 
   return (
     <div>
@@ -37,7 +44,24 @@ const CommandeComponent = () => {
                   <p className="font- my-2">
                     Le {new Date(item?.date).toLocaleDateString("fr")}
                   </p>
-                  <p className=" bg">N° de commande: {item?.numeroCommande} </p>
+                  {/* <p className="my-1  bg">N° de commande: {item?.numeroCommande} </p> */}
+                  <button>
+                    <span
+                      className={` ${
+                        item?.etat === "en cours"
+                          ? "text-orange-500"
+                          : item?.etat === "en livraison"
+                          ? "text-yellow-500"
+                          : item?.etat === "livrée"
+                          ? "text-green-500"
+                          : item?.etat === "en attente"
+                          ? "text-red-600"
+                          : ""
+                      }  text-center  `}
+                    >
+                      {item?.etat}
+                    </span>
+                  </button>
                 </div>
               </div>
               <div className="flex flex-col gap-4 justify- items-between">
@@ -47,9 +71,7 @@ const CommandeComponent = () => {
                 >
                   Détails
                 </Link>
-                <button className="px-2 my- py-1 rounded border border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800">
-                  {item?.etat}
-                </button>
+                <p></p>
               </div>
             </div>
           ))
@@ -79,7 +101,7 @@ export default CommandeComponent;
 
 // import React from 'react';
 
-// const CommandeDetails = ({ data }) => {
+// const CommandeDetails = ({ item? }) => {
 //   return (
 //     <div className="flex flex-wrap">
 //       {data.produit.map((produit, index) => (

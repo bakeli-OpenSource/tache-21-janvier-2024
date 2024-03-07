@@ -76,7 +76,7 @@ export default function HeaderTable({filtre, nomAjout, body, test}) {
   return (
     <div className=' w-ful flex flex-wrap justify-between  py-3 mt-3 mb-6'>
         <nav className="flex mb-3" aria-label="Breadcrumb">
-          <ol className="inline-flex flex  items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          <ol className="inline-flex flex-wrap items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li>
               <Link to="/" className="inline-flex gap-1 items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue">
                 <AiFillHome />
