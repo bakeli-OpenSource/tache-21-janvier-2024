@@ -3,16 +3,15 @@ import {
   } from '@tanstack/react-query'
 import axiosInstance from '../axiosInstance'
 
-const useCategories = () => {
+const useProduits = () => {
   
     const { isLoading, data, error } = useQuery({
-        queryKey: ['CATEGORIES'],
+        queryKey: ['PRODUITS'],
         queryFn: () =>
-        axiosInstance.get('/categories')
+        axiosInstance.get('/produits')
       })
-      
     
       return { isLoading, error, data:data?.data }
 }
 
-export default useCategories;
+export default useProduits;
