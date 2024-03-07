@@ -17,6 +17,7 @@ import ContactsPage from "../contactsPage/ContactsPage";
 import Aprops from "../apropos/Aprops";
 import ProduitProvider from "../../../usersComponents/cards/ProduitContext";
 import ErreurPage from "../erreurPage/ErreurPage";
+import CommandeContextProvider from "../../../utils/contexte/CommandeContext";
 
 const UserIsLogin = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const UserIsLogin = () => {
 
   return (
     <SidebareContextProvider>
+      <CommandeContextProvider>
       <ProduitProvider>
         <PanierProvider>
           <Navbar
@@ -48,6 +50,7 @@ const UserIsLogin = () => {
           <Footer />
         </PanierProvider>
       </ProduitProvider>
+      </CommandeContextProvider>
     </SidebareContextProvider>
   );
 };

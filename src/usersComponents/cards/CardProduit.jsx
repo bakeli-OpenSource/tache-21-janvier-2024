@@ -26,6 +26,8 @@ const CardProduit = ({ produit, onClick }) => {
     localStorage.setItem("produitAimer", JSON.stringify(produitAimer));
   }, [produitAimer]);
 
+  const tokenClient = localStorage.getItem("tokenclient");
+
   return (
     <>
       <div
@@ -76,43 +78,44 @@ const CardProduit = ({ produit, onClick }) => {
             <div className="w-full  flex items-center justify- gap-1">
               <FaStar
                 className={`cursor-pointer ${
-                  produit.vente >= 5 ? "text-yellow-300" : "text-gray-200"
+                  produit.vente >= 5 ? "text-yellow-400" : "text-gray-200"
                 }`}
                 size={20}
               />
               <FaStar
                 className={`cursor-pointer ${
-                  produit.vente >= 10 ? "text-yellow-300" : "text-gray-200"
+                  produit.vente >= 10 ? "text-yellow-400" : "text-gray-200"
                 }`}
                 size={20}
               />
               <FaStar
                 className={`cursor-pointer ${
-                  produit.vente >= 15 ? "text-yellow-300" : "text-gray-200"
+                  produit.vente >= 15 ? "text-yellow-400" : "text-gray-200"
                 }`}
                 size={20}
               />
               <FaStar
                 className={`cursor-pointer ${
-                  produit.vente >= 20 ? "text-yellow-300" : "text-gray-200"
+                  produit.vente >= 20 ? "text-yellow-400" : "text-gray-200"
                 }`}
                 size={20}
               />
               <FaStar
                 className={`cursor-pointer ${
-                  produit.vente >= 25 ? "text-yellow-300" : "text-gray-200"
+                  produit.vente >= 25 ? "text-yellow-400" : "text-gray-200"
                 }`}
                 size={20}
               />
             </div>
             <div className="flex gap-4 md:gap-2 mt-4 mb- md:mb-0 justify-">
-              <div
+            <div
                 onClick={() => handleAddToCart(produit)}
                 className="rounded   cursor-pointer  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1"
               >
                 <FaShoppingCart className={`text-lg md:text-sm  `} />
               </div>
-              <div
+              {tokenClient === null ? "" : <div
+              onClick={() => handleLikeToggle(produit && _id, produit)}
                 className={`rounded bg-gray-200 ${
                   produitAimer.some(
                     (likedProduit) => likedProduit && likedProduit._id === _id
@@ -122,10 +125,11 @@ const CardProduit = ({ produit, onClick }) => {
                 }  hover:bg-gray-400  flex items-center justify-center px-2 py-1`}
               >
                 <BsSuitHeartFill
-                  onClick={() => handleLikeToggle(produit && _id, produit)}
+                  
                   className={`text-lg cursor-pointer md:text-sm    `}
                 />
-              </div>
+              </div>}
+              
               <Link
                 to={`/details/${_id}`}
                 className="rounded  bg-gray-200 text-gray-500 hover:text-gray-200  hover:bg-gray-400 flex items-center justify-center px-2 py-1"

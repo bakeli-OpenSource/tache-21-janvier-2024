@@ -44,14 +44,14 @@ export const Tbody = ({tbody, actions}) => {
                         {td.email}
                     </td> : null
                     } */}
-                    {/* {td.produit ?
+                    {td.quantite || td.quantite === 0 ?
                     <td className="px-4 py-5 text-xl text-center border">
-                        {td.produit}
+                        {td.quantite}
                     </td> : null
-                    } */}
-                    {td.quantite ?
+                    }
+                    {td.quantiteProd ?
                     <td className="px-4 py-3 text-center border text-md">
-                        <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantite}</span>
+                        <span className="px-2 py-1 font-semibold leading-tight text-orange-700 bg-gray-100 rounded-sm">{td.quantiteProd}</span>
                     </td> : null
                     } 
                     {/* {td.date ?
