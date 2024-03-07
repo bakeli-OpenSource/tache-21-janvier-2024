@@ -50,13 +50,13 @@ const DetailsCard = () => {
           <div key={_id}>
             <div className="max-w-6xl px-4 py-4 lg:py-8 md:px-6 shadow-xl mx-auto">
               <div className="flex flex-wrap mx-4">
-                <div className="w-full px-4 md:w-1/2 ">
+                <div className="w-full px-4 md:w-1/2">
                   <div className=" top-0 z-50 overflow-hidden ">
-                    <div className="relative mb-6 lg:mb-10 lg:h-full ">
+                    <div className="relative mb-6 lg:mb-10 lg:h-full h-96">
                       <img
                         alt="Mon produit"
                         src={produit.imageUrl}
-                        className="object-cover w-full lg:h-full "
+                        className="object-cover w-full lg:h-[550px] "
                       />
                     </div>
                     <div className="flex-wrap hidden md:flex "></div>
@@ -77,18 +77,17 @@ const DetailsCard = () => {
                       <div className="mb-8 text-4xl font-bold text-gray-700 flex ">
                         <h2 className="w-14 text-xl font-bold my-2">Prix:</h2>
                             {reduction ? (
-                          <div className="flex items-end justify-between md:justify-start ">
-                                <span className="py-1 text-xl md:text-[18px] text-red-600 my-2">
+                          <div className="flex items-end justify-around md:justify-start ">
+                                <span className="text-xl md:text-[18px] text-red-600 my-2">
                                   {prixAAjouter.toLocaleString("DE-de")} FCFA
                                 </span>
-                                {/* &nbsp; */}
-                                <span className="line-through text-lg md:text-[10px] text-gray-500">
+                                <span className="my-2 line-through text-lg md:text-[10px] text-gray-500">
                                   {produit.prix.toLocaleString("DE-de")} FCFA
                                 </span>
                           </div>
                           
                               ) : (
-                          <div className="flex items-end justify-between md:justify-start ">
+                          <div className="flex items-end justify-around md:justify-start ">
                               <span className="py-1 text-xl md:text-[18px] py-1 font-medium text-sm text-gray-900 my-2">
                                 {produit.prix.toLocaleString("DE-de")} FCFA
                               </span>

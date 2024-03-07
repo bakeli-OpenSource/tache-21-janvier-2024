@@ -1,10 +1,10 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import Select from "./Select";
-import useProduits from '../../utils/hooks/useProduits';
+import useProduits from "../../utils/hooks/useProduits";
 
-const Filtre = ({handleSelectChange}) => {
-  
-  const {categoryNames, setCategoryNames, categories, setCategories} = useProduits();
+const Filtre = ({ handleSelectChange }) => {
+  const { categoryNames, setCategoryNames, categories, setCategories } =
+    useProduits();
 
   const semaine = [
     "Lundi",
@@ -16,17 +16,18 @@ const Filtre = ({handleSelectChange}) => {
     "Dimanche",
   ];
 
-  
-
   useEffect(() => {
     setCategoryNames(categories.map((categorie) => categorie.nom));
-  }, [categories]); 
-
+  }, [categories]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-3 font-normal">
-      <Select contenus={semaine} Title="Jour"/>
-      <Select contenus={categoryNames} handleSelectChange={handleSelectChange} Title="Catégorie" />
+      {/* <Select contenus={semaine} Title="Jour"/> */}
+      <Select
+        contenus={categoryNames}
+        handleSelectChange={handleSelectChange}
+        Title="Catégorie"
+      />
     </div>
   );
 };

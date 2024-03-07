@@ -37,7 +37,7 @@ const Graphique2 = () => {
   return (
       <div className="border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-[100%]">
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
-        <h2 className='text-white text-[16px] leading-[19px] font-bold'>5 produits les plus vendus</h2>
+        <h2 className='text-white text-[16px] leading-[19px] font-bold'>Les 4 produits les plus vendus</h2>
       </div>
 
       <PieChart width={350} height={450}>
