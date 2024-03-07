@@ -30,6 +30,10 @@ const CommandeContextProvider = ({ children }) => {
 
   const { setShowModal } = useGlobal();
 
+  const closeModal = () => {
+    setShowModal(false)
+  }
+
   const [editingCommandeId, setEditingCommandeId] = useState(null);
 
   const [selectsValue, setSelectsValue] = useState('');
@@ -121,6 +125,7 @@ const CommandeContextProvider = ({ children }) => {
         toast.success('Statut modifié avec succès!');
         fetchCommandes();
         setModifModal(false);
+        closeModal()
       } else {
         throw new Error('Erreur lors de la modification');
       }
@@ -157,7 +162,6 @@ const CommandeContextProvider = ({ children }) => {
         quantite: undefined,
       }));
       setCommandes(commandeAvecQuantiteProd);
-      console.log('Commandes récupérées avec succès');
     } catch (error) {
       console.error('Erreur lors de la récupération des commandes:', error);
     }
@@ -177,6 +181,7 @@ const CommandeContextProvider = ({ children }) => {
     handleDelete,
     setSelectsValue,
     setIsEditing,
+    closeModal,
     table,
     commandes,
     produit,
