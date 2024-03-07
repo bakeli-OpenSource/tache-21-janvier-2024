@@ -62,7 +62,7 @@ const Cart = () => {
 											</div>
 										</td>
 										<td className="py-2">
-											<div className="flex items-center justify-center mb-4 text-center">
+											<div className="flex items-center justify-center mb-4 text-center mx-7">
 												<ComponentButton
 													className="px-2 py-1 bg-gray-200"
 													texte="-"
