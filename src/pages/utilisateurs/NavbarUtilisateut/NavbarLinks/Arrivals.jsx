@@ -65,8 +65,6 @@ const Arrivals = () => {
       <div className="mt-[30px] ">
         {produits.length > 0 ? (
           <>
-            <h1 className="mb-5">New Arrivals</h1>
-
             <div className="grid  grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-[30px]  mx-auto md:max-w-none md:mx-0">
               {filteredProducts.map((produit) => (
                 <CardProduit produit={produit} key={produit._id} />
