@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PieChart, Legend, Pie, Cell } from "recharts";
+import { PieChart, Legend, Pie, Cell, ResponsiveContainer } from "recharts";
 import axiosInstance from '../../../utils/axiosInstance';
 
 const Graphique2 = () => {
@@ -34,31 +34,45 @@ const Graphique2 = () => {
     };
   }, [])
 
-  const COLORS = ["rgb(30 58 138)", "rgb(161 98 7)", "rgb(101 163 13)", "rgb(14 165 233)", "rgb(188 38 66)"];
-
+  const colors = ["rgb(30 58 138)", "rgb(161 98 7)", "rgb(101 163 13)", "rgb(14 165 233)", "rgb(188 38 66)"];
+  const radian = Math.PI / 180;
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * radian);
+    const y = cy + radius * Math.sin(-midAngle * radian);
+  
+    return (
+      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  }
   return (
       <div className="border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-[100%]">
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>5 produits les plus vendus</h2>
       </div>
-      <PieChart width={400} height={450}>
-        <Legend verticalAlign="top" />
+      {/* <ResponsiveContainer width="100%" height="100%"> */}
+      <PieChart width={500} height={450}>
+        <Legend verticalAlign="top"/>
         <Pie
           data={produitPlusVnedu}
           dataKey="vente"
           nameKey="nom"
-          cx={chartPosition}
-          cy={200}
+          cx="50%"
+          cy="50%"
+          labelLine={false}
           outerRadius={100}
           fill="#8884d"
-          label
+          label={renderCustomizedLabel}
           
         >
           {produitPlusVnedu.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
           ))}
         </Pie>
       </PieChart>
+      {/* </ResponsiveContainer> */}
     </div>
   );
 };
