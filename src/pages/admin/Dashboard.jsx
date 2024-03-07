@@ -27,13 +27,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-
-
-      <div className=" md:grid md:grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+      <div className="flex w-full">
         <div className="">
           <Revenue />
         </div>
-        <div className="pie-chart-container md:w-full lg:w-auto">
+        <div className="md:w-full lg:w-auto">
           <Graphique2 />
         </div>
       </div>
