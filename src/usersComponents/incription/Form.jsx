@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
@@ -60,7 +59,6 @@ const Form = () => {
         adresse: "",
         password: "",
       });
-      alert("Inscription réussi");
       toast.success("Inscription réussi!");
       navigate("/connexion");
       console.log(response.data);
@@ -204,6 +202,7 @@ const Form = () => {
           Se connecter
         </Link>{" "}
       </p>
+      <ToastContainer />
     </form>
   );
 };
