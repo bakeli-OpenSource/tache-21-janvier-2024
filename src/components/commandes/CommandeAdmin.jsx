@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useEffect, useState } from 'react';
 import useCommandes from '../../utils/hooks/useCommandes';
 import HeaderTable from '../headerTable/HeaderTable';
 import Table from '../table/Table';
@@ -10,6 +10,7 @@ import { MdOutlineDelete } from "react-icons/md";
 
 const CommandeAdmin = () => {
   const {
+    fetchCommandes,
     table,
     commandes,
     handleSubmit,
@@ -17,7 +18,9 @@ const CommandeAdmin = () => {
     handleDelete,
     setEtat,
     setShowModal,
-    setEditingCommandeId
+    setEditingCommandeId,
+    fetchCommande,
+    commandeId
   } = useCommandes();
 
   const { open, closedrop } = useSidebare();
@@ -58,8 +61,11 @@ const CommandeAdmin = () => {
 			},
 		},
 	];
+  useEffect(() => {
+    fetchCommandes();
+  }, []);
 
-  const commandeRenverse = commandes.reverse()
+  
 
   return (
     <div onClick={closedrop} className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>

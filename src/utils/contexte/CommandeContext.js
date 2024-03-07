@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import useGlobal from '../../utils/hooks/useGlobal';
 import axiosInstance from '../axiosInstance';
@@ -45,39 +45,37 @@ const CommandeContextProvider = ({ children }) => {
   const [selectsValue, setSelectsValue] = useState('');
 
   const [data, setData] = useState([]);
-  useEffect(() => {
+  
     const fetchCommande = async (commandeId) => {
       try {
         const response = await axiosInstance.get('/commandes/' + commandeId);
         setData(response.data);
       } catch (error) {
-        console.error('Erreur lors de la récupération des commandes:', error);
+        console.error('Erreur lors de la récupération de la commandes:', error);
       }
     };
-    fetchCommande(commandeId);
-  }, [commandeId]);
 
   const handleDetail = (commandeId) => {
     const commandeIdCli = localStorage.getItem('commandeIdCli');
   };
 
-  const handleEditCommande = async (id, newData) => {
-    try {
-      const response = await axiosInstance.put('/commande/' + id, newData);
+  // const handleEditCommande = async (id, newData) => {
+  //   try {
+  //     const response = await axiosInstance.put('/commande/' + id, newData);
 
-      if (response.status === 200) {
-        console.log('Statut modifié avec succès:', response.data);
-        toast.success('Statut modifié avec succès!');
-        fetchCommandes();
-        setModifModal(false);
-      } else {
-        throw new Error('Erreur lors de la modification');
-      }
-    } catch (error) {
-      console.error('Erreur lors de la modification:', error);
-      toast.success('Erreur lors de la modification!');
-    }
-  };
+  //     if (response.status === 200) {
+  //       console.log('Statut modifié avec succès:', response.data);
+  //       toast.success('Statut modifié avec succès!');
+  //       fetchCommandes();
+  //       setModifModal(false);
+  //     } else {
+  //       throw new Error('Erreur lors de la modification');
+  //     }
+  //   } catch (error) {
+  //     console.error('Erreur lors de la modification:', error);
+  //     toast.success('Erreur lors de la modification!');
+  //   }
+  // };
 
   const [setIsEditing] = useState(false);
 
@@ -170,15 +168,17 @@ const CommandeContextProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    fetchCommandes();
-  }, []);
+
 
   const value = {
+    
+    fetchCommande,
+    commandeId,
+    fetchCommandes,
     commandeId,
     setShowModal,
     setEditingCommandeId,
-    handleEditCommande,
+    // handleEditCommande,
     handleSubmit,
     handleDetail,
     handleDelete,

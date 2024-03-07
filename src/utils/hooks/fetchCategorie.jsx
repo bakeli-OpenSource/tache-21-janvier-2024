@@ -4,15 +4,15 @@ import {
 import axiosInstance from '../axiosInstance'
 
 const useCategories = () => {
-    const { data, error, isLoading } = useQuery({
+  
+    const { isLoading, data, error } = useQuery({
         queryKey: ['CATEGORIES'],
         queryFn: () =>
-        axiosInstance.get('/categories').then((res) =>
-            res.json(),
-          ),
+        axiosInstance.get('/categories')
       })
+      
     
-      return { isLoading, error, data }
+      return { isLoading, error, data:data?.data }
 }
 
 export default useCategories;

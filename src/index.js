@@ -20,15 +20,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <GlobalContextProvider>
-        <ProduitContextProvider>
-          <CategorieContextProvider>
-            <QueryClientProvider client={queryClient}>
-              <App />
-            </QueryClientProvider>
-          </CategorieContextProvider>
-        </ProduitContextProvider>
-      </GlobalContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <GlobalContextProvider>
+          <ProduitContextProvider>
+            <CategorieContextProvider>
+                <App />
+            </CategorieContextProvider>
+          </ProduitContextProvider>
+        </GlobalContextProvider>
+      </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,17 +1,24 @@
 import HeaderTable from '../headerTable/HeaderTable';
 import useSidebare from '../../utils/hooks/useSidebare';
 import useCommandes from '../../utils/hooks/useCommandes';
-import React from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 
   const DetailsCommande = () => {
 
     const {
-      data
+      data,
+      fetchCommande,
+      commandeId
     } = useCommandes();
 
 
   const { open, closedrop } = useSidebare();
+
+  
+  useEffect(() => {
+    fetchCommande(commandeId);
+  }, [commandeId]);
 
 
   return (

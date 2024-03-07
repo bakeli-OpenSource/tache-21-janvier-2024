@@ -60,7 +60,6 @@ const Message = () => {
 
   
 
-      // console.log(client);
   return (
     <div onClick={closedrop} className={`${open ? "md:ml-[225px]" : "md:ml-[85px]"} m-4 `}>
       <div className='my-7 mb-9'>
