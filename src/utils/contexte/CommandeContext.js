@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useGlobal from '../../utils/hooks/useGlobal';
 import axiosInstance from '../axiosInstance';
 import { useLocation } from 'react-router-dom';
@@ -11,13 +12,7 @@ const CommandeContextProvider = ({ children }) => {
   const pathnames = location.pathname.split('/').filter((x) => x);
   const commandeId = pathnames.pop();
 
-  const table = [
-    'Nom',
-    'Quantite',
-    'Telephone',
-    'Etat de la commande',
-    'Actions',
-  ];
+  const table = ['Nom', 'Telephone', 'Etat de la commande', 'Actions'];
 
   const [idProduit, setIdProduit] = useState('');
   const [email, setEmail] = useState('');
@@ -32,11 +27,6 @@ const CommandeContextProvider = ({ children }) => {
   const [prixProduit, setPrixProduit] = useState('');
   const [modif, setModifModal] = useState('');
   const [commandes, setCommandes] = useState([]);
-  const [produitVente, setProduitVente] = useState([]);
-  const [listProd, setListProd] = useState([]);
-  const [quantitesVente, setQuantitesVente] = useState([]);
-  const [nouveauQuantite, setNouveauQuantite] = useState([]);
-  const [nouveauVente, setNouveauVente] = useState([]);
 
   const { setShowModal } = useGlobal();
 
@@ -59,23 +49,23 @@ const CommandeContextProvider = ({ children }) => {
     const commandeIdCli = localStorage.getItem('commandeIdCli');
   };
 
-  // const handleEditCommande = async (id, newData) => {
-  //   try {
-  //     const response = await axiosInstance.put('/commande/' + id, newData);
+  const handleEditCommande = async (id, newData) => {
+    try {
+      const response = await axiosInstance.put('/commande/' + id, newData);
 
-  //     if (response.status === 200) {
-  //       console.log('Statut modifié avec succès:', response.data);
-  //       toast.success('Statut modifié avec succès!');
-  //       fetchCommandes();
-  //       setModifModal(false);
-  //     } else {
-  //       throw new Error('Erreur lors de la modification');
-  //     }
-  //   } catch (error) {
-  //     console.error('Erreur lors de la modification:', error);
-  //     toast.success('Erreur lors de la modification!');
-  //   }
-  // };
+      if (response.status === 200) {
+        toast.success('Statut modifié avec succès!');
+
+        fetchCommandes();
+        setModifModal(false);
+      } else {
+        throw new Error('Erreur lors de la modification');
+      }
+    } catch (error) {
+      console.error('Erreur lors de la modification:', error);
+      toast.success('Erreur lors de la modification!');
+    }
+  };
 
   const [setIsEditing] = useState(false);
 
@@ -140,10 +130,8 @@ const CommandeContextProvider = ({ children }) => {
 
   const handleDelete = async (commandeId) => {
     try {
-      console.log('Avant la requête DELETE');
       // Effectuez une requête DELETE vers votre API avec axios
       await axiosInstance.delete(`/commande/${commandeId}`);
-      console.log('Aprés la requête DELETE');
 
       // Mettez à jour l'état des catégories en filtrant la catégorie supprimée de la liste
       const updatedCommande = commandes.filter(
@@ -151,7 +139,6 @@ const CommandeContextProvider = ({ children }) => {
       );
       setCommandes(updatedCommande);
 
-      console.log('Commande supprimée avec succès');
       fetchCommandes();
     } catch (error) {
       console.error('Erreur lors de la suppression de la commande:', error);
@@ -161,13 +148,18 @@ const CommandeContextProvider = ({ children }) => {
   const fetchCommandes = async () => {
     try {
       const response = await axiosInstance.get('/commandes');
-      setCommandes(response.data);
+      const commandeAvecQuantiteProd = response.data.map((commande) => ({
+        ...commande,
+        quantiteCom: commande.quantite,
+        // Supprimer la clé "quantite" de l'objet
+        quantite: undefined,
+      }));
+      setCommandes(commandeAvecQuantiteProd);
       console.log('Commandes récupérées avec succès');
     } catch (error) {
       console.error('Erreur lors de la récupération des commandes:', error);
     }
   };
-
 
 
   const value = {
@@ -178,7 +170,7 @@ const CommandeContextProvider = ({ children }) => {
     commandeId,
     setShowModal,
     setEditingCommandeId,
-    // handleEditCommande,
+    handleEditCommande,
     handleSubmit,
     handleDetail,
     handleDelete,
@@ -186,7 +178,6 @@ const CommandeContextProvider = ({ children }) => {
     setIsEditing,
     table,
     commandes,
-    // actions,
     produit,
     setProduit,
     idProduit,

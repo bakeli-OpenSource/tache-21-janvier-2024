@@ -65,13 +65,11 @@ const CommandeAdmin = () => {
     fetchCommandes();
   }, []);
 
-  
 
   return (
     <div onClick={closedrop} className={`${open ? 'md:ml-[225px]' : 'md:ml-[85px]'} m-4 `}>
       <HeaderTable
         title="Commandes"
-        nomAjout="Modification Etat commande"
         body={
           <form onSubmit={handleSubmit} className="w-50 md:w-1/2 px-3 my-6 md:mb-0" >
             <select className="mt-1 p-2 bg-gray-200 border focus:border text-gray-700 focus:border-double focus:border-sky-600 outline-none rounded-md w-75" onChange={(e) => setSelectsValue(e.target.value)}>
