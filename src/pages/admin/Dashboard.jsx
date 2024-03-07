@@ -35,11 +35,11 @@ const Dashboard = () => {
 			
 
 
-      <div className="flex  flex-wrap">
-        <div className={`md:w-full lg:w-3/5 sm:w-full`}>
+      <div className="flex flex-wrap">
+        <div className={`w-full xl:mr-[4rem] xl:w-3/5 `}>
           <Revenue />
         </div>
-        <div className="md:w-full lg:w-2/5 sm:w-full">
+        <div className="w-full xl:w-2/6 ">
           <Graphique2 />
         </div>
       </div>

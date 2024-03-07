@@ -58,7 +58,7 @@ function Revenue() {
   // Position par défaut
 
   return (
-    <div className="border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-full">
+    <div className="border bg-white shadow-md rounded-[4px] mr-[20px] w-full">
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
       </div>
