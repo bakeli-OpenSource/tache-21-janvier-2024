@@ -35,11 +35,20 @@ const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
     }
   };
 
+  const navigerVersDetail = () => {
+    if (!produitDisponible) {
+      navigate("/compte/produitIndisponible")
+    } else {
+      navigate(`/details/${_id}`)
+    }
+  }
+
   return (
-    <Link
-      to={`${
-        !produitDisponible ? "/compte/produitIndisponible" : `/details/${_id} `
-      }`}
+    <div
+    onClick={navigerVersDetail}
+      // to={`${
+      //   !produitDisponible ? "/compte/produitIndisponible" : `/details/${_id} `
+      // }`}
       className="flex flex-col md:flex-row shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap"
       key={_id}
     >
@@ -75,19 +84,25 @@ const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
       <div className="flex flex-col-reverse md:flex-col  gap-4 justify-between h-24">
         <Link
           to={`/panier`}
-          onClick={handleAddToCart}
+          onClick={(e) => {
+            e.stopPropagation(); 
+            handleAddToCart();
+          }}
           className="px-2 my- uppercase py-2 rounded text-white text-center bg-slate-800 "
         >
           Acheter
         </Link>
         <button
-          onClick={() => handleDelete(_id)}
+          onClick={(e) => {
+            e.stopPropagation(); 
+            handleDelete(_id);
+          }}
           className="px-2 my- flex gap-2 items-center py-1 uppercase rounded   text-red-500 hover:bg-red-100"
         >
           <MdOutlineDelete size={20} /> supprimer
         </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
