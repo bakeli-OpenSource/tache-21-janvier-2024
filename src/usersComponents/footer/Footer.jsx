@@ -9,18 +9,10 @@ const Footer = () => {
   const contact = ["+221 77 982 54 32", "kaysolu@gmail.com", "Dakar-bakeli"];
   
   const customers = [
-    "Démarrer un retour",
-    "Politique de retour",
     "FAQ",
-    "Catalogues et courriers",
-    "À propos des cadeaux de groupe",
   ];
   const company = [
     "A propos de nous",
-    "Durabilité",
-    "Carriére",
-    "Politique de confidentialité",
-    "Termes",
   ];
   return (
     <div className="flex justify-between mt-5 pb-3 flex-wrap w-full bg-gray-200 px-[35px] font-montserrat">
@@ -35,7 +27,9 @@ const Footer = () => {
           <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
             CLIENTS
           </h4>
+          <a href="#">
           <Paragraphe items={customers} />
+          </a>
         </div>
         <div>
           <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
