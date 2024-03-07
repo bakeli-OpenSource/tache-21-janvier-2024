@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <div className="relative shadow-lg sm:pt-8 overflow-hidden min-h-[550px] sm:min-h-[650px] flex justify-center items-center pl-[25px] duration-200">
       {/* background */}
-      <div className="h-[700px] w-[700px] bg-gray-300 md:bg-slate-800 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
+      <div className="h-[700px] w-[700px] bg-gray-300 md:bg-gray-300  absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
       {/* section bannière */}
       <div className="container pb-8 sm:pb-0 sm:pt-4 ">
         <Slider {...settings}>

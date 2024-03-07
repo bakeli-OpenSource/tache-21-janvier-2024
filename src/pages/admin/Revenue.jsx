@@ -1,90 +1,55 @@
-
-import React, { useState, useEffect } from "react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, AreaChart } from 'recharts';
-
-const datas = [
-  {
-    mois: 'Jan',
-    total: 4000,
-  },
-  {
-    mois: 'Fev',
-    total: 3000,
-  },
-  {
-    mois: 'Mars',
-    total: 2000,
-  },
-  {
-    mois: 'Avr',
-    total: 2780,
-  },
-  {
-    mois: 'Mai',
-    total: 1890,
-  },
-  {
-    mois: 'Juin',
-    total: 2390,
-  },
-  {
-    mois: 'Juil',
-    total: 3490,
-  },
-  {
-    mois: 'Août',
-    total: 5000,
-  },
-  {
-    mois: 'Sept',
-    total: 3000,
-  },
-  {
-    mois: 'Oct',
-    total: 1900,
-  },
-  {
-    mois: 'Nov',
-    total: 2750,
-  },
-  {
-    mois: 'Dec',
-    total: 7000,
-
-  },
-];
+import React, { useState, useEffect, useContext } from "react";
+import { AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Area } from 'recharts';
+import axiosInstance from "../../utils/axiosInstance";
+import { ProduitsContext } from "../../utils/contexte/ProduitsContext";
 
 function Revenue() {
-  // Position par défaut
+  const [categories, setCategories] = useState([]);
+  const { produits } = useContext(ProduitsContext);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axiosInstance.get("/categories");
+        setCategories(response.data);
+        console.log("Catégories récupérées avec succès");
+      } catch (error) {
+        console.error("Erreur lors de la récupération des catégories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const fetchVentesByCategory = (categoryName) => {
+    const prodByCategory = produits.filter(prod => prod.categorie === categoryName);
+    return prodByCategory.reduce((totalVentes, prod) => totalVentes + prod.vente, 0);
+  };
+
+  const datas = categories.map(category => ({
+    categorie: category.nom,
+    ventes: fetchVentesByCategory(category.nom)
+  }));
 
   return (
-    <div className="border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-full">
+    <div className="border bg-white shadow-md rounded-[4px] mr-[20px] w-full">
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
-        <h2 className='text-white text-[16px] leading-[19px] font-bold'>Revenue</h2>
+        <h2 className='text-white text-[16px] leading-[19px] font-bold'>Suivie vente / catégorie</h2>
       </div>
-
-        <AreaChart
-
-          width={350}
-          height={450}
-          data={datas}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="mois" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Area type="monotone" dataKey="total" stroke="black" fill="#8884d8" activeDot={{ r: 8 }} />
-        </AreaChart>
-
-
-      </div>
+      <AreaChart
+        width={550}
+        height={450}
+        data={datas}
+        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="categorie" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Area type="monotone" dataKey="ventes" stroke="blue" fill="#8884d8" activeDot={{ r: 8 }} />
+      </AreaChart>
+    </div>
   );
 }
 
