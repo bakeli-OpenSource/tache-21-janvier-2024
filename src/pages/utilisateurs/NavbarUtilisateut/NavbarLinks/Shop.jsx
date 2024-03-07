@@ -11,7 +11,6 @@ const Shop = () => {
   const { produits } = useContext(ProduitsContext);
   const { categories, setCategories } = useContext(CategorieContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   const [categorieSelect, setCategorieSelect] = useState([]);
   const [categorieId, setCategorieId] = useState("");
   const [listeProduitsCategories, setListeProduitsCategories] = useState([]);
