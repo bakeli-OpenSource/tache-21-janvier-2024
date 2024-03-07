@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
@@ -39,6 +39,10 @@ const ProduitContextProvider = ({ children }) => {
   const [listeProduitsCategories, setListeProduitsCategories] = useState([])
   const [valueInput, setValueInput] = useState('');
 
+  // Filtre produit par letter saisi
+  const filteredByLetter = produits.filter((produit) =>
+    produit.nom.toLowerCase().includes(valueInput.toLowerCase())
+  );
   
   const table = [
     'Article', 'Quantité', 'Prix', 'Actions'
@@ -288,20 +292,17 @@ const ProduitContextProvider = ({ children }) => {
   }
 
 
+  const fetchCategories = async () => {
+    try {
+      const response = await axiosInstance.get("/categories");
+      setCategories(response.data);
+      console.log("Catégories récupérées avec succès");
+    } catch (error) {
+      console.error("Erreur lors de la récupération des catégories:", error);
+    }
+  };
 
-  useEffect(() => {
-        const fetchCategories = async () => {
-          try {
-            const response = await axiosInstance.get("/categories");
-            setCategories(response.data);
-            console.log("Catégories récupérées avec succès");
-          } catch (error) {
-            console.error("Erreur lors de la récupération des catégories:", error);
-          }
-        };
-    
-        fetchCategories();
-  }, []);
+ 
 
   const handleSelectChangeCategorie = (e) => {
     const selectedCategoryName = e.target.value;
@@ -379,15 +380,7 @@ const ProduitContextProvider = ({ children }) => {
         }
    }
     
-  useEffect(() => {    
-    filtreProdCategorie()
-    fetchProduit();
-  }, [produits]);
       
-  useEffect(() => {
-		setCategoryNames(categories.map((categorie) => categorie.nom));
-		setFiltreProduits(produits)
-	  }, [categories]); 
 
   const value = {
     valueInput, setValueInput,
@@ -408,6 +401,10 @@ const ProduitContextProvider = ({ children }) => {
     table, 
     produits,
     addProduit,
+    fetchCategories,
+    setFiltreProduits,
+    filtreProdCategorie,
+    fetchProduit,
     updateProduit,
     actions,
     titreModal, setTitreModal, corpModal, setCorpModal,
