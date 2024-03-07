@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { PieChart, Legend, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Legend, Pie, Cell } from "recharts";
 import axiosInstance from '../../../utils/axiosInstance';
 
 const Graphique2 = () => {
+
   const [produitPlusVnedu, setProduitPlusVnedu] = useState([]);
-  const [chartPosition, setChartPosition] = useState("center");
   useEffect(() => {
     const fetchProduitPlusVnedu = async () => {
       try {
@@ -20,19 +20,6 @@ const Graphique2 = () => {
     fetchProduitPlusVnedu();
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-
-      // Déterminez la position en fonction de la largeur de la fenêtre
-      setChartPosition(window.innerWidth > 768 ? "center" : "right");
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [])
 
   const colors = ["rgb(30 58 138)", "rgb(161 98 7)", "rgb(101 163 13)", "rgb(14 165 233)", "rgb(188 38 66)"];
   const radian = Math.PI / 180;
@@ -41,7 +28,7 @@ const Graphique2 = () => {
     const x = cx + radius * Math.cos(-midAngle * radian);
     const y = cy + radius * Math.sin(-midAngle * radian);
   
-    return (
+    return ( 
       <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
         {`${(percent * 100).toFixed(0)}%`}
       </text>
@@ -52,9 +39,9 @@ const Graphique2 = () => {
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>5 produits les plus vendus</h2>
       </div>
-      {/* <ResponsiveContainer width="100%" height="100%"> */}
-      <PieChart width={500} height={450}>
-        <Legend verticalAlign="top"/>
+
+      <PieChart width={350} height={450}>
+        <Legend verticalAlign="top" />
         <Pie
           data={produitPlusVnedu}
           dataKey="vente"
