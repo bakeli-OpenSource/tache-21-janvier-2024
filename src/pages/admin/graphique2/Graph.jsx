@@ -3,6 +3,7 @@ import { PieChart, Legend, Pie, Cell } from "recharts";
 import axiosInstance from '../../../utils/axiosInstance';
 
 const Graphique2 = () => {
+
   const [produitPlusVnedu, setProduitPlusVnedu] = useState([]);
   const [chartPosition, setChartPosition] = useState("center");
   useEffect(() => {
@@ -23,6 +24,7 @@ const Graphique2 = () => {
   useEffect(() => {
     const handleResize = () => {
 
+
       // Déterminez la position en fonction de la largeur de la fenêtre
       setChartPosition(window.innerWidth > 768 ? "center" : "right");
     };
@@ -41,6 +43,7 @@ const Graphique2 = () => {
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>5 produits les plus vendus</h2>
       </div>
+
       <PieChart width={400} height={450}>
         <Legend verticalAlign="top" />
         <Pie

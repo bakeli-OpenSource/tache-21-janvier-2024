@@ -14,6 +14,7 @@ const Dashboard = () => {
 	const { filtreProduits, handleSelectChangeCategorie } = useProduits();
 
 	return (
+		<div>
 		<div
 			onClick={closedrop}
 			className={`${
@@ -31,20 +32,27 @@ const Dashboard = () => {
 				</div>
 			</div>
 
-			<div className="w-full gap-8  md:grid md:grid-cols-1 lg:grid-cols-2">
-				<div className="">
-					<Revenue />
-				</div>
-				<div className="pie-chart-container md:w-full lg:w-auto">
-					<Graphique2 />
-				</div>
-			</div>
+			
 
-			<div className="mt-5">
-				<ListeProduit tbody={filtreProduits} />
-			</div>
+
+      <div className="flex  flex-wrap">
+        <div className={`md:w-full lg:w-3/5 sm:w-full`}>
+          <Revenue />
+        </div>
+        <div className="md:w-full lg:w-2/5 sm:w-full">
+          <Graphique2 />
+        </div>
+      </div>
+
+      <div className="mt-5">
+        <ListeProduit tbody= {filtreProduits} />
+      </div>
+
+    </div>
+ 			
 		</div>
-	);
-};
+		 )
+		}
+		
 
 export default Dashboard;
