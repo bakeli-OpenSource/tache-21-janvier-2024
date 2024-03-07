@@ -10,7 +10,7 @@ const Graphique2 = () => {
       try {
         const response = await axiosInstance.get('/produits');
         const trierProduits = response.data.sort((a, b) => b.vente - a.vente); 
-        const top5Produits = trierProduits.slice(0, 5); 
+        const top5Produits = trierProduits.slice(0, 4); 
         setProduitPlusVnedu(top5Produits);
       } catch (error) {
         console.error('Erreur lors de la récupération des produits :', error);
