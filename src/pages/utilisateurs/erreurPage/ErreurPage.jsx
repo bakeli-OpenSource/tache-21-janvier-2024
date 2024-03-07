@@ -1,6 +1,6 @@
 import React from "react";
 import image from "../../../assets/images/error.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ErreurPage = () => {
   const navigate = useNavigate()
