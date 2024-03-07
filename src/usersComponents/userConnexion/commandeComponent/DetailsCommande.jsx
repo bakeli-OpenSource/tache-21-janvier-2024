@@ -5,8 +5,8 @@ import useCommandes from "../../../utils/hooks/useCommandes";
 const OrderDetail = () => {
   const { _id } = useParams();
   const { commandes } = useCommandes();
-  const commande = commandes.find((item) => item._id === _id);
-
+  const commande = commandes?.find((item) => item._id === _id);
+  console.log(commande);
   return (
     <>
       <div className="">
@@ -21,12 +21,15 @@ const OrderDetail = () => {
         </h2>
         {commande?.produit?.map((produit, index) => (
           <>
-            <div className="flex text-sm sm:text-md justify-between gap-7  mt-5 p-4 border rounded">
+            <div
+              key={index}
+              className="flex text-sm sm:text-md justify-between gap-7  mt-5 p-4 border rounded"
+            >
               <div className="flex gap-3.5 bg-  w-auto sm:w-56">
                 <div className="h-16 w-16 ">
                   <img
-                    src={commande.imageUrl[index]}
-                    alt={commande.imageUrl[index]}
+                    src={commande?.imageUrl[index]}
+                    alt={commande?.imageUrl[index]}
                     className="w-full h-full"
                   />
                 </div>
@@ -39,7 +42,7 @@ const OrderDetail = () => {
                   <p className="mt- flex flex-col font-medium">
                     Quantité:{" "}
                     <span className="text-center mt-2">
-                      {commande.quantite[index]}
+                      {commande.quantiteCom[index]}
                     </span>
                   </p>
                 </div>
@@ -48,7 +51,7 @@ const OrderDetail = () => {
               <p className="mt- flex flex-col text-end font-medium">
                 Prix:{" "}
                 <span className="text-center mt-2">
-                  {commande.prixProduit[index].toLocaleString("fr-FR")} fcfa
+                  {commande?.prixProduit[index].toLocaleString("fr-FR")} fcfa
                 </span>
               </p>
             </div>

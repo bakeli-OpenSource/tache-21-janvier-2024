@@ -30,11 +30,12 @@ const Dashboard = () => {
 			
 
 
-      <div className="flex flex-wrap mb-5">
-        <div className={`md:w-full lg:w-3/5 sm:w-full`}>
+
+      <div className="flex flex-wrap">
+        <div className={`w-full lg:mr-[4rem] lg:w-3/5 `}>
           <Revenue />
         </div>
-        <div className="md:w-full lg:w-2/5 sm:w-full">
+        <div className="w-full lg:w-2/6 ">
           <Graphique2 />
         </div>
       </div>

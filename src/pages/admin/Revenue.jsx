@@ -32,13 +32,13 @@ function Revenue() {
   }));
 
   return (
-    <div className="border bg-white shadow-md cursor-pointer rounded-[4px] mr-[20px] w-full">
+    <div className="border bg-white shadow-md rounded-[4px] mr-[20px] w-full">
       <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
         <h2 className='text-white text-[16px] leading-[19px] font-bold'>Suivie vente / catégorie</h2>
       </div>
       <AreaChart
-        width={600}
-        height={400}
+        width={550}
+        height={450}
         data={datas}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
