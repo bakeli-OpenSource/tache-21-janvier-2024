@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useGlobal from '../../utils/hooks/useGlobal';
@@ -164,6 +164,10 @@ const CommandeContextProvider = ({ children }) => {
       console.error('Erreur lors de la récupération des commandes:', error);
     }
   };
+
+  useEffect(() => {
+    fetchCommandes();
+  }, [commandes]);
 
 
   const value = {
