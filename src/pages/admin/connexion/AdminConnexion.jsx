@@ -102,7 +102,7 @@ const AdminConnexion = () => {
                   className={`bg-gray-100 w-full flex gap-4 items-center  justify-center focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-6 mx-auto py-3 focus:outline-none${
                     isButtonDisabled || isLoading
                       ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-black relative "
-                      : "bg-gray-900 text-active text-white "
+                      : "bg-gray-900 text-active text-white bg-gray-900 "
                   } `}
                 >
                   connexion
