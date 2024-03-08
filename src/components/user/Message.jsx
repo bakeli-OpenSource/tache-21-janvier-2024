@@ -39,7 +39,7 @@ const Message = ({nouveauMessage}) => {
                 {nouveauMessage.length ?
                   nouveauMessage.map((message, index) => (
                     <button onClick={() => messageLu(message._id)}  key={index} className={`mb-2 bg-white  text-black py-2 rounded-lg col-span-3 shadow-xl ${border}`}>
-                      <div className="flex justify-between px-3">
+                      <div onClick={handleMessage}  className="flex justify-between px-3">
                           <div className=''>
                             <p className="text-lg text-start font-semibold pb-1">Nouveau Message</p>
                             <p className='text-start text-slate-600'>Vous avez recu un message de <span className='font-semibold'>{message.prenomNom}</span></p>
