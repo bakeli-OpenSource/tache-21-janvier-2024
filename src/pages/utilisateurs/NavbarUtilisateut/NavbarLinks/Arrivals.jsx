@@ -6,21 +6,24 @@ import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import axiosInstance from "../../../../utils/axiosInstance";
 import LoaderCard from "../../../../usersComponents/loaderCard/LoaderCard";
 
-
 const Arrivals = () => {
-  const { produits } = useContext(ProduitsContext);
+  const { produits, fetchProduit } = useContext(ProduitsContext);
+
+  useEffect(() => {
+    fetchProduit();
+  }, [produits]);
+
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [produitAimer, setProduitAimer] = useState(() => {
     const listesEnvies = localStorage.getItem("produitAimer");
     return listesEnvies ? JSON.parse(listesEnvies) : [];
   });
   const { setDropdown } = useGlobal();
+
   useEffect(() => {
     const fetchNewArrivals = async () => {
       try {
-        const response = await axiosInstance.get(
-          "/produits"
-        );
+        const response = await axiosInstance.get("/produits");
         setFilteredProducts(response.data);
       } catch (error) {
         console.error(
@@ -38,18 +41,15 @@ const Arrivals = () => {
       return new Date(b.date) - new Date(a.date);
     });
 
-    const latestProducts = sortedProducts.slice(0, 10); 
+    const latestProducts = sortedProducts.slice(0, 10);
     setFilteredProducts(latestProducts);
   };
 
   useEffect(() => {
-    
-    sortProductsByDate()
-    
+    sortProductsByDate();
+
     // console.log(sortProductsByDate);
   }, [sortProductsByDate]);
-
-  
 
   useEffect(() => {
     localStorage.setItem("produitAimer", JSON.stringify(produitAimer));
@@ -57,11 +57,10 @@ const Arrivals = () => {
 
   return (
     <div
-    data-aos="zoom-in"
+      data-aos="zoom-in"
       onClick={() => setDropdown(false)}
       className="px-9  mt-[50px] mx-auto z-0 flex flex-col  "
     >
-
       <div className="mt-[30px] ">
         {produits.length > 0 ? (
           <>
@@ -79,5 +78,3 @@ const Arrivals = () => {
   );
 };
 export default Arrivals;
-
-
