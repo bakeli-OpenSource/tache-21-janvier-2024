@@ -6,6 +6,7 @@ import { ProduitsContext } from "../../utils/contexte/ProduitsContext";
 import CardProduit from "../../usersComponents/cards/CardProduit";
 import Loader from "../../components/loader/loader";
 import Commentaire from "../../usersComponents/cards/Commentaire";
+import LoaderCard from "../../usersComponents/loaderCard/LoaderCard";
 
 export default function Accueil() {
   const { produits } = useContext(ProduitsContext);
@@ -31,7 +32,7 @@ export default function Accueil() {
                       ))}
                   </div>
                 ) : (
-                  <Loader />
+                  <LoaderCard />
                 )}
               </div>
             </section>
