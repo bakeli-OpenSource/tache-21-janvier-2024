@@ -67,7 +67,7 @@ const DetailsCommande = () => {
             <div className=" w-full     mt-6">
               <div
                 key={index}
-                className={`card min-w-full flex items-center justify-between  px-5 py-2 mb-4 border-s-4 ${
+                className={`card min-h-[160px] flex items-center justify-between  px-5 py-2 mb-4 border-s-4 ${
                   data.etat === "en cours"
                     ? "border-orange-500"
                     : data.etat === "en livraison"

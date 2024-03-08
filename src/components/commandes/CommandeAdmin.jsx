@@ -86,7 +86,7 @@ const CommandeAdmin = () => {
         }
        
       />
-      <Table thead={table} tbody={commandes.reverse()} actions={actions} />
+      <Table thead={table} tbody={commandes} actions={actions} />
     </div>
   );
 
