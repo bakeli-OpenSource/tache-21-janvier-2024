@@ -89,7 +89,6 @@ export default function CategorieContextProvider({children}) {
           "/categorie",
           formData
         );
-        console.log("Catégorie ajoutée avec succès:", response.data);
         setShowModal(false);
         setNom("");
 
@@ -111,7 +110,6 @@ export default function CategorieContextProvider({children}) {
         `/categorie/${categoryId}`,
         newData
       );
-      console.log("Catégorie modifiée avec succès:", response.data);
 
       
       fetchCategories();
@@ -147,7 +145,6 @@ export default function CategorieContextProvider({children}) {
     try {
       const response = await axiosInstance.get('/categories');
       setCategories(response.data);
-      console.log('Catégories récupérées avec succès');
     } catch (error) {
       console.error('Erreur lors de la récupération des catégories :', error);
     }
@@ -174,8 +171,6 @@ export default function CategorieContextProvider({children}) {
       );
   
       setCategories(updatedCategories);
-      console.log('Quantités de produits mises à jour avec succès dans la base de données');
-      console.log({ updatedCategories });
     } catch (error) {
       console.error('Erreur lors de la mise à jour des quantités de produits :', error);
     }
