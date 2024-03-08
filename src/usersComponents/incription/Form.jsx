@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,6 +7,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 const Form = () => {
   const navigate = useNavigate();
+  const location = useLocation()
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -60,7 +61,8 @@ const Form = () => {
         password: "",
       });
       toast.success("Inscription réussi!");
-      navigate("/connexion");
+      // navigate("/connexion");
+      navigate('/connexion', { state: { from: location.pathname } });
       console.log(response.data);
     } catch (error) {
       console.error(error);

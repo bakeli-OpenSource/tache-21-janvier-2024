@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePanier } from '../../utils/contexte/PanierContext';
 import ComponentButton from '../button/ComponentButton';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useGlobal from '../../utils/hooks/useGlobal';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,6 +10,7 @@ import axiosInstance from '../../utils/axiosInstance';
 
 const Commande = () => {
 	const navigate = useNavigate();
+	const location  = useLocation()
 	const { client } = useGlobal();
 	const [loggedInUserToken, setLoggedInUserToken] = useState(null);
 
@@ -32,7 +33,8 @@ const Commande = () => {
 		e.preventDefault();
 
 		if (!loggedInUserToken) {
-			navigate('/connexion');
+			// navigate('/connexion');
+			navigate('/connexion', { state: { from: location.pathname } });
 			return;
 		}
 
