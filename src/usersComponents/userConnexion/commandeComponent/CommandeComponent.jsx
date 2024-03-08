@@ -7,28 +7,23 @@ import Loader from "../../../components/loader/loader";
 import useCommandes from "../../../utils/hooks/useCommandes";
 
 const CommandeComponent = () => {
-
   const { commandes } = useCommandes();
-
- 
 
   const { client } = useGlobal();
 
-  
-  
   const clientCommande = commandes.filter(
     (commande) => commande.email === client?.email
-    );
+  );
 
   const commande = clientCommande.map((com) => com?.email);
-
 
   return (
     <div>
       {commandes.length > 0 ? (
         client?.email === commande[0] ? (
           clientCommande?.map((item) => (
-            <div
+            <Link
+            to={`/compte/commandes/DetailsCommande/${item._id}`}
               className="flex text-sm sm:text-[16px] shadow-lg rounded-md bg-white justify-between border p-4 py-6 mt-5 gap-"
               key={item?._id}
             >
@@ -73,7 +68,7 @@ const CommandeComponent = () => {
                 </Link>
                 <p></p>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <Choix
