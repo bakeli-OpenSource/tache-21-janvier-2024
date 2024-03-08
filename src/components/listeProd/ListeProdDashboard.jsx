@@ -1,8 +1,10 @@
+
 import React from 'react';
 import ProductCard from '../productCard/ProductCard';
 import Loader from '../loader/loader';
 export default function ListeProdDashboard({ produits }) {
-	const table = ['Article', 'Quantité', 'Prix'];
+  const table = ["Article", "Quantité", "Prix"];
+
 
 	const produitsAvecVentes =
 		produits && produits.filter((product) => product.vente > 0);

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { TbEyeShare } from "react-icons/tb";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
@@ -213,7 +213,6 @@ const ProduitContextProvider = ({ children }) => {
 
 
         if (response.status === 201) {
-            console.log('Produit ajouté avec succès:', response.data);
             fetchProduitsCategorie(categorieId)
             // alert('Produit ajouté avec succès:');
             toast.success('Produit ajouté avec succès!');
@@ -254,7 +253,6 @@ const ProduitContextProvider = ({ children }) => {
       });
   
       if (response.status === 200) { // Corrected to check for status 200
-        console.log('Produit modifié avec succès:', response.data);
         toast.warning ('Produit modifié avec succès!');
         setShowModal(false);
         setTitreModal("Ajouter un produits")
@@ -296,7 +294,6 @@ const ProduitContextProvider = ({ children }) => {
     try {
       const response = await axiosInstance.get("/categories");
       setCategories(response.data);
-      console.log("Catégories récupérées avec succès");
     } catch (error) {
       console.error("Erreur lors de la récupération des catégories:", error);
     }
@@ -335,10 +332,8 @@ const ProduitContextProvider = ({ children }) => {
       categorie, categorieId, carracteristique, prix, couleur, taille, fournisseur, promo
     }
     if (soumettre === 'Ajouter') {
-      console.log('Ajout de produit');
       addProduit(recupInput)
     }else{
-      console.log('modification de produit');
       updateProduit(recupInput)
     }
     setNom('')
@@ -353,14 +348,12 @@ const ProduitContextProvider = ({ children }) => {
     setTaille('')
     setFournisseur('')
     setPromo('')
-    console.log(soumettre);
   }    
   
   const fetchProduitsCategorie = async (idCategory) => {
     try {
       const response = await axiosInstance.get(`/produits/categorie/${idCategory}`);      
       setListeProduitsCategories(response.data)
-      console.log('Produits catégorie récupérées avec succès');
     } catch (error) {
       console.error('Erreur lors de la récupération des produits de la catégories :', error);
     }
@@ -379,6 +372,8 @@ const ProduitContextProvider = ({ children }) => {
           setFiltreProduits(produits)
         }
    }
+
+  
     
       
 

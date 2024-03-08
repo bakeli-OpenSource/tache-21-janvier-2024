@@ -6,7 +6,6 @@ import { BsArrowLeft } from 'react-icons/bs';
 import ComponentButton from '../button/ComponentButton';
 import { usePanier } from '../../utils/contexte/PanierContext';
 import Choix from '../compteComponent/Choix';
-import Shop from '../../pages/utilisateurs/NavbarUtilisateut/NavbarLinks/Shop';
 
 const Cart = () => {
 	const {
@@ -44,7 +43,7 @@ const Cart = () => {
 							<tbody>
 								{items.map((item) => (
 									<tr key={item._id}>
-										<td className="flex items-center justify-center py-2 mb-5 text-sm">
+										<td className="flex items-center justify-center md:justify-start py-2 mb-5 text-sm">
 											<img
 												src={item.imageUrl}
 												alt={item.nom}
