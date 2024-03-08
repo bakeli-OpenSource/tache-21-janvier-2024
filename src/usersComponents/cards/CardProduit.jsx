@@ -73,24 +73,12 @@ const CardProduit = ({ produit, onClick }) => {
               {prix.toLocaleString("fr-FR")} FCFA
             </span>
           )}
-          <div className="p- mt-2 text-">
+          <div className="p- mt-2 text-gray-400 ">
             {/* star rating */}
             <div className="w-full  flex items-center justify- gap-1">
               <FaStar
                 className={`cursor-pointer ${
-                  produit.vente >= 5 ? "text-yellow-400" : "text-gray-200"
-                }`}
-                size={20}
-              />
-              <FaStar
-                className={`cursor-pointer ${
                   produit.vente >= 10 ? "text-yellow-400" : "text-gray-200"
-                }`}
-                size={20}
-              />
-              <FaStar
-                className={`cursor-pointer ${
-                  produit.vente >= 15 ? "text-yellow-400" : "text-gray-200"
                 }`}
                 size={20}
               />
@@ -106,6 +94,18 @@ const CardProduit = ({ produit, onClick }) => {
                 }`}
                 size={20}
               />
+              <FaStar
+                className={`cursor-pointer ${
+                  produit.vente >= 30 ? "text-yellow-400" : "text-gray-200"
+                }`}
+                size={20}
+              />
+              <FaStar
+                className={`cursor-pointer ${
+                  produit.vente >=  60 ? "text-yellow-400" : "text-gray-200"
+                }`}
+                size={20}
+              /> 
             </div>
             <div className="flex gap-4 md:gap-2 mt-4 mb- md:mb-0 justify-">
             <div

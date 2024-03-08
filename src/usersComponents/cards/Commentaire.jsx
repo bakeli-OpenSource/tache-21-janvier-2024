@@ -1,5 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
+import Mbaye from '../../assets/images/mbaye.jpg'
 
 const CommentaireData = [
     {
@@ -16,7 +17,7 @@ const CommentaireData = [
     },
     {
       id: 3,
-      name: "Miss Ndeya",
+      name: "Miss Ndeya ",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
       img: "https://picsum.photos/104/104",
     },
@@ -31,6 +32,12 @@ const CommentaireData = [
       name: "Ladji Timera",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
       img: "https://picsum.photos/103/103",
+    },
+    {
+      id: 6,
+      name: "Mbaye Seck",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
+      img: Mbaye,
     },
   ];
 

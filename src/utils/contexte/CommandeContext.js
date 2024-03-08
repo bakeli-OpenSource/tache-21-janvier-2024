@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useGlobal from '../../utils/hooks/useGlobal';
@@ -30,22 +30,24 @@ const CommandeContextProvider = ({ children }) => {
 
   const { setShowModal } = useGlobal();
 
+  const closeModal = () => {
+    setShowModal(false)
+  }
+
   const [editingCommandeId, setEditingCommandeId] = useState(null);
 
   const [selectsValue, setSelectsValue] = useState('');
 
   const [data, setData] = useState([]);
-  useEffect(() => {
+  
     const fetchCommande = async (commandeId) => {
       try {
         const response = await axiosInstance.get('/commandes/' + commandeId);
         setData(response.data);
       } catch (error) {
-        console.error('Erreur lors de la récupération des commandes:', error);
+        console.error('Erreur lors de la récupération de la commandes:', error);
       }
     };
-    fetchCommande(commandeId);
-  }, [commandeId]);
 
   const handleDetail = (commandeId) => {
     const commandeIdCli = localStorage.getItem('commandeIdCli');
@@ -121,6 +123,7 @@ const CommandeContextProvider = ({ children }) => {
         toast.success('Statut modifié avec succès!');
         fetchCommandes();
         setModifModal(false);
+        closeModal()
       } else {
         throw new Error('Erreur lors de la modification');
       }
@@ -157,17 +160,17 @@ const CommandeContextProvider = ({ children }) => {
         quantite: undefined,
       }));
       setCommandes(commandeAvecQuantiteProd);
-      console.log('Commandes récupérées avec succès');
     } catch (error) {
       console.error('Erreur lors de la récupération des commandes:', error);
     }
   };
 
-  useEffect(() => {
-    fetchCommandes();
-  }, [commandes]);
 
   const value = {
+    
+    fetchCommande,
+    commandeId,
+    fetchCommandes,
     commandeId,
     setShowModal,
     setEditingCommandeId,
@@ -177,6 +180,7 @@ const CommandeContextProvider = ({ children }) => {
     handleDelete,
     setSelectsValue,
     setIsEditing,
+    closeModal,
     table,
     commandes,
     produit,

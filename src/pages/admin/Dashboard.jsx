@@ -14,6 +14,7 @@ const Dashboard = () => {
 	const { filtreProduits, handleSelectChangeCategorie } = useProduits();
 
 	return (
+		<div>
 		<div
 			onClick={closedrop}
 			className={`${
@@ -21,30 +22,39 @@ const Dashboard = () => {
 			} m-5 mb-0`}
 		>
 			<div className="container text-xl font-bold ">
-				<div className="flex justify-end">
-					<ProduitContextProvider>
-						<Filtre handleSelectChange={handleSelectChangeCategorie} />
-					</ProduitContextProvider>
-				</div>
 				<div>
 					<Cards />
 				</div>
 			</div>
 
-			<div className="w-full gap-8  md:grid md:grid-cols-1 lg:grid-cols-2">
-				<div className="">
-					<Revenue />
-				</div>
-				<div className="pie-chart-container md:w-full lg:w-auto">
-					<Graphique2 />
-				</div>
-			</div>
+			
 
-			<div className="mt-5">
-				<ListeProduit tbody={filtreProduits} />
-			</div>
+
+
+      <div className="flex flex-wrap">
+        <div className={`w-full lg:mr-[4rem] lg:w-3/5 `}>
+          <Revenue />
+        </div>
+        <div className="w-full lg:w-2/6 ">
+          <Graphique2 />
+        </div>
+      </div>
+	  
+	   <div className="flex justify-end mt-5">
+			<ProduitContextProvider>
+				<Filtre handleSelectChange={handleSelectChangeCategorie} />
+			</ProduitContextProvider>
 		</div>
-	);
-};
+
+      <div className="mt-5">
+        <ListeProduit tbody= {filtreProduits} />
+      </div>
+
+    </div>
+ 			
+		</div>
+		 )
+		}
+		
 
 export default Dashboard;

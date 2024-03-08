@@ -40,9 +40,9 @@ export default function Accueil() {
           <div className="px-4 md:px-9"> 
             <Locale />
           </div>
-          <div>
+          {/* <div>
             <Commentaire />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

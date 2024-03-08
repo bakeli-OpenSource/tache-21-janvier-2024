@@ -1,6 +1,5 @@
 import React from "react";
 import Paragraphe from "./Paragraphe";
-import ComponentButton from "../button/ComponentButton";
 import '@fontsource/montserrat';
 
 
@@ -9,72 +8,48 @@ const Footer = () => {
   const contact = ["+221 77 982 54 32", "kaysolu@gmail.com", "Dakar-bakeli"];
   
   const customers = [
-    "Démarrer un retour",
-    "Politique de retour",
     "FAQ",
-    "Catalogues et courriers",
-    "À propos des cadeaux de groupe",
   ];
   const company = [
     "A propos de nous",
-    "Durabilité",
-    "Carriére",
-    "Politique de confidentialité",
-    "Termes",
   ];
   return (
-    <div className="flex justify-between mt-5 pb-3 flex-wrap w-full bg-gray-200 px-[35px] font-montserrat">
-      <div className=" flex  gap-x-10 flex-wrap  ">
-        <div>
-          <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
+    <div className="flex mt-5 pb-3 flex-wrap w-full bg-gray-200 px-[35px] font-montserrat">
+      <div className="flex justify-around gap-x-10 w-full flex-wrap">
+        <div className="mt-3">
+          <h4 className="text-sm font-bold  tracking-widest opacity-65 lg:my-6 md:my-4 sm:my-2">
             CONTACTEZ-NOUS
           </h4>
           <Paragraphe className="cursor-pointer hover:underline" items={contact} />
         </div>
-        <div>
-          <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
+        <div className="mt-3">
+          <h4 className="text-sm font-bold tracking-widest opacity-65 lg:my-6 md:my-4 sm:my-2">
             CLIENTS
           </h4>
+          <a href="#">
           <Paragraphe items={customers} />
+          </a>
         </div>
-        <div>
-          <h4 className="text-sm font-bold  tracking-widest opacity-65 my-6">
+        <div className="mt-3">
+          <h4 className="text-sm font-bold  tracking-widest opacity-65 lg:my-6 md:my-4 sm:my-2">
             ENTREPRISE
           </h4>
           <Paragraphe items={company} />
         </div>
+        <div className="flex lg:flex-col sm:flex-row md:flex-row my-6 gap-2">
+          <BsFacebook className="w-[21px] h-[21px] object-contain cursor-pointer text-[#3b5998]" />
+          <BsTwitterX className="w-[21px] h-[21px] object-contain cursor-pointer text-[#1da1f2]" />
+          <BsInstagram className="w-[21px] h-[21px] object-contain cursor-pointer text-[#c13584]" />
+          <BsLinkedin className="w-[21px] h-[21px] object-contain cursor-pointer text-[#0077b5]" />
+        </div>
       </div>
-      <div className="">
-        <h3 className="text-xl font-bold tracking-widest opacity-85 my-6">
-          Recevez les dernières nouveautés de notre part
-        </h3>
-        <input
-          placeholder="Enter your email adress"
-          className="w-full border-0 outline-none text-lg my-5 p-2"
-        />
-        <p className="text-sm py-1 font-semibold">
-          En vous inscrivant, vous acceptez notre politique privée et nos
-          conditions d'utilisation.
-        </p>
-        <ComponentButton
-          className="bg-slate-800 text-white w-auto px-3 py-2 my-5 text-xl tracking-widest rounded"
-          texte="Abonnez-vous"
-        />
-      </div>
-
+      
         {/* Bottom du Footer */}
-      <div className="w-full flex justify-between items-center md:flex-row flex-col pt-4 border-t-[1px] border-t-[#3F3E45]">
+      <div className="w-full flex items-center justify-center pt-4 border-t-[1px] border-t-[#3F3E45]">
         <p className="font-poppins font-normal text-center text-[15px] leading-[27px]">
           Kaay-Solu Ⓒ 2024 Tous Droits Réservés.
         </p>
-        <div className="flex flex-row md:mt-0 mt-6 gap-2">
-          <BsFacebook className="w-[21px] h-[21px] object-contain cursor-pointer" />
-          <BsTwitterX className="w-[21px] h-[21px] object-contain cursor-pointer" />
-          <BsInstagram className="w-[21px] h-[21px] object-contain cursor-pointer" />
-          <BsLinkedin className="w-[21px] h-[21px] object-contain cursor-pointer" />
-        </div>
       </div>
-
     </div>
   );
 };
