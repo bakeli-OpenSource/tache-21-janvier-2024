@@ -44,6 +44,7 @@ const Header = () => {
 		pauseOnFocus: true,
 	};
 
+
 	return (
 		<div className="relative shadow-lg sm:pt-8 overflow-hidden min-h-[550px] sm:min-h-[650px] flex justify-center items-center pl-[25px] duration-200">
 			{/* background */}

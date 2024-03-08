@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import useGlobal from "../../utils/hooks/useGlobal";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +8,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 const Form = () => {
   const navigate = useNavigate();
+   const location = useLocation();
   const { profileUser, client } = useGlobal();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,8 +50,17 @@ const Form = () => {
       const response = await axiosInstance.post("/authclient/login", formData);
       const token = response.data.token;
       localStorage.setItem("tokenclient", token);
-      navigate(-1);
+      // navigate(-1);
       profileUser();
+
+      const from = location.state?.from || '/'; 
+      console.log(location);
+      if (from === '/inscription') {
+        navigate('/'); 
+      } else {
+        navigate(from); 
+      }
+
 
       if (client && client.prenom && client.nom) {
         toast.success(`Bienvenue ${client.prenom} ${client.nom}!`);
@@ -59,7 +69,8 @@ const Form = () => {
       }
     } catch (error) {
       console.error(error);
-      alert("Email ou mot de passe incorrect");
+      // alert("Email ou mot de passe incorrect");
+      toast.error("Email ou mot de passe incorrect")
     } finally {
       setIsLoading(false);
     }
