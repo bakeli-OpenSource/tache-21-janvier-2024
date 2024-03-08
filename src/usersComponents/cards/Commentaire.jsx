@@ -16,13 +16,13 @@ const CommentaireData = [
     },
     {
       id: 3,
-      name: "Mbaye Ndiaye",
+      name: "Miss Ndeya",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
       img: "https://picsum.photos/104/104",
     },
     {
         id: 4,
-        name: "Ndeye Awa",
+        name: "Mbaye Ndiaye",
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
         img: "https://picsum.photos/105/105",
       },
