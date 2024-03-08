@@ -66,10 +66,10 @@ const ContactsPage = () => {
   return (
     <div
       onClick={closeDropdown}
-      className="mt-[60px] pt-0 md:pt-6 px- bg- w-full"
+      className="mt-[60px] pt-0 md:pt-6 w-full"
     >
       <div className=" px-4 md:px-2 w-full">
-        <div className="flex flex-col w-full pt-4 md:px-9 md:flex-row gap-4 md:gap-9">
+        <div className="flex flex-col w-full pt-4 md:px-9 sm:px-0 md:flex-row gap-4 md:gap-9">
           <div
             className={`w-full md:w-1/4 shadow-sm border border-gray-200 rounded-md py-4`}
           >
@@ -102,7 +102,7 @@ const ContactsPage = () => {
             <h1 className="border font-medium border-t-0 border-s-0 border-e-0 pb-2 pt-4 ">
               Contactez-nous
             </h1>
-            <form className="w-full px- py-4 mx-auto" onSubmit={handleSubmit}>
+            <form className="w-full py-4 mx-auto" onSubmit={handleSubmit}>
               <div className="mt-">
                 <div className="flex flex-col justify-center w-full gap-5 mt-5 align-center md:flex-row">
                   <div className="w-full mb-0 md:mb-5 md:w-1/3">
@@ -174,7 +174,7 @@ const ContactsPage = () => {
             </form>
           </div>
         </div>
-        <div className="px-9">
+        <div className="px-9 md:px-1 sm:px-0">
           <ScrollingText />
         </div>
       </div>
