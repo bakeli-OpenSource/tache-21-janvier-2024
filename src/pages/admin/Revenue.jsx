@@ -1,11 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
-import { AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Area } from 'recharts';
+import {
+  AreaChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Area,
+} from "recharts";
 import axiosInstance from "../../utils/axiosInstance";
 import { ProduitsContext } from "../../utils/contexte/ProduitsContext";
 
 function Revenue() {
   const [categories, setCategories] = useState([]);
-  const { produits } = useContext(ProduitsContext);
+  const { produits, fetchProduit } = useContext(ProduitsContext);
+
+  useEffect(() => {
+    fetchProduit();
+  }, [produits]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -22,19 +34,26 @@ function Revenue() {
   }, []);
 
   const fetchVentesByCategory = (categoryName) => {
-    const prodByCategory = produits.filter(prod => prod.categorie === categoryName);
-    return prodByCategory.reduce((totalVentes, prod) => totalVentes + prod.vente, 0);
+    const prodByCategory = produits.filter(
+      (prod) => prod.categorie === categoryName
+    );
+    return prodByCategory.reduce(
+      (totalVentes, prod) => totalVentes + prod.vente,
+      0
+    );
   };
 
-  const datas = categories.map(category => ({
+  const datas = categories.map((category) => ({
     categorie: category.nom,
-    ventes: fetchVentesByCategory(category.nom)
+    ventes: fetchVentesByCategory(category.nom),
   }));
 
   return (
     <div className="border bg-white shadow-md rounded-[4px] mr-[20px] w-full">
-      <div className='bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]'>
-        <h2 className='text-white text-[16px] leading-[19px] font-bold'>Suivie vente / catégorie</h2>
+      <div className="bg-blue-950 flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]">
+        <h2 className="text-white text-[16px] leading-[19px] font-bold">
+          Suivie vente / catégorie
+        </h2>
       </div>
       <AreaChart
         width={550}
@@ -47,7 +66,13 @@ function Revenue() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Area type="monotone" dataKey="ventes" stroke="blue" fill="#8884d8" activeDot={{ r: 8 }} />
+        <Area
+          type="monotone"
+          dataKey="ventes"
+          stroke="blue"
+          fill="#8884d8"
+          activeDot={{ r: 8 }}
+        />
       </AreaChart>
     </div>
   );

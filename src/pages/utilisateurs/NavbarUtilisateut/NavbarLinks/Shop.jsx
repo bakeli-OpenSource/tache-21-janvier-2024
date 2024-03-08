@@ -7,6 +7,7 @@ import CardProduit from "../../../../usersComponents/cards/CardProduit";
 import Loader from "../../../../components/loader/loader";
 import axiosInstance from "../../../../utils/axiosInstance";
 import { NavLink } from "react-router-dom";
+import LoaderCard from "../../../../usersComponents/loaderCard/LoaderCard";
 
 const Shop = () => {
   const { categories, setCategories } = useContext(CategorieContext);
@@ -113,7 +114,7 @@ const Shop = () => {
               ))}
             </div>
           ) : (
-            <Loader />
+            <LoaderCard />
           )}
         </div>
       </div>
