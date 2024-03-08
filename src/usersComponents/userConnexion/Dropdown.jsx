@@ -24,7 +24,8 @@ const Dropdown = ({ onClick }) => {
     handleToggle();
 
     if (tokenClient === null) {
-      navigate("/connexion");
+      // navigate("/connexion");
+      navigate('/connexion', { state: { from: location.pathname } });
     } else {
       handleLogoutUser();
     }
@@ -33,7 +34,8 @@ const Dropdown = ({ onClick }) => {
   const dropdownOuvret = () => {
     
     if (tokenClient === null) {
-      navigate("/connexion");
+      // navigate("/connexion");
+      navigate('/connexion', { state: { from: location.pathname } });
     } else {
 		handleToggle()
     }
