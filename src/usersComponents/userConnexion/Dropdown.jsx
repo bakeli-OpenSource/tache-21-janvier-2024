@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { DiGhostSmall } from "react-icons/di";
@@ -14,6 +14,7 @@ const Dropdown = ({ onClick }) => {
   let commander;
   let favoris;
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     profileUser();
@@ -25,21 +26,20 @@ const Dropdown = ({ onClick }) => {
 
     if (tokenClient === null) {
       // navigate("/connexion");
-      navigate('/connexion', { state: { from: location.pathname } });
+      navigate("/connexion", { state: { from: location.pathname } });
     } else {
       handleLogoutUser();
     }
   };
 
   const dropdownOuvret = () => {
-    
     if (tokenClient === null) {
       // navigate("/connexion");
-      navigate('/connexion', { state: { from: location.pathname } });
+      navigate("/connexion", { state: { from: location.pathname } });
     } else {
-		handleToggle()
+      handleToggle();
     }
-  }
+  };
 
   if (tokenClient === null) {
     connecter = "/connexion";
@@ -64,11 +64,19 @@ const Dropdown = ({ onClick }) => {
             ? "Se connecter"
             : `bonjour, ${client.prenom === undefined ? "" : client.prenom}`}
         </p>
-        {tokenClient === null ? "" : dropdown === true ? <RiArrowDropUpLine 
-          className="p-0 mt-2 mx-0 hidden md:block"
-          size={30}
-        /> : <RiArrowDropDownLine  className="p-0 mt-2 mx-0 hidden md:block"
-		size={30} /> }
+        {tokenClient === null ? (
+          ""
+        ) : dropdown === true ? (
+          <RiArrowDropUpLine
+            className="p-0 mt-2 mx-0 hidden md:block"
+            size={30}
+          />
+        ) : (
+          <RiArrowDropDownLine
+            className="p-0 mt-2 mx-0 hidden md:block"
+            size={30}
+          />
+        )}
       </div>
 
       {dropdown && (
