@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../../usersComponents/headerUserComponent/Header";
 import useGlobal from "../../utils/hooks/useGlobal";
 import Locale from "../../usersComponents/cards/Locale";
@@ -7,9 +7,31 @@ import CardProduit from "../../usersComponents/cards/CardProduit";
 import Loader from "../../components/loader/loader";
 import Commentaire from "../../usersComponents/cards/Commentaire";
 import LoaderCard from "../../usersComponents/loaderCard/LoaderCard";
+import axiosInstance from "../../utils/axiosInstance";
 
 export default function Accueil() {
-  const { produits } = useContext(ProduitsContext);
+  // const { produits } = useContext(ProduitsContext);
+  const [produits, setProduits] = useState([]);
+
+  const fetchProduit = async () => {
+
+    try {
+      const response = await axiosInstance.get("/produits");
+      const produitsAvecQuantiteProd = response.data.map((produit) => ({
+        ...produit,
+        quantiteProd: produit.quantite,
+        // Supprimer la clé "quantite" de l'objet
+        quantite: undefined,
+      }));
+      setProduits(produitsAvecQuantiteProd);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des produits:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProduit();
+  }, []);
   const { setDropdown } = useGlobal();
   const categories = ["Chaussures", "Accessoires", "Vetements"];
 
@@ -41,9 +63,9 @@ export default function Accueil() {
           <div className="px-4 md:px-9"> 
             <Locale />
           </div>
-          <div>
+          {/* <div>
             <Commentaire />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
