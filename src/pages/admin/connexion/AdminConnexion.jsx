@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import useGlobal from "../../../utils/hooks/useGlobal";
-import icone from "../../../assets/images/icone.jpg";
+import icone from "../../../assets/images/kaay-solu-logo.png";
 
 const AdminConnexion = () => {
   const { email, setEmail, password, setPassword, handleLogin, isLoading } =
@@ -70,7 +70,7 @@ const AdminConnexion = () => {
             type={showPassword ? "text" : "password"}
             id="password"
             name="password"
-            className="bg-gray-100 w-full p-2 mt-1 px-2 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
+            className=" w-full p-2 mt-1 px-2 bg-gray-200 border rounded-md outline-none focus:border focus:border-double focus:border-sky-600"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -102,7 +102,7 @@ const AdminConnexion = () => {
                   className={`bg-gray-100 w-full flex gap-4 items-center  justify-center focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm  px-6 mx-auto py-3 focus:outline-none${
                     isButtonDisabled || isLoading
                       ? "bg-gray-800 opacity-85 cursor-not-allowed text-disabled text-black relative "
-                      : "bg-gray-900 text-active text-white bg-gray-900"
+                      : "bg-gray-900 text-active text-white bg-gray-900 "
                   } `}
                 >
                   connexion

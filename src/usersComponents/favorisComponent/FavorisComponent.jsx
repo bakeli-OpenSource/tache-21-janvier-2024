@@ -49,7 +49,7 @@ const FavorisComponent = ({ item, listesEnvies, setListesEnvies }) => {
       // to={`${
       //   !produitDisponible ? "/compte/produitIndisponible" : `/details/${_id} `
       // }`}
-      className="flex flex-col md:flex-row shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap"
+      className="flex cursor-pointer flex-col md:flex-row shadow-lg rounded-md bg-white justify-between border p-4 py- mt-5 gap"
       key={_id}
     >
       <div className="flex flex-col sm:flex-row items- gap-4">

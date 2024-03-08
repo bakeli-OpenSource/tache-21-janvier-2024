@@ -61,9 +61,7 @@ const CommandeAdmin = () => {
 			},
 		},
 	];
-  useEffect(() => {
-    fetchCommandes();
-  }, []);
+
 
 
   return (
